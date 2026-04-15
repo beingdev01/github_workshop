@@ -10,9 +10,11 @@
       <!-- Logo -->
       <div class="flex h-16 items-center gap-3 border-b border-border px-4 min-w-[18rem]">
         <router-link to="/" class="flex items-center gap-2.5 overflow-hidden">
-          <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-mint to-sky text-sm font-bold text-white">
-            Py
-          </div>
+          <img
+            src="/site-logo.png"
+            alt="Python Workshop logo"
+            class="h-8 w-8 shrink-0 object-contain"
+          />
           <span class="font-display text-sm font-bold tracking-tight text-text-primary whitespace-nowrap">
             Python Workshop
           </span>

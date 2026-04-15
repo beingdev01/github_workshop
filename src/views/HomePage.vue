@@ -4,9 +4,11 @@
     <nav class="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-void/80 backdrop-blur-xl">
       <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <div class="flex items-center gap-3">
-          <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-mint to-sky text-sm font-bold text-white">
-            Py
-          </div>
+          <img
+            src="/site-logo.png"
+            alt="Python Workshop logo"
+            class="h-9 w-9 object-contain"
+          />
           <span class="font-display text-base font-bold tracking-tight">Python Workshop</span>
         </div>
         <div class="hidden md:flex items-center gap-6 text-sm">

@@ -5,7 +5,11 @@
       <div class="mx-auto flex h-16 max-w-none items-center justify-between px-8">
         <div class="flex items-center gap-4">
           <router-link to="/" class="flex items-center gap-3">
-            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-amber to-coral text-base font-bold text-void">Py</div>
+            <img
+              src="/site-logo.png"
+              alt="Python Workshop logo"
+              class="h-10 w-10 object-contain"
+            />
             <span class="font-display text-base font-bold">Cheat Sheet</span>
           </router-link>
         </div>
