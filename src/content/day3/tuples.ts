@@ -114,7 +114,7 @@ export const day3Tuples: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
   {
-    type: 'quiz',
+    type: 'qna',
     quiz: {
       id: 'quiz-tuples',
       title: 'Tuples Quiz',
@@ -163,7 +163,7 @@ export const day3Tuples: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
   {
-    type: 'challenge',
+    type: 'qna',
     challenge: {
       id: 'challenge-tuples',
       title: 'Contact Book with Tuples',

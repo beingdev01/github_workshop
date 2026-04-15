@@ -81,7 +81,7 @@ export const day3ListPatterns: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
   {
-    type: 'quiz',
+    type: 'qna',
     quiz: {
       id: 'quiz-listpatterns',
       title: 'List Patterns Quiz',
@@ -123,7 +123,7 @@ export const day3ListPatterns: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
   {
-    type: 'challenge',
+    type: 'qna',
     challenge: {
       id: 'challenge-listpatterns',
       title: 'Flatten & Group',

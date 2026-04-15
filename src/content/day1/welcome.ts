@@ -117,7 +117,7 @@ export const day1Welcome: ContentBlock[] = [
     content: 'When you encounter an error, follow this process: **1) Read** the error message carefully (Python tells you the line number and error type). **2) Understand** what went wrong. **3) Fix** the issue. **4) Test** again. Error messages are not your enemy — they are detailed diagnostic tools!',
   },
   {
-    type: 'quiz',
+    type: 'qna',
     quiz: {
       id: 'quiz-day1-welcome',
       title: 'Quick Check — Python Basics',
@@ -161,7 +161,7 @@ export const day1Welcome: ContentBlock[] = [
     },
   },
   {
-    type: 'challenge',
+    type: 'qna',
     challenge: {
       id: 'challenge-hello',
       title: 'Personal Introduction Card',

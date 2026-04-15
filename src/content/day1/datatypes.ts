@@ -377,7 +377,7 @@ export const day1DataTypes: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'divider' },
   {
-    type: 'quiz',
+    type: 'qna',
     quiz: {
       id: 'quiz-day1-datatypes',
       title: 'Data Types \u2014 Knowledge Check',
@@ -461,7 +461,7 @@ export const day1DataTypes: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'divider' },
   {
-    type: 'challenge',
+    type: 'qna',
     challenge: {
       id: 'challenge-datatypes',
       title: 'Type Detective',

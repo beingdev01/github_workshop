@@ -110,7 +110,7 @@ export const day4OOP: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
   {
-    type: 'quiz',
+    type: 'qna',
     quiz: {
       id: 'quiz-oop',
       title: 'OOP Quiz',
@@ -159,7 +159,7 @@ export const day4OOP: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
   {
-    type: 'challenge',
+    type: 'qna',
     challenge: {
       id: 'challenge-oop',
       title: 'Shape Hierarchy',

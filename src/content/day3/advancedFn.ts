@@ -107,7 +107,7 @@ export const day3AdvancedFn: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
   {
-    type: 'quiz',
+    type: 'qna',
     quiz: {
       id: 'quiz-advancedfn',
       title: 'Advanced Functions Quiz',
@@ -149,7 +149,7 @@ export const day3AdvancedFn: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
   {
-    type: 'challenge',
+    type: 'qna',
     challenge: {
       id: 'challenge-advancedfn',
       title: 'Mini Calculator with Dispatch',

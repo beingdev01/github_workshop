@@ -374,7 +374,7 @@ export const day1Strings: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'divider' },
   {
-    type: 'quiz',
+    type: 'qna',
     quiz: {
       id: 'quiz-day1-strings',
       title: 'Strings Mastery Quiz',
@@ -468,7 +468,7 @@ export const day1Strings: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'divider' },
   {
-    type: 'challenge',
+    type: 'qna',
     challenge: {
       id: 'challenge-day1-strings',
       title: 'Text Analyzer',

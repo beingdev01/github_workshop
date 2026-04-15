@@ -127,7 +127,7 @@ export const day2For: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
   {
-    type: 'quiz',
+    type: 'qna',
     quiz: {
       id: 'quiz-for',
       title: 'For Loops Quiz',
@@ -176,7 +176,7 @@ export const day2For: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
   {
-    type: 'challenge',
+    type: 'qna',
     challenge: {
       id: 'challenge-for',
       title: 'Prime Number Finder',

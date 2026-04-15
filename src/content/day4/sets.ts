@@ -81,7 +81,7 @@ export const day4Sets: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
   {
-    type: 'quiz',
+    type: 'qna',
     quiz: {
       id: 'quiz-sets',
       title: 'Sets Quiz',
@@ -123,7 +123,7 @@ export const day4Sets: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
   {
-    type: 'challenge',
+    type: 'qna',
     challenge: {
       id: 'challenge-sets',
       title: 'Social Network Analyzer',

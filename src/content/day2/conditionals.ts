@@ -175,7 +175,7 @@ export const day2Conditionals: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
   {
-    type: 'quiz',
+    type: 'qna',
     quiz: {
       id: 'quiz-conditionals',
       title: 'Conditionals Quiz',
@@ -224,7 +224,7 @@ export const day2Conditionals: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
   {
-    type: 'challenge',
+    type: 'qna',
     challenge: {
       id: 'challenge-conditionals',
       title: 'Leap Year Checker',

@@ -87,7 +87,7 @@ export const day4Dicts: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
   {
-    type: 'quiz',
+    type: 'qna',
     quiz: {
       id: 'quiz-dicts',
       title: 'Dictionaries Quiz',
@@ -136,7 +136,7 @@ export const day4Dicts: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
   {
-    type: 'challenge',
+    type: 'qna',
     challenge: {
       id: 'challenge-dicts',
       title: 'Student Grade Manager',

@@ -127,7 +127,7 @@ export const day2Patterns: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
   {
-    type: 'quiz',
+    type: 'qna',
     quiz: {
       id: 'quiz-patterns',
       title: 'Loop Patterns Quiz',
@@ -169,7 +169,7 @@ export const day2Patterns: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
   {
-    type: 'challenge',
+    type: 'qna',
     challenge: {
       id: 'challenge-patterns',
       title: 'Pyramid Builder',

@@ -209,7 +209,7 @@ export const day2Boolean: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
   {
-    type: 'quiz',
+    type: 'qna',
     quiz: {
       id: 'quiz-boolean',
       title: 'Boolean Logic Quiz',
@@ -258,7 +258,7 @@ export const day2Boolean: ContentBlock[] = [
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
   {
-    type: 'challenge',
+    type: 'qna',
     challenge: {
       id: 'challenge-boolean',
       title: 'Admission Checker',
