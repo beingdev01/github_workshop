@@ -240,4 +240,249 @@ export const day1Variables: ContentBlock[] = [
       },
     ],
   },
+
+  // ═══════════════════════════════════════
+  // Going Deeper: Memory Model & References
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper — The Memory Model' },
+
+  {
+    type: 'heading', level: 2, text: 'Variables Are Labels, Not Boxes' },
+  {
+    type: 'text',
+    content: 'In C, a variable is a **named box** that holds a value. In Python, a variable is a **name tag** stuck onto an object. Assignment doesn\'t copy — it rebinds the name.',
+  },
+  {
+    type: 'code',
+    code: 'a = [1, 2, 3]\nb = a            # b does NOT copy — it\'s the SAME list\nb.append(4)\nprint(a)         # [1, 2, 3, 4]  — both names see the change\nprint(a is b)    # True — same object in memory\nprint(id(a), id(b))   # identical memory address',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'python',
+    title: 'id() — The Object\'s Address',
+    content: '`id(x)` returns the memory address (in CPython). Two variables with equal `id()` point to the same object. This is how `is` is implemented: `a is b` ≡ `id(a) == id(b)`.',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Alias Binding (`b = a`)',
+    description: 'Both names live in the namespace table and point to the same heap object.',
+    bindings: [
+      { scope: 'global', name: 'a', objectId: 'L1' },
+      { scope: 'global', name: 'b', objectId: 'L1' },
+    ],
+    objects: [
+      {
+        id: 'L1',
+        type: 'list',
+        value: '[1, 2, 3]',
+        mutable: true,
+        note: 'A single list object is shared by two labels.',
+        accent: 'mint',
+      },
+    ],
+    insights: [
+      'Assignment between names copies the reference, not the underlying object.',
+      'Because `a` and `b` share identity, mutation through one name is visible through the other.',
+      'Use `id()` when you need to verify object identity in memory-level debugging.',
+    ],
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Rebinding vs Mutating' },
+  {
+    type: 'code',
+    code: 'a = [1, 2, 3]\nb = a\n\n# MUTATION — changes the underlying object\nb.append(99)\nprint(a)   # [1, 2, 3, 99] ← a sees it\n\n# REBINDING — makes b point to a new object\nb = [9, 9, 9]\nprint(a)   # [1, 2, 3, 99] ← a unaffected',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: After Rebinding (`b = [9, 9, 9]`)',
+    description: 'Mutation keeps identity; rebinding switches one name to a different object.',
+    bindings: [
+      { scope: 'global', name: 'a', objectId: 'L1' },
+      { scope: 'global', name: 'b', objectId: 'L2' },
+    ],
+    objects: [
+      {
+        id: 'L1',
+        type: 'list',
+        value: '[1, 2, 3, 99]',
+        mutable: true,
+        refCount: 1,
+        note: 'Original object stays alive because `a` still points to it.',
+        accent: 'amber',
+      },
+      {
+        id: 'L2',
+        type: 'list',
+        value: '[9, 9, 9]',
+        mutable: true,
+        refCount: 1,
+        note: '`b` now references a new object; identity changed.',
+        accent: 'sky',
+      },
+    ],
+    insights: [
+      'Mutation changes object contents without changing object identity.',
+      'Rebinding changes which object a name points to.',
+      'These are separate operations and explain many Python side effects.',
+    ],
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Call-by-Object-Reference' },
+  {
+    type: 'text',
+    content: 'Python\'s function calling is neither "by value" nor "by reference" in the classic sense. The function receives the **same object**. What happens next depends on whether the object is mutable.',
+  },
+  {
+    type: 'code',
+    code: 'def add_item(lst):\n    lst.append("new")     # MUTATES — caller sees it\n\ndef reassign(lst):\n    lst = ["replaced"]    # REBINDS local name — caller does NOT see\n\nitems = ["a", "b"]\nadd_item(items)\nprint(items)    # [\'a\', \'b\', \'new\']\nreassign(items)\nprint(items)    # [\'a\', \'b\', \'new\'] — unchanged',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Function Frame During `add_item(items)`',
+    description: 'The parameter `lst` in the call frame points to the same list object as `items` in global scope.',
+    bindings: [
+      { scope: 'global', name: 'items', objectId: 'L3' },
+      { scope: 'frame:add_item', name: 'lst', objectId: 'L3' },
+    ],
+    objects: [
+      {
+        id: 'L3',
+        type: 'list',
+        value: "['a', 'b', 'new']",
+        mutable: true,
+        refCount: 2,
+        note: 'Both frames share one object. `append` mutates shared state.',
+        accent: 'mint',
+      },
+    ],
+    insights: [
+      'Function arguments are new names bound to existing objects.',
+      'Local rebinding (`lst = ...`) changes only the local name, not the caller binding.',
+    ],
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Reference Counting & Garbage Collection' },
+  {
+    type: 'text',
+    content: 'CPython tracks how many names point to each object (`ob_refcnt`). When the count hits zero, the object is immediately freed. A separate cycle-detecting collector handles objects that reference each other.',
+  },
+  {
+    type: 'code',
+    code: 'import sys\n\na = [1, 2, 3]\nprint(sys.getrefcount(a))   # 2 (the variable + the temporary for getrefcount)\n\nb = a\nprint(sys.getrefcount(a))   # 3\n\nb = None\nprint(sys.getrefcount(a))   # 2\n\ndel a\n# the list object\'s refcount becomes 0 → freed',
+    language: 'python',
+  },
+  { type: 'heading', level: 2, text: 'Interactive Trace: Memory State Over Time' },
+  {
+    type: 'text',
+    content: 'Use this stepper like a debugger for memory. At each step, predict which names share identity (`is`) before revealing the next state.',
+  },
+  {
+    type: 'memoryLab',
+    title: 'Assignment, Mutation, Rebinding, and Lifetime',
+    prompt: 'Walk through the steps and watch how bindings and refcounts evolve.',
+    steps: [
+      {
+        title: 'Create First Object',
+        action: 'Run `a = [10, 20]`',
+        code: 'a = [10, 20]',
+        bindings: [
+          { scope: 'global', name: 'a', objectId: 'L1' },
+        ],
+        objects: [
+          { id: 'L1', type: 'list', value: '[10, 20]', mutable: true, refCount: 1, accent: 'amber' },
+        ],
+        explanation: 'Python creates one heap list object and binds the name `a` to it.',
+      },
+      {
+        title: 'Create Alias',
+        action: 'Run `b = a`',
+        code: 'b = a',
+        bindings: [
+          { scope: 'global', name: 'a', objectId: 'L1' },
+          { scope: 'global', name: 'b', objectId: 'L1' },
+        ],
+        objects: [
+          { id: 'L1', type: 'list', value: '[10, 20]', mutable: true, refCount: 2, accent: 'mint' },
+        ],
+        explanation: 'No list copy is made. Both names point to the exact same object, so `a is b` is **True**.',
+      },
+      {
+        title: 'Mutate Shared Object',
+        action: 'Run `b.append(30)`',
+        code: 'b.append(30)',
+        bindings: [
+          { scope: 'global', name: 'a', objectId: 'L1' },
+          { scope: 'global', name: 'b', objectId: 'L1' },
+        ],
+        objects: [
+          { id: 'L1', type: 'list', value: '[10, 20, 30]', mutable: true, refCount: 2, accent: 'mint' },
+        ],
+        explanation: 'Mutation edits the existing object in place, so reading through either name shows the new value.',
+      },
+      {
+        title: 'Rebind One Name',
+        action: 'Run `b = [99]`',
+        code: 'b = [99]',
+        bindings: [
+          { scope: 'global', name: 'a', objectId: 'L1' },
+          { scope: 'global', name: 'b', objectId: 'L2' },
+        ],
+        objects: [
+          { id: 'L1', type: 'list', value: '[10, 20, 30]', mutable: true, refCount: 1, accent: 'amber' },
+          { id: 'L2', type: 'list', value: '[99]', mutable: true, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Rebinding only changes `b`. The original object survives because `a` still references it.',
+      },
+      {
+        title: 'Drop Final Reference',
+        action: 'Run `del a`',
+        code: 'del a',
+        bindings: [
+          { scope: 'global', name: 'b', objectId: 'L2' },
+        ],
+        objects: [
+          {
+            id: 'L1',
+            type: 'list',
+            value: '[10, 20, 30]',
+            mutable: true,
+            refCount: 0,
+            accent: 'coral',
+            note: 'No names reference this object now; CPython can reclaim it immediately.',
+          },
+          { id: 'L2', type: 'list', value: '[99]', mutable: true, refCount: 1, accent: 'mint' },
+        ],
+        explanation: 'When an object\'s reference count hits zero, it becomes eligible for deallocation in CPython.',
+      },
+    ],
+  },
+
+  { type: 'heading', level: 2, text: 'Deep Q&A' },
+  {
+    type: 'qna',
+    items: [
+      {
+        question: 'Is Python pass-by-value or pass-by-reference?',
+        answer: 'Neither in the classic sense — it\'s **pass-by-object-reference**. The function receives the same object the caller had. Mutating it is visible outside; rebinding the local name is not.',
+      },
+      {
+        question: 'What does `id(x)` actually return?',
+        answer: 'In CPython, the memory address of the object. Guaranteed unique and constant for the object\'s lifetime. Once the object is freed, the id may be reused.',
+      },
+      {
+        question: 'Why does `a = b = [1, 2]` share the list between `a` and `b`?',
+        answer: 'Because assignment binds **names** to **objects**. Both `a` and `b` are stuck onto the same list object. Mutating through one shows through the other.',
+      },
+      {
+        question: 'What\'s the difference between `==` and `is`?',
+        answer: '`==` compares **values** (calls `__eq__`). `is` compares **identity** (same object in memory, i.e., same `id()`). Use `is` only for singletons: `None`, `True`, `False`.',
+      },
+    ],
+  },
 ]

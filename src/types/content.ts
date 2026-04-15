@@ -28,6 +28,8 @@ export type ContentBlock =
   | QAndABlock
   | DividerBlock
   | ImageBlock
+  | MemoryDiagramBlock
+  | MemoryLabBlock
 
 export interface HeadingBlock {
   type: 'heading'
@@ -87,4 +89,47 @@ export interface ImageBlock {
   src: string
   alt: string
   caption?: string
+}
+
+export type AccentTone = 'mint' | 'amber' | 'coral' | 'sky' | 'neutral'
+
+export interface MemoryBinding {
+  name: string
+  objectId: string
+  scope?: string
+}
+
+export interface MemoryObject {
+  id: string
+  type: string
+  value: string
+  mutable?: boolean
+  refCount?: number
+  note?: string
+  accent?: AccentTone
+}
+
+export interface MemoryDiagramBlock {
+  type: 'memoryDiagram'
+  title: string
+  description?: string
+  bindings: MemoryBinding[]
+  objects: MemoryObject[]
+  insights?: string[]
+}
+
+export interface MemoryLabStep {
+  title: string
+  action?: string
+  code?: string
+  bindings: MemoryBinding[]
+  objects: MemoryObject[]
+  explanation: string
+}
+
+export interface MemoryLabBlock {
+  type: 'memoryLab'
+  title: string
+  prompt?: string
+  steps: MemoryLabStep[]
 }

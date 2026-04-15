@@ -401,4 +401,281 @@ export const day1DataTypes: ContentBlock[] = [
       }
     ]
   },
+
+  // ═══════════════════════════════════════
+  // Going Deeper: The CPython Object Model
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper — How Python Stores Your Values' },
+  {
+    type: 'text',
+    content: 'Everything in Python is an **object**. When you write `x = 42`, CPython doesn\'t store the integer "directly" in a 4-byte slot the way C does — it creates a full heap object with a header, a type pointer, and the value. Understanding this answers a dozen "why is Python like that?" questions at once.',
+  },
+  {
+    type: 'heading', level: 2, text: 'Every Object Has a Header',
+  },
+  {
+    type: 'text',
+    content: 'Inside CPython, every object carries a small header (called `PyObject`) containing:',
+  },
+  {
+    type: 'list',
+    items: [
+      '**`ob_refcnt`** — a reference count. Incremented whenever someone points to it, decremented when they stop. When it hits zero, the object is freed.',
+      '**`ob_type`** — a pointer to the object\'s **type object** (`int`, `str`, your own class…). This is why `type(x)` is free — it\'s just a pointer read.',
+      '**the payload** — the actual value (the digits of the int, the characters of the string, etc.).',
+    ],
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: CPython Object Layout (Conceptual)',
+    description: 'Every Python value is a heap object with metadata plus payload.',
+    bindings: [
+      { scope: 'global', name: 'x', objectId: 'I1' },
+    ],
+    objects: [
+      {
+        id: 'I1',
+        type: 'int object',
+        value: 'header:\n  ob_refcnt = 2\n  ob_type = <class int>\npayload:\n  digits = 42',
+        mutable: false,
+        note: 'The value is only one part; header metadata is why Python objects are larger than raw C primitives.',
+        accent: 'amber',
+      },
+    ],
+    insights: [
+      'The type pointer powers dynamic dispatch (`+`, `len`, method lookup).',
+      'Reference count metadata enables immediate object reclamation in many cases.',
+    ],
+  },
+  {
+    type: 'code',
+    code: 'import sys\n\n# Even a "small" integer is bigger than you think\nprint(sys.getsizeof(0))       # 24 bytes on 64-bit Python\nprint(sys.getsizeof(1))       # 28 bytes\nprint(sys.getsizeof(2**100))  # 44 bytes — big ints use more digits\n\n# A list of 3 ints isn\'t 3 * 28 bytes — it\'s 3 POINTERS to int objects\nprint(sys.getsizeof([1, 2, 3]))   # ~88 bytes (the list header + 3 pointers)',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'python',
+    title: 'Why This Matters',
+    content: 'Python trades raw speed for **flexibility**. The header lets any variable hold any type, enables garbage collection, and makes duck typing work. The price: a Python `int` uses ~7× the memory of a C `int`. Libraries like NumPy exist precisely to bypass this for bulk numeric data.',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'The Small-Integer Cache',
+  },
+  {
+    type: 'text',
+    content: 'Integers from **−5 to 256** are created once at interpreter startup and **reused** forever. When you write `x = 100` and `y = 100`, CPython doesn\'t create two int objects — both variables point to the same pre-allocated object.',
+  },
+  {
+    type: 'code',
+    code: 'a = 100\nb = 100\nprint(a is b)          # True — same object from the cache\n\nc = 1000\nd = 1000\nprint(c is d)          # False — each is a fresh object\n\n# id() shows the memory address\nprint(id(100), id(100))   # identical\nprint(id(1000), id(1000)) # different (sometimes same in REPL due to peephole optimization)',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Small-Integer Cache Reuse',
+    description: 'For values in [-5, 256], multiple names often bind to one pre-allocated integer object.',
+    bindings: [
+      { scope: 'global', name: 'a', objectId: 'INT_100' },
+      { scope: 'global', name: 'b', objectId: 'INT_100' },
+      { scope: 'global', name: 'c', objectId: 'INT_1000A' },
+      { scope: 'global', name: 'd', objectId: 'INT_1000B' },
+    ],
+    objects: [
+      {
+        id: 'INT_100',
+        type: 'int (cached)',
+        value: '100',
+        mutable: false,
+        note: 'Single shared object for small int value.',
+        accent: 'mint',
+      },
+      {
+        id: 'INT_1000A',
+        type: 'int',
+        value: '1000',
+        mutable: false,
+        note: 'Fresh object allocated outside cache range.',
+        accent: 'sky',
+      },
+      {
+        id: 'INT_1000B',
+        type: 'int',
+        value: '1000',
+        mutable: false,
+        note: 'Another distinct object with equal value but different identity.',
+        accent: 'sky',
+      },
+    ],
+    insights: [
+      '`a == b` checks value; `a is b` checks object identity.',
+      'Cache reuse is an implementation optimization, not a semantic rule to depend on.',
+    ],
+  },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: Identity in and out of the Int Cache',
+    prompt: 'Watch when names share one object and when equal values are separate objects.',
+    steps: [
+      {
+        title: 'Bind Cached Value',
+        action: 'Run `a = 100; b = 100`',
+        code: 'a = 100\nb = 100',
+        bindings: [
+          { scope: 'global', name: 'a', objectId: 'INT_100' },
+          { scope: 'global', name: 'b', objectId: 'INT_100' },
+        ],
+        objects: [
+          {
+            id: 'INT_100',
+            type: 'int (cached)',
+            value: '100',
+            mutable: false,
+            refCount: 2,
+            accent: 'mint',
+          },
+        ],
+        explanation: 'Both names point to the same cached small-int object, so `a is b` is True.',
+      },
+      {
+        title: 'Bind Non-Cached Value',
+        action: 'Run `c = 1000; d = 1000`',
+        code: 'c = 1000\nd = 1000',
+        bindings: [
+          { scope: 'global', name: 'a', objectId: 'INT_100' },
+          { scope: 'global', name: 'b', objectId: 'INT_100' },
+          { scope: 'global', name: 'c', objectId: 'INT_1000A' },
+          { scope: 'global', name: 'd', objectId: 'INT_1000B' },
+        ],
+        objects: [
+          { id: 'INT_100', type: 'int (cached)', value: '100', mutable: false, refCount: 2, accent: 'mint' },
+          { id: 'INT_1000A', type: 'int', value: '1000', mutable: false, refCount: 1, accent: 'sky' },
+          { id: 'INT_1000B', type: 'int', value: '1000', mutable: false, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Equal values outside the cache range can still be distinct objects with different identities.',
+      },
+      {
+        title: 'Compare Value vs Identity',
+        action: 'Evaluate both equality and identity checks',
+        code: 'print(a == b, a is b)\nprint(c == d, c is d)',
+        bindings: [
+          { scope: 'global', name: 'a', objectId: 'INT_100' },
+          { scope: 'global', name: 'b', objectId: 'INT_100' },
+          { scope: 'global', name: 'c', objectId: 'INT_1000A' },
+          { scope: 'global', name: 'd', objectId: 'INT_1000B' },
+        ],
+        objects: [
+          { id: 'INT_100', type: 'int (cached)', value: '100', mutable: false, refCount: 2, accent: 'mint' },
+          { id: 'INT_1000A', type: 'int', value: '1000', mutable: false, refCount: 1, accent: 'sky' },
+          { id: 'INT_1000B', type: 'int', value: '1000', mutable: false, refCount: 1, accent: 'sky' },
+        ],
+        explanation: '`==` checks numeric value, while `is` checks whether two names share the same object identity.',
+      },
+    ],
+  },
+  {
+    type: 'callout',
+    variant: 'warning',
+    title: 'Never Compare Values with `is`',
+    content: 'Use `==` for equality, `is` for identity (same object in memory). `a is b` for integers outside [−5, 256] is an implementation detail — it might be True today and False tomorrow.',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'int — Arbitrary Precision',
+  },
+  {
+    type: 'text',
+    content: 'Unlike most languages, Python `int` has **no fixed size**. A 10-digit number and a 10 000-digit number are both just `int` — they grow as needed. Internally, CPython stores big ints as an array of 30-bit "digits" (in base 2³⁰). Size grows O(n) with digit count.',
+  },
+  {
+    type: 'code',
+    code: 'python = 2 ** 1000\nprint(len(str(python)))   # 302 digits — perfectly fine\nprint(python.bit_length())  # 1001 bits\n\n# Overflow does not exist in Python ints\nprint(2 ** 10_000)    # Still works. Slower, but works.',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'float — IEEE 754 Double Precision',
+  },
+  {
+    type: 'text',
+    content: 'Python `float` is a **64-bit IEEE 754 double**. The 64 bits are split:',
+  },
+  {
+    type: 'list',
+    items: [
+      '**1 bit** — sign (+ or −)',
+      '**11 bits** — exponent (the power of 2)',
+      '**52 bits** — mantissa / significand (the digits)',
+    ],
+  },
+  {
+    type: 'text',
+    content: 'This gives about **15–17 significant decimal digits** of precision. Numbers that aren\'t exactly representable in binary (like 0.1) get rounded to the nearest representable value.',
+  },
+  {
+    type: 'code',
+    code: '# The famous surprise\nprint(0.1 + 0.2)              # 0.30000000000000004\nprint(0.1 + 0.2 == 0.3)       # False\n\n# Why? 0.1 in binary is a repeating fraction:\n# 0.0001100110011001100... forever\n# The computer stores a truncated version.\n\n# See the truth with .as_integer_ratio()\nprint((0.1).as_integer_ratio())\n# (3602879701896397, 36028797018963968)   — NOT exactly 1/10\n\n# Safe float comparison\nimport math\nprint(math.isclose(0.1 + 0.2, 0.3))   # True',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'warning',
+    title: 'Never Compare Floats with ==',
+    content: 'Use `math.isclose(a, b)` or `abs(a - b) < 1e-9`. For money, never use `float` at all — use the `decimal` module, which does exact base-10 arithmetic.',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'bool — A Subclass of int',
+  },
+  {
+    type: 'code',
+    code: 'print(isinstance(True, int))   # True  — bool is-a int\nprint(True + True)             # 2\nprint(True * 5)                # 5\nprint(sum([True, True, False, True]))   # 3  — trick for counting\n\n# True and False are the ONLY two bool instances — singletons\nprint(bool(1) is True)         # True\nprint(bool(0) is False)        # True',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'None — The Singleton',
+  },
+  {
+    type: 'text',
+    content: '`None` is the **only** instance of `NoneType`. It\'s a singleton — comparing with `is None` is the idiomatic (and fastest) check.',
+  },
+  {
+    type: 'code',
+    code: 'x = None\nprint(x is None)         # True — preferred\nprint(x == None)         # True but frowned upon (slower, overridable)\n\n# Why `is None`? Because == can be overridden by __eq__\nclass Weird:\n    def __eq__(self, other): return True\nw = Weird()\nprint(w == None)   # True  — lying!\nprint(w is None)   # False — the truth',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Deep Q&A',
+  },
+  {
+    type: 'qna',
+    items: [
+      {
+        question: 'Why does `sys.getsizeof(0)` return 24 instead of 4?',
+        answer: 'Because every Python object carries a `PyObject` header: a reference count, a type pointer, and (for ints) a length field. The "value" is just a small part of the object. Raw 4-byte integers like C\'s `int` don\'t exist in Python — only heap-allocated objects.',
+      },
+      {
+        question: 'Why does `a is b` work for `a = 100, b = 100` but not for `a = 1000, b = 1000`?',
+        answer: 'CPython pre-creates integer objects from **−5 through 256** (the "small int cache") at startup and reuses them. Every `100` in your program is literally the same object. For 1000, each assignment creates a new object — different `id()`, so `is` returns False.',
+      },
+      {
+        question: 'Why is `0.1 + 0.2 != 0.3` in Python (and most languages)?',
+        answer: '`0.1` has no exact binary representation (it\'s a repeating fraction in base 2). IEEE 754 stores the nearest 64-bit approximation. Summing two approximations and comparing to the approximation of 0.3 misses by ~5×10⁻¹⁷. Use `math.isclose()` or `decimal.Decimal`.',
+      },
+      {
+        question: 'How big can a Python int get?',
+        answer: 'Arbitrarily big — limited only by memory. CPython stores large ints as an array of 30-bit digits. A 1-million-digit number is fine (just slower). This is *not* true in C, Java, or Rust — their fixed-width ints overflow.',
+      },
+      {
+        question: 'Is `bool` really a subclass of `int`?',
+        answer: 'Yes. `True` has value 1, `False` has value 0. You can do arithmetic on them (`True + True == 2`) and sum booleans to count truthy items. `isinstance(True, int)` returns `True`. The only instances of `bool` are the singletons `True` and `False`.',
+      },
+      {
+        question: 'Why do Python docs insist on `if x is None:` instead of `if x == None:`?',
+        answer: 'Three reasons: (1) **Speed** — `is` is a single pointer comparison; `==` dispatches to `__eq__`. (2) **Safety** — `__eq__` can be overridden to return `True` for anything. (3) **Intent** — `None` is a singleton; identity is exactly the right test.',
+      },
+    ],
+  },
 ]

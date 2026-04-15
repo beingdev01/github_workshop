@@ -116,6 +116,120 @@ export const day1Welcome: ContentBlock[] = [
     title: 'Debugging Process',
     content: 'When you encounter an error, follow this process: **1) Read** the error message carefully (Python tells you the line number and error type). **2) Understand** what went wrong. **3) Fix** the issue. **4) Test** again. Error messages are not your enemy — they are detailed diagnostic tools!',
   },
-  
-  
+
+  // ═══════════════════════════════════════
+  // Going Deeper: Runtime Memory View
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper — What `print()` Does Internally' },
+  {
+    type: 'text',
+    content: 'Even your first Python program uses Python\'s object model. Names are looked up in namespaces, values are heap objects, and function calls create temporary call frames.',
+  },
+  {
+    type: 'code',
+    code: 'message = "Hello, World!"\nprint(message)',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Namespace + Heap During `print(message)`',
+    description: 'The variable binds to a string object, and `print` resolves to a built-in function object.',
+    bindings: [
+      { scope: 'global', name: 'message', objectId: 'S_MSG' },
+      { scope: 'builtins', name: 'print', objectId: 'F_PRINT' },
+    ],
+    objects: [
+      {
+        id: 'S_MSG',
+        type: 'str',
+        value: '"Hello, World!"',
+        mutable: false,
+        note: 'A heap string object. Strings are immutable in Python.',
+        accent: 'amber',
+      },
+      {
+        id: 'F_PRINT',
+        type: 'builtin function',
+        value: '<built-in function print>',
+        mutable: false,
+        note: 'Looked up from builtins and invoked with the argument object.',
+        accent: 'sky',
+      },
+    ],
+    insights: [
+      'Variables store references to objects, not raw values.',
+      'Function calls add a temporary call frame, then return and discard it.',
+      'The visible console output is a side effect of writing to stdout.',
+    ],
+  },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: First Program Execution',
+    prompt: 'Step through what happens in memory for a tiny two-line program.',
+    steps: [
+      {
+        title: 'Bind the Message',
+        action: 'Run `message = "Hello, World!"`',
+        code: 'message = "Hello, World!"',
+        bindings: [
+          { scope: 'global', name: 'message', objectId: 'S1' },
+          { scope: 'builtins', name: 'print', objectId: 'F1' },
+        ],
+        objects: [
+          { id: 'S1', type: 'str', value: '"Hello, World!"', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'F1', type: 'builtin function', value: '<built-in function print>', mutable: false, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Python allocates a string object and binds the name `message` to it. Builtins already contains `print`.',
+      },
+      {
+        title: 'Enter Function Call',
+        action: 'Run `print(message)` and create a call frame',
+        code: 'print(message)',
+        bindings: [
+          { scope: 'global', name: 'message', objectId: 'S1' },
+          { scope: 'builtins', name: 'print', objectId: 'F1' },
+          { scope: 'frame:print', name: 'value', objectId: 'S1' },
+          { scope: 'runtime', name: 'stdout', objectId: 'B1' },
+        ],
+        objects: [
+          { id: 'S1', type: 'str', value: '"Hello, World!"', mutable: false, refCount: 2, accent: 'amber' },
+          { id: 'F1', type: 'builtin function', value: '<built-in function print>', mutable: false, refCount: 1, accent: 'sky' },
+          { id: 'B1', type: 'stream buffer', value: '""', mutable: true, refCount: 1, accent: 'mint' },
+        ],
+        explanation: 'The call frame parameter points to the **same** string object as `message`.',
+      },
+      {
+        title: 'Write Output',
+        action: 'print writes text plus newline to stdout',
+        code: 'stdout.write("Hello, World!\\n")',
+        bindings: [
+          { scope: 'global', name: 'message', objectId: 'S1' },
+          { scope: 'builtins', name: 'print', objectId: 'F1' },
+          { scope: 'frame:print', name: 'value', objectId: 'S1' },
+          { scope: 'runtime', name: 'stdout', objectId: 'B1' },
+        ],
+        objects: [
+          { id: 'S1', type: 'str', value: '"Hello, World!"', mutable: false, refCount: 2, accent: 'amber' },
+          { id: 'B1', type: 'stream buffer', value: '"Hello, World!\\n"', mutable: true, refCount: 1, accent: 'mint' },
+        ],
+        explanation: '`print` does not mutate your string; it sends characters to the output stream.',
+      },
+      {
+        title: 'Return to Global Scope',
+        action: 'print frame is destroyed after the call returns',
+        code: '# end of call',
+        bindings: [
+          { scope: 'global', name: 'message', objectId: 'S1' },
+          { scope: 'builtins', name: 'print', objectId: 'F1' },
+          { scope: 'runtime', name: 'stdout', objectId: 'B1' },
+        ],
+        objects: [
+          { id: 'S1', type: 'str', value: '"Hello, World!"', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'B1', type: 'stream buffer', value: '"Hello, World!\\n"', mutable: true, refCount: 1, accent: 'mint' },
+        ],
+        explanation: 'Call frames are temporary. Your global bindings remain, and stdout now contains emitted text.',
+      },
+    ],
+  },
+
 ]

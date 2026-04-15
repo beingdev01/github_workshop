@@ -141,6 +141,178 @@ export const day2While: ContentBlock[] = [
   },
 
   // ═══════════════════════════════════════
+  // Going Deeper: While Loop Runtime State
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper — While as a State Machine' },
+  {
+    type: 'text',
+    content: 'A `while` loop repeatedly transitions through three states: evaluate condition, execute body, update state. Bugs happen when updates are missing or when control-flow (`continue`/`break`) skips intended updates.',
+  },
+  {
+    type: 'code',
+    code: 'i = 0\nlimit = 4\n\nwhile i < limit:\n    print(i)\n    i += 1\n\nprint("done", i)',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Loop Control State During Iteration',
+    description: 'Control variables are ordinary bindings in the current scope, repeatedly updated by the loop body.',
+    bindings: [
+      { scope: 'global', name: 'i', objectId: 'I2' },
+      { scope: 'global', name: 'limit', objectId: 'I4' },
+      { scope: 'runtime', name: 'last_condition', objectId: 'B_TRUE' },
+      { scope: 'runtime', name: 'loop_state', objectId: 'ST_BODY' },
+    ],
+    objects: [
+      {
+        id: 'I2',
+        type: 'int',
+        value: '2',
+        mutable: false,
+        note: 'Current counter value mid-loop.',
+        accent: 'amber',
+      },
+      {
+        id: 'I4',
+        type: 'int',
+        value: '4',
+        mutable: false,
+        accent: 'sky',
+      },
+      {
+        id: 'B_TRUE',
+        type: 'bool',
+        value: 'True',
+        mutable: false,
+        accent: 'mint',
+      },
+      {
+        id: 'ST_BODY',
+        type: 'state marker',
+        value: 'executing loop body',
+        mutable: false,
+        accent: 'neutral',
+      },
+    ],
+    insights: [
+      'Counters are rebound to new int objects after each increment.',
+      'Condition is re-evaluated before every iteration, not just once.',
+      'Missing or skipped updates keep condition true and create infinite loops.',
+    ],
+  },
+  {
+    type: 'heading', level: 2, text: 'break vs Natural Completion (while-else)' },
+  {
+    type: 'code',
+    code: 'i = 0\n\nwhile i < 5:\n    if i == 3:\n        break\n    i += 1\nelse:\n    print("completed naturally")\n\nprint("stopped at", i)',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Early Exit Suppresses else',
+    description: 'The loop exits via break with i == 3, so the else block never executes.',
+    bindings: [
+      { scope: 'global', name: 'i', objectId: 'I3' },
+      { scope: 'runtime', name: 'exit_reason', objectId: 'EXIT_BREAK' },
+    ],
+    objects: [
+      {
+        id: 'I3',
+        type: 'int',
+        value: '3',
+        mutable: false,
+        accent: 'amber',
+      },
+      {
+        id: 'EXIT_BREAK',
+        type: 'state marker',
+        value: 'break',
+        mutable: false,
+        note: 'Non-natural termination path.',
+        accent: 'coral',
+      },
+    ],
+    insights: [
+      '`while-else` is about termination mode, not condition polarity.',
+      'Else runs only when loop condition becomes false naturally.',
+      'Any break in the loop body suppresses else execution.',
+    ],
+  },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: Sentinel Loop Lifecycle',
+    prompt: 'Walk through a classic while True + break workflow and inspect state at each stage.',
+    steps: [
+      {
+        title: 'Initialize Buffers and Counters',
+        action: 'Setup simulated input sequence',
+        code: 'inputs = [10, 25, 0]\ni = 0\ntotal = 0',
+        bindings: [
+          { scope: 'global', name: 'inputs', objectId: 'L_IN' },
+          { scope: 'global', name: 'i', objectId: 'I0' },
+          { scope: 'global', name: 'total', objectId: 'I_SUM0' },
+        ],
+        objects: [
+          { id: 'L_IN', type: 'list', value: '[10, 25, 0]', mutable: true, refCount: 1, accent: 'sky' },
+          { id: 'I0', type: 'int', value: '0', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'I_SUM0', type: 'int', value: '0', mutable: false, refCount: 1, accent: 'neutral' },
+        ],
+        explanation: 'Sentinel loop begins with index and accumulator at zero.',
+      },
+      {
+        title: 'Read First Value',
+        action: 'Consume 10 and continue loop',
+        code: 'value = inputs[i]\ni += 1\nif value == 0:\n    break\ntotal += value',
+        bindings: [
+          { scope: 'global', name: 'i', objectId: 'I1' },
+          { scope: 'global', name: 'value', objectId: 'I10' },
+          { scope: 'global', name: 'total', objectId: 'I_SUM10' },
+        ],
+        objects: [
+          { id: 'I1', type: 'int', value: '1', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'I10', type: 'int', value: '10', mutable: false, refCount: 1, accent: 'mint' },
+          { id: 'I_SUM10', type: 'int', value: '10', mutable: false, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Value is not sentinel, so loop updates running total.',
+      },
+      {
+        title: 'Read Second Value',
+        action: 'Consume 25 and continue loop',
+        code: 'value = 25\ntotal = 35\ni = 2',
+        bindings: [
+          { scope: 'global', name: 'i', objectId: 'I2' },
+          { scope: 'global', name: 'value', objectId: 'I25' },
+          { scope: 'global', name: 'total', objectId: 'I_SUM35' },
+        ],
+        objects: [
+          { id: 'I2', type: 'int', value: '2', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'I25', type: 'int', value: '25', mutable: false, refCount: 1, accent: 'mint' },
+          { id: 'I_SUM35', type: 'int', value: '35', mutable: false, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Loop state advances normally again: index increments and accumulator grows.',
+      },
+      {
+        title: 'Sentinel Triggers break',
+        action: 'Consume 0 and terminate loop',
+        code: 'value = inputs[i]   # 0\ni += 1\nif value == 0:\n    break',
+        bindings: [
+          { scope: 'global', name: 'i', objectId: 'I3' },
+          { scope: 'global', name: 'value', objectId: 'I_SENT' },
+          { scope: 'global', name: 'total', objectId: 'I_SUM35' },
+          { scope: 'runtime', name: 'exit_reason', objectId: 'EXIT_BREAK' },
+        ],
+        objects: [
+          { id: 'I3', type: 'int', value: '3', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'I_SENT', type: 'int', value: '0', mutable: false, refCount: 1, accent: 'coral' },
+          { id: 'I_SUM35', type: 'int', value: '35', mutable: false, refCount: 1, accent: 'sky' },
+          { id: 'EXIT_BREAK', type: 'state marker', value: 'break', mutable: false, refCount: 1, accent: 'coral' },
+        ],
+        explanation: 'Sentinel value exits loop immediately, preserving total from prior entries.',
+      },
+    ],
+  },
+
+  // ═══════════════════════════════════════
   // Section 10: Playground
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Try It Yourself' },

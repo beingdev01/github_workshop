@@ -232,6 +232,138 @@ export const day1Operators: ContentBlock[] = [
   },
 
   // ═══════════════════════════════════════
+  // Going Deeper: Operator Runtime Behavior
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper — How Operators Affect Memory' },
+  {
+    type: 'text',
+    content: 'Expressions produce values, and those values are objects. Some operators create new objects (like `int` arithmetic), while others mutate existing objects (like list `+=`).',
+  },
+  {
+    type: 'code',
+    code: 'x = 10\nx += 1\n\nnums = [1, 2]\nnums += [3]\n\nprint(x, nums)',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: `+=` with Immutable vs Mutable Objects',
+    description: '`int` and `list` behave differently under augmented assignment.',
+    bindings: [
+      { scope: 'global', name: 'x', objectId: 'I11' },
+      { scope: 'global', name: 'nums', objectId: 'L1' },
+    ],
+    objects: [
+      {
+        id: 'I10',
+        type: 'int',
+        value: '10',
+        mutable: false,
+        refCount: 0,
+        note: 'Old int object from before `x += 1`; no names point to it now.',
+        accent: 'coral',
+      },
+      {
+        id: 'I11',
+        type: 'int',
+        value: '11',
+        mutable: false,
+        refCount: 1,
+        note: '`x += 1` created a new int object and rebound `x`.',
+        accent: 'amber',
+      },
+      {
+        id: 'L1',
+        type: 'list',
+        value: '[1, 2, 3]',
+        mutable: true,
+        refCount: 1,
+        note: '`nums += [3]` extended the same list in place.',
+        accent: 'mint',
+      },
+    ],
+    insights: [
+      'Operator syntax can hide very different memory behavior.',
+      'For immutable types, augmented assignment usually means rebinding to a new object.',
+      'For mutable containers, augmented assignment often mutates in place.',
+    ],
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Short-Circuiting Skips Work (and Objects)' },
+  {
+    type: 'text',
+    content: 'Short-circuiting is not just a logic rule; it is also a runtime optimization. If Python already knows the result, it does not evaluate the right side at all.',
+  },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: `and` Short-Circuit Execution',
+    prompt: 'Track when `expensive()` is skipped and when it is actually called.',
+    steps: [
+      {
+        title: 'Initial Bindings',
+        action: 'Run `ready = False` and define `expensive`',
+        code: 'ready = False\n\ndef expensive():\n    print("running")\n    return True',
+        bindings: [
+          { scope: 'global', name: 'ready', objectId: 'B_FALSE' },
+          { scope: 'global', name: 'expensive', objectId: 'F_EXP' },
+        ],
+        objects: [
+          { id: 'B_FALSE', type: 'bool', value: 'False', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'F_EXP', type: 'function', value: '<function expensive()>', mutable: false, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'The setup creates bindings but no call has happened yet.',
+      },
+      {
+        title: 'Short-Circuit Path',
+        action: 'Evaluate `result = ready and expensive()` with `ready` False',
+        code: 'result = ready and expensive()',
+        bindings: [
+          { scope: 'global', name: 'ready', objectId: 'B_FALSE' },
+          { scope: 'global', name: 'expensive', objectId: 'F_EXP' },
+          { scope: 'global', name: 'result', objectId: 'B_FALSE' },
+        ],
+        objects: [
+          { id: 'B_FALSE', type: 'bool', value: 'False', mutable: false, refCount: 2, accent: 'amber' },
+          { id: 'F_EXP', type: 'function', value: '<function expensive()>', mutable: false, refCount: 1, accent: 'sky' },
+        ],
+        explanation: '`and` sees the left operand is False, so `expensive()` is never called.',
+      },
+      {
+        title: 'Flip the Guard',
+        action: 'Run `ready = True`',
+        code: 'ready = True',
+        bindings: [
+          { scope: 'global', name: 'ready', objectId: 'B_TRUE' },
+          { scope: 'global', name: 'expensive', objectId: 'F_EXP' },
+          { scope: 'global', name: 'result', objectId: 'B_FALSE' },
+        ],
+        objects: [
+          { id: 'B_FALSE', type: 'bool', value: 'False', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'B_TRUE', type: 'bool', value: 'True', mutable: false, refCount: 1, accent: 'mint' },
+          { id: 'F_EXP', type: 'function', value: '<function expensive()>', mutable: false, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Now the left side no longer determines the full result, so Python must evaluate the right side next time.',
+      },
+      {
+        title: 'Right Side Executes',
+        action: 'Evaluate `result = ready and expensive()` with `ready` True',
+        code: 'result = ready and expensive()',
+        bindings: [
+          { scope: 'global', name: 'ready', objectId: 'B_TRUE' },
+          { scope: 'global', name: 'expensive', objectId: 'F_EXP' },
+          { scope: 'frame:expensive', name: 'return', objectId: 'B_TRUE' },
+          { scope: 'global', name: 'result', objectId: 'B_TRUE' },
+        ],
+        objects: [
+          { id: 'B_TRUE', type: 'bool', value: 'True', mutable: false, refCount: 3, accent: 'mint' },
+          { id: 'F_EXP', type: 'function', value: '<function expensive()>', mutable: false, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Because left side is True, Python calls `expensive()` and binds its return value to `result`.',
+      },
+    ],
+  },
+
+  // ═══════════════════════════════════════
   // Section 11: Playground
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Try It Yourself' },

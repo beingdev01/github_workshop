@@ -381,5 +381,197 @@ export const day1Strings: ContentBlock[] = [
         answer: 'Common methods include: `upper()`, `lower()`, `capitalize()`, `strip()`, `find()`, `count()`, `replace()`, `split()`, and `join()`. These make text processing in Python powerful and easy.'
       }
     ]
-  }
+  },
+
+  // ═══════════════════════════════════════
+  // Going Deeper: String Internals
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper — How Strings Work Inside' },
+
+  {
+    type: 'heading', level: 2, text: 'Strings Are Immutable' },
+  {
+    type: 'text',
+    content: 'A Python `str` cannot change after creation. Every "modification" — `.upper()`, `+`, `.replace()` — returns a **new** string and leaves the original untouched. This makes strings hashable (usable as dict keys and set members) and thread-safe.',
+  },
+  {
+    type: 'code',
+    code: 's = "hello"\n# s[0] = "H"           # TypeError: \'str\' object does not support item assignment\n\n# s.upper() doesn\'t mutate s — it returns a new string\nupper = s.upper()\nprint(s, upper)       # hello HELLO\n\n# Common mistake: forgetting to reassign\ns.strip()             # result discarded!\ns = s.strip()         # correct — bind the result',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'String Interning' },
+  {
+    type: 'text',
+    content: 'CPython **interns** short string literals that look like identifiers — the interpreter keeps a single copy and reuses it. This speeds up dict lookups (comparing by pointer) and saves memory.',
+  },
+  {
+    type: 'code',
+    code: 'a = "hello"\nb = "hello"\nprint(a is b)         # True — interned literal\n\n# Longer/runtime strings may not be interned\nx = "hello world!" * 2\ny = "hello world!" * 2\nprint(x is y)         # possibly False\n\n# Force interning if you need it\nimport sys\nx2 = sys.intern(x)\ny2 = sys.intern(y)\nprint(x2 is y2)       # True',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Unicode & Encoding' },
+  {
+    type: 'text',
+    content: 'A Python 3 `str` is a sequence of **Unicode code points** (abstract characters). Bytes on disk are a different type (`bytes`). Converting between them requires an **encoding** — usually UTF-8.',
+  },
+  {
+    type: 'code',
+    code: 'text = "café"            # str — 4 Unicode code points\nprint(len(text))         # 4\n\n# Encode to bytes\nbs = text.encode("utf-8")\nprint(bs)                # b\'caf\\xc3\\xa9\'  — 5 bytes (é = 2 bytes in UTF-8)\nprint(len(bs))           # 5\n\n# Decode back\nprint(bs.decode("utf-8"))   # \'café\'\n\n# Non-ASCII works everywhere\ngreeting = "你好, 🌍"\nprint(len(greeting))        # 5 code points\nprint(len(greeting.encode()))  # 11 bytes in UTF-8',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'python',
+    title: 'str vs bytes',
+    content: '**`str`** is text (human-readable, Unicode). **`bytes`** is raw binary (what lives on disk or on the network). You `encode()` str → bytes, `decode()` bytes → str. Python 3 refuses to mix them silently — that\'s a feature.',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'f-strings — Formatted Literals' },
+  {
+    type: 'code',
+    code: 'name = "Alice"\nage = 30\npi = 3.14159\n\n# Expressions, formatting spec, alignment\nprint(f"Hello {name}!")                 # Hello Alice!\nprint(f"{age} years, {age * 12} months")\nprint(f"{pi:.2f}")                       # 3.14  — 2 decimal places\nprint(f"{pi:10.2f}")                     #       3.14  — width 10\nprint(f"{name:>10}")                     #      Alice  — right-aligned\nprint(f"{1234567:,}")                    # 1,234,567  — thousand separator\nprint(f"{0.87:.1%}")                     # 87.0%  — percent\nprint(f"{255:#x}")                       # 0xff  — hex\n\n# Self-documenting debug form (Python 3.8+)\nprint(f"{name=}, {age=}")                # name=\'Alice\', age=30',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'String Concatenation Performance' },
+  {
+    type: 'code',
+    code: '# BAD — O(n²) for n strings: each += creates a fresh string and copies\nresult = ""\nfor word in words:\n    result += word + " "\n\n# GOOD — O(n): join builds once, copies once\nresult = " ".join(words)\n\n# When assembling many pieces, use io.StringIO or list+join\nparts = []\nfor w in words:\n    parts.append(w)\nresult = " ".join(parts)',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Memory Lens: Immutability and Rebinding' },
+  {
+    type: 'text',
+    content: 'String operations return new objects. Names may move, but existing string objects never change in place.',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: `s = s.upper()` Creates a New String',
+    description: 'After reassignment, one name can point to a new object while another still points to the original.',
+    bindings: [
+      { scope: 'global', name: 'alias', objectId: 'S_HELLO' },
+      { scope: 'global', name: 's', objectId: 'S_HELLO_UP' },
+    ],
+    objects: [
+      {
+        id: 'S_HELLO',
+        type: 'str',
+        value: '"hello"',
+        mutable: false,
+        refCount: 1,
+        note: 'Original object remains unchanged and still referenced by `alias`.',
+        accent: 'amber',
+      },
+      {
+        id: 'S_HELLO_UP',
+        type: 'str',
+        value: '"HELLO"',
+        mutable: false,
+        refCount: 1,
+        note: 'New object produced by `.upper()`.',
+        accent: 'mint',
+      },
+    ],
+    insights: [
+      'Immutability means transformation methods never mutate an existing string object.',
+      'Reassignment updates the binding, not the underlying object.',
+      'Alias variables can keep older versions alive in memory.',
+    ],
+  },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: String Identity Over Time',
+    prompt: 'Follow object identity as names are aliased and rebound through string operations.',
+    steps: [
+      {
+        title: 'Create First String',
+        action: 'Run `s = "cat"`',
+        code: 's = "cat"',
+        bindings: [
+          { scope: 'global', name: 's', objectId: 'S1' },
+        ],
+        objects: [
+          { id: 'S1', type: 'str', value: '"cat"', mutable: false, refCount: 1, accent: 'amber' },
+        ],
+        explanation: 'One immutable string object is created and bound to `s`.',
+      },
+      {
+        title: 'Create Alias',
+        action: 'Run `t = s`',
+        code: 't = s',
+        bindings: [
+          { scope: 'global', name: 's', objectId: 'S1' },
+          { scope: 'global', name: 't', objectId: 'S1' },
+        ],
+        objects: [
+          { id: 'S1', type: 'str', value: '"cat"', mutable: false, refCount: 2, accent: 'amber' },
+        ],
+        explanation: '`t` becomes another reference to the same object, so `s is t` is True.',
+      },
+      {
+        title: 'Concatenate with +=',
+        action: 'Run `s += "s"`',
+        code: 's += "s"',
+        bindings: [
+          { scope: 'global', name: 's', objectId: 'S2' },
+          { scope: 'global', name: 't', objectId: 'S1' },
+        ],
+        objects: [
+          { id: 'S1', type: 'str', value: '"cat"', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'S2', type: 'str', value: '"cats"', mutable: false, refCount: 1, accent: 'mint' },
+        ],
+        explanation: 'Because strings are immutable, `+=` allocates a new object and rebinds only `s`.',
+      },
+      {
+        title: 'Transform Alias',
+        action: 'Run `t = t.upper()`',
+        code: 't = t.upper()',
+        bindings: [
+          { scope: 'global', name: 's', objectId: 'S2' },
+          { scope: 'global', name: 't', objectId: 'S3' },
+        ],
+        objects: [
+          { id: 'S1', type: 'str', value: '"cat"', mutable: false, refCount: 0, accent: 'coral', note: 'No bindings remain; this object can be reclaimed.' },
+          { id: 'S2', type: 'str', value: '"cats"', mutable: false, refCount: 1, accent: 'mint' },
+          { id: 'S3', type: 'str', value: '"CAT"', mutable: false, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Each transformation produces a new object; bindings decide which version each name sees.',
+      },
+    ],
+  },
+
+  { type: 'heading', level: 2, text: 'Deep Q&A' },
+  {
+    type: 'qna',
+    items: [
+      {
+        question: 'Why are Python strings immutable?',
+        answer: 'Three reasons: (1) **hashability** — immutable strings can be dict keys. (2) **thread safety** — no concurrent mutation bugs. (3) **interning** — identical literals can share one copy in memory.',
+      },
+      {
+        question: 'Why does `"hello" is "hello"` return True?',
+        answer: 'CPython **interns** short identifier-like literals at compile time — both occurrences refer to the same object. It\'s an implementation detail; never rely on `is` for string equality.',
+      },
+      {
+        question: 'What\'s the difference between `str` and `bytes`?',
+        answer: '`str` is Unicode text (abstract characters). `bytes` is raw binary (0–255). Disk and network carry bytes; programs work with str. Convert with `.encode()` and `.decode()`, usually via UTF-8.',
+      },
+      {
+        question: 'Why is `len("café")` 4 but `len("café".encode())` 5?',
+        answer: '`"café"` has 4 **code points** (c, a, f, é). In UTF-8, the `é` takes 2 bytes — total 5. `str` counts characters; `bytes` counts bytes.',
+      },
+      {
+        question: 'Why is `"".join(parts)` faster than `+=` in a loop?',
+        answer: '`+=` on strings creates a **new** string each iteration (because strings are immutable) and copies both sides — O(n²) total. `join` allocates the final size once and copies linearly — O(n).',
+      },
+    ],
+  },
 ]

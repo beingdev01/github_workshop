@@ -113,6 +113,146 @@ export const day2For: ContentBlock[] = [
   },
 
   // ═══════════════════════════════════════
+  // Going Deeper: Iterator Protocol Internals
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper — What a for Loop Really Does' },
+  {
+    type: 'text',
+    content: 'A `for` loop is syntactic sugar over the iterator protocol: Python calls `iter(sequence)` once, then repeatedly calls `next(iterator)` until `StopIteration` is raised.',
+  },
+  {
+    type: 'code',
+    code: 'items = [10, 20, 30]\nit = iter(items)\n\nprint(next(it))   # 10\nprint(next(it))   # 20\nprint(next(it))   # 30\n# print(next(it)) # StopIteration\n\n# Equivalent for-loop shape:\n# it = iter(items)\n# while True:\n#     try:\n#         value = next(it)\n#     except StopIteration:\n#         break\n#     print(value)',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Sequence -> Iterator -> Loop Variable',
+    description: 'The loop variable is rebound each iteration to the object returned by next(iterator).',
+    bindings: [
+      { scope: 'global', name: 'items', objectId: 'L_ITEMS' },
+      { scope: 'global', name: 'it', objectId: 'IT_LIST' },
+      { scope: 'for-frame', name: 'n', objectId: 'I20' },
+      { scope: 'global', name: 'result', objectId: 'L_RESULT' },
+    ],
+    objects: [
+      {
+        id: 'L_ITEMS',
+        type: 'list',
+        value: '[10, 20, 30]',
+        mutable: true,
+        note: 'Source iterable owned by outer scope.',
+        accent: 'amber',
+      },
+      {
+        id: 'IT_LIST',
+        type: 'list_iterator',
+        value: '<list_iterator at index=2>',
+        mutable: true,
+        note: 'Iterator stores progress state independently of the list object.',
+        accent: 'sky',
+      },
+      {
+        id: 'I20',
+        type: 'int',
+        value: '20',
+        mutable: false,
+        accent: 'mint',
+      },
+      {
+        id: 'L_RESULT',
+        type: 'list',
+        value: '[100, 400]',
+        mutable: true,
+        note: 'Accumulator list that grows as loop iterations complete.',
+        accent: 'neutral',
+      },
+    ],
+    insights: [
+      'The iterator, not the loop variable, tracks traversal position.',
+      'Loop variables are rebound every iteration; they are not new scoped variables each time.',
+      'Loop ends when `next` raises StopIteration, not when index == len directly.',
+    ],
+  },
+  {
+    type: 'heading', level: 2, text: 'for-else and Loop Completion State' },
+  {
+    type: 'text',
+    content: 'In `for-else`, the `else` clause runs only when iteration ends naturally. Any `break` marks the loop as terminated early and suppresses `else`.',
+  },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: Iterator Progress and StopIteration',
+    prompt: 'Follow the same loop as Python sees it internally.',
+    steps: [
+      {
+        title: 'Create Iterable and Iterator',
+        action: 'Run setup state',
+        code: 'nums = [1, 2, 3]\nit = iter(nums)\nsquares = []',
+        bindings: [
+          { scope: 'global', name: 'nums', objectId: 'L_NUMS' },
+          { scope: 'global', name: 'it', objectId: 'IT1' },
+          { scope: 'global', name: 'squares', objectId: 'L_SQ' },
+        ],
+        objects: [
+          { id: 'L_NUMS', type: 'list', value: '[1, 2, 3]', mutable: true, refCount: 1, accent: 'amber' },
+          { id: 'IT1', type: 'list_iterator', value: '<index=0>', mutable: true, refCount: 1, accent: 'sky' },
+          { id: 'L_SQ', type: 'list', value: '[]', mutable: true, refCount: 1, accent: 'neutral' },
+        ],
+        explanation: 'Iterator starts before the first element, and accumulator is empty.',
+      },
+      {
+        title: 'First next() Result',
+        action: 'Loop fetches first value',
+        code: 'n = next(it)      # 1\nsquares.append(n * n)',
+        bindings: [
+          { scope: 'global', name: 'it', objectId: 'IT1' },
+          { scope: 'for-frame', name: 'n', objectId: 'I1' },
+          { scope: 'global', name: 'squares', objectId: 'L_SQ' },
+        ],
+        objects: [
+          { id: 'IT1', type: 'list_iterator', value: '<index=1>', mutable: true, refCount: 1, accent: 'sky' },
+          { id: 'I1', type: 'int', value: '1', mutable: false, refCount: 1, accent: 'mint' },
+          { id: 'L_SQ', type: 'list', value: '[1]', mutable: true, refCount: 1, accent: 'amber' },
+        ],
+        explanation: 'Loop variable `n` now references element 1, then body appends 1^2.',
+      },
+      {
+        title: 'Second Iteration Rebind',
+        action: 'Loop fetches next value and reuses name n',
+        code: 'n = next(it)      # 2\nsquares.append(n * n)',
+        bindings: [
+          { scope: 'global', name: 'it', objectId: 'IT1' },
+          { scope: 'for-frame', name: 'n', objectId: 'I2' },
+          { scope: 'global', name: 'squares', objectId: 'L_SQ' },
+        ],
+        objects: [
+          { id: 'IT1', type: 'list_iterator', value: '<index=2>', mutable: true, refCount: 1, accent: 'sky' },
+          { id: 'I2', type: 'int', value: '2', mutable: false, refCount: 1, accent: 'mint' },
+          { id: 'L_SQ', type: 'list', value: '[1, 4]', mutable: true, refCount: 1, accent: 'amber' },
+        ],
+        explanation: 'Same variable name, new binding. Rebinding is how loop variables advance.',
+      },
+      {
+        title: 'Iterator Exhausts',
+        action: 'After consuming 3, next(it) raises StopIteration',
+        code: '# implicit StopIteration -> loop exits',
+        bindings: [
+          { scope: 'global', name: 'it', objectId: 'IT1' },
+          { scope: 'global', name: 'squares', objectId: 'L_SQ' },
+          { scope: 'for-frame', name: 'n', objectId: 'I3' },
+        ],
+        objects: [
+          { id: 'IT1', type: 'list_iterator', value: '<exhausted>', mutable: true, refCount: 1, accent: 'coral' },
+          { id: 'I3', type: 'int', value: '3', mutable: false, refCount: 1, accent: 'mint' },
+          { id: 'L_SQ', type: 'list', value: '[1, 4, 9]', mutable: true, refCount: 1, accent: 'amber' },
+        ],
+        explanation: 'Natural exhaustion ends the loop. This is the path where `for-else` would run its else clause.',
+      },
+    ],
+  },
+
+  // ═══════════════════════════════════════
   // Section 9: Playground
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Try It Yourself' },

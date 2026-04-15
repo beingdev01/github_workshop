@@ -1,6 +1,6 @@
 import type { ContentBlock } from '@/types/content'
 
-export const day4Dicts: ContentBlock[] = [
+export const day3Dicts: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 1: Introduction
   // ═══════════════════════════════════════
@@ -70,6 +70,118 @@ export const day4Dicts: ContentBlock[] = [
     type: 'code',
     code: '# Complex nested structure\nschool = {\n    "Alice": {\n        "age": 20,\n        "grades": {"Math": 92, "Physics": 88, "English": 95}\n    },\n    "Bob": {\n        "age": 19,\n        "grades": {"Math": 78, "Physics": 82, "English": 90}\n    }\n}\n\n# Accessing nested values\nprint(school["Alice"]["grades"]["Math"])  # 92\n\n# Safe nested access\ndef safe_get(d, *keys):\n    """Safely navigate nested dicts"""\n    for key in keys:\n        if isinstance(d, dict):\n            d = d.get(key)\n        else:\n            return None\n    return d\n\nprint(safe_get(school, "Alice", "grades", "Math"))     # 92\nprint(safe_get(school, "Alice", "grades", "Art"))      # None\nprint(safe_get(school, "Eve", "grades", "Math"))       # None\n\n# Iterating nested dicts\nfor name, info in school.items():\n    avg = sum(info["grades"].values()) / len(info["grades"])\n    print(f"  {name} (age {info[\'age\']}): avg = {avg:.1f}")',
     language: 'python',
+  },
+
+  // ═══════════════════════════════════════
+  // Going Deeper: Dictionary Hash Table Internals
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper - How Dict Lookup Works Internally' },
+  {
+    type: 'text',
+    content: 'Python dictionaries are hash tables. Lookup computes hash(key), probes candidate slots, and compares keys only when needed. This yields average O(1) access for get/set/delete.',
+  },
+  {
+    type: 'code',
+    code: 'd = {"name": "Alice", "age": 20}\nprint(d["name"])\nd["city"] = "Delhi"\nprint("age" in d)',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Hash to Slot to Value Binding',
+    description: 'A dict maps hashable keys to value references through an internal index table.',
+    bindings: [
+      { scope: 'global', name: 'd', objectId: 'D_MAIN' },
+      { scope: 'runtime', name: 'key', objectId: 'S_NAME' },
+      { scope: 'runtime', name: 'slot[5]', objectId: 'ENTRY_NAME' },
+      { scope: 'runtime', name: 'slot[2]', objectId: 'ENTRY_AGE' },
+    ],
+    objects: [
+      {
+        id: 'D_MAIN',
+        type: 'dict',
+        value: '{"name": "Alice", "age": 20}',
+        mutable: true,
+        note: 'Stores entries in a compact hash table layout.',
+        accent: 'sky',
+      },
+      { id: 'S_NAME', type: 'str', value: '"name"', mutable: false, accent: 'amber' },
+      {
+        id: 'ENTRY_NAME',
+        type: 'dict entry',
+        value: '(hash("name"), "name", "Alice")',
+        mutable: false,
+        accent: 'mint',
+      },
+      {
+        id: 'ENTRY_AGE',
+        type: 'dict entry',
+        value: '(hash("age"), "age", 20)',
+        mutable: false,
+        accent: 'neutral',
+      },
+    ],
+    insights: [
+      'Keys must be hashable so their hash value remains stable over time.',
+      'Insertion order is preserved in Python 3.7+, independent of hash bucket order.',
+      'Average O(1) performance can degrade only with extreme collision patterns.',
+    ],
+  },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: Insert, Update, and Safe Access',
+    prompt: 'Observe how dictionary state changes for set/get/update operations.',
+    steps: [
+      {
+        title: 'Initialize Empty Dict',
+        action: 'Start with empty mapping',
+        code: 'profile = {}',
+        bindings: [
+          { scope: 'global', name: 'profile', objectId: 'D0' },
+        ],
+        objects: [
+          { id: 'D0', type: 'dict', value: '{}', mutable: true, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Empty dict allocates table metadata and waits for first insertion.',
+      },
+      {
+        title: 'Insert New Keys',
+        action: 'Add name and age',
+        code: 'profile["name"] = "Alice"\nprofile["age"] = 20',
+        bindings: [
+          { scope: 'global', name: 'profile', objectId: 'D1' },
+        ],
+        objects: [
+          { id: 'D1', type: 'dict', value: '{"name": "Alice", "age": 20}', mutable: true, refCount: 1, accent: 'mint' },
+        ],
+        explanation: 'Each assignment inserts or updates an entry by key hash and equality checks.',
+      },
+      {
+        title: 'Update Existing Key',
+        action: 'Overwrite age in place',
+        code: 'profile["age"] = 21',
+        bindings: [
+          { scope: 'global', name: 'profile', objectId: 'D2' },
+        ],
+        objects: [
+          { id: 'D2', type: 'dict', value: '{"name": "Alice", "age": 21}', mutable: true, refCount: 1, accent: 'mint' },
+        ],
+        explanation: 'Existing key slot is reused and only the value reference is replaced.',
+      },
+      {
+        title: 'Safe Missing Access',
+        action: 'Read absent key with default',
+        code: 'city = profile.get("city", "Unknown")',
+        bindings: [
+          { scope: 'global', name: 'profile', objectId: 'D2' },
+          { scope: 'global', name: 'city', objectId: 'S_UNK' },
+        ],
+        objects: [
+          { id: 'D2', type: 'dict', value: '{"name": "Alice", "age": 21}', mutable: true, refCount: 1, accent: 'mint' },
+          { id: 'S_UNK', type: 'str', value: '"Unknown"', mutable: false, refCount: 1, accent: 'amber' },
+        ],
+        explanation: 'get() avoids KeyError and returns fallback when key is absent.',
+      },
+    ],
   },
 
   // ═══════════════════════════════════════

@@ -195,6 +195,170 @@ export const day2Boolean: ContentBlock[] = [
   },
 
   // ═══════════════════════════════════════
+  // Going Deeper: Boolean Evaluation Internals
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper — The Boolean Evaluation Engine' },
+  {
+    type: 'text',
+    content: 'When Python evaluates a condition, it does more than compare `True` and `False`. It asks objects for truth value using `__bool__()` (or falls back to `__len__()`), applies short-circuit rules, and often returns one of the original operand objects.',
+  },
+  {
+    type: 'heading', level: 2, text: 'Truthiness Dispatch: __bool__ Then __len__' },
+  {
+    type: 'code',
+    code: 'class Box:\n    def __init__(self, items):\n        self.items = items\n\n    def __len__(self):\n        return len(self.items)\n\nclass FeatureFlag:\n    def __init__(self, enabled):\n        self.enabled = enabled\n\n    def __bool__(self):\n        print("__bool__ called")\n        return self.enabled\n\nprint(bool(Box([])))        # False  (len == 0)\nprint(bool(Box([1, 2])))    # True   (len > 0)\n\nflag = FeatureFlag(True)\nif flag:\n    print("Flag is on")',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: How `if obj:` Computes Truth Value',
+    description: 'Python asks an object for truthiness in a strict order: __bool__, then __len__, then default truthy.',
+    bindings: [
+      { scope: 'global', name: 'box', objectId: 'OBJ_BOX' },
+      { scope: 'global', name: 'flag', objectId: 'OBJ_FLAG' },
+      { scope: 'frame:bool', name: 'obj', objectId: 'OBJ_BOX' },
+      { scope: 'frame:if', name: 'condition', objectId: 'B_TRUE' },
+    ],
+    objects: [
+      {
+        id: 'OBJ_BOX',
+        type: 'Box',
+        value: 'Box([1, 2])',
+        mutable: true,
+        note: 'No __bool__; Python calls __len__ and interprets non-zero as True.',
+        accent: 'amber',
+      },
+      {
+        id: 'OBJ_FLAG',
+        type: 'FeatureFlag',
+        value: 'FeatureFlag(True)',
+        mutable: true,
+        note: 'Defines __bool__, so Python uses that directly.',
+        accent: 'sky',
+      },
+      {
+        id: 'B_TRUE',
+        type: 'bool',
+        value: 'True',
+        mutable: false,
+        accent: 'mint',
+      },
+    ],
+    insights: [
+      'Truthiness is protocol-driven, not hardcoded only for built-in types.',
+      'An empty container is falsy because len == 0, not because Python special-cases each container.',
+      'Custom classes can define exactly how they behave in conditions.',
+    ],
+  },
+
+  {
+    type: 'heading', level: 2, text: '`and` / `or` Return Operands, Not Forced Booleans' },
+  {
+    type: 'code',
+    code: 'name = ""\nfallback = "Anonymous"\n\nselected = name or fallback\nprint(selected)             # Anonymous\n\ncache = {"token": "abc"}\nresult = cache and cache["token"]\nprint(result)               # abc\n\nprint(0 and 99)             # 0\nprint("" or "default")      # default',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: `or` Picks the First Truthy Operand',
+    description: 'With `name or fallback`, the result binding points to whichever operand object wins.',
+    bindings: [
+      { scope: 'global', name: 'name', objectId: 'S_EMPTY' },
+      { scope: 'global', name: 'fallback', objectId: 'S_FB' },
+      { scope: 'global', name: 'selected', objectId: 'S_FB' },
+    ],
+    objects: [
+      {
+        id: 'S_EMPTY',
+        type: 'str',
+        value: '""',
+        mutable: false,
+        note: 'Falsy because it is an empty string.',
+        accent: 'coral',
+      },
+      {
+        id: 'S_FB',
+        type: 'str',
+        value: '"Anonymous"',
+        mutable: false,
+        note: 'First truthy operand; returned directly by `or`.',
+        accent: 'mint',
+      },
+    ],
+    insights: [
+      '`or` returns an operand object, not a newly created bool.',
+      'This is why fallback expressions are compact and efficient in Python.',
+      'The same rule explains patterns like `config.get("timeout") or 30`.',
+    ],
+  },
+
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: Short-Circuit and Operand Return',
+    prompt: 'Step through the expression chain and track which objects become bound to results.',
+    steps: [
+      {
+        title: 'Start With Falsy Input',
+        action: 'Run setup values',
+        code: 'user_name = ""\ndefault_name = "Guest"',
+        bindings: [
+          { scope: 'global', name: 'user_name', objectId: 'S_EMPTY' },
+          { scope: 'global', name: 'default_name', objectId: 'S_GUEST' },
+        ],
+        objects: [
+          { id: 'S_EMPTY', type: 'str', value: '""', mutable: false, refCount: 1, accent: 'coral' },
+          { id: 'S_GUEST', type: 'str', value: '"Guest"', mutable: false, refCount: 1, accent: 'amber' },
+        ],
+        explanation: '`user_name` is currently falsy, so it cannot satisfy an `or` by itself.',
+      },
+      {
+        title: 'Evaluate Fallback With or',
+        action: 'Run `display = user_name or default_name`',
+        code: 'display = user_name or default_name',
+        bindings: [
+          { scope: 'global', name: 'user_name', objectId: 'S_EMPTY' },
+          { scope: 'global', name: 'default_name', objectId: 'S_GUEST' },
+          { scope: 'global', name: 'display', objectId: 'S_GUEST' },
+        ],
+        objects: [
+          { id: 'S_EMPTY', type: 'str', value: '""', mutable: false, refCount: 1, accent: 'coral' },
+          { id: 'S_GUEST', type: 'str', value: '"Guest"', mutable: false, refCount: 2, accent: 'mint' },
+        ],
+        explanation: 'Because the left operand is falsy, `or` returns the right operand object directly.',
+      },
+      {
+        title: 'Guarded and Expression',
+        action: 'Run `ok = display and len(display) > 0`',
+        code: 'ok = display and len(display) > 0',
+        bindings: [
+          { scope: 'global', name: 'display', objectId: 'S_GUEST' },
+          { scope: 'global', name: 'ok', objectId: 'B_TRUE' },
+        ],
+        objects: [
+          { id: 'S_GUEST', type: 'str', value: '"Guest"', mutable: false, refCount: 2, accent: 'amber' },
+          { id: 'B_TRUE', type: 'bool', value: 'True', mutable: false, refCount: 1, accent: 'mint' },
+        ],
+        explanation: '`and` evaluates the right side only because `display` is truthy.',
+      },
+      {
+        title: 'Flip to Truthy Name',
+        action: 'Run `user_name = "Ava"` and reevaluate fallback',
+        code: 'user_name = "Ava"\ndisplay = user_name or default_name',
+        bindings: [
+          { scope: 'global', name: 'user_name', objectId: 'S_AVA' },
+          { scope: 'global', name: 'default_name', objectId: 'S_GUEST' },
+          { scope: 'global', name: 'display', objectId: 'S_AVA' },
+        ],
+        objects: [
+          { id: 'S_AVA', type: 'str', value: '"Ava"', mutable: false, refCount: 2, accent: 'mint' },
+          { id: 'S_GUEST', type: 'str', value: '"Guest"', mutable: false, refCount: 1, accent: 'amber' },
+        ],
+        explanation: 'Now the left operand is truthy, so `or` short-circuits and returns `user_name`.',
+      },
+    ],
+  },
+
+  // ═══════════════════════════════════════
   // Section 12: Playground
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Try It Yourself' },

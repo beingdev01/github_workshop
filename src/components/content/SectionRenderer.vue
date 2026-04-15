@@ -45,6 +45,24 @@
         <li v-for="(item, j) in block.items" :key="j" v-html="renderMarkdown(item)" class="leading-[1.7] pl-2" />
       </component>
 
+      <!-- Memory Diagram -->
+      <MemoryDiagram
+        v-else-if="block.type === 'memoryDiagram'"
+        :title="block.title"
+        :description="block.description"
+        :bindings="block.bindings"
+        :objects="block.objects"
+        :insights="block.insights"
+      />
+
+      <!-- Memory Lab -->
+      <MemoryLab
+        v-else-if="block.type === 'memoryLab'"
+        :title="block.title"
+        :prompt="block.prompt"
+        :steps="block.steps"
+      />
+
       <!-- Playground -->
       <CodePlayground
         v-else-if="block.type === 'playground'"
@@ -75,6 +93,8 @@ import CodeBlock from '@/components/content/CodeBlock.vue'
 import Callout from '@/components/content/Callout.vue'
 import CodePlayground from '@/components/interactive/CodePlayground.vue'
 import QAndA from '@/components/interactive/QAndA.vue'
+import MemoryDiagram from '@/components/interactive/MemoryDiagram.vue'
+import MemoryLab from '@/components/interactive/MemoryLab.vue'
 
 defineProps<{
   blocks: ContentBlock[]

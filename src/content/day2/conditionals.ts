@@ -161,6 +161,162 @@ export const day2Conditionals: ContentBlock[] = [
   },
 
   // ═══════════════════════════════════════
+  // Going Deeper: Branch Evaluation Internals
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper — How Python Chooses a Branch' },
+  {
+    type: 'text',
+    content: 'An `if/elif/else` chain is a linear decision pipeline. Python evaluates conditions top-to-bottom, stops at the first truthy condition, executes exactly one block, then jumps past the rest.',
+  },
+  {
+    type: 'code',
+    code: 'score = 78\nchecks = []\n\nif score >= 90:\n    checks.append("A")\n    grade = "A"\nelif score >= 80:\n    checks.append("B")\n    grade = "B"\nelif score >= 70:\n    checks.append("C")\n    grade = "C"\nelse:\n    checks.append("F")\n    grade = "F"\n\nprint(checks, grade)   # ["C"] C',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: First-True Branch Wins',
+    description: 'Only one branch body executes; later conditions are not evaluated after a match.',
+    bindings: [
+      { scope: 'global', name: 'score', objectId: 'I78' },
+      { scope: 'global', name: 'grade', objectId: 'S_C' },
+      { scope: 'global', name: 'checks', objectId: 'L_CHECKS' },
+      { scope: 'runtime', name: 'active_branch', objectId: 'BR_C' },
+    ],
+    objects: [
+      {
+        id: 'I78',
+        type: 'int',
+        value: '78',
+        mutable: false,
+        accent: 'amber',
+      },
+      {
+        id: 'BR_C',
+        type: 'branch marker',
+        value: 'elif score >= 70',
+        mutable: false,
+        note: 'This branch became active after two failed checks.',
+        accent: 'sky',
+      },
+      {
+        id: 'S_C',
+        type: 'str',
+        value: '"C"',
+        mutable: false,
+        accent: 'mint',
+      },
+      {
+        id: 'L_CHECKS',
+        type: 'list',
+        value: '["C"]',
+        mutable: true,
+        note: 'Useful for proving which branch actually executed.',
+        accent: 'neutral',
+      },
+    ],
+    insights: [
+      'The chain is not parallel; it is sequential and short-circuiting.',
+      'Conditions below the winning branch are skipped entirely.',
+      'This is why ordering conditions from most specific to least specific matters.',
+    ],
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Variable Binding Depends on Executed Paths' },
+  {
+    type: 'code',
+    code: 'x = 7\n\nif x % 5 == 0:\n    label = "divisible"\n\n# print(label)  # NameError: label was never bound in this path\n\n# Safe pattern\nif x % 5 == 0:\n    label = "divisible"\nelse:\n    label = "not divisible"',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'warning',
+    title: 'Conditional Paths Create Path-Sensitive State',
+    content: 'Python has function scope, but assignment is still path-dependent. If no executed path binds a name, using that name later raises `NameError`.',
+  },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: if/elif Evaluation Timeline',
+    prompt: 'Track each condition test and watch where control flow stops.',
+    steps: [
+      {
+        title: 'Initialize Inputs',
+        action: 'Run setup values',
+        code: 'score = 78\ngrade = None',
+        bindings: [
+          { scope: 'global', name: 'score', objectId: 'I78' },
+          { scope: 'global', name: 'grade', objectId: 'NONE' },
+        ],
+        objects: [
+          { id: 'I78', type: 'int', value: '78', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'NONE', type: 'NoneType', value: 'None', mutable: false, refCount: 1, accent: 'neutral' },
+        ],
+        explanation: 'No branch has executed yet, so `grade` has only a placeholder value.',
+      },
+      {
+        title: 'Check First Condition',
+        action: 'Evaluate `score >= 90`',
+        code: 'if score >= 90: ...',
+        bindings: [
+          { scope: 'global', name: 'score', objectId: 'I78' },
+          { scope: 'runtime', name: 'last_condition', objectId: 'B_FALSE_1' },
+          { scope: 'global', name: 'grade', objectId: 'NONE' },
+        ],
+        objects: [
+          { id: 'I78', type: 'int', value: '78', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'B_FALSE_1', type: 'bool', value: 'False', mutable: false, refCount: 1, accent: 'coral' },
+          { id: 'NONE', type: 'NoneType', value: 'None', mutable: false, refCount: 1, accent: 'neutral' },
+        ],
+        explanation: 'Condition is false, so Python moves to the next `elif` test.',
+      },
+      {
+        title: 'Check Second Condition',
+        action: 'Evaluate `score >= 80`',
+        code: 'elif score >= 80: ...',
+        bindings: [
+          { scope: 'global', name: 'score', objectId: 'I78' },
+          { scope: 'runtime', name: 'last_condition', objectId: 'B_FALSE_2' },
+          { scope: 'global', name: 'grade', objectId: 'NONE' },
+        ],
+        objects: [
+          { id: 'B_FALSE_2', type: 'bool', value: 'False', mutable: false, refCount: 1, accent: 'coral' },
+          { id: 'NONE', type: 'NoneType', value: 'None', mutable: false, refCount: 1, accent: 'neutral' },
+        ],
+        explanation: 'Still false. Control continues to the next condition in sequence.',
+      },
+      {
+        title: 'Third Condition Matches',
+        action: 'Evaluate `score >= 70` and assign grade',
+        code: 'elif score >= 70:\n    grade = "C"',
+        bindings: [
+          { scope: 'global', name: 'score', objectId: 'I78' },
+          { scope: 'runtime', name: 'last_condition', objectId: 'B_TRUE' },
+          { scope: 'global', name: 'grade', objectId: 'S_C' },
+        ],
+        objects: [
+          { id: 'B_TRUE', type: 'bool', value: 'True', mutable: false, refCount: 1, accent: 'mint' },
+          { id: 'S_C', type: 'str', value: '"C"', mutable: false, refCount: 1, accent: 'mint' },
+        ],
+        explanation: 'First truthy condition wins. Python executes this block and skips all remaining branches.',
+      },
+      {
+        title: 'Chain Terminates',
+        action: 'Exit the conditional chain',
+        code: '# else branch skipped',
+        bindings: [
+          { scope: 'global', name: 'score', objectId: 'I78' },
+          { scope: 'global', name: 'grade', objectId: 'S_C' },
+        ],
+        objects: [
+          { id: 'S_C', type: 'str', value: '"C"', mutable: false, refCount: 1, accent: 'mint' },
+        ],
+        explanation: 'Final state reflects the single executed branch. This one-path rule is key to reasoning about conditionals.',
+      },
+    ],
+  },
+
+  // ═══════════════════════════════════════
   // Section 10: Playground
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Try It Yourself' },

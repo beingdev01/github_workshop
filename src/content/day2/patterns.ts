@@ -113,6 +113,169 @@ export const day2Patterns: ContentBlock[] = [
   },
 
   // ═══════════════════════════════════════
+  // Going Deeper: Nested Loop Runtime Model
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper — Nested Loops as Coordinate Machines' },
+  {
+    type: 'text',
+    content: 'Nested loops are easiest to reason about as coordinate traversal: outer loop selects a row/state, inner loop sweeps columns/substates. The inner loop fully resets and runs again for every outer iteration.',
+  },
+  {
+    type: 'code',
+    code: 'total = 0\nfor i in range(2):\n    for j in range(3):\n        total += i + j\n\nprint(total)   # 9',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Outer State + Inner Sweep',
+    description: 'At a mid-iteration snapshot, i and j jointly identify one cell in the traversal grid.',
+    bindings: [
+      { scope: 'global', name: 'i', objectId: 'I1' },
+      { scope: 'global', name: 'j', objectId: 'I2' },
+      { scope: 'global', name: 'total', objectId: 'I5' },
+      { scope: 'runtime', name: 'outer_iter', objectId: 'IT_OUT' },
+      { scope: 'runtime', name: 'inner_iter', objectId: 'IT_IN' },
+    ],
+    objects: [
+      {
+        id: 'IT_OUT',
+        type: 'range_iterator',
+        value: '<range(0, 2) index=1>',
+        mutable: true,
+        note: 'Outer iterator controls major loop progress.',
+        accent: 'sky',
+      },
+      {
+        id: 'IT_IN',
+        type: 'range_iterator',
+        value: '<range(0, 3) index=2>',
+        mutable: true,
+        note: 'Fresh inner iterator for current outer value.',
+        accent: 'amber',
+      },
+      {
+        id: 'I1',
+        type: 'int',
+        value: '1',
+        mutable: false,
+        accent: 'mint',
+      },
+      {
+        id: 'I2',
+        type: 'int',
+        value: '2',
+        mutable: false,
+        accent: 'mint',
+      },
+      {
+        id: 'I5',
+        type: 'int',
+        value: '5',
+        mutable: false,
+        note: 'Accumulator after partial traversal.',
+        accent: 'neutral',
+      },
+    ],
+    insights: [
+      'Total operations multiply: outer_count * inner_count.',
+      'Inner iterators are recreated per outer iteration.',
+      'Understanding i/j state pairs helps avoid off-by-one bugs in pattern code.',
+    ],
+  },
+  {
+    type: 'heading', level: 2, text: 'break Scope in Nested Loops' },
+  {
+    type: 'text',
+    content: '`break` only exits the innermost loop. Exiting both loops requires a flag, a function return, or an exception-based escape pattern.',
+  },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: 2x3 Nested Traversal Timeline',
+    prompt: 'Watch i/j rebinding and see how the inner loop resets for each outer cycle.',
+    steps: [
+      {
+        title: 'Initialize Traversal',
+        action: 'Start outer and inner ranges',
+        code: 'pairs = []\nfor i in range(2):\n    for j in range(3):\n        pairs.append((i, j))',
+        bindings: [
+          { scope: 'global', name: 'pairs', objectId: 'L_PAIRS' },
+          { scope: 'runtime', name: 'outer_iter', objectId: 'IT_OUT_0' },
+        ],
+        objects: [
+          { id: 'L_PAIRS', type: 'list', value: '[]', mutable: true, refCount: 1, accent: 'neutral' },
+          { id: 'IT_OUT_0', type: 'range_iterator', value: '<range(0,2) index=0>', mutable: true, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Only outer iterator exists at start. Inner iterator is created after i gets first value.',
+      },
+      {
+        title: 'Outer i = 0, Inner j = 0',
+        action: 'First coordinate emitted',
+        code: 'i = 0\nj = 0\npairs.append((i, j))',
+        bindings: [
+          { scope: 'global', name: 'i', objectId: 'I0' },
+          { scope: 'global', name: 'j', objectId: 'I0B' },
+          { scope: 'global', name: 'pairs', objectId: 'L_PAIRS' },
+          { scope: 'runtime', name: 'inner_iter', objectId: 'IT_IN_0' },
+        ],
+        objects: [
+          { id: 'I0', type: 'int', value: '0', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'I0B', type: 'int', value: '0', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'IT_IN_0', type: 'range_iterator', value: '<range(0,3) index=1>', mutable: true, refCount: 1, accent: 'mint' },
+          { id: 'L_PAIRS', type: 'list', value: '[(0, 0)]', mutable: true, refCount: 1, accent: 'neutral' },
+        ],
+        explanation: 'Inner loop now active for the current outer row i = 0.',
+      },
+      {
+        title: 'Finish Inner for i = 0',
+        action: 'j runs through 1 and 2',
+        code: 'pairs += [(0, 1), (0, 2)]',
+        bindings: [
+          { scope: 'global', name: 'i', objectId: 'I0' },
+          { scope: 'runtime', name: 'inner_iter', objectId: 'IT_IN_EX' },
+          { scope: 'global', name: 'pairs', objectId: 'L_PAIRS' },
+        ],
+        objects: [
+          { id: 'IT_IN_EX', type: 'range_iterator', value: '<exhausted>', mutable: true, refCount: 1, accent: 'coral' },
+          { id: 'L_PAIRS', type: 'list', value: '[(0, 0), (0, 1), (0, 2)]', mutable: true, refCount: 1, accent: 'neutral' },
+        ],
+        explanation: 'Inner iterator exhausts. Control returns to outer iterator for next i.',
+      },
+      {
+        title: 'Reset Inner for i = 1',
+        action: 'Outer advances and creates a new inner iterator',
+        code: 'i = 1\n# new inner loop: j = 0..2',
+        bindings: [
+          { scope: 'global', name: 'i', objectId: 'I1' },
+          { scope: 'runtime', name: 'outer_iter', objectId: 'IT_OUT_1' },
+          { scope: 'runtime', name: 'inner_iter', objectId: 'IT_IN_1' },
+          { scope: 'global', name: 'pairs', objectId: 'L_PAIRS' },
+        ],
+        objects: [
+          { id: 'I1', type: 'int', value: '1', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'IT_OUT_1', type: 'range_iterator', value: '<range(0,2) index=2>', mutable: true, refCount: 1, accent: 'sky' },
+          { id: 'IT_IN_1', type: 'range_iterator', value: '<range(0,3) index=0>', mutable: true, refCount: 1, accent: 'mint' },
+          { id: 'L_PAIRS', type: 'list', value: '[(0, 0), (0, 1), (0, 2)]', mutable: true, refCount: 1, accent: 'neutral' },
+        ],
+        explanation: 'This reset behavior is the key mental model of nested loops.',
+      },
+      {
+        title: 'Traversal Complete',
+        action: 'All coordinates emitted',
+        code: 'pairs == [(0,0),(0,1),(0,2),(1,0),(1,1),(1,2)]',
+        bindings: [
+          { scope: 'global', name: 'pairs', objectId: 'L_DONE' },
+          { scope: 'runtime', name: 'outer_iter', objectId: 'IT_OUT_EX' },
+        ],
+        objects: [
+          { id: 'L_DONE', type: 'list', value: '[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2)]', mutable: true, refCount: 1, accent: 'mint' },
+          { id: 'IT_OUT_EX', type: 'range_iterator', value: '<exhausted>', mutable: true, refCount: 1, accent: 'coral' },
+        ],
+        explanation: 'Total entries = 2 * 3 = 6. Complexity follows the multiplication rule.',
+      },
+    ],
+  },
+
+  // ═══════════════════════════════════════
   // Section 10: Playground
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Try It Yourself' },

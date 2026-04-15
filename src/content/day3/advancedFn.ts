@@ -103,14 +103,199 @@ export const day3AdvancedFn: ContentBlock[] = [
   },
 
   // ═══════════════════════════════════════
-  // Section 9: Quiz
+  // Going Deeper: Closures, Decorators, Lambda
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Q&A' },
-  
+  { type: 'heading', level: 1, text: 'Going Deeper — Closures & Decorators' },
 
-  // ═══════════════════════════════════════
-  // Section 10: Challenge
-  // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Challenge Q&A' },
-  
+  {
+    type: 'heading', level: 2, text: 'Closures — Functions That Remember' },
+  {
+    type: 'text',
+    content: 'A **closure** is a function that "remembers" variables from the scope where it was *created* — even after that scope has returned. This is how you attach state to a function without using a class.',
+  },
+  {
+    type: 'code',
+    code: 'def make_counter():\n    n = 0\n    def tick():\n        nonlocal n\n        n += 1\n        return n\n    return tick\n\nc1 = make_counter()\nc2 = make_counter()       # independent counter, fresh n\n\nprint(c1(), c1(), c1())   # 1 2 3\nprint(c2())               # 1  — c2 is its own closure\n\nprint(c1.__closure__[0].cell_contents)   # 3 — the n it closed over',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'python',
+    title: 'Closure = Function + Environment',
+    content: 'Every inner function carries a hidden reference to the "cells" holding its free variables. Those cells keep the outer scope\'s variables alive *even after* the outer function has returned.',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Decorators — Wrapping Functions' },
+  {
+    type: 'text',
+    content: 'A **decorator** is a function that takes a function and returns a new function. The `@decorator` syntax is pure sugar: `@d\\ndef f(): ...` is exactly `f = d(f)`.',
+  },
+  {
+    type: 'code',
+    code: 'import time\nfrom functools import wraps\n\ndef timed(fn):\n    @wraps(fn)\n    def wrapper(*args, **kwargs):\n        t0 = time.perf_counter()\n        result = fn(*args, **kwargs)\n        print(f"{fn.__name__} took {time.perf_counter() - t0:.4f}s")\n        return result\n    return wrapper\n\n@timed\ndef compute(n):\n    return sum(i * i for i in range(n))\n\ncompute(1_000_000)',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Decorators with Arguments' },
+  {
+    type: 'code',
+    code: 'from functools import wraps\n\ndef repeat(times):\n    def decorator(fn):\n        @wraps(fn)\n        def wrapper(*args, **kwargs):\n            for _ in range(times):\n                result = fn(*args, **kwargs)\n            return result\n        return wrapper\n    return decorator\n\n@repeat(times=3)\ndef greet(name):\n    print(f"Hi, {name}!")\n\ngreet("Alice")',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Lambda — Anonymous Functions' },
+  {
+    type: 'code',
+    code: 'words = ["apple", "banana", "cherry"]\nprint(sorted(words, key=lambda w: w[-1]))   # by last letter\n\nprint(list(filter(lambda x: x % 2 == 0, range(10))))\n\nfrom functools import reduce\nprint(reduce(lambda a, b: a + b, [1, 2, 3, 4]))   # 10',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'warning',
+    title: 'Don\'t Over-Use lambda',
+    content: '`lambda` bodies are limited to a single expression — no statements. If your lambda needs a comment, use `def`. If it\'s >30 characters, use `def`.',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'map, filter, reduce' },
+  {
+    type: 'code',
+    code: 'nums = [1, 2, 3, 4, 5]\n\nlist(map(lambda x: x * x, nums))       # [1, 4, 9, 16, 25]\nlist(filter(lambda x: x % 2, nums))    # [1, 3, 5]\n\nfrom functools import reduce\nreduce(lambda a, b: a + b, nums)       # 15\n\n# Python-idiomatic equivalents\n[x * x for x in nums]        # comprehension beats map + lambda\nsum(nums)                    # beats reduce',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Memory Model of Closures and Decorators' },
+  {
+    type: 'text',
+    content: 'Closures and decorators work because function objects can carry references to captured variables and wrapped callables. The runtime stores these links explicitly in closure cells.',
+  },
+  {
+    type: 'code',
+    code: 'def make_counter():\n    n = 0\n    def tick():\n        nonlocal n\n        n += 1\n        return n\n    return tick\n\ncounter = make_counter()\nprint(counter())  # 1\nprint(counter())  # 2',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Closure Function Plus Captured Cell',
+    description: 'The inner function object keeps a reference to a cell that stores captured state.',
+    bindings: [
+      { scope: 'global', name: 'counter', objectId: 'F_TICK' },
+      { scope: 'frame:tick', name: 'n', objectId: 'CELL_N' },
+      { scope: 'runtime', name: 'freevars', objectId: 'CELL_N' },
+    ],
+    objects: [
+      {
+        id: 'F_TICK',
+        type: 'function',
+        value: '<function tick()>',
+        mutable: false,
+        note: 'Carries closure metadata linking to captured cells.',
+        accent: 'sky',
+      },
+      {
+        id: 'CELL_N',
+        type: 'cell',
+        value: 'n = 2',
+        mutable: true,
+        note: 'State survives after make_counter() returns.',
+        accent: 'mint',
+      },
+    ],
+    insights: [
+      'Closures persist state without global variables or classes.',
+      'nonlocal writes into the captured cell, not a new local binding.',
+      'Each factory call creates independent cells and independent state.',
+    ],
+  },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: Closure State Through Calls',
+    prompt: 'Track how repeated function calls update a captured variable.',
+    steps: [
+      {
+        title: 'Factory Creates Cell',
+        action: 'Run counter factory',
+        code: 'counter = make_counter()',
+        bindings: [
+          { scope: 'global', name: 'counter', objectId: 'F_TICK' },
+        ],
+        objects: [
+          { id: 'F_TICK', type: 'function', value: '<function tick()>', mutable: false, refCount: 1, accent: 'sky' },
+          { id: 'CELL_N', type: 'cell', value: 'n = 0', mutable: true, refCount: 1, accent: 'amber' },
+        ],
+        explanation: 'Factory returns a function that keeps access to a private state cell.',
+      },
+      {
+        title: 'First Call',
+        action: 'Invoke counter once',
+        code: 'counter()  # 1',
+        bindings: [
+          { scope: 'global', name: 'counter', objectId: 'F_TICK' },
+          { scope: 'frame:tick', name: 'n', objectId: 'CELL_N' },
+        ],
+        objects: [
+          { id: 'CELL_N', type: 'cell', value: 'n = 1', mutable: true, refCount: 1, accent: 'mint' },
+        ],
+        explanation: 'nonlocal increments the captured cell value from 0 to 1.',
+      },
+      {
+        title: 'Second Call',
+        action: 'Invoke counter again',
+        code: 'counter()  # 2',
+        bindings: [
+          { scope: 'global', name: 'counter', objectId: 'F_TICK' },
+          { scope: 'frame:tick', name: 'n', objectId: 'CELL_N' },
+        ],
+        objects: [
+          { id: 'CELL_N', type: 'cell', value: 'n = 2', mutable: true, refCount: 1, accent: 'mint' },
+        ],
+        explanation: 'State is preserved between calls because it is stored outside transient call frames.',
+      },
+      {
+        title: 'Independent Closure',
+        action: 'Create another counter',
+        code: 'counter2 = make_counter(); counter2()  # 1',
+        bindings: [
+          { scope: 'global', name: 'counter', objectId: 'F_TICK' },
+          { scope: 'global', name: 'counter2', objectId: 'F_TICK2' },
+        ],
+        objects: [
+          { id: 'CELL_N', type: 'cell', value: 'n = 2', mutable: true, refCount: 1, accent: 'amber' },
+          { id: 'CELL_N2', type: 'cell', value: 'n = 1', mutable: true, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Each closure has its own captured cell; state does not leak across instances.',
+      },
+    ],
+  },
+
+  { type: 'heading', level: 2, text: 'Deep Q&A' },
+  {
+    type: 'qna',
+    items: [
+      {
+        question: 'What\'s a closure, really?',
+        answer: 'An inner function plus the **variables** it captured from its enclosing scope. Python stores these in hidden "cell" objects attached to the function, keeping the outer scope\'s variables alive even after the outer function returns.',
+      },
+      {
+        question: 'What does `@decorator` actually do?',
+        answer: 'Pure syntactic sugar. `@d\\ndef f(): ...` is exactly `def f(): ...; f = d(f)`.',
+      },
+      {
+        question: 'Why use `@functools.wraps`?',
+        answer: 'Without it, the wrapped function loses its `__name__`, `__doc__`, `__wrapped__` — docs and debuggers break. `@wraps(fn)` copies those attributes from the original onto the wrapper.',
+      },
+      {
+        question: 'When should I use lambda vs def?',
+        answer: '**lambda**: one short expression passed inline. **def**: anything with multiple steps, a name, or a docstring.',
+      },
+      {
+        question: 'Is `map(f, xs)` faster than `[f(x) for x in xs]`?',
+        answer: 'Usually a tiny bit faster for built-in functions, roughly tied for lambdas. Comprehensions are almost always preferred for readability.',
+      },
+    ],
+  },
 ]

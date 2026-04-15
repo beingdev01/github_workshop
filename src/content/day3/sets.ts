@@ -1,6 +1,6 @@
 import type { ContentBlock } from '@/types/content'
 
-export const day4Sets: ContentBlock[] = [
+export const day3Sets: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 1: Introduction
   // ═══════════════════════════════════════
@@ -79,12 +79,165 @@ export const day4Sets: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 8: Quiz
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Q&A' },
-  
+  // ═══════════════════════════════════════
+  // Going Deeper: Set Internals
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper — How Sets Work' },
+  {
+    type: 'text',
+    content: 'A Python `set` is a **hash table without values** — just keys. It provides O(1) average `in`, `add`, `remove`, and powerful set-algebra operations built into the language.',
+  },
 
-  // ═══════════════════════════════════════
-  // Section 9: Challenge
-  // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Challenge Q&A' },
-  
+  {
+    type: 'heading', level: 2, text: 'Membership — O(1) vs List\'s O(n)' },
+  {
+    type: 'code',
+    code: 'import time\n\nbig_list = list(range(1_000_000))\nbig_set  = set(big_list)\n\nt0 = time.time(); _ = 999_999 in big_list;  print(f"list: {(time.time()-t0)*1e3:.2f}ms")\nt0 = time.time(); _ = 999_999 in big_set;   print(f"set:  {(time.time()-t0)*1e3:.4f}ms")\n# set is ~10,000× faster — hash table vs linear scan',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Set Operations (the Math)' },
+  {
+    type: 'code',
+    code: 'a = {1, 2, 3, 4}\nb = {3, 4, 5, 6}\n\nprint(a | b)       # union:         {1, 2, 3, 4, 5, 6}\nprint(a & b)       # intersection:  {3, 4}\nprint(a - b)       # difference:    {1, 2}\nprint(a ^ b)       # symmetric diff:{1, 2, 5, 6}\n\n# Subset / superset\nprint({1, 2} <= a)    # True — subset\nprint(a >= {1, 2})    # True — superset\nprint({1, 2} < a)     # True — proper subset\n\n# Disjoint\nprint({1, 2}.isdisjoint({3, 4}))   # True',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'frozenset — The Immutable Sibling' },
+  {
+    type: 'text',
+    content: 'A `frozenset` is an immutable (and therefore hashable) set — usable as dict keys and members of other sets.',
+  },
+  {
+    type: 'code',
+    code: 'fs = frozenset([1, 2, 3])\n# fs.add(4)    # AttributeError — immutable\n\n# Set of sets — only works with frozensets\ngroupings = {frozenset({1, 2}), frozenset({3, 4})}\n\n# frozenset as dict key\ncache = {frozenset({"a", "b"}): "grouped"}',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Common Use Cases' },
+  {
+    type: 'code',
+    code: '# Deduplicate while preserving order? Use dict keys (3.7+)\nordered_unique = list(dict.fromkeys([3, 1, 2, 1, 3]))\n# [3, 1, 2]\n\n# Quick uniqueness check\nif len(items) != len(set(items)):\n    print("duplicates!")\n\n# Multi-set-style operations\nreaders = {"alice", "bob", "carol"}\nwriters = {"bob", "dan"}\nprint(readers & writers)    # both roles\nprint(readers - writers)    # only readers\nprint(readers | writers)    # anyone\n\n# Remove unwanted items\nwords = ["the", "cat", "sat", "on", "the", "mat"]\nstopwords = {"the", "on", "a", "an"}\ncontent = [w for w in words if w not in stopwords]',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Hash Buckets and Membership Flow' },
+  {
+    type: 'text',
+    content: 'Sets store only keys in a hash table. Membership checks hash the candidate, probe likely bucket positions, and verify equality when hashes collide.',
+  },
+  {
+    type: 'code',
+    code: 'tags = {"python", "oop", "sets"}\nprint("oop" in tags)\ntags.add("iterators")\ntags.discard("unknown")',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Set Elements in Hash Buckets',
+    description: 'A set entry stores hash and key reference, with no associated value payload.',
+    bindings: [
+      { scope: 'global', name: 'tags', objectId: 'SET1' },
+      { scope: 'runtime', name: 'bucket[1]', objectId: 'E_PY' },
+      { scope: 'runtime', name: 'bucket[5]', objectId: 'E_OOP' },
+      { scope: 'runtime', name: 'bucket[7]', objectId: 'E_SET' },
+    ],
+    objects: [
+      { id: 'SET1', type: 'set', value: '{"python", "oop", "sets"}', mutable: true, accent: 'sky' },
+      { id: 'E_PY', type: 'set entry', value: '(hash("python"), "python")', mutable: false, accent: 'amber' },
+      { id: 'E_OOP', type: 'set entry', value: '(hash("oop"), "oop")', mutable: false, accent: 'mint' },
+      { id: 'E_SET', type: 'set entry', value: '(hash("sets"), "sets")', mutable: false, accent: 'neutral' },
+    ],
+    insights: [
+      'No duplicate keys can coexist because equality check merges equivalent entries.',
+      'Average O(1) membership relies on good hash distribution.',
+      'frozenset works similarly but disallows mutation operations.',
+    ],
+  },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: Add, Membership, and Set Algebra',
+    prompt: 'Observe how set content evolves under common operations.',
+    steps: [
+      {
+        title: 'Initialize Set',
+        action: 'Create first set',
+        code: 'a = {1, 2, 3}',
+        bindings: [
+          { scope: 'global', name: 'a', objectId: 'SET_A1' },
+        ],
+        objects: [
+          { id: 'SET_A1', type: 'set', value: '{1, 2, 3}', mutable: true, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Initial hash table has three entries.',
+      },
+      {
+        title: 'Add Existing and New Elements',
+        action: 'Run add operations',
+        code: 'a.add(3)\na.add(4)',
+        bindings: [
+          { scope: 'global', name: 'a', objectId: 'SET_A2' },
+        ],
+        objects: [
+          { id: 'SET_A2', type: 'set', value: '{1, 2, 3, 4}', mutable: true, refCount: 1, accent: 'mint' },
+        ],
+        explanation: 'Adding duplicate 3 has no effect; adding 4 inserts new entry.',
+      },
+      {
+        title: 'Membership Probe',
+        action: 'Check if 2 exists',
+        code: '2 in a  # True',
+        bindings: [
+          { scope: 'runtime', name: 'query', objectId: 'I2' },
+          { scope: 'runtime', name: 'membership_result', objectId: 'B_TRUE' },
+        ],
+        objects: [
+          { id: 'I2', type: 'int', value: '2', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'B_TRUE', type: 'bool', value: 'True', mutable: false, refCount: 1, accent: 'mint' },
+        ],
+        explanation: 'Hash probe finds matching key quickly without scanning all elements.',
+      },
+      {
+        title: 'Set Algebra Result',
+        action: 'Compute intersection',
+        code: 'b = {3, 4, 5}\ncommon = a & b',
+        bindings: [
+          { scope: 'global', name: 'a', objectId: 'SET_A2' },
+          { scope: 'global', name: 'b', objectId: 'SET_B' },
+          { scope: 'global', name: 'common', objectId: 'SET_C' },
+        ],
+        objects: [
+          { id: 'SET_B', type: 'set', value: '{3, 4, 5}', mutable: true, refCount: 1, accent: 'amber' },
+          { id: 'SET_C', type: 'set', value: '{3, 4}', mutable: true, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Intersection creates a new set with elements present in both operands.',
+      },
+    ],
+  },
+
+  { type: 'heading', level: 2, text: 'Deep Q&A' },
+  {
+    type: 'qna',
+    items: [
+      {
+        question: 'Why is `set` so much faster than `list` for membership?',
+        answer: 'Lists scan linearly (O(n)); sets hash the target and jump directly to the bucket (O(1) average). For large collections and repeated `in` checks, always use a set.',
+      },
+      {
+        question: 'Can I have a set of lists?',
+        answer: 'No — lists are unhashable. Use tuples or frozensets: `{(1, 2), (3, 4)}` or `{frozenset({1, 2}), frozenset({3, 4})}`.',
+      },
+      {
+        question: 'Does a set preserve insertion order?',
+        answer: 'No. Unlike dicts, sets **do not** guarantee order. If you need uniqueness + order, use `dict.fromkeys(items)` and take the keys.',
+      },
+      {
+        question: 'What\'s the difference between `{}` and `set()`?',
+        answer: '`{}` is an **empty dict**, not a set (for historical reasons). Use `set()` for an empty set. `{1, 2}` is a set; `{"a": 1}` is a dict.',
+      },
+    ],
+  },
 ]

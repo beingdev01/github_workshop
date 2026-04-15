@@ -117,14 +117,193 @@ export const day3Functions: ContentBlock[] = [
   },
 
   // ═══════════════════════════════════════
-  // Section 10: Quiz
+  // Going Deeper: Scope, First-Class Functions, Recursion
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Q&A' },
-  
+  { type: 'heading', level: 1, text: 'Going Deeper — Scope, Closures, Recursion' },
 
-  // ═══════════════════════════════════════
-  // Section 11: Challenge
-  // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Challenge Q&A' },
-  
+  {
+    type: 'heading', level: 2, text: 'The LEGB Rule — How Python Resolves Names' },
+  {
+    type: 'text',
+    content: 'When Python meets a name inside a function, it searches in this order:',
+  },
+  {
+    type: 'list',
+    items: [
+      '**L — Local**: names defined inside the current function.',
+      '**E — Enclosing**: names in any enclosing function (for nested funcs).',
+      '**G — Global**: names at the module/file level.',
+      '**B — Built-in**: names like `print`, `len`, `range`.',
+    ],
+  },
+  {
+    type: 'code',
+    code: 'x = "global"\n\ndef outer():\n    x = "enclosing"\n    def inner():\n        x = "local"\n        print(x)          # local\n    inner()\n    print(x)              # enclosing\n\nouter()\nprint(x)                  # global',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'warning',
+    title: 'The Assignment Rule',
+    content: 'Any `x = ...` **inside** a function creates a new **local** variable — shadowing the outer name. To modify an outer variable, declare it `global` or `nonlocal` first.',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'global and nonlocal' },
+  {
+    type: 'code',
+    code: 'count = 0\n\ndef bump():\n    global count        # without this, you\'d get UnboundLocalError\n    count += 1\n\ndef make_counter():\n    n = 0\n    def tick():\n        nonlocal n      # refer to n in the enclosing function\n        n += 1\n        return n\n    return tick\n\nc = make_counter()\nprint(c(), c(), c())   # 1 2 3',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Functions Are First-Class Objects' },
+  {
+    type: 'code',
+    code: 'def double(x): return x * 2\ndef triple(x): return x * 3\n\nops = [double, triple]\nprint([op(5) for op in ops])   # [10, 15]\n\ndef apply(f, x):\n    return f(x)\nprint(apply(double, 7))        # 14\n\ndef make_multiplier(k):\n    def multiply(x):\n        return x * k\n    return multiply\n\ntimes10 = make_multiplier(10)\nprint(times10(4))              # 40',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Recursion — Functions Calling Themselves' },
+  {
+    type: 'text',
+    content: 'A **recursive** function calls itself on a smaller version of the problem. Every recursion needs two pieces: a **base case** (when to stop) and a **recursive case** (how to reduce).',
+  },
+  {
+    type: 'code',
+    code: 'def factorial(n):\n    if n <= 1:              # base case\n        return 1\n    return n * factorial(n - 1)   # recursive case\n\nprint(factorial(5))         # 120\n\ndef fib(n):\n    if n < 2: return n\n    return fib(n - 1) + fib(n - 2)\n\ndef deep_sum(items):\n    total = 0\n    for x in items:\n        if isinstance(x, list):\n            total += deep_sum(x)\n        else:\n            total += x\n    return total\n\nprint(deep_sum([1, [2, [3, 4]], 5]))   # 15',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'warning',
+    title: 'Recursion Limit',
+    content: 'CPython caps recursion at ~1000 calls by default (`sys.getrecursionlimit()`). Deep recursion blows the stack. Python has no tail-call optimization — convert deep recursion to iteration, or use `functools.lru_cache` for repeated subproblems.',
+  },
+  {
+    type: 'code',
+    code: 'from functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef fib(n):\n    if n < 2: return n\n    return fib(n - 1) + fib(n - 2)\n\nprint(fib(100))   # instant — cached subproblems',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Runtime Call Frames and Name Resolution' },
+  {
+    type: 'text',
+    content: 'Each function call creates a new frame object that holds local bindings, argument references, and links to enclosing/global scopes. Returning pops that frame from the stack.',
+  },
+  {
+    type: 'code',
+    code: 'x = 10\n\ndef add_to_x(y):\n    z = x + y\n    return z\n\nout = add_to_x(5)\nprint(out)  # 15',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Global Scope Plus Function Frame',
+    description: 'The frame for add_to_x has local names y and z, while x is resolved from global scope.',
+    bindings: [
+      { scope: 'global', name: 'x', objectId: 'I10' },
+      { scope: 'global', name: 'add_to_x', objectId: 'F_ADD' },
+      { scope: 'frame:add_to_x', name: 'y', objectId: 'I5' },
+      { scope: 'frame:add_to_x', name: 'z', objectId: 'I15' },
+      { scope: 'global', name: 'out', objectId: 'I15' },
+    ],
+    objects: [
+      { id: 'I10', type: 'int', value: '10', mutable: false, accent: 'amber' },
+      { id: 'F_ADD', type: 'function', value: '<function add_to_x(y)>', mutable: false, accent: 'sky' },
+      { id: 'I5', type: 'int', value: '5', mutable: false, accent: 'mint' },
+      { id: 'I15', type: 'int', value: '15', mutable: false, accent: 'neutral' },
+    ],
+    insights: [
+      'Local names live only inside the active call frame.',
+      'Name lookup follows LEGB order when a local name is missing.',
+      'Returned values are rebound in caller scope after frame teardown.',
+    ],
+  },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: Call Stack Through a Recursive Function',
+    prompt: 'Track frame creation and destruction in factorial recursion.',
+    steps: [
+      {
+        title: 'Initial Call',
+        action: 'Invoke factorial(3)',
+        code: 'factorial(3)',
+        bindings: [
+          { scope: 'frame:factorial#1', name: 'n', objectId: 'I3' },
+        ],
+        objects: [
+          { id: 'I3', type: 'int', value: '3', mutable: false, refCount: 1, accent: 'amber' },
+        ],
+        explanation: 'First frame is pushed with n=3 and is waiting for factorial(2).',
+      },
+      {
+        title: 'Second Frame',
+        action: 'Recursive call factorial(2)',
+        code: 'factorial(2)',
+        bindings: [
+          { scope: 'frame:factorial#1', name: 'n', objectId: 'I3' },
+          { scope: 'frame:factorial#2', name: 'n', objectId: 'I2' },
+        ],
+        objects: [
+          { id: 'I3', type: 'int', value: '3', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'I2', type: 'int', value: '2', mutable: false, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Recursive calls create independent frames, each with its own local n.',
+      },
+      {
+        title: 'Base Case Frame',
+        action: 'Recursive call factorial(1)',
+        code: 'factorial(1)  # returns 1',
+        bindings: [
+          { scope: 'frame:factorial#3', name: 'n', objectId: 'I1' },
+          { scope: 'frame:factorial#3', name: 'return', objectId: 'I1' },
+        ],
+        objects: [
+          { id: 'I1', type: 'int', value: '1', mutable: false, refCount: 1, accent: 'mint' },
+        ],
+        explanation: 'Base case returns immediately and starts stack unwinding.',
+      },
+      {
+        title: 'Unwind and Final Result',
+        action: 'Frames return upward',
+        code: 'factorial(2)=2*1, factorial(3)=3*2',
+        bindings: [
+          { scope: 'global', name: 'result', objectId: 'I6' },
+        ],
+        objects: [
+          { id: 'I6', type: 'int', value: '6', mutable: false, refCount: 1, accent: 'mint' },
+        ],
+        explanation: 'Each returning frame multiplies by its local n, then is removed from the call stack.',
+      },
+    ],
+  },
+
+  { type: 'heading', level: 2, text: 'Deep Q&A' },
+  {
+    type: 'qna',
+    items: [
+      {
+        question: 'Why does modifying `x` inside a function sometimes raise `UnboundLocalError`?',
+        answer: 'Because assigning to `x` anywhere in the function makes Python treat `x` as local for the **entire** function. To modify an outer variable, declare it `global` or `nonlocal` first.',
+      },
+      {
+        question: 'What\'s the difference between `global` and `nonlocal`?',
+        answer: '`global` refers to the **module-level** name. `nonlocal` refers to the **nearest enclosing function\'s** name. Use `nonlocal` for nested functions.',
+      },
+      {
+        question: 'Does Python pass arguments by value or by reference?',
+        answer: 'Neither classically — Python uses "**pass-by-object-reference**." The function receives the **same object** the caller has. Mutating it is visible outside; rebinding is not.',
+      },
+      {
+        question: 'Why does `def f(x=[]): x.append(1); return x` misbehave?',
+        answer: 'The default `[]` is evaluated **once**, at function definition. Every call without `x` reuses the **same list**. Use `None` as a sentinel and create the list inside.',
+      },
+      {
+        question: 'What\'s the base case in recursion?',
+        answer: 'The simplest input where the function answers directly **without** recursing. Without one, you get infinite recursion → `RecursionError`.',
+      },
+    ],
+  },
 ]

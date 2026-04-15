@@ -1,6 +1,6 @@
 import type { ContentBlock } from '@/types/content'
 
-export const day3Tuples: ContentBlock[] = [
+export const day2Tuples: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 1: Introduction
   // ═══════════════════════════════════════
@@ -112,12 +112,174 @@ export const day3Tuples: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 9: Quiz
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Q&A' },
-  
+  // ═══════════════════════════════════════
+  // Going Deeper: Why Tuples Exist
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper — Why Tuples Matter' },
 
-  // ═══════════════════════════════════════
-  // Section 10: Challenge
-  // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Challenge Q&A' },
-  
+  {
+    type: 'heading', level: 2, text: 'Immutability Unlocks Superpowers' },
+  {
+    type: 'text',
+    content: 'A tuple is an immutable ordered sequence. That single property makes it **hashable** — which makes it usable as a dictionary key or set member, whereas a list can never be.',
+  },
+  {
+    type: 'code',
+    code: '# Tuples are hashable — lists aren\'t\npoints_visited = {(0, 0), (1, 2), (3, 4)}     # set of coordinate pairs ✓\n# points_visited = {[0, 0], [1, 2]}           # TypeError: unhashable type: \'list\'\n\n# Tuple as composite dict key\nprices = {("AAPL", "2026-01-01"): 175.32, ("GOOGL", "2026-01-01"): 142.17}\nprint(prices[("AAPL", "2026-01-01")])',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Packing & Unpacking' },
+  {
+    type: 'code',
+    code: '# Packing — comma makes the tuple\npoint = 3, 4                  # (3, 4)\n\n# Unpacking\nx, y = point\nprint(x, y)                   # 3 4\n\n# Swap without a temp variable\na, b = 1, 2\na, b = b, a\nprint(a, b)                   # 2 1\n\n# Multiple returns — really one tuple\ndef min_max(seq):\n    return min(seq), max(seq)\n\nlo, hi = min_max([3, 1, 4, 1, 5])\nprint(lo, hi)                 # 1 5\n\n# Star-unpacking (Python 3)\nfirst, *middle, last = [1, 2, 3, 4, 5]\nprint(first, middle, last)    # 1 [2, 3, 4] 5',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Packing and Unpacking Bindings',
+    description: 'Tuple packing creates one tuple object; unpacking rebinds names to its element objects.',
+    bindings: [
+      { scope: 'global', name: 'point', objectId: 'T_POINT' },
+      { scope: 'global', name: 'x', objectId: 'I3' },
+      { scope: 'global', name: 'y', objectId: 'I4' },
+      { scope: 'frame:return', name: 'retval', objectId: 'T_MM' },
+    ],
+    objects: [
+      {
+        id: 'T_POINT',
+        type: 'tuple',
+        value: '(3, 4)',
+        mutable: false,
+        note: 'Fixed-size immutable sequence object.',
+        accent: 'sky',
+      },
+      { id: 'I3', type: 'int', value: '3', mutable: false, accent: 'amber' },
+      { id: 'I4', type: 'int', value: '4', mutable: false, accent: 'amber' },
+      {
+        id: 'T_MM',
+        type: 'tuple',
+        value: '(1, 5)',
+        mutable: false,
+        note: 'Function returning multiple values really returns one tuple object.',
+        accent: 'mint',
+      },
+    ],
+    insights: [
+      'Commas create tuples; parentheses are often just grouping syntax.',
+      'Unpacking does not copy element objects; it binds names to existing references.',
+      'Swap syntax (`a, b = b, a`) is a compact pack/unpack sequence.',
+    ],
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Named Tuples — Structured Data' },
+  {
+    type: 'text',
+    content: 'When positional access (`t[0]`, `t[1]`) gets confusing, reach for `collections.namedtuple` — it\'s a tuple with named fields. Like a lightweight, immutable class.',
+  },
+  {
+    type: 'code',
+    code: 'from collections import namedtuple\n\nPoint = namedtuple("Point", ["x", "y"])\np = Point(3, 4)\nprint(p.x, p.y)          # 3 4   — named access\nprint(p[0], p[1])        # 3 4   — still works as tuple\nprint(p)                 # Point(x=3, y=4)\n\n# Or, the modern way — a typed dataclass with frozen=True\nfrom dataclasses import dataclass\n\n@dataclass(frozen=True)\nclass Point2:\n    x: int\n    y: int\n\np2 = Point2(3, 4)\nprint(p2.x, p2.y)',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Tuple vs List — When to Use Which' },
+  {
+    type: 'list',
+    items: [
+      '**Tuple**: fixed-size, heterogeneous record (a coordinate, a row, a return value). Use when "this is a thing with parts."',
+      '**List**: variable-size, homogeneous collection (a list of users, a list of numbers). Use when "this is a bunch of similar items."',
+      '**Tuple if you need a dict key / set member** — lists don\'t qualify.',
+      '**Tuple is slightly faster to create and iterate** — negligible in most real code.',
+    ],
+  },
+  {
+    type: 'heading', level: 2, text: 'Interactive Tuple Identity Trace' },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: Immutable Outer, Mutable Inner',
+    prompt: 'Observe why a tuple can remain immutable while an inner list still changes.',
+    steps: [
+      {
+        title: 'Create a Tuple With Inner List',
+        action: 'Run setup expression',
+        code: 'record = ("Ada", [1, 2])',
+        bindings: [
+          { scope: 'global', name: 'record', objectId: 'T_REC' },
+        ],
+        objects: [
+          { id: 'T_REC', type: 'tuple', value: '("Ada", [1, 2])', mutable: false, refCount: 1, accent: 'sky' },
+          { id: 'L_INNER', type: 'list', value: '[1, 2]', mutable: true, refCount: 1, accent: 'amber' },
+        ],
+        explanation: 'Tuple slots are fixed, but one slot points to a mutable list object.',
+      },
+      {
+        title: 'Attempt Tuple Reassignment Fails',
+        action: 'Try replacing element 0',
+        code: 'record[0] = "Grace"   # TypeError',
+        bindings: [
+          { scope: 'global', name: 'record', objectId: 'T_REC' },
+          { scope: 'runtime', name: 'active_exception', objectId: 'E_TYPE' },
+        ],
+        objects: [
+          { id: 'T_REC', type: 'tuple', value: '("Ada", [1, 2])', mutable: false, refCount: 1, accent: 'sky' },
+          { id: 'E_TYPE', type: 'TypeError', value: 'TypeError("tuple does not support item assignment")', mutable: false, refCount: 1, accent: 'coral' },
+        ],
+        explanation: 'Tuple structure cannot be edited in place, so item assignment is rejected.',
+      },
+      {
+        title: 'Mutate Inner List Succeeds',
+        action: 'Run `record[1].append(3)`',
+        code: 'record[1].append(3)',
+        bindings: [
+          { scope: 'global', name: 'record', objectId: 'T_REC' },
+        ],
+        objects: [
+          { id: 'T_REC', type: 'tuple', value: '("Ada", [1, 2, 3])', mutable: false, refCount: 1, accent: 'sky' },
+          { id: 'L_INNER', type: 'list', value: '[1, 2, 3]', mutable: true, refCount: 1, accent: 'amber' },
+        ],
+        explanation: 'Tuple still points to the same inner list object, whose contents are mutable.',
+      },
+      {
+        title: 'Hashability Consequence',
+        action: 'Try using tuple as dictionary key',
+        code: '# d[record] would fail because record contains list\nkey = ("Ada", 42)\nd = {key: "ok"}',
+        bindings: [
+          { scope: 'global', name: 'key', objectId: 'T_KEY' },
+          { scope: 'global', name: 'd', objectId: 'D1' },
+        ],
+        objects: [
+          { id: 'T_KEY', type: 'tuple', value: '("Ada", 42)', mutable: false, refCount: 2, accent: 'mint' },
+          { id: 'D1', type: 'dict', value: '{("Ada", 42): "ok"}', mutable: true, refCount: 1, accent: 'neutral' },
+        ],
+        explanation: 'A tuple is hashable only when all contained objects are hashable.',
+      },
+    ],
+  },
+
+  { type: 'heading', level: 2, text: 'Deep Q&A' },
+  {
+    type: 'qna',
+    items: [
+      {
+        question: 'Why does Python have both tuples and lists?',
+        answer: 'Different intents. **Tuples** are records: fixed, heterogeneous, hashable. **Lists** are collections: variable, homogeneous, mutable. The immutability of tuples makes them usable as dict keys.',
+      },
+      {
+        question: 'Is `(5)` a tuple?',
+        answer: 'No — that\'s just `5` in parentheses. A one-element tuple needs a trailing comma: `(5,)`. The comma makes the tuple, not the parentheses.',
+      },
+      {
+        question: 'Can a tuple contain a list?',
+        answer: 'Yes — tuples are shallowly immutable. `t = ([1, 2], "x")` is fine; the tuple itself can\'t be modified, but the list *inside* it can. Such a tuple is **not hashable**, though.',
+      },
+      {
+        question: 'Are tuples really faster than lists?',
+        answer: 'Slightly — tuple creation and iteration are a hair faster due to their fixed size. For most applications the difference is negligible. Choose based on **meaning**, not performance.',
+      },
+    ],
+  },
 ]

@@ -168,6 +168,138 @@ export const day1IO: ContentBlock[] = [
   },
 
   // ═══════════════════════════════════════
+  // Going Deeper: I/O Memory Pipeline
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper — I/O as Data Flow Through Memory' },
+  {
+    type: 'text',
+    content: 'Input and output are not magical. `input()` pulls bytes from stdin, decodes them into a Python string, and returns that string object. `print()` takes objects, converts them to text, and writes bytes to stdout.',
+  },
+  {
+    type: 'code',
+    code: 'raw_age = input("Age? ")\nage = int(raw_age)\nprint(age + 1)',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Input String -> Parsed Integer -> Output',
+    description: 'One user entry creates multiple objects across the I/O pipeline.',
+    bindings: [
+      { scope: 'global', name: 'raw_age', objectId: 'S27' },
+      { scope: 'global', name: 'age', objectId: 'I27' },
+      { scope: 'builtins', name: 'print', objectId: 'F_PRINT' },
+      { scope: 'runtime', name: 'stdout', objectId: 'BUF_OUT' },
+    ],
+    objects: [
+      {
+        id: 'S27',
+        type: 'str',
+        value: '"27"',
+        mutable: false,
+        note: 'Returned by `input()` after decoding user bytes.',
+        accent: 'amber',
+      },
+      {
+        id: 'I27',
+        type: 'int',
+        value: '27',
+        mutable: false,
+        note: 'Created by `int(raw_age)` parsing the string.',
+        accent: 'mint',
+      },
+      {
+        id: 'F_PRINT',
+        type: 'builtin function',
+        value: '<built-in function print>',
+        mutable: false,
+        accent: 'sky',
+      },
+      {
+        id: 'BUF_OUT',
+        type: 'stream buffer',
+        value: '"Age? 28\\n"',
+        mutable: true,
+        note: 'Shows prompt and printed result written to stdout.',
+        accent: 'neutral',
+      },
+    ],
+    insights: [
+      '`input()` always returns a string object, even for numeric-looking text.',
+      'Type conversion creates a new object; it does not change the original string.',
+      'Output is a side effect on stdout, not a return value from `print()`.',
+    ],
+  },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: One User Input, Four Runtime Stages',
+    prompt: 'Track how the same user entry becomes both a string and an integer during execution.',
+    steps: [
+      {
+        title: 'Prompt Is Emitted',
+        action: 'Start `raw_age = input("Age? ")`',
+        code: 'raw_age = input("Age? ")',
+        bindings: [
+          { scope: 'frame:input', name: 'prompt', objectId: 'S_PROMPT' },
+          { scope: 'runtime', name: 'stdin', objectId: 'BUF_IN' },
+          { scope: 'runtime', name: 'stdout', objectId: 'BUF_OUT' },
+        ],
+        objects: [
+          { id: 'S_PROMPT', type: 'str', value: '"Age? "', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'BUF_IN', type: 'stream buffer', value: '"27\\n"', mutable: true, refCount: 1, accent: 'mint' },
+          { id: 'BUF_OUT', type: 'stream buffer', value: '"Age? "', mutable: true, refCount: 1, accent: 'neutral' },
+        ],
+        explanation: '`input()` writes the prompt to stdout, then waits for bytes from stdin.',
+      },
+      {
+        title: 'String Is Returned',
+        action: 'User types `27` and presses Enter',
+        code: 'raw_age = input("Age? ")  # "27"',
+        bindings: [
+          { scope: 'global', name: 'raw_age', objectId: 'S27' },
+          { scope: 'runtime', name: 'stdout', objectId: 'BUF_OUT' },
+        ],
+        objects: [
+          { id: 'S27', type: 'str', value: '"27"', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'BUF_OUT', type: 'stream buffer', value: '"Age? "', mutable: true, refCount: 1, accent: 'neutral' },
+        ],
+        explanation: 'The newline is consumed by input processing, and Python returns a clean string object.',
+      },
+      {
+        title: 'Parse Numeric Value',
+        action: 'Run `age = int(raw_age)`',
+        code: 'age = int(raw_age)',
+        bindings: [
+          { scope: 'global', name: 'raw_age', objectId: 'S27' },
+          { scope: 'global', name: 'age', objectId: 'I27' },
+        ],
+        objects: [
+          { id: 'S27', type: 'str', value: '"27"', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'I27', type: 'int', value: '27', mutable: false, refCount: 1, accent: 'mint' },
+        ],
+        explanation: '`int()` creates a new integer object; the original text is still available in `raw_age`.',
+      },
+      {
+        title: 'Print Computed Result',
+        action: 'Run `print(age + 1)`',
+        code: 'print(age + 1)',
+        bindings: [
+          { scope: 'global', name: 'raw_age', objectId: 'S27' },
+          { scope: 'global', name: 'age', objectId: 'I27' },
+          { scope: 'frame:print', name: 'value', objectId: 'I28' },
+          { scope: 'runtime', name: 'stdout', objectId: 'BUF_OUT' },
+        ],
+        objects: [
+          { id: 'S27', type: 'str', value: '"27"', mutable: false, refCount: 1, accent: 'amber' },
+          { id: 'I27', type: 'int', value: '27', mutable: false, refCount: 1, accent: 'mint' },
+          { id: 'I28', type: 'int', value: '28', mutable: false, refCount: 1, accent: 'sky', note: 'Temporary result object from `age + 1`.' },
+          { id: 'BUF_OUT', type: 'stream buffer', value: '"Age? 28\\n"', mutable: true, refCount: 1, accent: 'neutral' },
+        ],
+        explanation: 'Arithmetic creates a temporary int object that is converted to text by `print` and appended to stdout.',
+      },
+    ],
+  },
+
+  // ═══════════════════════════════════════
   // Section 9: Playground
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Try It Yourself' },

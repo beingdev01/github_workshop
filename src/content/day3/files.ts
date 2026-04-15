@@ -1,6 +1,6 @@
 import type { ContentBlock } from '@/types/content'
 
-export const day4Files: ContentBlock[] = [
+export const day3Files: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 1: Introduction
   // ═══════════════════════════════════════
@@ -95,12 +95,194 @@ export const day4Files: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 9: Quiz
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Q&A' },
-  
+  // ═══════════════════════════════════════
+  // Going Deeper: File Modes, Context Managers, CSV
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Going Deeper — File Handling in Depth' },
 
-  // ═══════════════════════════════════════
-  // Section 10: Challenge
-  // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Challenge Q&A' },
-  
+  {
+    type: 'heading', level: 2, text: 'File Modes — Reference' },
+  {
+    type: 'code',
+    code: 'Mode   Meaning                                    Creates?   Truncates?\n──────────────────────────────────────────────────────────────────────\n"r"    read (default), file must exist            no         no\n"w"    write — overwrites existing file           yes        YES\n"a"    append — adds to end of file               yes        no\n"x"    exclusive create — fails if file exists    yes        no\n"r+"   read + write (from start)                  no         no\n"w+"   write + read (truncates first)             yes        YES\n"a+"   append + read (writes at end)              yes        no\n\n# Add "b" for binary, "t" for text (default):\n"rb"   read binary\n"wt"   write text (explicit)',
+    language: 'text',
+  },
+  {
+    type: 'callout',
+    variant: 'warning',
+    title: '"w" Destroys Data Silently',
+    content: 'Opening an existing file in `"w"` mode **truncates it to zero** before the first write. Use `"x"` to refuse overwrite, or `"a"` to append.',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Always Use `with` — Context Managers' },
+  {
+    type: 'text',
+    content: 'The `with` statement guarantees the file is **closed** — even if an exception is raised inside the block. It\'s the single biggest file-handling upgrade you can adopt.',
+  },
+  {
+    type: 'code',
+    code: '# Bad — what if read() raises? The file handle leaks\nf = open("data.txt")\ncontent = f.read()\nf.close()\n\n# Good — close() is guaranteed\nwith open("data.txt") as f:\n    content = f.read()\n# f is closed here, even on exception\n\n# Write\nwith open("out.txt", "w") as f:\n    f.write("hello\\n")\n    f.write("world\\n")\n\n# Line-by-line (memory-efficient for huge files)\nwith open("big.log") as f:\n    for line in f:         # iterates lazily\n        process(line.rstrip())',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Reading Strategies' },
+  {
+    type: 'code',
+    code: '# All at once — simple, fine for small files\ncontent = f.read()\n\n# Line by line — O(1) memory, works on huge files\nfor line in f:\n    ...\n\n# All lines as a list\nlines = f.readlines()\n\n# Single line (rare — prefer iteration)\nfirst = f.readline()',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'CSV — The Standard Library Way' },
+  {
+    type: 'code',
+    code: 'import csv\n\n# Write — note newline="" argument\nwith open("grades.csv", "w", newline="") as f:\n    writer = csv.writer(f)\n    writer.writerow(["name", "course", "score"])\n    writer.writerow(["Alice", "Math", 92])\n    writer.writerow(["Bob",   "CS",   88])\n\n# Read as rows of strings\nwith open("grades.csv", newline="") as f:\n    reader = csv.reader(f)\n    header = next(reader)\n    for row in reader:\n        name, course, score = row\n        print(f"{name}: {course} = {int(score)}")\n\n# Read as dicts — cleaner, robust to column order\nwith open("grades.csv", newline="") as f:\n    for row in csv.DictReader(f):\n        print(row["name"], int(row["score"]))',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Encoding — Always Specify' },
+  {
+    type: 'code',
+    code: '# Default encoding varies by OS — be explicit\nwith open("data.txt", encoding="utf-8") as f:\n    content = f.read()\n\n# When writing non-ASCII\nwith open("greetings.txt", "w", encoding="utf-8") as f:\n    f.write("café, こんにちは, 🌍")',
+    language: 'python',
+  },
+
+  {
+    type: 'heading', level: 2, text: 'File Object Lifecycle in Memory' },
+  {
+    type: 'text',
+    content: 'open() allocates a file object with OS handle and buffering state. with-statement context managers guarantee deterministic close(), even if an exception occurs in the block.',
+  },
+  {
+    type: 'code',
+    code: 'with open("data.txt", "r", encoding="utf-8") as f:\n    first = f.readline()\n\nprint(first)',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: with open Creates and Closes File Resources',
+    description: 'The file object wraps an OS-level descriptor and an internal text buffer.',
+    bindings: [
+      { scope: 'with-block', name: 'f', objectId: 'FILE1' },
+      { scope: 'with-block', name: 'first', objectId: 'S_LINE' },
+      { scope: 'runtime', name: 'fd', objectId: 'FD42' },
+    ],
+    objects: [
+      {
+        id: 'FILE1',
+        type: 'TextIOWrapper',
+        value: '<open file data.txt mode=r>',
+        mutable: true,
+        note: 'Owns decoder, buffer, and close behavior.',
+        accent: 'sky',
+      },
+      {
+        id: 'FD42',
+        type: 'file descriptor',
+        value: 'open handle',
+        mutable: true,
+        accent: 'amber',
+      },
+      {
+        id: 'S_LINE',
+        type: 'str',
+        value: '"first line\\n"',
+        mutable: false,
+        accent: 'mint',
+      },
+    ],
+    insights: [
+      'The with statement always calls __exit__, which closes file resources.',
+      'Read methods allocate Python strings from decoded bytes.',
+      'Leaking file handles is avoided by deterministic context manager cleanup.',
+    ],
+  },
+  {
+    type: 'memoryLab',
+    title: 'Interactive Trace: Open, Read, and Close',
+    prompt: 'Track state transitions of a file object across a with block.',
+    steps: [
+      {
+        title: 'Enter Context',
+        action: 'Run with open',
+        code: 'with open("log.txt", "r") as f:',
+        bindings: [
+          { scope: 'with-block', name: 'f', objectId: 'FILE_OPEN' },
+        ],
+        objects: [
+          { id: 'FILE_OPEN', type: 'TextIOWrapper', value: '<state=open, cursor=0>', mutable: true, refCount: 1, accent: 'sky' },
+        ],
+        explanation: 'Context manager enters and binds open file object to f.',
+      },
+      {
+        title: 'Read Data',
+        action: 'Read one line',
+        code: 'line = f.readline()',
+        bindings: [
+          { scope: 'with-block', name: 'f', objectId: 'FILE_OPEN' },
+          { scope: 'with-block', name: 'line', objectId: 'S_LOG1' },
+        ],
+        objects: [
+          { id: 'FILE_OPEN', type: 'TextIOWrapper', value: '<state=open, cursor=after_line1>', mutable: true, refCount: 1, accent: 'mint' },
+          { id: 'S_LOG1', type: 'str', value: '"[INFO] started\\n"', mutable: false, refCount: 1, accent: 'amber' },
+        ],
+        explanation: 'File cursor advances and one decoded Python string is produced.',
+      },
+      {
+        title: 'Leave Context',
+        action: 'Exit with block',
+        code: '# automatic __exit__ -> close()',
+        bindings: [
+          { scope: 'global', name: 'line', objectId: 'S_LOG1' },
+        ],
+        objects: [
+          { id: 'FILE_OPEN', type: 'TextIOWrapper', value: '<state=closed>', mutable: true, refCount: 0, accent: 'coral' },
+          { id: 'S_LOG1', type: 'str', value: '"[INFO] started\\n"', mutable: false, refCount: 1, accent: 'amber' },
+        ],
+        explanation: 'File resource is closed deterministically while read data stays available.',
+      },
+      {
+        title: 'Post-Close Guard',
+        action: 'Attempt further read',
+        code: 'f.readline()  # ValueError: I/O operation on closed file',
+        bindings: [
+          { scope: 'runtime', name: 'active_exception', objectId: 'E_CLOSED' },
+        ],
+        objects: [
+          { id: 'E_CLOSED', type: 'ValueError', value: 'I/O operation on closed file', mutable: false, refCount: 1, accent: 'coral' },
+        ],
+        explanation: 'Closed file state prevents accidental reuse and catches resource misuse early.',
+      },
+    ],
+  },
+
+  { type: 'heading', level: 2, text: 'Deep Q&A' },
+  {
+    type: 'qna',
+    items: [
+      {
+        question: 'Why is `with open(...)` preferred over `open()` + `close()`?',
+        answer: 'Because an exception between open and close leaks the file handle. `with` uses a **context manager** that calls `close()` in a `finally` block — guaranteed even on exceptions.',
+      },
+      {
+        question: 'What happens if I open a file in "w" mode when it exists?',
+        answer: 'It\'s **truncated to zero bytes** before the first write — the old content is gone. Use `"a"` to append, or `"x"` to refuse if the file exists.',
+      },
+      {
+        question: 'What\'s the difference between `read()` and iterating over the file?',
+        answer: '`read()` loads the **entire file** into memory. Iterating (`for line in f`) streams one line at a time — O(1) memory. For files larger than RAM, always iterate.',
+      },
+      {
+        question: 'Why does `csv.reader` need `newline=""`?',
+        answer: 'CSV fields can contain embedded newlines (inside quoted strings). Passing `newline=""` tells Python not to translate line endings, so the csv module can parse them correctly across platforms.',
+      },
+      {
+        question: 'Is `csv.DictReader` slower than `csv.reader`?',
+        answer: 'Marginally — it builds a dict per row. Unless you\'re processing millions of rows, use `DictReader`: robustness to column order and readability are worth it.',
+      },
+    ],
+  },
 ]
