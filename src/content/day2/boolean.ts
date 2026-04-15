@@ -1,0 +1,282 @@
+import type { ContentBlock } from '@/types/content'
+
+export const day2Boolean: ContentBlock[] = [
+  // ═══════════════════════════════════════
+  // Section 1: Introduction
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 1, text: 'Boolean Logic & Truthiness' },
+  {
+    type: 'text',
+    content: 'At its core, every decision a computer makes comes down to a single question: **True or False?** The `bool` type in Python has exactly two values — `True` and `False` — yet these two tiny values drive every `if` statement, every `while` loop, and every logical expression in your programs.',
+  },
+
+  // ═══════════════════════════════════════
+  // Section 2: The bool Type
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 2, text: 'The bool Type' },
+  {
+    type: 'code',
+    code: '# Boolean literals\nprint(True)           # True\nprint(False)          # False\nprint(type(True))     # <class \'bool\'>\nprint(type(False))    # <class \'bool\'>\n\n# bool is a subclass of int!\nprint(isinstance(True, int))    # True\nprint(True + True)              # 2\nprint(False + True)             # 1\nprint(True * 10)                # 10\nprint(False * 10)               # 0\n\n# True == 1 and False == 0\nprint(True == 1)    # True\nprint(False == 0)   # True\nprint(True is 1)    # False — same value, different objects',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'info',
+    title: 'bool is a Subclass of int',
+    content: 'Historically, Python didn\'t have a `bool` type — it used `0` and `1`. When `bool` was added in Python 2.3, it was made a subclass of `int` for backward compatibility. This is why `True + True == 2` works. While you *can* use booleans in arithmetic, it\'s usually clearer to be explicit.',
+  },
+
+  // ═══════════════════════════════════════
+  // Section 3: Comparison Operators
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 2, text: 'Comparison Operators → Booleans' },
+  {
+    type: 'text',
+    content: 'Comparison operators produce boolean results. Python has six comparison operators:',
+  },
+  {
+    type: 'code',
+    code: '# Comparison operators\nprint(5 > 3)       # True   — greater than\nprint(5 < 3)       # False  — less than\nprint(5 >= 5)      # True   — greater than or equal\nprint(5 <= 4)      # False  — less than or equal\nprint(5 == 5)      # True   — equal (two equals signs!)\nprint(5 != 3)      # True   — not equal\n\n# Comparisons work with strings (lexicographic / dictionary order)\nprint("apple" < "banana")     # True  (a comes before b)\nprint("cat" < "car")          # False (t comes after r)\nprint("abc" == "abc")         # True\nprint("Python" < "python")    # True  (uppercase < lowercase in Unicode)\n\n# Type matters in comparisons\nprint(1 == 1.0)      # True  — int and float can be compared\nprint(1 == "1")      # False — int and str are never equal\nprint(True == 1)     # True  — bool is a subclass of int',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'danger',
+    title: '== vs = : A Critical Distinction',
+    content: '`=` is the **assignment** operator (gives a value to a variable). `==` is the **equality** operator (checks if two values are the same). Writing `if x = 5:` instead of `if x == 5:` is a `SyntaxError` in Python (thankfully, unlike C where it would silently be a bug).',
+  },
+
+  // ═══════════════════════════════════════
+  // Section 4: Comparison Chaining
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 2, text: 'Comparison Chaining — A Python Superpower' },
+  {
+    type: 'text',
+    content: 'Python allows you to **chain** comparisons naturally, just like in mathematics. This is uncommon in most programming languages:',
+  },
+  {
+    type: 'code',
+    code: '# Chained comparisons\nx = 15\n\n# Instead of: x > 10 and x < 20\nprint(10 < x < 20)        # True — reads like math!\nprint(1 < x < 10)         # False\n\n# You can chain any comparisons\nprint(1 < 2 < 3 < 4)      # True\nprint(1 < 2 > 0)          # True — 1<2 and 2>0\n\n# Equality chaining\na = b = c = 5\nprint(a == b == c)         # True — all three are equal\n\n# Practical: check if a number is within range\nage = 25\nif 18 <= age <= 65:\n    print("Working age")   # Working age\n\n# How it works internally: a < b < c == (a < b) and (b < c)\n# Python evaluates b only ONCE, not twice!',
+    language: 'python',
+  },
+
+  // ═══════════════════════════════════════
+  // Section 5: Logical Operators
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 2, text: 'Logical Operators: and, or, not' },
+  {
+    type: 'text',
+    content: 'Python uses English words for logical operators, not symbols like `&&`, `||`, `!`:',
+  },
+  {
+    type: 'code',
+    code: '# and — True only if BOTH sides are True\nprint(True and True)     # True\nprint(True and False)    # False\nprint(False and True)    # False\nprint(False and False)   # False\n\n# or — True if EITHER side is True\nprint(True or True)      # True\nprint(True or False)     # True\nprint(False or True)     # True\nprint(False or False)    # False\n\n# not — Flips the value\nprint(not True)          # False\nprint(not False)         # True\n\n# Practical examples\nage = 25\nhas_license = True\nhas_insurance = True\n\nif age >= 18 and has_license and has_insurance:\n    print("You can drive!")        # You can drive!\n\ntemperature = 35\nif temperature < 0 or temperature > 40:\n    print("Extreme weather!")\nelse:\n    print("Manageable weather")    # Manageable weather',
+    language: 'python',
+  },
+
+  // ═══════════════════════════════════════
+  // Section 6: Truth Tables
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 2, text: 'Truth Tables' },
+  {
+    type: 'text',
+    content: 'A truth table shows all possible outcomes for logical operators. Memorize these — they\'re the foundation of all logic in programming:',
+  },
+  {
+    type: 'list',
+    items: [
+      '**AND truth table**: T∧T=T, T∧F=F, F∧T=F, F∧F=F — "Both must be True"',
+      '**OR truth table**: T∨T=T, T∨F=T, F∨T=T, F∨F=F — "At least one must be True"',
+      '**NOT truth table**: ¬T=F, ¬F=T — "Flip the value"',
+    ],
+  },
+  {
+    type: 'callout',
+    variant: 'tip',
+    title: 'De Morgan\'s Laws — Simplifying Boolean Expressions',
+    content: '`not (A and B)` ≡ `(not A) or (not B)` — "Not both" means "at least one is false"\n`not (A or B)` ≡ `(not A) and (not B)` — "Neither" means "both are false"\n\nThese laws are invaluable for simplifying complex conditions!',
+  },
+
+  // ═══════════════════════════════════════
+  // Section 7: Short-Circuit Evaluation
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 2, text: 'Short-Circuit Evaluation' },
+  {
+    type: 'text',
+    content: 'Python is **lazy** with logical operators — it stops evaluating as soon as the result is determined:',
+  },
+  {
+    type: 'code',
+    code: '# Short-circuit with "and"\n# If the first operand is False, Python doesn\'t evaluate the second\nprint(False and print("This won\'t print"))    # False\n\n# Short-circuit with "or"\n# If the first operand is True, Python doesn\'t evaluate the second\nprint(True or print("This won\'t print"))      # True\n\n# Practical: avoid errors with short-circuit\nmy_list = []\n# Without short-circuit, my_list[0] would crash!\nif len(my_list) > 0 and my_list[0] == "hello":\n    print("Found hello")\nelse:\n    print("List is empty or first element isn\'t hello")\n\n# Another pattern: provide default values\nname = ""  # empty string is falsy\nresult = name or "Anonymous"\nprint(result)    # Anonymous\n\nname = "Alice"\nresult = name or "Anonymous"\nprint(result)    # Alice',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'info',
+    title: 'and/or Don\'t Always Return True/False!',
+    content: '`and` returns the first falsy value, or the last value if all are truthy.\n`or` returns the first truthy value, or the last value if all are falsy.\n\n`"hello" and "world"` → `"world"` (not `True`!)\n`"" or "default"` → `"default"` (not `True`!)\n`0 and "never"` → `0` (not `False`!)',
+  },
+
+  // ═══════════════════════════════════════
+  // Section 8: Truthiness & Falsiness
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 2, text: 'Truthiness & Falsiness' },
+  {
+    type: 'text',
+    content: 'In Python, **every** value can be treated as a boolean in conditions — not just `True` and `False`. Values are either **truthy** (treated as `True`) or **falsy** (treated as `False`):',
+  },
+  {
+    type: 'code',
+    code: '# Falsy values (these are ALL of them):\nprint(bool(False))     # False — the literal False\nprint(bool(None))      # False — absence of value\nprint(bool(0))         # False — integer zero\nprint(bool(0.0))       # False — float zero\nprint(bool(0j))        # False — complex zero\nprint(bool(""))        # False — empty string\nprint(bool([]))        # False — empty list\nprint(bool(()))        # False — empty tuple\nprint(bool({}))        # False — empty dict\nprint(bool(set()))     # False — empty set\n\n# Everything else is truthy:\nprint(bool(1))         # True\nprint(bool(-1))        # True — negative numbers are truthy!\nprint(bool(0.001))     # True\nprint(bool("0"))       # True — string "0" is NOT empty!\nprint(bool(" "))       # True — space is NOT empty!\nprint(bool([0]))       # True — list with one element\nprint(bool("False"))   # True — string "False" is truthy!',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'danger',
+    title: 'Common Truthiness Traps',
+    content: '`bool("0")` is `True` — the string "0" has one character, so it\'s not empty!\n`bool("False")` is `True` — the string "False" has 5 characters!\n`bool(" ")` is `True` — a space is still a character!\n`bool(-1)` is `True` — only numeric zero is falsy!',
+  },
+  { type: 'heading', level: 3, text: 'Using Truthiness in Practice' },
+  {
+    type: 'code',
+    code: '# Idiomatic Python uses truthiness directly\nname = "Alice"\nitems = [1, 2, 3]\n\n# DON\'T do this (explicit but verbose):\nif len(name) > 0:\n    print("Name is not empty")\nif len(items) > 0:\n    print("List is not empty")\n\n# DO this (Pythonic):\nif name:\n    print("Name is not empty")\nif items:\n    print("List has items")\n\n# Common pattern: check before using\ndata = None  # might come from a database or API\nif data:\n    print(f"Got data: {data}")\nelse:\n    print("No data available")\n\n# Ternary expression with truthiness\nuser_input = ""  # user entered nothing\ngreeting = f"Hello, {user_input or \'Stranger\'}!"\nprint(greeting)    # Hello, Stranger!',
+    language: 'python',
+  },
+
+  // ═══════════════════════════════════════
+  // Section 9: The bool() Function
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 2, text: 'The bool() Constructor' },
+  {
+    type: 'code',
+    code: '# bool() converts any value to True or False\nprint(bool(42))        # True\nprint(bool(""))        # False\nprint(bool("text"))    # True\nprint(bool([]))        # False\nprint(bool([1,2,3]))   # True\n\n# Counting truthy values in a collection\nvalues = [1, 0, "", "hello", None, True, [], [1]]\ntruthy_count = sum(bool(x) for x in values)\nprint(f"Truthy values: {truthy_count} out of {len(values)}")  # 4 out of 8\n\n# Filter truthy values\ntruthy_only = [x for x in values if x]\nprint(truthy_only)   # [1, \'hello\', True, [1]]',
+    language: 'python',
+  },
+
+  // ═══════════════════════════════════════
+  // Section 10: Identity Operators
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 2, text: 'Identity & Membership Operators' },
+  {
+    type: 'code',
+    code: '# Identity operators: is, is not\n# Check if two variables refer to the SAME object in memory\na = [1, 2, 3]\nb = [1, 2, 3]\nc = a\n\nprint(a == b)     # True  — same value\nprint(a is b)     # False — different objects!\nprint(a is c)     # True  — c points to same object as a\nprint(a is not b) # True\n\n# ALWAYS use "is" with None\nx = None\nprint(x is None)       # True  ✅ correct way\nprint(x == None)       # True  ❌ works but discouraged\n\n# Membership operators: in, not in\nprint(3 in [1, 2, 3, 4])         # True\nprint(5 in [1, 2, 3, 4])         # False\nprint("py" in "python")          # True\nprint("z" not in "python")       # True\nprint("key" in {"key": "val"})   # True (checks keys in dicts)',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'warning',
+    title: 'When to Use "is" vs "=="',
+    content: 'Use `==` to compare **values**: `if x == 5`\nUse `is` to compare **identity** (is it the *exact same object*?): `if x is None`\n\nThe only common use of `is` is checking for `None`, `True`, or `False`. Never use `is` to compare numbers or strings — Python caches small integers, so `a is b` might work for small numbers but fail for large ones!',
+  },
+
+  // ═══════════════════════════════════════
+  // Section 11: Operator Precedence
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 2, text: 'Boolean Operator Precedence' },
+  {
+    type: 'text',
+    content: 'When mixing operators, Python follows this precedence (highest to lowest):',
+  },
+  {
+    type: 'list',
+    items: [
+      '**Parentheses** `()` — always evaluated first',
+      '**Arithmetic** `+, -, *, /, **` — computed before comparisons',
+      '**Comparisons** `<, >, <=, >=, ==, !=` — produce booleans',
+      '**not** — unary, flips one boolean',
+      '**and** — short-circuits on False',
+      '**or** — short-circuits on True (evaluated last!)',
+    ],
+  },
+  {
+    type: 'code',
+    code: '# Precedence in action\nprint(3 + 4 > 5 and 2 ** 3 == 8)\n# Step 1: 3 + 4 = 7, 2 ** 3 = 8    (arithmetic first)\n# Step 2: 7 > 5 = True, 8 == 8 = True   (comparisons next)\n# Step 3: True and True = True           (and last)\n\n# not binds tighter than and/or\nprint(not True or True)    # True  — (not True) or True → False or True → True\nprint(not (True or True))  # False — not (True) → not True → False\n\n# and binds tighter than or\nprint(True or True and False)   # True  — True or (True and False) → True or False → True\nprint((True or True) and False) # False — True and False → False\n\n# When in doubt, USE PARENTHESES!',
+    language: 'python',
+  },
+
+  // ═══════════════════════════════════════
+  // Section 12: Playground
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 2, text: 'Try It Yourself' },
+  {
+    type: 'playground',
+    defaultCode: '# Explore boolean logic!\n\n# 1. Truthiness\nvalues = [0, 1, -1, "", "hello", None, [], [0], True, False]\nfor v in values:\n    print(f"{str(v):>10} → {bool(v)}")\n\nprint()\n\n# 2. Short-circuit behavior\nprint("and:", 0 and "hello")       # Returns first falsy\nprint("and:", "hi" and "hello")    # Returns last truthy\nprint("or:", 0 or "hello")        # Returns first truthy\nprint("or:", "" or 0)             # Returns last falsy\n\nprint()\n\n# 3. Comparison chaining\nx = 15\nprint(f"{x}: 10 < x < 20 → {10 < x < 20}")\nprint(f"{x}: 0 < x < 10 → {0 < x < 10}")\n\nprint()\n\n# 4. De Morgan\'s Law demonstration\nA, B = True, False\nprint(f"not (A and B) = {not (A and B)}")\nprint(f"(not A) or (not B) = {(not A) or (not B)}")\nprint(f"Equal? {not (A and B) == ((not A) or (not B))}")',
+    instructions: 'Modify values and observe how truthiness, short-circuiting, and De Morgan\'s Laws work.',
+  },
+
+  // ═══════════════════════════════════════
+  // Section 13: Quiz
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 2, text: 'Knowledge Check' },
+  {
+    type: 'quiz',
+    quiz: {
+      id: 'quiz-boolean',
+      title: 'Boolean Logic Quiz',
+      questions: [
+        {
+          type: 'predict-output',
+          code: 'print(bool("False"))',
+          options: ['True', 'False', 'Error', 'None'],
+          correctIndex: 0,
+          explanation: 'The string "False" has 5 characters — it\'s a non-empty string, which is truthy. bool("False") returns True.',
+        },
+        {
+          type: 'predict-output',
+          code: 'print("hello" and "world")',
+          options: ['True', 'False', '"hello"', '"world"'],
+          correctIndex: 3,
+          explanation: '`and` returns the first falsy value, or the last value if all are truthy. Both "hello" and "world" are truthy, so it returns the last one: "world".',
+        },
+        {
+          type: 'predict-output',
+          code: 'print(0 or "" or "default" or "extra")',
+          options: ['"default"', '"extra"', '0', 'True'],
+          correctIndex: 0,
+          explanation: '`or` returns the first truthy value. `0` is falsy, `""` is falsy, `"default"` is truthy — so it\'s returned immediately (short-circuit).',
+        },
+        {
+          type: 'predict-output',
+          code: 'print(not True or True and False)',
+          options: ['True', 'False', 'Error', 'None'],
+          correctIndex: 1,
+          explanation: 'Precedence: `not` first → `False or True and False`. Then `and` → `False or False`. Then `or` → `False`.',
+        },
+        {
+          type: 'mcq',
+          question: 'Which of these is NOT a falsy value?',
+          options: ['None', '0', '""', '"0"'],
+          correctIndex: 3,
+          explanation: '"0" is a non-empty string (it has one character), so it\'s truthy! None, 0, and "" are all falsy.',
+        },
+      ],
+    },
+  },
+
+  // ═══════════════════════════════════════
+  // Section 14: Challenge
+  // ═══════════════════════════════════════
+  { type: 'heading', level: 2, text: 'Coding Challenge' },
+  {
+    type: 'challenge',
+    challenge: {
+      id: 'challenge-boolean',
+      title: 'Admission Checker',
+      difficulty: 'easy',
+      description: 'Write a program that checks if a student is eligible for admission. A student is eligible if: (1) their age is between 17 and 25 inclusive, AND (2) they scored at least 60% marks, AND (3) they passed the interview (True/False). Print the eligibility status.',
+      starterCode: '# Admission checker\nage = 20\nmarks_percent = 78.5\npassed_interview = True\n\n# Check eligibility using boolean logic\n# Use comparison chaining for age range!\neligible = 17 <= age <= 25 and marks_percent >= 60 and passed_interview\n\nprint(f"Age: {age}")\nprint(f"Marks: {marks_percent}%")\nprint(f"Interview: {\\\"Passed\\\" if passed_interview else \\\"Failed\\\"}")\nprint(f"Eligible: {eligible}")\n\n# Test with different values\nprint("\\n--- Edge Cases ---")\nfor age, marks, interview in [(16, 90, True), (25, 59, True), (20, 80, False), (20, 80, True)]:\n    result = 17 <= age <= 25 and marks >= 60 and interview\n    print(f"Age={age}, Marks={marks}%, Interview={interview} → {result}")',
+      testCases: [
+        {
+          input: '',
+          expected: 'Age: 20\nMarks: 78.5%\nInterview: Passed\nEligible: True',
+        },
+      ],
+      hints: [
+        'Use comparison chaining: 17 <= age <= 25',
+        'Combine conditions with `and` — all must be True',
+        'You can use a ternary expression: "Passed" if passed_interview else "Failed"',
+      ],
+      solution: 'age = 20\nmarks_percent = 78.5\npassed_interview = True\neligible = 17 <= age <= 25 and marks_percent >= 60 and passed_interview\nprint(f"Age: {age}")\nprint(f"Marks: {marks_percent}%")\nprint(f"Interview: {\\"Passed\\" if passed_interview else \\"Failed\\"}")\nprint(f"Eligible: {eligible}")',
+    },
+  },
+]

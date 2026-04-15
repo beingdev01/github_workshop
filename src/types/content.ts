@@ -1,0 +1,90 @@
+// ═══════════════════════════════════════
+// Content Type Definitions
+// ═══════════════════════════════════════
+
+export interface WorkshopDay {
+  id: number
+  title: string
+  subtitle: string
+  icon: string
+  color: string
+  sections: WorkshopSection[]
+}
+
+export interface WorkshopSection {
+  id: string
+  title: string
+  icon: string
+  blocks: ContentBlock[]
+}
+
+export type ContentBlock =
+  | HeadingBlock
+  | TextBlock
+  | CodeBlock
+  | CalloutBlock
+  | ListBlock
+  | PlaygroundBlock
+  | QAndABlock
+  | DividerBlock
+  | ImageBlock
+
+export interface HeadingBlock {
+  type: 'heading'
+  level: 1 | 2 | 3
+  text: string
+}
+
+export interface TextBlock {
+  type: 'text'
+  content: string // supports basic markdown
+}
+
+export interface CodeBlock {
+  type: 'code'
+  code: string
+  language?: string
+  runnable?: boolean
+  filename?: string
+}
+
+export interface CalloutBlock {
+  type: 'callout'
+  variant: 'info' | 'warning' | 'tip' | 'danger' | 'python'
+  title?: string
+  content: string
+}
+
+export interface ListBlock {
+  type: 'list'
+  items: string[]
+  ordered?: boolean
+}
+
+export interface PlaygroundBlock {
+  type: 'playground'
+  defaultCode: string
+  instructions: string
+  expectedOutput?: string
+}
+
+export interface QAndABlock {
+  type: 'qna'
+  items: QAndAItem[]
+}
+
+export interface QAndAItem {
+  question: string
+  answer: string
+}
+
+export interface DividerBlock {
+  type: 'divider'
+}
+
+export interface ImageBlock {
+  type: 'image'
+  src: string
+  alt: string
+  caption?: string
+}
