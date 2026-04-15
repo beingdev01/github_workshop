@@ -1,33 +1,33 @@
 <template>
-  <div class="min-h-screen">
+  <div class="min-h-screen bg-paper text-text-primary selection:bg-mint/30">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-void/80 backdrop-blur-xl">
-      <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+    <nav class="sticky top-0 z-50 border-b border-border glass">
+      <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <div class="flex items-center gap-3">
           <img
             src="/site-logo.png"
             alt="Python Workshop logo"
-            class="h-9 w-9 object-contain"
+            class="h-8 w-8 object-contain"
           />
-          <span class="font-display text-base font-bold tracking-tight">Python Workshop</span>
+          <span class="font-display text-lg font-bold tracking-tight">Python Workshop</span>
         </div>
-        <div class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#curriculum" class="text-text-secondary hover:text-text-primary transition-colors">Curriculum</a>
-          <a href="#features" class="text-text-secondary hover:text-text-primary transition-colors">Features</a>
-          <router-link to="/cheatsheet" class="text-text-secondary hover:text-text-primary transition-colors">Cheatsheet</router-link>
-          <router-link to="/resources" class="text-text-secondary hover:text-text-primary transition-colors">Resources</router-link>
+        <div class="hidden md:flex items-center gap-7 text-base font-medium">
+          <a href="#curriculum" class="text-text-secondary hover:text-mint transition-colors">Curriculum</a>
+          <a href="#features" class="text-text-secondary hover:text-mint transition-colors">Features</a>
+          <router-link to="/cheatsheet" class="text-text-secondary hover:text-mint transition-colors">Cheatsheet</router-link>
+          <router-link to="/resources" class="text-text-secondary hover:text-mint transition-colors">Resources</router-link>
         </div>
         <div class="flex items-center gap-3">
           <router-link
             v-if="progressStore.overallPercentage > 0"
             to="/workshop"
-            class="rounded-xl bg-mint/10 border border-mint/20 px-4 py-2 text-sm font-medium text-mint hover:bg-mint/20 transition-all"
+            class="hidden sm:inline-flex rounded-lg border border-mint/30 bg-mint/10 px-4 py-2 text-sm font-semibold text-mint hover:bg-mint/20 transition-colors"
           >
-            Continue ({{ progressStore.overallPercentage }}%)
+            Continue · {{ progressStore.overallPercentage }}%
           </router-link>
           <router-link
             to="/workshop"
-            class="rounded-xl bg-gradient-to-r from-mint to-mint-dim px-5 py-2 text-sm font-semibold text-white hover:shadow-lg hover:shadow-mint/20 transition-all"
+            class="rounded-lg bg-gradient-to-r from-mint to-amber px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:shadow-md hover:-translate-y-px transition-all"
           >
             Start Learning →
           </router-link>
@@ -36,212 +36,181 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-16 overflow-hidden">
-      <div class="bg-radial-glow absolute inset-0" />
-
-      <!-- Floating code snippets (decorative) -->
-      <div class="absolute inset-0 overflow-hidden pointer-events-none select-none">
-        <div class="absolute top-32 left-[8%] animate-float opacity-20 font-mono text-xs text-mint" style="animation-delay: 0s">
-          print("Hello, World!")
-        </div>
-        <div class="absolute top-48 right-[12%] animate-float opacity-15 font-mono text-xs text-amber" style="animation-delay: 2s">
-          for i in range(10):
-        </div>
-        <div class="absolute top-72 left-[20%] animate-float opacity-10 font-mono text-xs text-lavender" style="animation-delay: 4s">
-          def fibonacci(n):
-        </div>
-        <div class="absolute bottom-40 right-[25%] animate-float opacity-15 font-mono text-xs text-coral" style="animation-delay: 1s">
-          class Student:
-        </div>
-        <div class="absolute bottom-60 left-[15%] animate-float opacity-10 font-mono text-xs text-sky" style="animation-delay: 3s">
-          {"name": "Python"}
-        </div>
-      </div>
-
-      <div class="relative mx-auto max-w-6xl px-6 py-24 md:py-36 text-center">
-        <div class="stagger-children">
-          <div class="mb-6">
-            <span class="inline-flex items-center gap-2 rounded-full border border-mint/20 bg-mint/5 px-4 py-1.5 text-xs font-medium text-mint">
-              <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse" />
-              3-Day Interactive Workshop
+    <section class="relative border-b border-border amber-halo overflow-hidden">
+      <div class="mx-auto max-w-7xl px-6 py-24 md:py-32 grid md:grid-cols-[1.1fr_1fr] gap-16 items-center">
+        <div>
+          <div class="mb-7 inline-flex items-center gap-2 rounded-full border border-mint/30 bg-mint/10 px-4 py-1.5 text-sm font-semibold text-mint">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mint opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-mint"></span>
             </span>
+            Interactive · Classroom-Ready
           </div>
 
-          <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[0.95] tracking-tight mb-6">
-            <span class="block text-text-primary">Learn</span>
-            <span class="gradient-text">Python</span>
-            <span class="block text-text-primary mt-1">Interactively</span>
+          <h1 class="font-display text-5xl md:text-7xl font-extrabold tracking-[-0.03em] mb-7 text-text-primary text-balance leading-[1.02]">
+            Learn Python <span class="gradient-text">properly.</span>
           </h1>
 
-          <p class="mx-auto max-w-xl text-lg text-text-secondary leading-relaxed mb-10">
-            Go from zero to building real programs. Write code directly in your browser,
-            solve challenges, and track your progress — no setup required.
+          <p class="text-xl text-text-secondary leading-relaxed mb-10 max-w-xl">
+            Go from zero to building real programs. Write code directly in your
+            browser, solve practical challenges, and track your progress —
+            <span class="text-text-primary font-semibold">no local setup required.</span>
           </p>
 
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             <router-link
               to="/workshop"
-              class="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-mint to-mint-dim px-8 py-4 text-base font-bold text-white transition-all hover:shadow-2xl hover:shadow-mint/25"
+              class="inline-flex justify-center items-center gap-2 rounded-xl bg-gradient-to-r from-mint to-amber px-7 py-4 text-base font-bold text-white shadow-[0_12px_30px_-12px_rgba(234,88,12,0.55)] hover:shadow-[0_18px_40px_-12px_rgba(234,88,12,0.65)] hover:-translate-y-0.5 transition-all"
             >
-              <span class="relative z-10 flex items-center gap-2">
-                Start Workshop
-                <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </span>
+              Start Workshop
+              <span>→</span>
             </router-link>
             <router-link
               to="/playground"
-              class="rounded-2xl border border-border px-8 py-4 text-base font-medium text-text-secondary hover:border-mint/30 hover:text-text-primary transition-all"
+              class="inline-flex justify-center items-center gap-2 rounded-xl border-2 border-border bg-card px-7 py-4 text-base font-semibold text-text-primary hover:border-mint hover:text-mint transition-all"
             >
-              🎮 Free Playground
+              <span class="text-lg">🎮</span> Open Playground
             </router-link>
+          </div>
+
+          <!-- Trust strip -->
+          <div class="mt-10 flex items-center gap-5 text-sm text-text-muted flex-wrap">
+            <span class="flex items-center gap-2">
+              <span class="text-mint text-base">✓</span> Runs in any browser
+            </span>
+            <span class="h-1 w-1 rounded-full bg-border"></span>
+            <span class="flex items-center gap-2">
+              <span class="text-mint text-base">✓</span> Zero install
+            </span>
+            <span class="h-1 w-1 rounded-full bg-border"></span>
+            <span class="flex items-center gap-2">
+              <span class="text-mint text-base">✓</span> Active recall built-in
+            </span>
           </div>
         </div>
 
         <!-- Hero Code Preview -->
-        <div class="mt-20 mx-auto max-w-2xl animate-fade-in-up" style="animation-delay: 0.6s; opacity: 0;">
-          <div class="glass rounded-2xl overflow-hidden shadow-2xl shadow-black/10">
-            <div class="flex items-center gap-2 px-4 py-3 border-b border-border/30">
-              <span class="w-3 h-3 rounded-full bg-coral/60" />
-              <span class="w-3 h-3 rounded-full bg-amber/60" />
-              <span class="w-3 h-3 rounded-full bg-mint/60" />
-              <span class="ml-3 text-[10px] font-mono text-text-muted">hello.py</span>
+        <div class="relative">
+          <!-- decorative offset card -->
+          <div class="absolute -inset-2 bg-gradient-to-br from-mint/20 via-amber/10 to-lavender/15 rounded-2xl blur-xl opacity-70"></div>
+          <div class="relative warm-card overflow-hidden">
+            <div class="flex items-center justify-between px-5 py-3 border-b border-border bg-surface/70">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-coral/70"></span>
+                <span class="w-3 h-3 rounded-full bg-amber/70"></span>
+                <span class="w-3 h-3 rounded-full bg-mint/70"></span>
+              </div>
+              <span class="text-sm font-mono text-text-muted">hello.py</span>
+              <span class="text-[11px] font-mono font-semibold text-mint uppercase tracking-[0.2em]">python 3</span>
             </div>
-            <pre class="p-5 font-mono text-sm leading-relaxed text-left"><span class="text-text-muted"># Your first Python program 🐍</span>
-<span class="text-lavender font-medium">def</span> <span class="text-mint font-semibold">greet</span>(name):
-    <span class="text-lavender font-medium">return</span> <span class="text-amber">f"Hello, {name}! Welcome to Python!"</span>
+            <pre class="p-6 font-mono text-[15px] leading-[1.75] text-left overflow-x-auto bg-card"><span style="color:#6a9955;font-style:italic"># Your first Python program</span>
+<span class="text-lavender font-semibold">def</span> <span class="text-mint font-semibold">greet</span>(name):
+    <span class="text-lavender font-semibold">return</span> <span class="text-amber">f"Hello, {name}! Welcome to Python!"</span>
 
-<span class="text-text-muted"># Try it out</span>
-message = <span class="text-mint">greet</span>(<span class="text-amber">"World"</span>)
-<span class="text-mint">print</span>(message)
-<span class="text-text-muted"># → Hello, World! Welcome to Python!</span></pre>
+<span style="color:#6a9955;font-style:italic"># Try it out immediately</span>
+message = <span class="text-mint font-semibold">greet</span>(<span class="text-amber">"World"</span>)
+<span class="text-coral font-semibold">print</span>(message)
+<span style="color:#6a9955;font-style:italic"># → Hello, World! Welcome to Python!</span></pre>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Stats Bar -->
-    <section class="border-y border-border bg-surface/30">
-      <div class="mx-auto max-w-6xl px-6 py-8">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div>
-            <div class="font-display text-3xl font-bold text-amber">21</div>
-            <div class="text-xs text-text-muted mt-1">Interactive Lessons</div>
-          </div>
-          <div>
-            <div class="font-display text-3xl font-bold text-orange">50+</div>
-            <div class="text-xs text-text-muted mt-1">Q&A Questions</div>
-          </div>
-          <div>
-            <div class="font-display text-3xl font-bold text-coral">15+</div>
-            <div class="text-xs text-text-muted mt-1">Practice Prompts</div>
-          </div>
-          <div>
-            <div class="font-display text-3xl font-bold text-red-500">3</div>
-            <div class="text-xs text-text-muted mt-1">Structured Days</div>
+    <section class="border-b border-border bg-card">
+      <div class="mx-auto max-w-7xl px-6 py-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div v-for="(stat, i) in stats" :key="stat.label"
+            :class="['px-4 py-3', i > 0 && 'md:border-l md:border-border']">
+            <div class="font-display font-extrabold text-4xl md:text-5xl gradient-text tracking-tight">{{ stat.value }}</div>
+            <div class="text-sm md:text-base text-text-secondary mt-2 font-medium">{{ stat.label }}</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-24">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="text-center mb-16">
-          <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">
-            Everything You Need to
-            <span class="gradient-text">Learn Python</span>
-          </h2>
-          <p class="text-text-secondary max-w-lg mx-auto">
-            Not just slides. A fully interactive learning environment built for hands-on practice.
+    <section id="features" class="border-b border-border py-24 md:py-28">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="mb-14 max-w-2xl">
+          <div class="text-sm font-bold uppercase tracking-[0.25em] text-mint mb-3">Why this works</div>
+          <h2 class="font-display text-4xl md:text-5xl font-bold mb-5 text-text-primary tracking-tight text-balance">Built for active learning</h2>
+          <p class="text-lg md:text-xl text-text-secondary leading-relaxed">
+            Forget passive video tutorials. This curriculum is designed around immediate practice, rapid feedback, and cognitive retention.
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
-          <div v-for="feature in features" :key="feature.title"
-            class="glass glass-hover rounded-2xl p-6 transition-all duration-300">
-            <div class="text-2xl mb-3">{{ feature.icon }}</div>
-            <h3 class="font-display text-base font-semibold text-text-primary mb-2">{{ feature.title }}</h3>
-            <p class="text-sm text-text-secondary leading-relaxed">{{ feature.desc }}</p>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div v-for="(feature, i) in features" :key="feature.title"
+            class="group warm-card p-7 hover:-translate-y-1 transition-transform duration-300">
+            <div class="flex items-center gap-3 mb-5">
+              <span :class="['flex h-12 w-12 items-center justify-center rounded-xl text-2xl ring-1 ring-black/5 shadow-sm', feature.chip]">{{ feature.icon }}</span>
+              <span class="font-mono text-xs font-bold text-text-muted uppercase tracking-[0.2em]">0{{ i + 1 }}</span>
+            </div>
+            <h3 class="font-display font-bold text-xl text-text-primary mb-3 tracking-tight">{{ feature.title }}</h3>
+            <p class="text-base text-text-secondary leading-relaxed">{{ feature.desc }}</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Curriculum Section -->
-    <section id="curriculum" class="py-24 bg-surface/20">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="text-center mb-16">
-          <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">
-            <span class="gradient-text">3-Day</span> Curriculum
-          </h2>
-          <p class="text-text-secondary max-w-lg mx-auto">
-            Structured progression from absolute beginner to writing real programs.
+    <section id="curriculum" class="border-b border-border py-24 md:py-28 bg-paper">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="mb-14 max-w-2xl">
+          <div class="text-sm font-bold uppercase tracking-[0.25em] text-mint mb-3">3 Days · 21 Lessons</div>
+          <h2 class="font-display text-4xl md:text-5xl font-bold mb-5 text-text-primary tracking-tight text-balance">The curriculum</h2>
+          <p class="text-lg md:text-xl text-text-secondary leading-relaxed">
+            A pragmatic, 3-day progression mapped to essential programming concepts — each section is designed to be taught live or learned solo.
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-6 stagger-children">
-          <div v-for="day in workshopDays" :key="day.id"
-            class="glass glass-hover rounded-2xl p-6 transition-all duration-300">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="text-2xl">{{ day.icon }}</span>
-              <div>
-                <div class="font-display text-lg font-bold text-text-primary">Day {{ day.id }}: {{ day.title }}</div>
-                <div class="text-xs text-text-muted">{{ day.subtitle }}</div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div v-for="(day, i) in workshopDays" :key="day.id"
+            class="group relative flex flex-col warm-card p-7 hover:-translate-y-1 transition-transform duration-300 overflow-hidden">
+            <!-- accent ribbon -->
+            <div :class="['absolute -top-px left-0 right-0 h-1', dayRibbon[i % dayRibbon.length]]"></div>
+
+            <div class="mb-6">
+              <div class="flex items-baseline gap-3 mb-3">
+                <span class="font-mono text-xs font-bold text-mint uppercase tracking-[0.25em]">Day {{ day.id }}</span>
+                <span class="h-px flex-1 bg-border"></span>
               </div>
+              <div class="font-display font-bold text-2xl text-text-primary mb-2 tracking-tight">{{ day.title }}</div>
+              <div class="text-base text-text-secondary leading-relaxed">{{ day.subtitle }}</div>
             </div>
-            <div class="space-y-2">
+
+            <div class="space-y-2.5 mb-8 flex-1">
               <div v-for="s in day.sections" :key="s.id"
-                class="flex items-center gap-2.5 text-sm text-text-secondary">
-                <span class="text-xs">{{ s.icon }}</span>
-                <span>{{ s.title }}</span>
-                <svg
-                  v-if="progressStore.isSectionCompleted(s.id)"
-                  class="ml-auto h-4 w-4 text-mint shrink-0"
-                  fill="currentColor" viewBox="0 0 20 20"
-                >
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
+                class="flex items-start gap-3 text-base text-text-secondary">
+                <span class="mt-0.5 text-base">{{ s.icon }}</span>
+                <span class="leading-snug">{{ s.title }}</span>
               </div>
             </div>
+
             <router-link
               :to="`/workshop/day/${day.id}/${day.sections[0].id}`"
-              class="mt-4 inline-flex items-center gap-1.5 text-sm text-mint hover:underline"
+              class="inline-flex items-center justify-between rounded-lg border-2 border-border bg-card px-5 py-3 text-sm font-bold text-text-primary group-hover:border-mint group-hover:text-mint transition-colors"
             >
-              Start Day {{ day.id }} →
+              Start Day {{ day.id }}
+              <span class="text-lg transition-transform group-hover:translate-x-1">→</span>
             </router-link>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-24">
-      <div class="mx-auto max-w-3xl px-6 text-center">
-        <div class="glass rounded-3xl p-12 glow-mint">
-          <h2 class="font-display text-3xl font-bold mb-4">Ready to Start Coding?</h2>
-          <p class="text-text-secondary mb-8 max-w-md mx-auto">
-            Jump right into the interactive lessons. No installation needed — everything runs in your browser.
-          </p>
-          <router-link
-            to="/workshop"
-            class="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-mint to-mint-dim px-8 py-4 text-base font-bold text-white hover:shadow-2xl hover:shadow-mint/25 transition-all"
-          >
-            Begin Workshop 🚀
-          </router-link>
-        </div>
-      </div>
-    </section>
-
     <!-- Footer -->
-    <footer class="border-t border-border py-8">
-      <div class="mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-muted">
-        <div>Python Workshop — Interactive Learning Platform</div>
-        <div class="flex items-center gap-4">
-          <router-link to="/playground" class="hover:text-text-primary transition-colors">Playground</router-link>
-          <router-link to="/cheatsheet" class="hover:text-text-primary transition-colors">Cheatsheet</router-link>
-          <router-link to="/resources" class="hover:text-text-primary transition-colors">Resources</router-link>
+    <footer class="py-10 bg-card">
+      <div class="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+        <div class="flex items-center gap-3">
+          <img src="/site-logo.png" alt="" class="h-5 w-5 object-contain opacity-80" />
+          <span>Python Workshop &copy; {{ new Date().getFullYear() }}</span>
+        </div>
+        <div class="flex items-center gap-6 font-medium">
+          <router-link to="/playground" class="hover:text-mint transition-colors">Playground</router-link>
+          <router-link to="/cheatsheet" class="hover:text-mint transition-colors">Cheatsheet</router-link>
+          <router-link to="/resources" class="hover:text-mint transition-colors">Resources</router-link>
         </div>
       </div>
     </footer>
@@ -249,41 +218,42 @@ message = <span class="text-mint">greet</span>(<span class="text-amber">"World"<
 </template>
 
 <script setup lang="ts">
-import { useProgressStore } from '@/stores/progress'
-import { workshopDays } from '@/content/structure'
+import { useProgressStore } from '../stores/progress'
+import { workshopDays } from '../content/structure'
 
 const progressStore = useProgressStore()
 
+const stats = [
+  { value: '21', label: 'Interactive Lessons' },
+  { value: '50+', label: 'Q&A Prompts' },
+  { value: '15+', label: 'Practice Exercises' },
+  { value: '3', label: 'Structured Days' },
+]
+
 const features = [
   {
-    icon: '🖥️',
-    title: 'In-Browser Code Execution',
-    desc: 'Write and run Python code directly in your browser. No installation or setup needed — powered by Pyodide WebAssembly.',
+    icon: '⚡',
+    title: 'In-Browser Execution',
+    desc: 'Powered by Pyodide, Python runs directly in your browser. No terminals, no installations, no dependency hell.',
+    chip: 'bg-mint/15 text-mint',
+  },
+  {
+    icon: '🎯',
+    title: 'Interactive Challenges',
+    desc: 'Stop reading, start typing. Every concept is paired with a code challenge and instant test validation.',
+    chip: 'bg-amber/15 text-amber',
   },
   {
     icon: '🧠',
-    title: 'Interactive Q&A',
-    desc: 'Test your understanding with MCQ, predict-the-output, and fill-in-the-blank questions with instant feedback.',
+    title: 'Active Recall Q&A',
+    desc: 'Reinforce learning with embedded click-to-reveal prompts designed to maximize retention and spaced review.',
+    chip: 'bg-lavender/15 text-lavender',
   },
-  {
-    icon: '🏆',
-    title: 'Practice Q&A',
-    desc: 'Solve real problems with automated test validation, progressive hints, and solution reveals.',
-  },
-  {
-    icon: '📊',
-    title: 'Progress Tracking',
-    desc: 'Your progress saves automatically. See completion status, Q&A progress, and pick up where you left off.',
-  },
-  {
-    icon: '📋',
-    title: 'Quick Reference Cheatsheet',
-    desc: 'A searchable, categorized Python cheatsheet for quick lookups while you learn.',
-  },
-  {
-    icon: '🎮',
-    title: 'Free Playground',
-    desc: 'Experiment with Python code in a free-form playground. No rules, just exploration and creativity.',
-  },
+]
+
+const dayRibbon = [
+  'bg-gradient-to-r from-mint to-amber',
+  'bg-gradient-to-r from-amber to-lavender',
+  'bg-gradient-to-r from-lavender to-coral',
 ]
 </script>

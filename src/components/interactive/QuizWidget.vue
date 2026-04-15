@@ -1,18 +1,20 @@
 <template>
-  <div class="rounded-2xl border border-border bg-card overflow-hidden">
+  <div class="rounded-lg border border-border bg-card overflow-hidden shadow-sm my-6">
     <!-- Header -->
-    <div class="flex items-center justify-between px-6 py-4 border-b border-border/50 bg-lavender/5">
-      <div class="flex items-center gap-3">
-        <span class="text-lavender text-base">🧠</span>
-        <span class="text-base font-semibold text-text-primary">{{ quiz.title || 'Q&A' }}</span>
+    <div class="flex items-center justify-between px-4 py-2.5 border-b border-border bg-surface">
+      <div class="flex items-center gap-2">
+        <svg class="h-4 w-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+        <span class="text-[13px] font-semibold text-text-primary tracking-wide flex items-center gap-2">
+          {{ quiz.title || 'Knowledge Check' }}
+        </span>
       </div>
       <div class="flex items-center gap-3">
-        <span class="text-sm text-text-muted">
+        <span class="text-[11px] font-medium uppercase tracking-wider text-text-muted">
           {{ answeredCount }}/{{ quiz.questions.length }} answered
         </span>
-        <div class="h-1.5 w-24 rounded-full bg-surface overflow-hidden">
+        <div class="h-1.5 w-16 rounded-sm bg-void border border-border overflow-hidden">
           <div
-            class="h-full bg-lavender transition-all duration-500"
+            class="h-full bg-text-primary transition-all duration-500"
             :style="{ width: `${(answeredCount / quiz.questions.length) * 100}%` }"
           />
         </div>
@@ -20,23 +22,23 @@
     </div>
 
     <!-- Questions -->
-    <div class="divide-y divide-border/30">
-      <div v-for="(q, i) in quiz.questions" :key="i" class="p-6">
+    <div class="divide-y divide-border bg-void">
+      <div v-for="(q, i) in quiz.questions" :key="i" class="p-4 sm:p-5">
         <!-- MCQ -->
         <template v-if="q.type === 'mcq'">
-          <p class="text-lg font-medium text-text-primary mb-4">{{ i + 1 }}. {{ q.question }}</p>
-          <div class="space-y-3">
+          <p class="text-[14px] font-medium text-text-primary mb-3">{{ i + 1 }}. {{ q.question }}</p>
+          <div class="space-y-2">
             <button
               v-for="(opt, j) in q.options"
               :key="j"
               :class="[
-                'w-full text-left rounded-lg border px-4 py-3 text-base transition-all',
+                'w-full text-left rounded-md border px-3 py-2 text-[13px] transition-colors focus:outline-none focus:ring-2 focus:ring-mint',
                 getOptionClass(i, j, q.correctIndex),
               ]"
               :disabled="answers[i] !== undefined"
               @click="selectAnswer(i, j)"
             >
-              <span class="font-mono text-text-muted mr-3">{{ String.fromCharCode(65 + j) }}.</span>
+              <span class="font-mono text-[11px] text-text-muted mr-2">{{ String.fromCharCode(65 + j) }}.</span>
               {{ opt }}
             </button>
           </div>
@@ -44,14 +46,14 @@
 
         <!-- Predict Output -->
         <template v-else-if="q.type === 'predict-output'">
-          <p class="text-lg font-medium text-text-primary mb-3">{{ i + 1 }}. What will this code output?</p>
-          <pre class="mb-4 rounded-lg bg-[#18120f] border border-border/30 p-4 font-mono text-base text-mint/80">{{ q.code }}</pre>
-          <div class="space-y-3">
+          <p class="text-[14px] font-medium text-text-primary mb-2">{{ i + 1 }}. What will this code output?</p>
+          <pre class="mb-3 rounded border border-border bg-surface p-3 font-mono text-[12px] text-text-primary">{{ q.code }}</pre>
+          <div class="space-y-2">
             <button
               v-for="(opt, j) in q.options"
               :key="j"
               :class="[
-                'w-full text-left rounded-lg border px-4 py-3 text-base font-mono transition-all',
+                'w-full text-left rounded-md border px-3 py-2 text-[13px] font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-mint',
                 getOptionClass(i, j, q.correctIndex),
               ]"
               :disabled="answers[i] !== undefined"
@@ -64,20 +66,20 @@
 
         <!-- Fill in the Blank -->
         <template v-else-if="q.type === 'fill-blank'">
-          <p class="text-lg font-medium text-text-primary mb-4">{{ i + 1 }}. Fill in the blank:</p>
-          <pre class="mb-4 rounded-lg bg-[#18120f] border border-border/30 p-4 font-mono text-base text-text-secondary">{{ q.prompt }}</pre>
-          <div class="flex gap-3">
+          <p class="text-[14px] font-medium text-text-primary mb-2">{{ i + 1 }}. Fill in the blank:</p>
+          <pre class="mb-3 rounded border border-border bg-surface p-3 font-mono text-[12px] text-text-secondary">{{ q.prompt }}</pre>
+          <div class="flex gap-2">
             <input
               v-model="fillAnswers[i]"
               type="text"
-              class="flex-1 rounded-lg border border-border bg-surface px-4 py-3 text-base font-mono text-text-primary focus:border-mint/50 focus:outline-none"
+              class="flex-1 rounded-md border border-border bg-void px-3 py-2 text-[13px] font-mono text-text-primary placeholder:font-sans placeholder-text-muted focus:border-mint focus:outline-none focus:ring-1 focus:ring-mint transition-colors"
               placeholder="Type your answer..."
               :disabled="answers[i] !== undefined"
               @keyup.enter="checkFillBlank(i, q)"
             />
             <button
               v-if="answers[i] === undefined"
-              class="rounded-lg bg-lavender/10 border border-lavender/20 px-4 py-3 text-base text-lavender hover:bg-lavender/20 transition-all"
+              class="rounded-md bg-text-primary border border-transparent px-4 py-2 text-[13px] font-semibold text-void hover:bg-text-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-mint"
               @click="checkFillBlank(i, q)"
             >
               Check
@@ -90,12 +92,14 @@
           <div
             v-if="answers[i] !== undefined"
             :class="[
-              'mt-4 rounded-lg p-4 text-base leading-relaxed',
-              answers[i] === true ? 'bg-mint/5 text-mint/80 border border-mint/20' : 'bg-coral/5 text-coral/80 border border-coral/20',
+              'mt-3 rounded-md p-3 text-[12px] leading-relaxed border',
+              answers[i] === true ? 'bg-surface border-mint/20 text-text-primary' : 'bg-surface border-coral/30 text-text-primary',
             ]"
           >
-            <span class="font-semibold">{{ answers[i] === true ? '✅ Correct!' : '❌ Not quite.' }}</span>
-            {{ q.explanation }}
+            <span :class="['font-semibold mr-1', answers[i] === true ? 'text-mint' : 'text-coral']">
+              {{ answers[i] === true ? '✓ Correct!' : '✗ Not quite.' }}
+            </span>
+            <span class="text-text-secondary">{{ q.explanation }}</span>
           </div>
         </transition>
       </div>
@@ -138,16 +142,15 @@ function checkFillBlank(questionIdx: number, q: FillBlankQuestion) {
 function getOptionClass(qIdx: number, optIdx: number, correctIdx: number): string {
   const answered = answers.value[qIdx]
   if (answered === undefined) {
-    return 'border-border hover:border-lavender/30 hover:bg-lavender/5 text-text-secondary'
+    return 'border-border hover:border-text-primary bg-void text-text-primary cursor-pointer'
   }
   if (optIdx === correctIdx) {
-    return 'border-mint/40 bg-mint/10 text-mint'
+    return 'border-mint bg-surface text-text-primary font-medium'
   }
   if (answers.value[qIdx] === false && optIdx !== correctIdx) {
-    // Only highlight the wrong answer if they clicked this one
-    return 'border-border/30 text-text-muted'
+    return 'border-border bg-void text-text-muted'
   }
-  return 'border-border/30 text-text-muted'
+  return 'border-border bg-void text-text-muted'
 }
 
 function saveScore() {
@@ -159,5 +162,5 @@ function saveScore() {
 
 <style scoped>
 .fade-enter-active { transition: all 0.3s ease; }
-.fade-enter-from { opacity: 0; transform: translateY(-8px); }
+.fade-enter-from { opacity: 0; transform: translateY(-4px); }
 </style>

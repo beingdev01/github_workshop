@@ -1,6 +1,6 @@
 <template>
   <span :class="[
-    'inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider',
+    'inline-flex items-center gap-1.5 rounded-md px-2.5 py-0.5 text-xs font-bold tracking-wider uppercase',
     colorClasses,
   ]">
     <slot />
@@ -11,16 +11,17 @@
 import { computed } from 'vue'
 
 const props = withDefaults(defineProps<{
-  color?: 'mint' | 'amber' | 'coral' | 'lavender' | 'sky'
+  color?: 'mint' | 'amber' | 'coral' | 'lavender' | 'sky' | 'default'
 }>(), {
-  color: 'mint',
+  color: 'default',
 })
 
 const colorClasses = computed(() => ({
-  mint: 'bg-mint/10 text-mint border border-mint/20',
-  amber: 'bg-amber/10 text-amber border border-amber/20',
-  coral: 'bg-coral/10 text-coral border border-coral/20',
-  lavender: 'bg-lavender/10 text-lavender border border-lavender/20',
-  sky: 'bg-sky/10 text-sky border border-sky/20',
+  default: 'bg-surface text-text-secondary border border-border',
+  mint: 'bg-mint/10 text-mint border-transparent',
+  amber: 'bg-amber/10 text-amber border-transparent',
+  coral: 'bg-coral/10 text-coral border-transparent',
+  lavender: 'bg-lavender/10 text-lavender border-transparent',
+  sky: 'bg-sky/10 text-sky border-transparent',
 }[props.color]))
 </script>

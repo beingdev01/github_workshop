@@ -1,25 +1,25 @@
 <template>
-  <div class="relative group rounded-xl overflow-hidden border border-border bg-[#18120f]">
+  <div class="relative group rounded-xl overflow-hidden border border-border bg-card shadow-[0_10px_30px_-20px_rgba(234,88,12,0.35)] my-8">
     <!-- Header -->
-    <div class="flex items-center justify-between px-6 py-3 border-b border-border/50 bg-surface/30">
+    <div class="flex items-center justify-between px-5 py-3 border-b border-border bg-surface/70">
       <div class="flex items-center gap-3">
-        <div class="flex gap-2">
-          <span class="w-3 h-3 rounded-full bg-coral/60" />
-          <span class="w-3 h-3 rounded-full bg-amber/60" />
-          <span class="w-3 h-3 rounded-full bg-mint/60" />
+        <div class="flex gap-1.5">
+          <span class="w-3 h-3 rounded-full bg-coral/70" />
+          <span class="w-3 h-3 rounded-full bg-amber/70" />
+          <span class="w-3 h-3 rounded-full bg-mint/70" />
         </div>
-        <span v-if="filename" class="text-sm font-mono text-text-muted ml-3">{{ filename }}</span>
-        <span v-else class="text-sm font-mono text-text-muted ml-3">python</span>
+        <span v-if="filename" class="text-sm font-mono text-text-secondary ml-2 tracking-wide">{{ filename }}</span>
+        <span v-else class="text-[11px] font-mono font-semibold text-mint ml-2 uppercase tracking-[0.2em]">python</span>
       </div>
       <button
-        class="text-sm text-text-muted hover:text-mint transition-colors px-3 py-1.5 rounded opacity-0 group-hover:opacity-100"
+        class="text-xs font-semibold tracking-wider text-text-muted hover:text-mint transition-colors px-2.5 py-1 rounded border border-transparent hover:border-mint/30 hover:bg-mint/10"
         @click="copyCode"
       >
-        {{ copied ? '✓ Copied' : 'Copy' }}
+        {{ copied ? '✓ COPIED' : 'COPY' }}
       </button>
     </div>
     <!-- Code -->
-    <pre class="p-6 overflow-x-auto text-lg leading-relaxed font-mono"><code v-html="highlightedCode" /></pre>
+    <pre class="p-5 overflow-x-auto text-[15px] md:text-base leading-[1.7] font-mono text-text-primary"><code v-html="highlightedCode" /></pre>
   </div>
 </template>
 
@@ -73,7 +73,6 @@ function tok(cls: string, text: string): string {
 
 /** Highlight a single line. Accepts optional multiline-string state. */
 function highlightLine(line: string, mlQuote: string | null): { html: string; mlQuote: string | null } {
-  // If we're continuing inside a multiline string from a previous line
   if (mlQuote) {
     const close = mlQuote.repeat(3)
     const endIdx = line.indexOf(close)
@@ -90,7 +89,6 @@ function highlightLine(line: string, mlQuote: string | null): { html: string; ml
   let prevWord = ''
 
   while (i < line.length) {
-    // Whitespace — preserve, don't reset prevWord
     if (line[i] === ' ' || line[i] === '\t') {
       let j = i
       while (j < line.length && (line[j] === ' ' || line[j] === '\t')) j++
@@ -99,14 +97,12 @@ function highlightLine(line: string, mlQuote: string | null): { html: string; ml
       continue
     }
 
-    // Comment — rest of line
     if (line[i] === '#') {
       parts.push(tok('hl-cm', line.slice(i)))
       i = line.length
       continue
     }
 
-    // Decorator
     if (line[i] === '@') {
       let j = i + 1
       while (j < line.length && /[a-zA-Z0-9_.]/.test(line[j])) j++
@@ -116,7 +112,6 @@ function highlightLine(line: string, mlQuote: string | null): { html: string; ml
       continue
     }
 
-    // String
     if (line[i] === '"' || line[i] === "'") {
       const quote = line[i]
       const isTriple = line.startsWith(quote.repeat(3), i)
@@ -124,11 +119,9 @@ function highlightLine(line: string, mlQuote: string | null): { html: string; ml
         const searchFrom = i + 3
         const endIdx = line.indexOf(quote.repeat(3), searchFrom)
         if (endIdx !== -1) {
-          // Complete triple-quoted string on this line
           parts.push(tok('hl-str', line.slice(i, endIdx + 3)))
           i = endIdx + 3
         } else {
-          // Unclosed — multiline string starts here
           parts.push(tok('hl-str', line.slice(i)))
           return { html: parts.join(''), mlQuote: quote }
         }
@@ -146,7 +139,6 @@ function highlightLine(line: string, mlQuote: string | null): { html: string; ml
       continue
     }
 
-    // Word (identifier / keyword / builtin)
     if (/[a-zA-Z_]/.test(line[i])) {
       let j = i
       while (j < line.length && /[a-zA-Z0-9_]/.test(line[j])) j++
@@ -170,7 +162,6 @@ function highlightLine(line: string, mlQuote: string | null): { html: string; ml
       continue
     }
 
-    // Number
     if (/\d/.test(line[i])) {
       let j = i
       if (line[i] === '0' && j + 1 < line.length && /[xXoObB]/.test(line[j + 1])) {
@@ -194,7 +185,6 @@ function highlightLine(line: string, mlQuote: string | null): { html: string; ml
       continue
     }
 
-    // Everything else (operators, punctuation)
     parts.push(esc(line[i]))
     prevWord = ''
     i++
@@ -227,13 +217,13 @@ async function copyCode() {
 </script>
 
 <style scoped>
-:deep(.hl-cm)  { color: #666680; font-style: italic; }
-:deep(.hl-str) { color: #ffd166; }
-:deep(.hl-kw)  { color: #7b68ee; font-weight: 500; }
-:deep(.hl-bi)  { color: #06d6a0; }
-:deep(.hl-fn)  { color: #06d6a0; font-weight: 600; }
-:deep(.hl-cls) { color: #118ab2; font-weight: 600; }
-:deep(.hl-num) { color: #ef476f; }
-:deep(.hl-dec) { color: #7b68ee; font-style: italic; }
-:deep(.hl-sp)  { color: #ef476f; font-style: italic; }
+:deep(.hl-cm)  { color: #6a9955; font-style: italic; }
+:deep(.hl-str) { color: hsl(var(--ring)); }
+:deep(.hl-kw)  { color: hsl(var(--destructive)); font-weight: 500; }
+:deep(.hl-bi)  { color: hsl(var(--text-1)); }
+:deep(.hl-fn)  { color: hsl(var(--text-1)); font-weight: 600; }
+:deep(.hl-cls) { color: hsl(var(--text-1)); font-weight: 600; }
+:deep(.hl-num) { color: hsl(var(--destructive)); }
+:deep(.hl-dec) { color: hsl(var(--text-2)); font-style: italic; }
+:deep(.hl-sp)  { color: hsl(var(--text-2)); font-style: italic; }
 </style>

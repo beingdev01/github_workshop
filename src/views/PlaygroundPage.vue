@@ -1,47 +1,50 @@
 <template>
   <div class="min-h-screen bg-grid">
     <!-- Top Bar -->
-    <nav class="sticky top-0 z-50 border-b border-border bg-void/80 backdrop-blur-xl">
-      <div class="mx-auto flex h-16 max-w-none items-center justify-between px-8">
-        <div class="flex items-center gap-4">
+    <nav class="sticky top-0 z-50 border-b border-border glass">
+      <div class="mx-auto flex h-16 items-center justify-between px-8">
+        <div class="flex items-center gap-3">
           <router-link to="/" class="flex items-center gap-3">
             <img
               src="/site-logo.png"
               alt="Python Workshop logo"
-              class="h-10 w-10 object-contain"
+              class="h-9 w-9 object-contain"
             />
-            <span class="font-display text-base font-bold">Playground</span>
+            <span class="font-display text-lg font-bold tracking-tight">Playground</span>
           </router-link>
         </div>
-        <div class="flex items-center gap-4">
-          <router-link to="/workshop" class="text-sm text-text-secondary hover:text-text-primary transition-colors">← Workshop</router-link>
-          <router-link to="/" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Home</router-link>
+        <div class="flex items-center gap-5">
+          <router-link to="/workshop" class="text-base font-semibold text-text-secondary hover:text-mint transition-colors">← Workshop</router-link>
+          <router-link to="/" class="text-base font-semibold text-text-secondary hover:text-mint transition-colors">Home</router-link>
         </div>
       </div>
     </nav>
 
     <!-- Main Playground -->
-    <div class="mx-auto max-w-none px-8 py-10">
-      <div class="mb-8">
-        <h1 class="font-display text-4xl font-bold gradient-text mb-3">🎮 Free Code Playground</h1>
-        <p class="text-lg text-text-secondary">Write anything you want. Experiment freely — no rules, no tests.</p>
+    <div class="mx-auto max-w-[1400px] px-8 py-12">
+      <div class="mb-10">
+        <div class="text-sm font-bold uppercase tracking-[0.25em] text-mint mb-3">Experiment freely</div>
+        <h1 class="font-display text-5xl md:text-6xl font-extrabold tracking-tight mb-4 text-balance">
+          🎮 Code <span class="gradient-text">Playground</span>
+        </h1>
+        <p class="text-xl text-text-secondary leading-relaxed max-w-2xl">Write anything you want. Test ideas, explore syntax, break things — <span class="text-text-primary font-semibold">no rules, no tests.</span></p>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-6">
         <!-- Editor -->
-        <div class="glass rounded-2xl overflow-hidden">
-          <div class="flex items-center justify-between px-6 py-4 border-b border-border/50">
-            <div class="flex items-center gap-3">
-              <span class="w-3 h-3 rounded-full bg-coral/60" />
-              <span class="w-3 h-3 rounded-full bg-amber/60" />
-              <span class="w-3 h-3 rounded-full bg-mint/60" />
-              <span class="ml-3 text-sm font-mono text-text-muted">playground.py</span>
+        <div class="warm-card overflow-hidden">
+          <div class="flex items-center justify-between px-5 py-3 border-b border-border bg-surface/70">
+            <div class="flex items-center gap-2.5">
+              <span class="w-3 h-3 rounded-full bg-coral/70" />
+              <span class="w-3 h-3 rounded-full bg-amber/70" />
+              <span class="w-3 h-3 rounded-full bg-mint/70" />
+              <span class="ml-3 text-sm font-mono font-medium text-text-secondary">playground.py</span>
             </div>
-            <div class="flex gap-3">
-              <button class="text-sm text-text-muted hover:text-amber transition-colors px-3 py-1.5" @click="clearCode">Clear</button>
+            <div class="flex items-center gap-2">
+              <button class="text-sm font-semibold text-text-muted hover:text-coral transition-colors px-3 py-1.5 rounded-md border border-transparent hover:border-coral/30" @click="clearCode">Clear</button>
               <select
                 v-model="selectedTemplate"
-                class="bg-surface/50 border border-border/50 rounded text-sm text-text-muted px-3 py-1.5"
+                class="bg-card border-2 border-border rounded-md text-sm font-semibold text-text-primary px-3 py-1.5 focus:outline-none focus:border-mint transition"
                 @change="loadTemplate"
               >
                 <option value="">📁 Templates</option>
@@ -52,35 +55,44 @@
               </select>
             </div>
           </div>
-          <div ref="editorContainer" class="h-[600px]" />
+          <div ref="editorContainer" class="h-[620px]" />
         </div>
 
         <!-- Output -->
-        <div class="glass rounded-2xl overflow-hidden flex flex-col">
-          <div class="flex items-center justify-between px-6 py-4 border-b border-border/50">
-            <span class="text-sm font-mono text-text-muted uppercase tracking-wider">Output</span>
-            <div class="flex gap-3">
+        <div class="warm-card overflow-hidden flex flex-col">
+          <div class="flex items-center justify-between px-5 py-3 border-b border-border bg-surface/70">
+            <span class="text-xs font-mono font-bold text-mint uppercase tracking-[0.2em]">Output</span>
+            <div class="flex gap-2">
               <button
-                class="flex items-center gap-2 rounded-lg bg-mint/10 border border-mint/20 px-4 py-2 text-sm font-medium text-mint hover:bg-mint/20 transition-all"
+                class="flex items-center gap-2 rounded-lg bg-gradient-to-r from-mint to-amber border border-transparent px-5 py-2 text-base font-bold text-white shadow-sm hover:shadow-md hover:-translate-y-px transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 :disabled="pyodide.isRunning"
                 @click="runCode"
               >
                 {{ pyodide.isRunning ? '⏳ Running...' : '▶ Run' }}
               </button>
-              <button class="text-sm text-text-muted hover:text-text-primary px-3 py-1.5" @click="clearOutput">Clear</button>
+              <button class="text-sm font-semibold text-text-muted hover:text-text-primary px-3 py-1.5 rounded-md border border-transparent hover:border-border" @click="clearOutput">Clear</button>
             </div>
           </div>
-          <div class="flex-1 p-6 overflow-auto">
-            <div v-if="pyodide.isLoading" class="flex items-center gap-3 text-sm text-text-muted animate-pulse">
-              <span class="animate-spin">⏳</span> Loading Python runtime...
+          <div class="flex-1 p-6 overflow-auto bg-card">
+            <div v-if="pyodide.isLoading" class="flex items-center gap-3 text-base font-medium text-text-muted animate-pulse">
+              <span class="animate-spin text-xl">⏳</span> Loading Python runtime...
             </div>
             <pre
               v-else
-              class="font-mono text-base whitespace-pre-wrap min-h-full"
-              :class="hasError ? 'text-coral' : 'text-mint/90'"
+              class="font-mono text-[15px] leading-[1.7] whitespace-pre-wrap min-h-full"
+              :class="hasError ? 'text-coral' : 'text-text-primary'"
             >{{ outputText || '# Output will appear here after running your code\n# Press Run or Ctrl+Enter to execute' }}</pre>
           </div>
         </div>
+      </div>
+
+      <!-- Keyboard hint -->
+      <div class="mt-6 flex items-center gap-2 text-sm text-text-muted">
+        <span>Shortcut:</span>
+        <span class="kbd">Ctrl</span><span>+</span><span class="kbd">Enter</span>
+        <span class="ml-1">(or</span>
+        <span class="kbd">⌘</span><span>+</span><span class="kbd">Enter</span>
+        <span>on Mac) to execute.</span>
       </div>
     </div>
   </div>

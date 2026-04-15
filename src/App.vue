@@ -1,18 +1,19 @@
 <template>
-  <div class="grain-overlay noise-bg bg-grid bg-mesh min-h-screen">
+  <div class="min-h-screen bg-void text-text-primary selection:bg-mint/20">
     <router-view v-slot="{ Component, route }">
-      <transition name="page" mode="out-in">
-        <component :is="Component" :key="route.path" />
-      </transition>
+      <component :is="Component" :key="route.path" />
     </router-view>
   </div>
 </template>
 
 <style>
-.page-enter-active {
-  animation: fade-in-up 0.4s ease-out;
-}
+/* Clean page transitions */
+.page-enter-active,
 .page-leave-active {
-  animation: fade-in 0.2s ease-in reverse;
+  transition: opacity 0.15s ease;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
 }
 </style>
