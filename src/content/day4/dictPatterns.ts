@@ -69,12 +69,12 @@ export const day4DictPatterns: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 7: Quiz
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Knowledge Check' },
+  { type: 'heading', level: 2, text: 'Q&A' },
   
 
   // ═══════════════════════════════════════
   // Section 8: Challenge
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Coding Challenge' },
+  { type: 'heading', level: 2, text: 'Challenge Q&A' },
   
 ]

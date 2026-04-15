@@ -115,12 +115,12 @@ export const day3Lists: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 10: Quiz
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Knowledge Check' },
+  { type: 'heading', level: 2, text: 'Q&A' },
   
 
   // ═══════════════════════════════════════
   // Section 11: Challenge
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Coding Challenge' },
+  { type: 'heading', level: 2, text: 'Challenge Q&A' },
   
 ]

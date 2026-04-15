@@ -1,5 +1,5 @@
 <template>
-  <div class="relative group rounded-xl overflow-hidden border border-border bg-[#0a0a1f]">
+  <div class="relative group rounded-xl overflow-hidden border border-border bg-[#18120f]">
     <!-- Header -->
     <div class="flex items-center justify-between px-6 py-3 border-b border-border/50 bg-surface/30">
       <div class="flex items-center gap-3">

@@ -180,7 +180,7 @@ export const day1IO: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 10: Q&A
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Knowledge Check' },
+  { type: 'heading', level: 2, text: 'Q&A' },
   {
     type: 'qna',
     items: [
@@ -210,7 +210,7 @@ export const day1IO: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 11: Challenge Q&A
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Coding Challenge' },
+  { type: 'heading', level: 2, text: 'Challenge Q&A' },
   {
     type: 'qna',
     items: [

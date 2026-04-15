@@ -1,5 +1,5 @@
 <template>
-  <div class="noise-overlay bg-grid bg-mesh min-h-screen">
+  <div class="grain-overlay noise-bg bg-grid bg-mesh min-h-screen">
     <router-view v-slot="{ Component, route }">
       <transition name="page" mode="out-in">
         <component :is="Component" :key="route.path" />

@@ -244,12 +244,12 @@ export const day1Operators: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 12: Quiz
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Knowledge Check' },
+  { type: 'heading', level: 2, text: 'Q&A' },
   
 
   // ═══════════════════════════════════════
   // Section 13: Challenge
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Coding Challenge' },
+  { type: 'heading', level: 2, text: 'Challenge Q&A' },
   
 ]

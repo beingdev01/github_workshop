@@ -375,7 +375,7 @@ export const day1DataTypes: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 13: Q&A
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Knowledge Check' },
+  { type: 'heading', level: 2, text: 'Q&A' },
   {
     type: 'qna',
     items: [

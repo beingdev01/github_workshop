@@ -99,7 +99,7 @@
     <!-- Solution -->
     <div v-if="showSolution" class="p-6">
       <p class="text-sm font-semibold text-text-muted uppercase tracking-wider mb-3">Solution:</p>
-      <pre class="rounded-lg bg-[#0a0a1f] border border-border/30 p-4 font-mono text-base text-mint/90 overflow-auto">{{ challenge.solution }}</pre>
+      <pre class="rounded-lg bg-[#18120f] border border-border/30 p-4 font-mono text-base text-mint/90 overflow-auto">{{ challenge.solution }}</pre>
     </div>
   </div>
 </template>
@@ -155,8 +155,8 @@ onMounted(() => {
         bracketMatching(),
         closeBrackets(),
         EditorView.theme({
-          '&': { backgroundColor: '#0a0a1f' },
-          '.cm-gutters': { backgroundColor: '#0a0a1f', borderRight: '1px solid #1a1a35' },
+          '&': { backgroundColor: '#18120f' },
+          '.cm-gutters': { backgroundColor: '#18120f', borderRight: '1px solid #3f2b1c' },
         }),
       ],
     })

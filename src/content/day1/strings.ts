@@ -372,7 +372,7 @@ export const day1Strings: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 11: Q&A
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Knowledge Check' },
+  { type: 'heading', level: 2, text: 'Q&A' },
   {
     type: 'qna',
     items: [

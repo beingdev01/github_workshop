@@ -207,12 +207,12 @@ export const day2Boolean: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 13: Quiz
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Knowledge Check' },
+  { type: 'heading', level: 2, text: 'Q&A' },
   
 
   // ═══════════════════════════════════════
   // Section 14: Challenge
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Coding Challenge' },
+  { type: 'heading', level: 2, text: 'Challenge Q&A' },
   
 ]

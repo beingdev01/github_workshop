@@ -61,7 +61,7 @@
           <div class="mb-6">
             <span class="inline-flex items-center gap-2 rounded-full border border-mint/20 bg-mint/5 px-4 py-1.5 text-xs font-medium text-mint">
               <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse" />
-              4-Day Interactive Workshop
+              3-Day Interactive Workshop
             </span>
           </div>
 
@@ -99,7 +99,7 @@
 
         <!-- Hero Code Preview -->
         <div class="mt-20 mx-auto max-w-2xl animate-fade-in-up" style="animation-delay: 0.6s; opacity: 0;">
-          <div class="glass rounded-2xl overflow-hidden shadow-2xl shadow-black/30">
+          <div class="glass rounded-2xl overflow-hidden shadow-2xl shadow-black/10">
             <div class="flex items-center gap-2 px-4 py-3 border-b border-border/30">
               <span class="w-3 h-3 rounded-full bg-coral/60" />
               <span class="w-3 h-3 rounded-full bg-amber/60" />
@@ -124,19 +124,19 @@ message = <span class="text-mint">greet</span>(<span class="text-amber">"World"<
       <div class="mx-auto max-w-6xl px-6 py-8">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
-            <div class="font-display text-3xl font-bold text-mint">21</div>
+            <div class="font-display text-3xl font-bold text-amber">21</div>
             <div class="text-xs text-text-muted mt-1">Interactive Lessons</div>
           </div>
           <div>
-            <div class="font-display text-3xl font-bold text-amber">50+</div>
-            <div class="text-xs text-text-muted mt-1">Quiz Questions</div>
+            <div class="font-display text-3xl font-bold text-orange">50+</div>
+            <div class="text-xs text-text-muted mt-1">Q&A Questions</div>
           </div>
           <div>
-            <div class="font-display text-3xl font-bold text-lavender">15+</div>
-            <div class="text-xs text-text-muted mt-1">Coding Challenges</div>
+            <div class="font-display text-3xl font-bold text-coral">15+</div>
+            <div class="text-xs text-text-muted mt-1">Practice Prompts</div>
           </div>
           <div>
-            <div class="font-display text-3xl font-bold text-coral">4</div>
+            <div class="font-display text-3xl font-bold text-red-500">3</div>
             <div class="text-xs text-text-muted mt-1">Structured Days</div>
           </div>
         </div>
@@ -172,7 +172,7 @@ message = <span class="text-mint">greet</span>(<span class="text-amber">"World"<
       <div class="mx-auto max-w-6xl px-6">
         <div class="text-center mb-16">
           <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">
-            <span class="gradient-text">4-Day</span> Curriculum
+            <span class="gradient-text">3-Day</span> Curriculum
           </h2>
           <p class="text-text-secondary max-w-lg mx-auto">
             Structured progression from absolute beginner to writing real programs.
@@ -260,18 +260,18 @@ const features = [
   },
   {
     icon: '🧠',
-    title: 'Interactive Quizzes',
+    title: 'Interactive Q&A',
     desc: 'Test your understanding with MCQ, predict-the-output, and fill-in-the-blank questions with instant feedback.',
   },
   {
     icon: '🏆',
-    title: 'Coding Challenges',
+    title: 'Practice Q&A',
     desc: 'Solve real problems with automated test validation, progressive hints, and solution reveals.',
   },
   {
     icon: '📊',
     title: 'Progress Tracking',
-    desc: 'Your progress saves automatically. See completion status, quiz scores, and pick up where you left off.',
+    desc: 'Your progress saves automatically. See completion status, Q&A progress, and pick up where you left off.',
   },
   {
     icon: '📋',

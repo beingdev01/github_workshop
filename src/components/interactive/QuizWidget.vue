@@ -4,7 +4,7 @@
     <div class="flex items-center justify-between px-6 py-4 border-b border-border/50 bg-lavender/5">
       <div class="flex items-center gap-3">
         <span class="text-lavender text-base">🧠</span>
-        <span class="text-base font-semibold text-text-primary">{{ quiz.title || 'Knowledge Check' }}</span>
+        <span class="text-base font-semibold text-text-primary">{{ quiz.title || 'Q&A' }}</span>
       </div>
       <div class="flex items-center gap-3">
         <span class="text-sm text-text-muted">
@@ -45,7 +45,7 @@
         <!-- Predict Output -->
         <template v-else-if="q.type === 'predict-output'">
           <p class="text-lg font-medium text-text-primary mb-3">{{ i + 1 }}. What will this code output?</p>
-          <pre class="mb-4 rounded-lg bg-[#0a0a1f] border border-border/30 p-4 font-mono text-base text-mint/80">{{ q.code }}</pre>
+          <pre class="mb-4 rounded-lg bg-[#18120f] border border-border/30 p-4 font-mono text-base text-mint/80">{{ q.code }}</pre>
           <div class="space-y-3">
             <button
               v-for="(opt, j) in q.options"
@@ -65,7 +65,7 @@
         <!-- Fill in the Blank -->
         <template v-else-if="q.type === 'fill-blank'">
           <p class="text-lg font-medium text-text-primary mb-4">{{ i + 1 }}. Fill in the blank:</p>
-          <pre class="mb-4 rounded-lg bg-[#0a0a1f] border border-border/30 p-4 font-mono text-base text-text-secondary">{{ q.prompt }}</pre>
+          <pre class="mb-4 rounded-lg bg-[#18120f] border border-border/30 p-4 font-mono text-base text-text-secondary">{{ q.prompt }}</pre>
           <div class="flex gap-3">
             <input
               v-model="fillAnswers[i]"

@@ -92,7 +92,7 @@ const isCompleted = computed(() => progressStore.isSectionCompleted(sectionId.va
 
 const dayColor = computed(() => {
   const colors: Record<string, 'mint' | 'amber' | 'lavender' | 'coral'> = {
-    '1': 'mint', '2': 'amber', '3': 'lavender', '4': 'coral'
+    '1': 'mint', '2': 'amber', '3': 'coral'
   }
   return colors[String(sectionMeta.value?.day.id)] || 'mint'
 })

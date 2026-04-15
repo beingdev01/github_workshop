@@ -85,12 +85,12 @@ export const day4Dicts: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 8: Quiz
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Knowledge Check' },
+  { type: 'heading', level: 2, text: 'Q&A' },
   
 
   // ═══════════════════════════════════════
   // Section 9: Challenge
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Coding Challenge' },
+  { type: 'heading', level: 2, text: 'Challenge Q&A' },
   
 ]

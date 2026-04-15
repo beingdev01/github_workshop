@@ -200,7 +200,7 @@ export const day1Variables: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 11: Q&A
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Knowledge Check' },
+  { type: 'heading', level: 2, text: 'Q&A' },
   {
     type: 'qna',
     items: [
@@ -230,7 +230,7 @@ export const day1Variables: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 12: Challenge Q&A
   // ═══════════════════════════════════════
-  { type: 'heading', level: 2, text: 'Coding Challenge' },
+  { type: 'heading', level: 2, text: 'Challenge Q&A' },
   {
     type: 'qna',
     items: [

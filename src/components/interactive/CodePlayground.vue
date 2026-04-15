@@ -106,8 +106,8 @@ onMounted(() => {
         bracketMatching(),
         closeBrackets(),
         EditorView.theme({
-          '&': { backgroundColor: '#0a0a1f' },
-          '.cm-gutters': { backgroundColor: '#0a0a1f', borderRight: '1px solid #1a1a35' },
+          '&': { backgroundColor: '#18120f' },
+          '.cm-gutters': { backgroundColor: '#18120f', borderRight: '1px solid #3f2b1c' },
         }),
       ],
     })

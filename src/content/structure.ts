@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════
-// Workshop Structure — 4-Day Curriculum Map
+// Workshop Structure — 3-Day Curriculum Map
 // ═══════════════════════════════════════
 
 export interface DayMeta {
@@ -24,8 +24,8 @@ export const workshopDays: DayMeta[] = [
     title: 'Foundations',
     subtitle: 'Variables, Types & First Programs',
     icon: '🚀',
-    color: 'mint',
-    gradient: 'from-mint to-sky',
+    color: 'amber',
+    gradient: 'from-amber to-orange',
     sections: [
       { id: 'day1-welcome', title: 'Welcome & First Program', icon: '👋' },
       { id: 'day1-variables', title: 'Variables & Memory', icon: '📦' },
@@ -40,8 +40,8 @@ export const workshopDays: DayMeta[] = [
     title: 'Control Flow',
     subtitle: 'Decisions, Loops & Logic',
     icon: '🔀',
-    color: 'amber',
-    gradient: 'from-amber to-coral',
+    color: 'orange',
+    gradient: 'from-orange to-red',
     sections: [
       { id: 'day2-boolean', title: 'Boolean Logic', icon: '🔘' },
       { id: 'day2-conditionals', title: 'Conditionals', icon: '🔀' },
@@ -52,27 +52,17 @@ export const workshopDays: DayMeta[] = [
   },
   {
     id: 3,
-    title: 'Functions & Lists',
-    subtitle: 'Reusable Code & Collections',
+    title: 'Functions, Collections & OOP',
+    subtitle: 'Reusable Code, Data Structures & Files',
     icon: '🧩',
-    color: 'lavender',
-    gradient: 'from-lavender to-mint',
+    color: 'coral',
+    gradient: 'from-red to-amber',
     sections: [
       { id: 'day3-functions', title: 'Functions Basics', icon: '⚡' },
       { id: 'day3-advanced-fn', title: 'Advanced Functions', icon: '🔧' },
       { id: 'day3-lists', title: 'Lists Fundamentals', icon: '📋' },
       { id: 'day3-list-patterns', title: 'List Patterns', icon: '🔍' },
       { id: 'day3-tuples', title: 'Tuples', icon: '📎' },
-    ],
-  },
-  {
-    id: 4,
-    title: 'Data Structures & OOP',
-    subtitle: 'Dicts, Sets, Files & Classes',
-    icon: '🏗️',
-    color: 'coral',
-    gradient: 'from-coral to-amber',
-    sections: [
       { id: 'day4-dicts', title: 'Dictionaries', icon: '📖' },
       { id: 'day4-dict-patterns', title: 'Dictionary Patterns', icon: '🗂️' },
       { id: 'day4-sets', title: 'Sets', icon: '🎯' },
