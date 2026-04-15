@@ -30,6 +30,10 @@ export type ContentBlock =
   | ImageBlock
   | MemoryDiagramBlock
   | MemoryLabBlock
+  | SliceVisualizerBlock
+  | ComplexityRacerBlock
+  | SetVennBlock
+  | TruthyTesterBlock
 
 export interface HeadingBlock {
   type: 'heading'
@@ -132,4 +136,29 @@ export interface MemoryLabBlock {
   title: string
   prompt?: string
   steps: MemoryLabStep[]
+}
+
+export interface SliceVisualizerBlock {
+  type: 'sliceVisualizer'
+  title?: string
+  description?: string
+  items?: (string | number)[]
+}
+
+export interface ComplexityRacerBlock {
+  type: 'complexityRacer'
+  title?: string
+  description?: string
+}
+
+export interface SetVennBlock {
+  type: 'setVenn'
+  title?: string
+  description?: string
+}
+
+export interface TruthyTesterBlock {
+  type: 'truthyTester'
+  title?: string
+  description?: string
 }

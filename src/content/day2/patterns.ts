@@ -275,6 +275,24 @@ export const day2Patterns: ContentBlock[] = [
     ],
   },
 
+  // Assignment Bridge: Matrix Checks (Week 4/5)
+  { type: 'heading', level: 2, text: 'Assignment Bridge: Matrix Equality & Symmetry' },
+  {
+    type: 'text',
+    content: 'Week-style graded questions often use matrix loops. Two matrices are equal only if dimensions match and every corresponding entry matches. A square matrix is symmetric when `M[i][j] == M[j][i]` for all valid indices.',
+  },
+  {
+    type: 'code',
+    code: 'def are_equal(A, B):\n    if len(A) != len(B):\n        return False\n    for i in range(len(A)):\n        if len(A[i]) != len(B[i]):\n            return False\n        for j in range(len(A[i])):\n            if A[i][j] != B[i][j]:\n                return False\n    return True\n\ndef is_symmetric(M):\n    n = len(M)\n    for row in M:\n        if len(row) != n:   # must be square\n            return False\n\n    # Compare only above diagonal (j > i)\n    for i in range(n):\n        for j in range(i + 1, n):\n            if M[i][j] != M[j][i]:\n                return False\n    return True\n\nA = [[1, 2], [3, 4]]\nB = [[1, 2], [3, 4]]\nC = [[1, 2], [2, 1]]\n\nprint(are_equal(A, B))   # True\nprint(are_equal(A, C))   # False\nprint(is_symmetric(C))   # True\nprint(is_symmetric(A))   # False',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'tip',
+    title: 'Why j Starts at i + 1',
+    content: 'Diagonal values always equal themselves, and lower-triangle checks duplicate upper-triangle checks. Restricting to `j = i + 1 .. n-1` avoids redundant work and is a common optimization expected in matrix questions.',
+  },
+
   // ═══════════════════════════════════════
   // Section 10: Playground
   // ═══════════════════════════════════════

@@ -29,6 +29,12 @@ export const day2Lists: ContentBlock[] = [
     code: 'colors = ["red", "green", "blue", "yellow", "purple"]\n\n# Positive indexing (0-based)\nprint(colors[0])    # red (first)\nprint(colors[2])    # blue (third)\nprint(colors[4])    # purple (last, but fragile)\n\n# Negative indexing (from the end)\nprint(colors[-1])   # purple (last — preferred!)\nprint(colors[-2])   # yellow (second to last)\n\n# Slicing: list[start:stop:step]\nprint(colors[1:4])    # [\'green\', \'blue\', \'yellow\'] — indices 1,2,3\nprint(colors[:3])     # [\'red\', \'green\', \'blue\'] — first 3\nprint(colors[2:])     # [\'blue\', \'yellow\', \'purple\'] — from index 2\nprint(colors[::2])    # [\'red\', \'blue\', \'purple\'] — every other\nprint(colors[::-1])   # [\'purple\', \'yellow\', \'blue\', \'green\', \'red\'] — reversed!\n\n# Slicing creates a COPY (new list)\nfirst_three = colors[:3]\nfirst_three[0] = "CHANGED"\nprint(colors[0])     # red — original unchanged!',
     language: 'python',
   },
+  {
+    type: 'sliceVisualizer',
+    title: 'Try It: List Slice Visualizer',
+    description: 'Adjust start, stop, and step to see how Python carves out sub-lists. Negative indices and reverse strides included.',
+    items: [10, 20, 30, 40, 50, 60, 70, 80],
+  },
 
   // ═══════════════════════════════════════
   // Section 4: Mutability
@@ -197,6 +203,11 @@ export const day2Lists: ContentBlock[] = [
     type: 'code',
     code: 'from collections import deque\n\nq = deque()\nq.append("A")         # O(1)\nq.appendleft("Z")     # O(1) — unlike list.insert(0, ...)\nq.pop()               # O(1)\nq.popleft()           # O(1) — unlike list.pop(0)',
     language: 'python',
+  },
+  {
+    type: 'complexityRacer',
+    title: 'Watch the Bills Grow',
+    description: 'Hit Race to grow n. O(1) is flat, O(n²) explodes — this is why pop(0) on a million-item list hurts.',
   },
 
   // ═══════════════════════════════════════

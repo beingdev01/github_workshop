@@ -103,6 +103,11 @@ export const day3Sets: ContentBlock[] = [
     code: 'a = {1, 2, 3, 4}\nb = {3, 4, 5, 6}\n\nprint(a | b)       # union:         {1, 2, 3, 4, 5, 6}\nprint(a & b)       # intersection:  {3, 4}\nprint(a - b)       # difference:    {1, 2}\nprint(a ^ b)       # symmetric diff:{1, 2, 5, 6}\n\n# Subset / superset\nprint({1, 2} <= a)    # True — subset\nprint(a >= {1, 2})    # True — superset\nprint({1, 2} < a)     # True — proper subset\n\n# Disjoint\nprint({1, 2}.isdisjoint({3, 4}))   # True',
     language: 'python',
   },
+  {
+    type: 'setVenn',
+    title: 'Try It: Set Operations Venn',
+    description: 'Type elements into A and B, then click an operator to see the highlighted region and the resulting set.',
+  },
 
   {
     type: 'heading', level: 2, text: 'frozenset — The Immutable Sibling' },

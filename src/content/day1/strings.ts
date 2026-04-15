@@ -233,6 +233,12 @@ export const day1Strings: ContentBlock[] = [
     title: 'Slicing Never Raises IndexError',
     content: 'Unlike indexing, slicing is forgiving. If indices are out of range, Python adjusts to the valid range: `"Hello"[0:100]` becomes `"Hello"`.',
   },
+  {
+    type: 'sliceVisualizer',
+    title: 'Try It: Live Slice Visualizer',
+    description: 'Tweak start, stop, and step to see exactly which characters Python pulls out — including negative indices and reverse strides.',
+    items: ['P', 'y', 't', 'h', 'o', 'n', 'i', 's', 't', 'a'],
+  },
 
   // ═══════════════════════════════════════
   // Section 10: String Immutability

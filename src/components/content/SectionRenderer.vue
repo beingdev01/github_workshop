@@ -63,6 +63,35 @@
         :steps="block.steps"
       />
 
+      <!-- Slice Visualizer -->
+      <SliceVisualizer
+        v-else-if="block.type === 'sliceVisualizer'"
+        :title="block.title"
+        :description="block.description"
+        :items="block.items"
+      />
+
+      <!-- Complexity Racer -->
+      <ComplexityRacer
+        v-else-if="block.type === 'complexityRacer'"
+        :title="block.title"
+        :description="block.description"
+      />
+
+      <!-- Set Venn -->
+      <SetVenn
+        v-else-if="block.type === 'setVenn'"
+        :title="block.title"
+        :description="block.description"
+      />
+
+      <!-- Truthy Tester -->
+      <TruthyTester
+        v-else-if="block.type === 'truthyTester'"
+        :title="block.title"
+        :description="block.description"
+      />
+
       <!-- Playground -->
       <CodePlayground
         v-else-if="block.type === 'playground'"
@@ -95,6 +124,10 @@ import CodePlayground from '@/components/interactive/CodePlayground.vue'
 import QAndA from '@/components/interactive/QAndA.vue'
 import MemoryDiagram from '@/components/interactive/MemoryDiagram.vue'
 import MemoryLab from '@/components/interactive/MemoryLab.vue'
+import SliceVisualizer from '@/components/interactive/SliceVisualizer.vue'
+import ComplexityRacer from '@/components/interactive/ComplexityRacer.vue'
+import SetVenn from '@/components/interactive/SetVenn.vue'
+import TruthyTester from '@/components/interactive/TruthyTester.vue'
 
 defineProps<{
   blocks: ContentBlock[]

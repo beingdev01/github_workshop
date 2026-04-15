@@ -72,6 +72,24 @@ export const day3Dicts: ContentBlock[] = [
     language: 'python',
   },
 
+  // Assignment Bridge: Frequency and Probability (Week 5)
+  { type: 'heading', level: 2, text: 'Assignment Bridge: Frequency Tables & Probability' },
+  {
+    type: 'text',
+    content: 'Many graded assignments use a list of random numbers plus a dictionary frequency table `P[num]`. Once frequencies are built, probabilities and "most frequent" queries become one-liners.',
+  },
+  {
+    type: 'code',
+    code: 'import random\n\n# Generate 10,000 values from 1..10\nnums = [random.randint(1, 10) for _ in range(10_000)]\n\n# Build frequency dictionary\nP = {k: 0 for k in range(1, 11)}\nfor num in nums:\n    P[num] += 1\n\n# Probability of drawing 5 from nums\nprob_5 = P[5] / len(nums)\nprint(f"P(5) = {prob_5:.4f}")\n\n# Number with maximum frequency (tie -> larger number)\nmost_freq_num = max(P, key=lambda k: (P[k], k))\nprint(f"Most frequent number: {most_freq_num} (count={P[most_freq_num]})")\n\ndef has_streak_five(values):\n    """Return True if value 5 appears at least 5 times consecutively."""\n    count = 0\n    for x in values:\n        if x == 5:\n            count += 1\n            if count >= 5:\n                return True\n        else:\n            count = 0\n    return False\n\nprint(f"Has streak of five 5s: {has_streak_five(nums)}")',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'info',
+    title: 'Pattern to Remember',
+    content: 'Assignment pattern: (1) generate or read data, (2) build frequency dict, (3) derive metrics like probability, argmax, or streak checks. This repeats across loops, dicts, and file-based questions.',
+  },
+
   // ═══════════════════════════════════════
   // Going Deeper: Dictionary Hash Table Internals
   // ═══════════════════════════════════════

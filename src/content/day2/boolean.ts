@@ -136,6 +136,11 @@ export const day2Boolean: ContentBlock[] = [
     title: 'Common Truthiness Traps',
     content: '`bool("0")` is `True` — the string "0" has one character, so it\'s not empty!\n`bool("False")` is `True` — the string "False" has 5 characters!\n`bool(" ")` is `True` — a space is still a character!\n`bool(-1)` is `True` — only numeric zero is falsy!',
   },
+  {
+    type: 'truthyTester',
+    title: 'Try It: Truthiness Tester',
+    description: 'Type any literal and see what bool() returns — plus a one-line reason. Click the chips to test the surprising cases.',
+  },
   { type: 'heading', level: 3, text: 'Using Truthiness in Practice' },
   {
     type: 'code',

@@ -106,6 +106,24 @@ export const day3Functions: ContentBlock[] = [
     language: 'python',
   },
 
+  // Assignment Bridge: Polynomial and Binary Conversion
+  { type: 'heading', level: 2, text: 'Assignment Bridge: Polynomial & Binary Problems' },
+  {
+    type: 'text',
+    content: 'Week-style function questions often ask for polynomial evaluation, integer root search in a range, and binary-to-decimal conversion. These are excellent drills for loops, indexing, and function decomposition.',
+  },
+  {
+    type: 'code',
+    code: 'def poly(coeffs, x0):\n    """Evaluate a0 + a1*x0 + a2*x0^2 + ... using Horner form."""\n    result = 0\n    for a in reversed(coeffs):\n        result = result * x0 + a\n    return result\n\ndef poly_zeros(coeffs, a, b):\n    """Return all integer zeros in [a, b], inclusive."""\n    zeros = []\n    for x in range(a, b + 1):\n        if poly(coeffs, x) == 0:\n            zeros.append(x)\n    return zeros\n\nprint(poly([1, 2, 3], 5))            # 86\nprint(poly_zeros([2, -3, 1], 0, 4))  # [1, 2]\n\ndef bin_to_dec(bits):\n    """Convert binary string like "1011" to decimal integer."""\n    value = 0\n    for ch in bits:\n        value = value * 2 + int(ch)\n    return value\n\nprint(bin_to_dec("1011"))            # 11\nprint(bin_to_dec("100000"))          # 32',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'tip',
+    title: 'Why Horner Form?',
+    content: 'Directly computing powers (`x**k`) works, but Horner form is cleaner and faster: it evaluates a degree-n polynomial in O(n) multiplications with minimal temporary values.',
+  },
+
   // ═══════════════════════════════════════
   // Section 9: Playground
   // ═══════════════════════════════════════

@@ -1,0 +1,11 @@
+questionText,questionType,option1,option2,option3,option4,option5,option6,correctAnswer,timeLimitSeconds,points,mediaUrl
+"Two matrices A and B are equal only when:","MCQ","They have same number of rows only","Their sums are equal","Same shape and A[i][j] == B[i][j] at every valid index","Their diagonals are equal","","","Same shape and A[i][j] == B[i][j] at every valid index",60,2,""
+"If P is a frequency dictionary for list nums, empirical probability of value 5 is:","MCQ","P[5]","P[5] / len(nums)","len(nums) / P[5]","P.get(5, 1)","","","P[5] / len(nums)",60,2,""
+"Which expression returns the key with highest frequency, breaking ties by larger key?","MCQ","max(P)","max(P, key=lambda k: P[k])","max(P, key=lambda k: (P[k], k))","sorted(P)[-1]","","","max(P, key=lambda k: (P[k], k))",75,3,""
+"In streak detection for value 5, why must count reset to 0 when current value is not 5?","MCQ","To avoid KeyError","To enforce consecutiveness","To reduce memory usage","To keep values sorted","","","To enforce consecutiveness",60,2,""
+"What is the type of expression tuple([1,2,3])?","MCQ","list","tuple","set","dict","","","tuple",45,2,""
+"Why can (1,2) be a dictionary key but [1,2] cannot?","MCQ","Tuples are always sorted","Lists are too long","Tuple is hashable; list is mutable and unhashable","List keys are deprecated","","","Tuple is hashable; list is mutable and unhashable",65,3,""
+"Which comprehension returns doubled words that contain 'a' from sentence.split()?","MCQ","[w*2 for w in sentence.split() if 'a' in w]","[w for w in sentence if 'a' in w]","(w*2 for w in sentence)","{w*2 for w in sentence.split()}","","","[w*2 for w in sentence.split() if 'a' in w]",70,2,""
+"What is the main benefit of using sum(x*x for x in nums) instead of sum([x*x for x in nums])?","MCQ","It changes the result type","It uses less memory due to lazy generation","It sorts nums automatically","It avoids multiplication","","","It uses less memory due to lazy generation",60,2,""
+"What does next((w for w in words if 'a' in w), None) return?","MCQ","All matching words as list","First matching word or None","Last matching word or None","Boolean indicating match","","","First matching word or None",55,2,""
+"Given nums = [-100, 4, 22, -8], what does min(nums, key=lambda x: len(str(abs(x)))) return?","MCQ","-100","22","4","-8","","","4",70,3,""

@@ -1,0 +1,11 @@
+questionText,questionType,option1,option2,option3,option4,option5,option6,correctAnswer,timeLimitSeconds,points,mediaUrl
+"If n_apples = 3 and apple_price = 12.5, which f-string prints total cost with exactly two decimal places?","MCQ","f\"{n_apples} kgs cost ₹ {n_apples*apple_price:.2f}\"","f\"{n_apples} kgs cost ₹ {n_apples*apple_price:2}\"","f\"{n_apples} kgs cost ₹ {n_apples*apple_price:.2}\"","str(n_apples)+\" kgs cost ₹ \"+n_apples*apple_price","","","f\"{n_apples} kgs cost ₹ {n_apples*apple_price:.2f}\"",70,2,""
+"What is bool('0.0') in Python?","MCQ","False because numeric value is zero","True because non-empty strings are truthy","False because it contains a decimal point","Raises ValueError","","","True because non-empty strings are truthy",45,2,""
+"Given if a > 0 and int(input()) < 10:, when a <= 0 how many inputs are consumed?","MCQ","0","1","2","Depends on Python version","","","0",60,3,""
+"Which expression is equivalent to nested checks if a: if b: print('OK')?","MCQ","if a or b: print('OK')","if a and b: print('OK')","if b: if a: print('OK')","if a ^ b: print('OK')","","","if a and b: print('OK')",60,2,""
+"A loop repeatedly reads n and continues while n % 5 == 0 and n % 10 == 0. It stops when:","MCQ","n is any multiple of 5","n is not divisible by 10","n is negative","n is prime","","","n is not divisible by 10",70,3,""
+"How many '*' are printed by: for i in range(1,5): for j in range(i): print('*', end='')?","MCQ","6","8","10","16","","","10",70,3,""
+"Which pair of processing patterns appears in code that sums only single-digit inputs?","MCQ","Mapping + sorting","Filtering + accumulation","Grouping + deduplication","Searching + recursion","","","Filtering + accumulation",65,2,""
+"For L = [3, 1, 3, 2, 1, 4], what should unique_first(L) return if it keeps first occurrence of each value?","MCQ","[1, 2, 3, 4]","[3, 1, 2, 4]","[3, 1, 3, 2, 4]","[4, 2, 1, 3]","","","[3, 1, 2, 4]",65,2,""
+"After M = [[0]*3]*3 and then M[0][1] = 9, what is M?","MCQ","[[0,9,0],[0,0,0],[0,0,0]]","[[0,9,0],[0,9,0],[0,9,0]]","[[0,9,0],[9,0,0],[0,0,9]]","Raises IndexError","","","[[0,9,0],[0,9,0],[0,9,0]]",70,3,""
+"A 3x3 matrix A is symmetric if:","MCQ","A[i][j] == A[i+1][j]","A[i][j] == A[j][i] for all i,j","Every row is sorted","Main diagonal has only ones","","","A[i][j] == A[j][i] for all i,j",60,2,""
