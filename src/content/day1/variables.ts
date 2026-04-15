@@ -198,79 +198,46 @@ export const day1Variables: ContentBlock[] = [
   },
 
   // ═══════════════════════════════════════
-  // Section 11: Quiz
+  // Section 11: Q&A
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
   {
-    type: 'quiz',
-    quiz: {
-      id: 'quiz-variables',
-      title: 'Variables & Memory Quiz',
-      questions: [
-        {
-          type: 'mcq',
-          question: 'What does the `=` operator do in Python?',
-          options: [
-            'Checks if two values are equal',
-            'Assigns the value on the right to the variable on the left',
-            'Assigns the value on the left to the variable on the right',
-            'Creates a mathematical equation',
-          ],
-          correctIndex: 1,
-          explanation: 'The `=` operator is the assignment operator. It evaluates the right side first, then assigns the result to the left-side variable. `==` is used for equality checking.',
-        },
-        {
-          type: 'predict-output',
-          code: 'x = 5\nx = x + 3\nx *= 2\nprint(x)',
-          options: ['10', '16', '13', '8'],
-          correctIndex: 1,
-          explanation: 'x starts at 5. `x = x + 3` makes it 8. `x *= 2` (same as `x = x * 2`) makes it 16.',
-        },
-        {
-          type: 'predict-output',
-          code: 'a, b = 10, 20\na, b = b, a\nprint(a, b)',
-          options: ['10 20', '20 10', '20 20', 'Error'],
-          correctIndex: 1,
-          explanation: 'The right side `b, a` evaluates to `(20, 10)` first, then this tuple is unpacked into `a` and `b`. So `a` becomes 20 and `b` becomes 10.',
-        },
-        {
-          type: 'mcq',
-          question: 'Which of the following is NOT a valid variable name in Python?',
-          options: ['_my_var', 'myVar2', '2nd_place', 'student_name'],
-          correctIndex: 2,
-          explanation: 'Variable names cannot start with a digit. `2nd_place` starts with `2`, which is invalid. All other options follow Python\'s naming rules.',
-        },
-        {
-          type: 'predict-output',
-          code: 'x = "hello"\nprint(type(x).__name__)',
-          options: ['hello', 'str', 'string', 'type'],
-          correctIndex: 1,
-          explanation: '`type(x)` returns `<class \'str\'>`. The `__name__` attribute of a type gives just the type name as a string, which is `"str"`.',
-        },
-      ],
-    },
+    type: 'qna',
+    items: [
+      {
+        question: 'What does the `=` operator do in Python?',
+        answer: 'The `=` operator is the assignment operator. It evaluates the right side first, then assigns the result to the left-side variable. `==` is used for equality checking.',
+      },
+      {
+        question: 'What will this code output? `x = 5; x = x + 3; x *= 2; print(x)`',
+        answer: '**16**\n\nx starts at 5. `x = x + 3` makes it 8. `x *= 2` (same as `x = x * 2`) makes it 16.',
+      },
+      {
+        question: 'What will this code output? `a, b = 10, 20; a, b = b, a; print(a, b)`',
+        answer: '**20 10**\n\nThe right side `b, a` evaluates to `(20, 10)` first, then this tuple is unpacked into `a` and `b`. So `a` becomes 20 and `b` becomes 10.',
+      },
+      {
+        question: 'Which of the following is NOT a valid variable name in Python? `_my_var`, `myVar2`, `2nd_place`, `student_name`',
+        answer: '**`2nd_place`**\n\nVariable names cannot start with a digit. `2nd_place` starts with `2`, which is invalid. All other options follow Python\'s naming rules.',
+      },
+      {
+        question: 'What does this code print? `x = "hello"; print(type(x).__name__)`',
+        answer: '**`str`**\n\n`type(x)` returns `<class \'str\'>`. The `__name__` attribute of a type gives just the type name as a string, which is `"str"`.',
+      },
+    ],
   },
 
   // ═══════════════════════════════════════
-  // Section 12: Challenge
+  // Section 12: Challenge Q&A
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
   {
-    type: 'challenge',
-    challenge: {
-      id: 'challenge-variables',
-      title: 'Temperature Converter',
-      difficulty: 'easy',
-      description: 'Write a program that converts a temperature from Celsius to Fahrenheit. The formula is: F = (C * 9/5) + 32. Store the Celsius value in a variable, perform the conversion, and print the result.',
-      starterCode: 'celsius = 37.5\n\n# Convert to Fahrenheit using the formula: F = (C * 9/5) + 32\nfahrenheit = 0  # Fix this line\n\n# Print the result (should output: 37.5°C = 99.5°F)\nprint(f"{celsius}\\u00b0C = {fahrenheit}\\u00b0F")',
-      testCases: [
-        { input: '', expected: '37.5\u00b0C = 99.5\u00b0F' },
-      ],
-      hints: [
-        'The formula is: fahrenheit = (celsius * 9/5) + 32',
-        'For celsius = 37.5: (37.5 * 9/5) + 32 = 67.5 + 32 = 99.5',
-      ],
-      solution: 'celsius = 37.5\nfahrenheit = (celsius * 9/5) + 32\nprint(f"{celsius}\\u00b0C = {fahrenheit}\\u00b0F")',
-    },
+    type: 'qna',
+    items: [
+      {
+        question: 'Temperature Converter: Write a program that converts a temperature from Celsius to Fahrenheit. The formula is: F = (C * 9/5) + 32',
+        answer: '**Solution:**\n\n```python\ncelsius = 37.5\nfahrenheit = (celsius * 9/5) + 32\nprint(f"{celsius}°C = {fahrenheit}°F")\n```\n\n**How it works:**\n- The formula is: `fahrenheit = (celsius * 9/5) + 32`\n- For celsius = 37.5: `(37.5 * 9/5) + 32 = 67.5 + 32 = 99.5`\n- Output: `37.5°C = 99.5°F`',
+      },
+    ],
   },
 ]

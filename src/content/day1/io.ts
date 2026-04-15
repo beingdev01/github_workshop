@@ -178,78 +178,46 @@ export const day1IO: ContentBlock[] = [
   },
 
   // ═══════════════════════════════════════
-  // Section 10: Quiz
+  // Section 10: Q&A
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
   {
-    type: 'quiz',
-    quiz: {
-      id: 'quiz-io',
-      title: 'Input & Output Quiz',
-      questions: [
-        {
-          type: 'mcq',
-          question: 'What type does `input()` always return?',
-          options: ['int', 'float', 'str', 'depends on what user types'],
-          correctIndex: 2,
-          explanation: '`input()` ALWAYS returns a string (str), regardless of what the user types. Even if they type "42", you get the string "42", not the integer 42. You must convert explicitly with int() or float().',
-        },
-        {
-          type: 'predict-output',
-          code: 'print("A", "B", "C", sep="-", end="!")\nprint("D")',
-          options: ['A-B-C!D', 'A-B-C!\\nD', 'A B C!D', 'A-B-C\\n!D'],
-          correctIndex: 0,
-          explanation: '`sep="-"` puts dashes between values: "A-B-C". `end="!"` replaces the newline with "!": "A-B-C!". The next print continues on the same line: "A-B-C!D".',
-        },
-        {
-          type: 'predict-output',
-          code: 'x = 3.14159\nprint(f"{x:.2f}")',
-          options: ['3.14', '3.14159', '3.1', '3.142'],
-          correctIndex: 0,
-          explanation: '`:.2f` formats the float to exactly 2 decimal places, rounding as needed. 3.14159 rounded to 2 decimal places is 3.14.',
-        },
-        {
-          type: 'predict-output',
-          code: 'name = "Python"\nprint(f"|{name:^12}|")',
-          options: ['|Python      |', '|      Python|', '|   Python   |', '|***Python***|'],
-          correctIndex: 2,
-          explanation: '`^12` centers the string in a 12-character-wide field. "Python" is 6 chars, so 3 spaces are added on each side.',
-        },
-        {
-          type: 'mcq',
-          question: 'What does the `\\t` escape sequence produce?',
-          options: ['A newline', 'A tab character', 'The letter "t"', 'A backslash followed by "t"'],
-          correctIndex: 1,
-          explanation: '`\\t` is the escape sequence for a horizontal tab character. `\\n` is for newline, `\\\\` is for a literal backslash.',
-        },
-      ],
-    },
+    type: 'qna',
+    items: [
+      {
+        question: 'What data type does the `input()` function return?',
+        answer: 'The `input()` function always returns a string (str), regardless of what the user types. If you need numeric input, you must convert it: `int(input())`, `float(input())`, etc.',
+      },
+      {
+        question: 'What does this code output?\n\n`print("A", "B", "C", sep="-", end="!")`\n`print("D")`',
+        answer: '`A-B-C!D`\n\nThe `sep` parameter controls the separator between print() arguments. Default is a space, but here it\'s `"-"`. The `end` parameter replaces the newline with `"!"`. The next print continues on the same line.',
+      },
+      {
+        question: 'What does this code output?\n\n`x = 3.14159`\n`print(f"{x:.2f}")`',
+        answer: '`3.14`\n\n`:.2f` formats the float to exactly 2 decimal places, rounding as needed. 3.14159 rounded to 2 decimal places is 3.14.',
+      },
+      {
+        question: 'How do you center-align text in a 20-character field using an f-string?\n\n`text = "Python"`\n`print(f"{text:?20}")`',
+        answer: '`f"{text:^20}"`\n\nAlignment in f-strings:\n- `<` : left-align\n- `>` : right-align\n- `^` : center-align\n\nExample: `f"{text:^20}"` centers text in a 20-char field.',
+      },
+      {
+        question: 'Which escape sequence represents a newline?',
+        answer: '`\\n`\n\n`\\n` is the escape sequence for a newline. Other common ones:\n- `\\t` = tab\n- `\\\\` = backslash\n- `\\"` = double quote',
+      },
+    ],
   },
 
   // ═══════════════════════════════════════
-  // Section 11: Challenge
+  // Section 11: Challenge Q&A
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
   {
-    type: 'challenge',
-    challenge: {
-      id: 'challenge-io',
-      title: 'Receipt Formatter',
-      difficulty: 'medium',
-      description: 'Create a formatted receipt that displays items with their prices in a neatly aligned table. Use f-string formatting to align item names to the left and prices to the right.',
-      starterCode: '# Create a beautifully formatted receipt\n\nprint("=" * 30)\nprint(f"{\'RECEIPT\':^30}")\nprint("=" * 30)\n\n# Format each item: name left-aligned, price right-aligned\n# Hint: use f"{item:<20} ${price:>6.2f}"\nitems = [\n    ("Coffee", 4.50),\n    ("Sandwich", 8.99),\n    ("Cookie", 2.25),\n]\n\nfor item_name, price in items:\n    print(f"{item_name:<20} ${price:>6.2f}")\n\nprint("-" * 30)\ntotal = sum(price for _, price in items)\nprint(f"{\'TOTAL\':<20} ${total:>6.2f}")\nprint("=" * 30)',
-      testCases: [
-        {
-          input: '',
-          expected: '==============================\n           RECEIPT           \n==============================\nCoffee               $  4.50\nSandwich             $  8.99\nCookie               $  2.25\n------------------------------\nTOTAL                $ 15.74\n==============================',
-        },
-      ],
-      hints: [
-        'Use f"{text:<20}" for left-aligned text in 20 characters',
-        'Use f"${price:>6.2f}" for right-aligned price with 2 decimal places',
-        'Use "=" * 30 for separator lines',
-      ],
-      solution: 'print("=" * 30)\nprint(f"{\'RECEIPT\':^30}")\nprint("=" * 30)\nitems = [("Coffee", 4.50), ("Sandwich", 8.99), ("Cookie", 2.25)]\nfor item_name, price in items:\n    print(f"{item_name:<20} ${price:>6.2f}")\nprint("-" * 30)\ntotal = sum(price for _, price in items)\nprint(f"{\'TOTAL\':<20} ${total:>6.2f}")\nprint("=" * 30)',
-    },
+    type: 'qna',
+    items: [
+      {
+        question: 'Receipt Formatter: Create a formatted receipt that displays items with their prices in a neatly aligned table. Use f-string formatting to align item names to the left and prices to the right.',
+        answer: '**Solution:**\n\n```python\nprint("=" * 30)\nprint(f"{\'RECEIPT\':^30}")\nprint("=" * 30)\n\nitems = [("Coffee", 4.50), ("Sandwich", 8.99), ("Cookie", 2.25)]\nfor item_name, price in items:\n    print(f"{item_name:<20} ${price:>6.2f}")\n\nprint("-" * 30)\ntotal = sum(price for _, price in items)\nprint(f"{\'TOTAL\':<20} ${total:>6.2f}")\nprint("=" * 30)\n```\n\n**Output:**\n```\n==============================\n           RECEIPT           \n==============================\nCoffee               $  4.50\nSandwich             $  8.99\nCookie               $  2.25\n------------------------------\nTOTAL                $ 15.74\n==============================\n```\n\n**Key techniques:**\n- `f"{text:<20}"` left-aligns text in 20 characters\n- `f"${price:>6.2f}"` right-aligns price with 2 decimal places\n- `"=" * 30` creates separator lines\n- `^` centers text (for RECEIPT and TOTAL headers)',
+      },
+    ],
   },
 ]
