@@ -126,75 +126,11 @@ export const day2For: ContentBlock[] = [
   // Section 10: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-for',
-      title: 'For Loops Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'print(list(range(2, 10, 3)))',
-          options: ['[2, 5, 8]', '[2, 5, 8, 11]', '[3, 6, 9]', '[2, 4, 6, 8]'],
-          correctIndex: 0,
-          explanation: 'Start at 2, step by 3: 2, 5, 8. Next would be 11, but that\'s ≥10 (stop), so it\'s excluded.',
-        },
-        {
-          type: 'predict-output',
-          code: 'for i in range(3):\n    for j in range(2):\n        print("*", end="")\n    print()',
-          options: ['***\\n**', '**\\n**\\n**', '******', '**\\n**'],
-          correctIndex: 1,
-          explanation: 'Outer loop runs 3 times. Each time, inner loop prints 2 stars, then print() adds a newline. Result: three rows of **.',
-        },
-        {
-          type: 'mcq',
-          question: 'What is the Pythonic way to get both index and value when iterating?',
-          options: ['for i in range(len(items))', 'for i, val in enumerate(items)', 'for val, i in items.items()', 'for val[i] in items'],
-          correctIndex: 1,
-          explanation: 'enumerate() is the Pythonic way to get both index and value. It returns (index, value) tuples.',
-        },
-        {
-          type: 'predict-output',
-          code: 'for i in range(5):\n    if i == 3:\n        break\nelse:\n    print("done")\nprint(i)',
-          options: ['done\\n3', '3', 'done\\n2', '4'],
-          correctIndex: 1,
-          explanation: 'break exits the loop at i=3. Because break was used, the else block is SKIPPED. Only print(i) executes, giving 3.',
-        },
-        {
-          type: 'predict-output',
-          code: 'total = 0\nfor n in range(1, 5):\n    total += n\nprint(total)',
-          options: ['10', '15', '4', '5'],
-          correctIndex: 0,
-          explanation: 'range(1, 5) gives [1, 2, 3, 4]. Sum = 1+2+3+4 = 10. Note: 5 is excluded from range(1, 5).',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 11: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-for',
-      title: 'Prime Number Finder',
-      difficulty: 'medium',
-      description: 'Use for loops to find all prime numbers between 2 and 50. A prime number is only divisible by 1 and itself. Use a nested for loop with a for-else pattern.',
-      starterCode: '# Find all prime numbers from 2 to 50\nprimes = []\n\nfor n in range(2, 51):\n    # Check if n is prime\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            break    # Not prime\n    else:\n        # This runs if the inner loop completed without break\n        primes.append(n)\n\nprint(f"Primes from 2-50: {primes}")\nprint(f"Count: {len(primes)}")',
-      testCases: [
-        {
-          input: '',
-          expected: 'Primes from 2-50: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]\nCount: 15',
-        },
-      ],
-      hints: [
-        'A number n is prime if no number from 2 to √n divides it evenly',
-        'Use for-else: the else block runs when the loop completes without break',
-        'int(n**0.5) + 1 gives the integer square root plus 1',
-      ],
-      solution: 'primes = []\nfor n in range(2, 51):\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            break\n    else:\n        primes.append(n)\nprint(f"Primes from 2-50: {primes}")\nprint(f"Count: {len(primes)}")',
-    },
-  },
+  
 ]

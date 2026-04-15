@@ -86,72 +86,11 @@ export const day4Dicts: ContentBlock[] = [
   // Section 8: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-dicts',
-      title: 'Dictionaries Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'd = {"a": 1, "b": 2, "a": 3}\nprint(d["a"])',
-          options: ['1', '3', '[1, 3]', 'KeyError'],
-          correctIndex: 1,
-          explanation: 'Duplicate keys: the last value wins. "a" is set to 1, then overwritten to 3.',
-        },
-        {
-          type: 'predict-output',
-          code: 'd = {"x": 10}\nresult = d.get("y", 0) + d.get("x", 0)\nprint(result)',
-          options: ['10', '0', 'KeyError', 'None'],
-          correctIndex: 0,
-          explanation: 'd.get("y", 0) returns 0 (key missing, default 0). d.get("x", 0) returns 10. Sum = 10.',
-        },
-        {
-          type: 'mcq',
-          question: 'Which CANNOT be a dictionary key?',
-          options: ['(1, 2)', '"hello"', '[1, 2]', '42'],
-          correctIndex: 2,
-          explanation: 'Lists are mutable and therefore unhashable — they cannot be dictionary keys. Tuples, strings, and integers are all hashable.',
-        },
-        {
-          type: 'predict-output',
-          code: 'd = {"a": 1, "b": 2, "c": 3}\nprint(list(d.values()))',
-          options: ['["a", "b", "c"]', '[1, 2, 3]', '[("a",1), ("b",2), ("c",3)]', 'Error'],
-          correctIndex: 1,
-          explanation: '.values() returns the dictionary\'s values. list() converts the view to a list: [1, 2, 3].',
-        },
-        {
-          type: 'predict-output',
-          code: 'd = {True: "yes", 1: "one", 1.0: "float"}\nprint(d)',
-          options: ['{True: "yes", 1: "one", 1.0: "float"}', '{True: "float"}', '{1: "float"}', 'Error'],
-          correctIndex: 1,
-          explanation: 'True == 1 == 1.0, so they\'re all the same key. The first key (True) is kept, but the value is overwritten to "float".',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 9: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-dicts',
-      title: 'Student Grade Manager',
-      difficulty: 'medium',
-      description: 'Build a grade management system using dictionaries. Store students with their subject grades, compute averages, find the top student, and identify failing subjects (below 50).',
-      starterCode: '# Student Grade Manager\nstudents = {\n    "Alice": {"Math": 92, "Physics": 88, "English": 95, "History": 78},\n    "Bob": {"Math": 65, "Physics": 45, "English": 72, "History": 58},\n    "Charlie": {"Math": 78, "Physics": 82, "English": 48, "History": 90},\n    "Diana": {"Math": 95, "Physics": 92, "English": 88, "History": 94},\n}\n\n# 1. Compute each student\'s average\nprint("Student Averages:")\nfor name, grades in students.items():\n    avg = sum(grades.values()) / len(grades)\n    print(f"  {name}: {avg:.1f}")\n\n# 2. Find the top student\ntop = max(students.items(), key=lambda x: sum(x[1].values()) / len(x[1]))\nprint(f"\\nTop Student: {top[0]}")\n\n# 3. Find all failing grades (below 50)\nprint("\\nFailing Grades:")\nfor name, grades in students.items():\n    for subject, score in grades.items():\n        if score < 50:\n            print(f"  {name} - {subject}: {score}")',
-      testCases: [
-        { input: '', expected: 'Student Averages:\n  Alice: 88.2\n  Bob: 60.0\n  Charlie: 74.5\n  Diana: 92.2\n\nTop Student: Diana\n\nFailing Grades:\n  Bob - Physics: 45\n  Charlie - English: 48' },
-      ],
-      hints: [
-        'Use sum(grades.values()) / len(grades) for average',
-        'max() with a key function can find the top student',
-        'Nested loop: outer for students, inner for their subjects',
-      ],
-      solution: 'students = {...}  # as above\nfor name, grades in students.items():\n    avg = sum(grades.values()) / len(grades)\n    print(f"  {name}: {avg:.1f}")\ntop = max(students.items(), key=lambda x: sum(x[1].values())/len(x[1]))\nprint(f"Top: {top[0]}")',
-    },
-  },
+  
 ]

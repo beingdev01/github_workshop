@@ -109,72 +109,11 @@ export const day4OOP: ContentBlock[] = [
   // Section 9: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-oop',
-      title: 'OOP Quiz',
-      questions: [
-        {
-          type: 'mcq',
-          question: 'What is the purpose of __init__?',
-          options: ['To destroy an object', 'To initialize a new instance with attributes', 'To define a class method', 'To import a module'],
-          correctIndex: 1,
-          explanation: '__init__ is the constructor/initializer. It runs automatically when a new instance is created and sets up theobject\'s initial state.',
-        },
-        {
-          type: 'predict-output',
-          code: 'class Cat:\n    lives = 9\n    def __init__(self, name):\n        self.name = name\n\na = Cat("Luna")\nb = Cat("Milo")\na.lives = 7\nprint(b.lives)',
-          options: ['7', '9', 'Error', 'None'],
-          correctIndex: 1,
-          explanation: 'a.lives = 7 creates an INSTANCE attribute on a, shadowing the class attribute. b still reads the class attribute (9).',
-        },
-        {
-          type: 'mcq',
-          question: 'What does super().__init__() do in a child class?',
-          options: ['Creates a new parent object', 'Calls the parent class\'s __init__ method', 'Copies all parent methods', 'Deletes the parent class'],
-          correctIndex: 1,
-          explanation: 'super().__init__() calls the parent class\'s constructor, allowing the child to inherit and extend the parent\'s initialization.',
-        },
-        {
-          type: 'predict-output',
-          code: 'class A:\n    def greet(self):\n        return "Hello from A"\n\nclass B(A):\n    def greet(self):\n        return "Hello from B"\n\nobj = B()\nprint(obj.greet())',
-          options: ['Hello from A', 'Hello from B', 'Error', 'Hello from A Hello from B'],
-          correctIndex: 1,
-          explanation: 'B overrides A\'s greet method. Since obj is an instance of B, B\'s version is called (method overriding).',
-        },
-        {
-          type: 'mcq',
-          question: 'What is the naming convention for "private" attributes in Python?',
-          options: ['private keyword', 'Starting with _', 'Starting with #', 'Ending with _'],
-          correctIndex: 1,
-          explanation: 'Python uses naming conventions: a single underscore prefix (_name) signals "treat as private". Python has no true access modifiers.',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 10: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-oop',
-      title: 'Shape Hierarchy',
-      difficulty: 'hard',
-      description: 'Create a Shape class hierarchy with a base Shape class and Circle, Rectangle, and Triangle subclasses. Each should compute area and perimeter, and support comparison by area.',
-      starterCode: 'import math\n\nclass Shape:\n    def area(self):\n        raise NotImplementedError\n    def perimeter(self):\n        raise NotImplementedError\n    def __repr__(self):\n        return f"{type(self).__name__}(area={self.area():.2f})"\n    def __lt__(self, other):\n        return self.area() < other.area()\n    def __eq__(self, other):\n        return abs(self.area() - other.area()) < 1e-9\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        self.radius = radius\n    def area(self):\n        return math.pi * self.radius ** 2\n    def perimeter(self):\n        return 2 * math.pi * self.radius\n\nclass Rectangle(Shape):\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n    def area(self):\n        return self.width * self.height\n    def perimeter(self):\n        return 2 * (self.width + self.height)\n\nclass Triangle(Shape):\n    def __init__(self, a, b, c):\n        self.a, self.b, self.c = a, b, c\n    def area(self):\n        s = (self.a + self.b + self.c) / 2\n        return math.sqrt(s * (s-self.a) * (s-self.b) * (s-self.c))\n    def perimeter(self):\n        return self.a + self.b + self.c\n\n# Test\nshapes = [\n    Circle(5),\n    Rectangle(4, 6),\n    Triangle(3, 4, 5),\n]\n\nfor s in shapes:\n    print(f"{s} — perimeter: {s.perimeter():.2f}")\n\nprint(f"\\nLargest: {max(shapes)}")\nprint(f"Sorted: {sorted(shapes)}")',
-      testCases: [
-        { input: '', expected: 'Circle, Rectangle, Triangle with areas and perimeters; sorted by area' },
-      ],
-      hints: [
-        'Override area() and perimeter() in each subclass',
-        'Use Heron\'s formula for triangle area: sqrt(s(s-a)(s-b)(s-c))',
-        '__lt__ enables sorting and max/min comparisons',
-      ],
-      solution: 'class Shape:\n    def area(self): raise NotImplementedError\n    def perimeter(self): raise NotImplementedError\n    def __lt__(self, other): return self.area() < other.area()',
-    },
-  },
+  
 ]

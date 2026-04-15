@@ -116,65 +116,11 @@ export const day3Lists: ContentBlock[] = [
   // Section 10: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-lists',
-      title: 'Lists Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'a = [1, 2, 3]\nb = a\nb.append(4)\nprint(a)',
-          options: ['[1, 2, 3]', '[1, 2, 3, 4]', '[4]', 'Error'],
-          correctIndex: 1,
-          explanation: 'b = a creates an ALIAS (both point to the same list). Appending to b also modifies a. Output: [1, 2, 3, 4].',
-        },
-        {
-          type: 'predict-output',
-          code: 'x = [1, 2, 3, 4, 5]\nprint(x[1:4])',
-          options: ['[1, 2, 3, 4]', '[2, 3, 4]', '[2, 3, 4, 5]', '[1, 2, 3]'],
-          correctIndex: 1,
-          explanation: 'Slicing x[1:4] gives elements at indices 1, 2, 3 (stop index is exclusive). Result: [2, 3, 4].',
-        },
-        {
-          type: 'predict-output',
-          code: 'nums = [3, 1, 4]\nresult = nums.sort()\nprint(result)',
-          options: ['[1, 3, 4]', 'None', '[3, 1, 4]', 'Error'],
-          correctIndex: 1,
-          explanation: '.sort() sorts in-place and returns None! The list is sorted, but the return value is None.',
-        },
-        {
-          type: 'predict-output',
-          code: 'words = "Hello World".split()\nprint("-".join(words))',
-          options: ['Hello World', 'Hello-World', '[\'Hello\', \'World\']', 'H-e-l-l-o'],
-          correctIndex: 1,
-          explanation: '.split() creates ["Hello", "World"]. "-".join() connects them with hyphens: "Hello-World".',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 11: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-lists',
-      title: 'List Statistics',
-      difficulty: 'medium',
-      description: 'Write functions to compute statistics on a list of numbers: mean, median (middle value when sorted), and mode (most frequent value). Don\'t use any imports.',
-      starterCode: 'def mean(nums):\n    return sum(nums) / len(nums)\n\ndef median(nums):\n    sorted_nums = sorted(nums)\n    n = len(sorted_nums)\n    mid = n // 2\n    if n % 2 == 0:\n        return (sorted_nums[mid - 1] + sorted_nums[mid]) / 2\n    return sorted_nums[mid]\n\ndef mode(nums):\n    freq = {}\n    for n in nums:\n        freq[n] = freq.get(n, 0) + 1\n    max_count = max(freq.values())\n    modes = [k for k, v in freq.items() if v == max_count]\n    return modes[0]  # Return first mode if tie\n\n# Test\ndata = [4, 8, 6, 5, 3, 8, 9, 4, 8, 2]\nprint(f"Data: {data}")\nprint(f"Mean: {mean(data):.2f}")\nprint(f"Median: {median(data):.2f}")\nprint(f"Mode: {mode(data)}")',
-      testCases: [
-        { input: '', expected: 'Data: [4, 8, 6, 5, 3, 8, 9, 4, 8, 2]\nMean: 5.70\nMedian: 5.50\nMode: 8' },
-      ],
-      hints: [
-        'Mean = sum / count',
-        'Median: sort the list, find the middle element(s)',
-        'Mode: count occurrences with a dictionary, find the max',
-      ],
-      solution: 'def mean(nums): return sum(nums) / len(nums)\ndef median(nums):\n    s = sorted(nums)\n    n = len(s)\n    mid = n // 2\n    return (s[mid-1] + s[mid]) / 2 if n % 2 == 0 else s[mid]\ndef mode(nums):\n    freq = {}\n    for n in nums:\n        freq[n] = freq.get(n, 0) + 1\n    return max(freq, key=freq.get)',
-    },
-  },
+  
 ]

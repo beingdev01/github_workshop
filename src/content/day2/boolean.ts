@@ -208,75 +208,11 @@ export const day2Boolean: ContentBlock[] = [
   // Section 13: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-boolean',
-      title: 'Boolean Logic Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'print(bool("False"))',
-          options: ['True', 'False', 'Error', 'None'],
-          correctIndex: 0,
-          explanation: 'The string "False" has 5 characters — it\'s a non-empty string, which is truthy. bool("False") returns True.',
-        },
-        {
-          type: 'predict-output',
-          code: 'print("hello" and "world")',
-          options: ['True', 'False', '"hello"', '"world"'],
-          correctIndex: 3,
-          explanation: '`and` returns the first falsy value, or the last value if all are truthy. Both "hello" and "world" are truthy, so it returns the last one: "world".',
-        },
-        {
-          type: 'predict-output',
-          code: 'print(0 or "" or "default" or "extra")',
-          options: ['"default"', '"extra"', '0', 'True'],
-          correctIndex: 0,
-          explanation: '`or` returns the first truthy value. `0` is falsy, `""` is falsy, `"default"` is truthy — so it\'s returned immediately (short-circuit).',
-        },
-        {
-          type: 'predict-output',
-          code: 'print(not True or True and False)',
-          options: ['True', 'False', 'Error', 'None'],
-          correctIndex: 1,
-          explanation: 'Precedence: `not` first → `False or True and False`. Then `and` → `False or False`. Then `or` → `False`.',
-        },
-        {
-          type: 'mcq',
-          question: 'Which of these is NOT a falsy value?',
-          options: ['None', '0', '""', '"0"'],
-          correctIndex: 3,
-          explanation: '"0" is a non-empty string (it has one character), so it\'s truthy! None, 0, and "" are all falsy.',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 14: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-boolean',
-      title: 'Admission Checker',
-      difficulty: 'easy',
-      description: 'Write a program that checks if a student is eligible for admission. A student is eligible if: (1) their age is between 17 and 25 inclusive, AND (2) they scored at least 60% marks, AND (3) they passed the interview (True/False). Print the eligibility status.',
-      starterCode: '# Admission checker\nage = 20\nmarks_percent = 78.5\npassed_interview = True\n\n# Check eligibility using boolean logic\n# Use comparison chaining for age range!\neligible = 17 <= age <= 25 and marks_percent >= 60 and passed_interview\n\nprint(f"Age: {age}")\nprint(f"Marks: {marks_percent}%")\nprint(f"Interview: {\\\"Passed\\\" if passed_interview else \\\"Failed\\\"}")\nprint(f"Eligible: {eligible}")\n\n# Test with different values\nprint("\\n--- Edge Cases ---")\nfor age, marks, interview in [(16, 90, True), (25, 59, True), (20, 80, False), (20, 80, True)]:\n    result = 17 <= age <= 25 and marks >= 60 and interview\n    print(f"Age={age}, Marks={marks}%, Interview={interview} → {result}")',
-      testCases: [
-        {
-          input: '',
-          expected: 'Age: 20\nMarks: 78.5%\nInterview: Passed\nEligible: True',
-        },
-      ],
-      hints: [
-        'Use comparison chaining: 17 <= age <= 25',
-        'Combine conditions with `and` — all must be True',
-        'You can use a ternary expression: "Passed" if passed_interview else "Failed"',
-      ],
-      solution: 'age = 20\nmarks_percent = 78.5\npassed_interview = True\neligible = 17 <= age <= 25 and marks_percent >= 60 and passed_interview\nprint(f"Age: {age}")\nprint(f"Marks: {marks_percent}%")\nprint(f"Interview: {\\"Passed\\" if passed_interview else \\"Failed\\"}")\nprint(f"Eligible: {eligible}")',
-    },
-  },
+  
 ]

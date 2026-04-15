@@ -373,114 +373,32 @@ export const day1DataTypes: ContentBlock[] = [
   },
 
   // ═══════════════════════════════════════
-  // Section 13: Quiz
+  // Section 13: Q&A
   // ═══════════════════════════════════════
-  { type: 'divider' },
+  { type: 'heading', level: 2, text: 'Knowledge Check' },
   {
     type: 'qna',
-    quiz: {
-      id: 'quiz-day1-datatypes',
-      title: 'Data Types \u2014 Knowledge Check',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'print(type(42))',
-          options: ['int', '<class \'int\'>', '42', 'integer'],
-          correctIndex: 1,
-          explanation: 'The type() function returns the class of the object. For the integer 42, it returns <class \'int\'>, which is the full string representation of the type.',
-        },
-        {
-          type: 'predict-output',
-          code: 'print(0.1 + 0.2 == 0.3)',
-          options: ['True', 'False', '0.3', 'Error'],
-          correctIndex: 1,
-          explanation: '0.1 + 0.2 evaluates to 0.30000000000000004 due to floating-point precision. This is NOT exactly equal to 0.3, so the comparison returns False. Never compare floats with ==!',
-        },
-        {
-          type: 'mcq',
-          question: 'What does int("3.14") produce?',
-          options: ['3', '3.14', 'ValueError', '314'],
-          correctIndex: 2,
-          explanation: 'int() cannot directly parse a string containing a decimal point. You would need int(float("3.14")) to first convert to float (3.14) and then to int (3). int("3.14") raises a ValueError.',
-        },
-        {
-          type: 'predict-output',
-          code: 'print(True + True + False)',
-          options: ['TrueTrueFalse', '2', '3', 'Error'],
-          correctIndex: 1,
-          explanation: 'Booleans are integers in Python! True equals 1 and False equals 0. So True + True + False = 1 + 1 + 0 = 2.',
-        },
-        {
-          type: 'predict-output',
-          code: 'print(bool("0"))',
-          options: ['True', 'False', '0', 'Error'],
-          correctIndex: 0,
-          explanation: '"0" is a non-empty string (it contains the character \'0\'). Only empty strings are falsy. The content of the string doesn\'t matter \u2014 any non-empty string is truthy. bool("0") returns True.',
-        },
-        {
-          type: 'predict-output',
-          code: 'print(int(3.99))',
-          options: ['3', '4', '3.99', 'Error'],
-          correctIndex: 0,
-          explanation: 'int() truncates toward zero \u2014 it simply removes the decimal part without rounding. int(3.99) becomes 3, not 4. If you want rounding, use round() instead.',
-        },
-        {
-          type: 'fill-blank',
-          prompt: 'The function ___ checks if a value is an instance of a given type.',
-          answer: 'isinstance',
-          caseSensitive: true,
-          explanation: 'isinstance() takes a value and a type (or tuple of types) and returns True if the value is an instance of that type. It\'s the preferred way to check types in Python.',
-        },
-        {
-          type: 'mcq',
-          question: 'Which of the following is NOT a falsy value in Python?',
-          options: ['0', '""', 'None', '"False"'],
-          correctIndex: 3,
-          explanation: '"False" is a non-empty string, so it\'s truthy! It contains 5 characters. Don\'t confuse the string "False" with the boolean value False. 0, "", and None are all falsy.',
-        },
-        {
-          type: 'predict-output',
-          code: 'x = None\nprint(x is None)',
-          options: ['True', 'False', 'None', 'Error'],
-          correctIndex: 0,
-          explanation: 'The \'is\' keyword checks identity \u2014 whether two references point to the exact same object. Since there is only one None object in Python, x is None returns True. This is the recommended way to check for None.',
-        },
-        {
-          type: 'predict-output',
-          code: 'print(type(10 / 2))',
-          options: ['<class \'int\'>', '<class \'float\'>', '<class \'str\'>', 'Error'],
-          correctIndex: 1,
-          explanation: 'In Python 3, the / operator ALWAYS returns a float, even when both operands are integers and the result is a whole number. 10 / 2 = 5.0 (float), not 5 (int). Use // for integer division.',
-        },
-      ],
-    },
-  },
-
-  // ═══════════════════════════════════════
-  // Section 14: Challenge
-  // ═══════════════════════════════════════
-  { type: 'divider' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-datatypes',
-      title: 'Type Detective',
-      difficulty: 'easy',
-      description: 'Write a program that acts as a "type detective." For each value below, print the value AND its type on the same line in the format shown.\n\nFor the value `42`, print:\n`42 \u2192 int`\n\nDo this for the following values: `42`, `3.14`, `"hello"`, `True`, `None`\n\nHint: You can get just the type name using `type(x).__name__` which gives you `"int"` instead of `"<class \'int\'>"`. Use the \u2192 arrow character in your output.',
-      starterCode: '# Type Detective \u2014 print each value with its type\n# Format: value \u2192 type_name\n# Example: 42 \u2192 int\n\nvalues = [42, 3.14, "hello", True, None]\n\nfor val in values:\n    # Your code here \u2014 print in the format: value \u2192 type_name\n    pass',
-      testCases: [
-        { expected: '42 \u2192 int', description: 'Should print "42 \u2192 int" for the integer 42' },
-        { expected: '3.14 \u2192 float', description: 'Should print "3.14 \u2192 float" for the float 3.14' },
-        { expected: 'hello \u2192 str', description: 'Should print "hello \u2192 str" for the string "hello"' },
-        { expected: 'True \u2192 bool', description: 'Should print "True \u2192 bool" for the boolean True' },
-        { expected: 'None \u2192 NoneType', description: 'Should print "None \u2192 NoneType" for None' },
-      ],
-      hints: [
-        'Use type(val).__name__ to get the type as a clean string like "int" instead of "<class \'int\'>"',
-        'Use an f-string: f"{val} \u2192 {type(val).__name__}"',
-        'Loop through the values list with a for loop and print each one',
-      ],
-      solution: 'values = [42, 3.14, "hello", True, None]\n\nfor val in values:\n    print(f"{val} \\u2192 {type(val).__name__}")',
-    },
+    items: [
+      {
+        question: 'What are the main data types in Python?',
+        answer: '`int` (integers), `float` (floating-point), `str` (strings), `bool` (booleans), and `None` (absence of value).'
+      },
+      {
+        question: 'How do you check the type of a value?',
+        answer: 'Use the `type()` function: `type(42)` returns `<class \'int\'>`. For cleaner output, use `type(42).__name__` to get just `"int"`.'
+      },
+      {
+        question: 'Is `bool` a separate type or related to `int`?',
+        answer: '`bool` is a subclass of `int`. `True == 1` and `False == 0`. You can use booleans in arithmetic: `True + True` = `2`.'
+      },
+      {
+        question: 'What values are falsy in Python?',
+        answer: '`0`, `0.0`, `None`, `""` (empty string), `[]` (empty list), `{}` (empty dict), `set()`. Everything else is truthy.'
+      },
+      {
+        question: 'How do you convert between types?',
+        answer: 'Use `int()`, `float()`, `str()`, `bool()`, etc. Example: `int("42")` → `42`, `str(42)` → `"42"`. Be careful: `int("3.14")` raises an error.'
+      }
+    ]
   },
 ]

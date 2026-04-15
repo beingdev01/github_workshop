@@ -245,84 +245,11 @@ export const day1Operators: ContentBlock[] = [
   // Section 12: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-operators',
-      title: 'Operators & Expressions Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'print(17 // 5, 17 % 5)',
-          options: ['3 2', '3.4 2', '3 2.0', '3.0 2'],
-          correctIndex: 0,
-          explanation: '`17 // 5 = 3` (floor division, integer result since both operands are int). `17 % 5 = 2` (remainder: 17 = 5*3 + 2).',
-        },
-        {
-          type: 'predict-output',
-          code: 'print(2 ** 3 ** 2)',
-          options: ['64', '512', '18', '36'],
-          correctIndex: 1,
-          explanation: '`**` is right-associative: `2 ** (3 ** 2)` = `2 ** 9` = `512`. It\'s NOT `(2 ** 3) ** 2` = `8 ** 2` = `64`.',
-        },
-        {
-          type: 'predict-output',
-          code: 'print(-17 // 5)',
-          options: ['-3', '-4', '3', '-3.4'],
-          correctIndex: 1,
-          explanation: 'Floor division rounds toward NEGATIVE infinity. `-17 / 5 = -3.4`, floored to `-4`. This differs from C/Java where it would be `-3`.',
-        },
-        {
-          type: 'predict-output',
-          code: 'print(0.1 + 0.2 == 0.3)',
-          options: ['True', 'False', 'Error', '0.3'],
-          correctIndex: 1,
-          explanation: 'Due to floating-point precision, `0.1 + 0.2` equals `0.30000000000000004`, which is not exactly `0.3`. This is why you should never compare floats with `==`.',
-        },
-        {
-          type: 'mcq',
-          question: 'What does short-circuit evaluation mean for `and`?',
-          options: [
-            'Both sides are always evaluated',
-            'If the left side is True, the right side is skipped',
-            'If the left side is False, the right side is skipped',
-            'The expression is evaluated right-to-left',
-          ],
-          correctIndex: 2,
-          explanation: 'With `and`, if the left side is `False`, the entire expression must be `False` regardless of the right side. So Python skips evaluating the right side — this is short-circuit evaluation.',
-        },
-        {
-          type: 'predict-output',
-          code: 'print(10 / 5)\nprint(type(10 / 5).__name__)',
-          options: ['2\\nint', '2.0\\nfloat', '2\\nfloat', '2.0\\nint'],
-          correctIndex: 1,
-          explanation: 'The `/` operator ALWAYS returns a float, even when dividing evenly. `10 / 5 = 2.0` (float, not int).',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 13: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-operators',
-      title: 'Time Converter',
-      difficulty: 'easy',
-      description: 'Given a total number of seconds, convert it into hours, minutes, and remaining seconds using floor division (//) and modulus (%). For example, 3725 seconds = 1 hour, 2 minutes, 5 seconds.',
-      starterCode: 'total_seconds = 3725\n\n# Use // and % to extract hours, minutes, seconds\nhours = total_seconds // 3600\nremaining = total_seconds % 3600\nminutes = remaining // 60\nseconds = remaining % 60\n\nprint(f"{total_seconds}s = {hours}h {minutes}m {seconds}s")',
-      testCases: [
-        { input: '', expected: '3725s = 1h 2m 5s' },
-      ],
-      hints: [
-        'There are 3600 seconds in an hour (60 * 60)',
-        'Use // to get the quotient and % to get the remainder',
-        'First extract hours, then work with the remaining seconds',
-      ],
-      solution: 'total_seconds = 3725\nhours = total_seconds // 3600\nremaining = total_seconds % 3600\nminutes = remaining // 60\nseconds = remaining % 60\nprint(f"{total_seconds}s = {hours}h {minutes}m {seconds}s")',
-    },
-  },
+  
 ]

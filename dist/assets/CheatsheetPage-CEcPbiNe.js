@@ -1,4 +1,4 @@
-import{d as k,c as i,a as e,b as m,w as p,s as C,v as T,F as f,r as x,t as s,f as b,l as g,m as L,i as A,o as r,h,k as M}from"./index-CFkb-kC8.js";const v=[{id:"basics",title:"Basics",icon:"📦",color:"mint",items:[{title:"Print",code:`print("Hello, World!")
+import{d as k,c as i,a as e,b as m,w as p,y as C,A as T,F as f,r as x,t as s,f as b,l as g,m as L,i as A,o as r,h,k as M}from"./index-Df6VTNt2.js";const v=[{id:"basics",title:"Basics",icon:"📦",color:"mint",items:[{title:"Print",code:`print("Hello, World!")
 print("A", "B", sep=", ", end="\\n")`,note:"sep= separator, end= line ending"},{title:"Variables",code:`x = 10
 name = "Alice"
 is_valid = True`,note:"No type declaration needed"},{title:"Input",code:`name = input("Your name: ")

@@ -96,65 +96,11 @@ export const day4Files: ContentBlock[] = [
   // Section 9: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-files',
-      title: 'File Handling Quiz',
-      questions: [
-        {
-          type: 'mcq',
-          question: 'What happens if you open an existing file with mode "w"?',
-          options: ['Appends to the file', 'Raises an error', 'Erases all content and starts fresh', 'Opens in read-only mode'],
-          correctIndex: 2,
-          explanation: 'Mode "w" truncates (erases) the file immediately upon opening. Use "a" to append instead.',
-        },
-        {
-          type: 'mcq',
-          question: 'Why should you use "with open(...) as f:" instead of "f = open(...)"?',
-          options: ['It\'s faster', 'It automatically closes the file, even on errors', 'It\'s the only way to open files', 'It opens files in binary mode'],
-          correctIndex: 1,
-          explanation: 'The with statement ensures the file is properly closed when the block exits, even if an exception occurs.',
-        },
-        {
-          type: 'mcq',
-          question: 'Which method is best for reading a very large file line by line?',
-          options: ['.read()', '.readlines()', 'for line in f:', '.readline() in a while loop'],
-          correctIndex: 2,
-          explanation: 'for line in f: is the most memory-efficient. It reads one line at a time instead of loading the entire file into memory.',
-        },
-        {
-          type: 'predict-output',
-          code: '# If file contains:\n# hello\n# world\nwith open("file.txt") as f:\n    result = f.readlines()\n    print(type(result).__name__)',
-          options: ['str', 'list', 'tuple', 'generator'],
-          correctIndex: 1,
-          explanation: '.readlines() returns a list of strings, one per line, each ending with \\n.',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 10: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-files',
-      title: 'CSV Report Generator',
-      difficulty: 'hard',
-      description: 'Parse CSV sales data and generate a summary report showing: total revenue per product, best-selling product, and average order value. Use StringIO to simulate file operations.',
-      starterCode: 'import io\nimport csv\n\n# Simulated CSV sales data\nsales_csv = """date,product,quantity,price\n2024-01-15,Widget,10,9.99\n2024-01-15,Gadget,5,19.99\n2024-01-16,Widget,8,9.99\n2024-01-16,Gizmo,3,29.99\n2024-01-17,Gadget,12,19.99\n2024-01-17,Widget,6,9.99\n2024-01-17,Gizmo,2,29.99"""\n\n# Parse and analyze\nreader = csv.DictReader(io.StringIO(sales_csv))\nproduct_revenue = {}\nproduct_quantity = {}\ntotal_orders = 0\n\nfor row in reader:\n    product = row["product"]\n    qty = int(row["quantity"])\n    price = float(row["price"])\n    revenue = qty * price\n    \n    product_revenue[product] = product_revenue.get(product, 0) + revenue\n    product_quantity[product] = product_quantity.get(product, 0) + qty\n    total_orders += 1\n\n# Report\nprint("=" * 45)\nprint("        SALES SUMMARY REPORT")\nprint("=" * 45)\nprint(f"{\'Product\':<12} {\'Qty\':>6} {\'Revenue\':>12}")\nprint("-" * 45)\n\ntotal_rev = 0\nfor product in sorted(product_revenue):\n    rev = product_revenue[product]\n    qty = product_quantity[product]\n    total_rev += rev\n    print(f"{product:<12} {qty:>6} ${rev:>10.2f}")\n\nprint("-" * 45)\nprint(f"{\'TOTAL\':<12} {sum(product_quantity.values()):>6} ${total_rev:>10.2f}")\nprint(f"\\nBest seller: {max(product_revenue, key=product_revenue.get)}")\nprint(f"Avg order value: ${total_rev / total_orders:.2f}")',
-      testCases: [
-        { input: '', expected: 'Sales report with revenue per product, total, best seller, and average order value' },
-      ],
-      hints: [
-        'csv.DictReader gives you dictionaries with column headers as keys',
-        'Use dict.get(key, 0) for safe accumulation',
-        'max(dict, key=dict.get) finds the key with the highest value',
-      ],
-      solution: '# See starter code — it contains the full solution',
-    },
-  },
+  
 ]

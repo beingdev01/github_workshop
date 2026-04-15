@@ -113,72 +113,11 @@ export const day3Tuples: ContentBlock[] = [
   // Section 9: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-tuples',
-      title: 'Tuples Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'x = (42)\nprint(type(x).__name__)',
-          options: ['tuple', 'int', 'list', 'Error'],
-          correctIndex: 1,
-          explanation: '(42) is just 42 in parentheses — an int. To make a single-element tuple, use (42,) with a trailing comma.',
-        },
-        {
-          type: 'predict-output',
-          code: 'a, *b, c = (1, 2, 3, 4, 5)\nprint(b)',
-          options: ['(2, 3, 4)', '[2, 3, 4]', '2 3 4', 'Error'],
-          correctIndex: 1,
-          explanation: 'The * operator collects remaining values into a LIST (not a tuple), even when unpacking a tuple.',
-        },
-        {
-          type: 'mcq',
-          question: 'Which of these can be used as a dictionary key?',
-          options: ['[1, 2, 3]', '{1, 2, 3}', '(1, 2, 3)', '{"a": 1}'],
-          correctIndex: 2,
-          explanation: 'Only hashable (immutable) types can be dict keys. Tuples (with hashable elements) are hashable. Lists, sets, and dicts are not.',
-        },
-        {
-          type: 'predict-output',
-          code: 't = (1, [2, 3])\nt[1].append(4)\nprint(t)',
-          options: ['Error', '(1, [2, 3, 4])', '(1, [2, 3])', 'TypeError'],
-          correctIndex: 1,
-          explanation: 'The tuple is immutable (can\'t replace its elements), but the list inside it is mutable. Appending to the list works because we\'re modifying the list, not the tuple.',
-        },
-        {
-          type: 'predict-output',
-          code: 'a, b = 5, 10\na, b = b, a + b\nprint(a, b)',
-          options: ['10 15', '5 15', '10 20', '15 10'],
-          correctIndex: 0,
-          explanation: 'Right side evaluates FIRST: b=10, a+b=5+10=15. Then unpacks: a=10, b=15. Output: 10 15.',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 10: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-tuples',
-      title: 'Contact Book with Tuples',
-      difficulty: 'medium',
-      description: 'Build a simple contact book that stores contacts as named tuples with name, phone, and email. Implement functions to add, search by name, and display all contacts sorted by name.',
-      starterCode: 'from collections import namedtuple\n\nContact = namedtuple("Contact", ["name", "phone", "email"])\n\ndef add_contact(contacts, name, phone, email):\n    """Add a new contact (returns new list)"""\n    contacts.append(Contact(name, phone, email))\n    return contacts\n\ndef search(contacts, query):\n    """Find contacts whose name contains the query (case-insensitive)"""\n    query = query.lower()\n    return [c for c in contacts if query in c.name.lower()]\n\ndef display(contacts):\n    """Display all contacts sorted by name"""\n    for c in sorted(contacts, key=lambda c: c.name):\n        print(f"  {c.name}: {c.phone} | {c.email}")\n\n# Test it\nbook = []\nbook = add_contact(book, "Alice Smith", "555-1234", "alice@email.com")\nbook = add_contact(book, "Bob Jones", "555-5678", "bob@email.com")\nbook = add_contact(book, "Alice Wong", "555-9012", "awong@email.com")\n\nprint("All contacts:")\ndisplay(book)\n\nprint("\\nSearch for \'alice\':")\nresults = search(book, "alice")\nfor c in results:\n    print(f"  {c.name}: {c.phone}")',
-      testCases: [
-        { input: '', expected: 'All contacts:\n  Alice Smith: 555-1234 | alice@email.com\n  Alice Wong: 555-9012 | awong@email.com\n  Bob Jones: 555-5678 | bob@email.com\n\nSearch for \'alice\':\n  Alice Smith: 555-1234\n  Alice Wong: 555-9012' },
-      ],
-      hints: [
-        'namedtuple creates a class — call it like Contact("name", "phone", "email")',
-        'Use list comprehension with string methods for search',
-        'sorted() with a key function for alphabetical display',
-      ],
-      solution: 'from collections import namedtuple\n\nContact = namedtuple("Contact", ["name", "phone", "email"])\n\ndef add_contact(contacts, name, phone, email):\n    contacts.append(Contact(name, phone, email))\n    return contacts\n\ndef search(contacts, query):\n    query = query.lower()\n    return [c for c in contacts if query in c.name.lower()]\n\ndef display(contacts):\n    for c in sorted(contacts, key=lambda c: c.name):\n        print(f"  {c.name}: {c.phone} | {c.email}")',
-    },
-  },
+  
 ]

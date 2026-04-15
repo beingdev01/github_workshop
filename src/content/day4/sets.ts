@@ -80,65 +80,11 @@ export const day4Sets: ContentBlock[] = [
   // Section 8: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-sets',
-      title: 'Sets Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 's = {1, 2, 2, 3, 3, 3}\nprint(len(s))',
-          options: ['6', '3', '1', 'Error'],
-          correctIndex: 1,
-          explanation: 'Sets only keep unique elements. {1, 2, 2, 3, 3, 3} becomes {1, 2, 3}, which has length 3.',
-        },
-        {
-          type: 'predict-output',
-          code: 'A = {1, 2, 3}\nB = {2, 3, 4}\nprint(A ^ B)',
-          options: ['{2, 3}', '{1, 4}', '{1, 2, 3, 4}', 'Error'],
-          correctIndex: 1,
-          explanation: '^ is symmetric difference: elements in A or B but not both. 1 is only in A, 4 is only in B. Result: {1, 4}.',
-        },
-        {
-          type: 'predict-output',
-          code: 'x = type({}).__name__\ny = type(set()).__name__\nprint(x, y)',
-          options: ['set set', 'dict dict', 'dict set', 'set dict'],
-          correctIndex: 2,
-          explanation: '{} creates an empty DICT (not a set!). set() creates an empty set. This is a common gotcha.',
-        },
-        {
-          type: 'mcq',
-          question: 'Which operation finds elements in set A that are NOT in set B?',
-          options: ['A | B', 'A & B', 'A - B', 'A ^ B'],
-          correctIndex: 2,
-          explanation: 'A - B (difference) returns elements that are in A but not in B.',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 9: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-sets',
-      title: 'Social Network Analyzer',
-      difficulty: 'medium',
-      description: 'Given a social network represented as a dictionary of users and their friends (sets), find: mutual friends between two users, friend suggestions (friends of friends who aren\'t already friends), and the most connected user.',
-      starterCode: '# Social network as dict of sets\nnetwork = {\n    "Alice": {"Bob", "Charlie", "Diana"},\n    "Bob": {"Alice", "Diana", "Eve"},\n    "Charlie": {"Alice", "Frank"},\n    "Diana": {"Alice", "Bob", "Eve", "Frank"},\n    "Eve": {"Bob", "Diana"},\n    "Frank": {"Charlie", "Diana"},\n}\n\n# 1. Mutual friends\ndef mutual_friends(network, user1, user2):\n    return network[user1] & network[user2]\n\nprint("Mutual friends (Alice & Bob):")\nprint(f"  {mutual_friends(network, \'Alice\', \'Bob\')}")\n\n# 2. Friend suggestions (friends of friends, not already friends)\ndef suggest_friends(network, user):\n    friends = network[user]\n    suggestions = set()\n    for friend in friends:\n        suggestions |= network[friend]  # Add friends of friends\n    suggestions -= friends      # Remove existing friends\n    suggestions.discard(user)   # Remove self\n    return suggestions\n\nprint("\\nFriend suggestions for Alice:")\nprint(f"  {suggest_friends(network, \'Alice\')}")\n\n# 3. Most connected user\nmost = max(network, key=lambda u: len(network[u]))\nprint(f"\\nMost connected: {most} ({len(network[most])} friends)")',
-      testCases: [
-        { input: '', expected: 'Mutual friends (Alice & Bob):\n  {\'Diana\'}\n\nFriend suggestions for Alice:\n  {\'Eve\', \'Frank\'}\n\nMost connected: Diana (4 friends)' },
-      ],
-      hints: [
-        'Set intersection (&) finds mutual friends',
-        'Union of friends-of-friends, then subtract existing friends',
-        'max() with key=lambda finds the user with most connections',
-      ],
-      solution: 'def mutual_friends(network, u1, u2): return network[u1] & network[u2]\ndef suggest_friends(network, user):\n    friends = network[user]\n    fof = set()\n    for f in friends: fof |= network[f]\n    return fof - friends - {user}',
-    },
-  },
+  
 ]

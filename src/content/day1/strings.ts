@@ -370,126 +370,16 @@ export const day1Strings: ContentBlock[] = [
   },
 
   // ═══════════════════════════════════════
-  // Quiz
+  // Section 11: Q&A
   // ═══════════════════════════════════════
-  { type: 'divider' },
+  { type: 'heading', level: 2, text: 'Knowledge Check' },
   {
     type: 'qna',
-    quiz: {
-      id: 'quiz-day1-strings',
-      title: 'Strings Mastery Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'print(len("Hello\\nWorld"))',
-          options: ['10', '11', '12', 'Error'],
-          correctIndex: 1,
-          explanation: 'The string "Hello\\nWorld" contains: H, e, l, l, o, \\n (newline \u2014 1 character), W, o, r, l, d = 11 characters total. The escape sequence \\n counts as a single character.',
-        },
-        {
-          type: 'predict-output',
-          code: 'text = "Python"\nprint(text[1:4])',
-          options: ['Pyt', 'yth', 'ytho', 'Python'],
-          correctIndex: 1,
-          explanation: 'Slicing with [1:4] extracts characters at indices 1, 2, and 3 (stop index 4 is excluded). "Python"[1] = \'y\', [2] = \'t\', [3] = \'h\', giving "yth".',
-        },
-        {
-          type: 'mcq',
-          question: 'Which of the following will raise a TypeError?',
-          options: [
-            '"Hello" + " World"',
-            '"Count: " + str(42)',
-            '"Age: " + 25',
-            '"ha" * 3',
-          ],
-          correctIndex: 2,
-          explanation: 'You cannot concatenate a string with an integer using +. "Age: " + 25 raises TypeError. You must convert the integer first: "Age: " + str(25) or use f"Age: {25}".',
-        },
-        {
-          type: 'predict-output',
-          code: 's = "Hello"\ns = s.upper()\nprint(s)',
-          options: ['Hello', 'HELLO', 'hello', 'Error \u2014 strings are immutable'],
-          correctIndex: 1,
-          explanation: 's.upper() returns a NEW string "HELLO", and we reassign s to point to it. This is NOT mutation \u2014 it\'s reassignment. The original "Hello" is unchanged (but lost since nothing references it). s now holds "HELLO".',
-        },
-        {
-          type: 'fill-blank',
-          prompt: 'To reverse a string `word`, you can use: word[___]',
-          answer: '::-1',
-          caseSensitive: true,
-          explanation: 'The slice [::-1] means start from the end, go to the beginning, stepping by -1 (one character backwards). This effectively reverses the string.',
-        },
-        {
-          type: 'predict-output',
-          code: 'print("abc" * 2 + "d")',
-          options: ['abcabcd', 'abcd2', 'abc2d', 'Error'],
-          correctIndex: 0,
-          explanation: 'Operator precedence: * is evaluated before +. "abc" * 2 gives "abcabc", then adding "d" gives "abcabcd".',
-        },
-        {
-          type: 'predict-output',
-          code: 'text = "Hello, World!"\nprint(text[-6:-1])',
-          options: ['World', 'World!', 'orld', 'orld!'],
-          correctIndex: 0,
-          explanation: 'text[-6:-1] starts at index -6 (which is \'W\') and goes up to but NOT including index -1 (which is \'!\'). So we get "World" \u2014 indices -6, -5, -4, -3, -2.',
-        },
-        {
-          type: 'mcq',
-          question: 'What does "hello world".split() return?',
-          options: [
-            '["hello world"]',
-            '["hello", "world"]',
-            '["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]',
-            '("hello", "world")',
-          ],
-          correctIndex: 1,
-          explanation: 'split() with no arguments splits on whitespace and returns a list of words. "hello world".split() returns ["hello", "world"].',
-        },
-        {
-          type: 'predict-output',
-          code: 'a = "Python"\nb = a\na = a.replace("P", "J")\nprint(b)',
-          options: ['Python', 'Jython', 'Error', 'None'],
-          correctIndex: 0,
-          explanation: 'Strings are immutable. a.replace("P", "J") creates a NEW string "Jython" and assigns it to a. The variable b still points to the original "Python" string \u2014 it is unaffected.',
-        },
-        {
-          type: 'fill-blank',
-          prompt: 'The separator.___([list of strings]) method joins list items into a single string.',
-          answer: 'join',
-          caseSensitive: true,
-          explanation: 'The join() method is called on a separator string and takes an iterable of strings. For example: ", ".join(["a", "b", "c"]) returns "a, b, c".',
-        },
-      ],
-    },
-  },
-
-  // ═══════════════════════════════════════
-  // Challenge
-  // ═══════════════════════════════════════
-  { type: 'divider' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-day1-strings',
-      title: 'Text Analyzer',
-      difficulty: 'medium',
-      description: 'Write a program that analyzes a given text string and prints the following statistics:\n\n1. The total number of characters (including spaces)\n2. The number of words\n3. The number of uppercase letters\n4. The number of lowercase letters\n5. The number of digits\n6. The number of spaces\n\nPrint each statistic on a separate line in EXACTLY this format:\nCharacters: <count>\nWords: <count>\nUppercase: <count>\nLowercase: <count>\nDigits: <count>\nSpaces: <count>\n\nUse the provided `text` variable as input.',
-      starterCode: 'text = "Hello World 123 Python IS Fun"\n\n# Analyze the text and print the statistics\n# Your code here\n',
-      testCases: [
-        { expected: 'Characters: 30', description: 'Should count total characters including spaces' },
-        { expected: 'Words: 6', description: 'Should count the number of words' },
-        { expected: 'Uppercase: 6', description: 'Should count uppercase letters (H, W, P, I, S, F)' },
-        { expected: 'Lowercase: 15', description: 'Should count all lowercase letters' },
-        { expected: 'Digits: 3', description: 'Should count digits (1, 2, 3)' },
-        { expected: 'Spaces: 5', description: 'Should count space characters' },
-      ],
-      hints: [
-        'Use len(text) for total characters',
-        'Use text.split() to get a list of words, then len() on that list',
-        'Loop through each character and use .isupper(), .islower(), .isdigit() to classify it',
-        'Count spaces by checking if each character equals " " or use text.count(" ")',
-      ],
-      solution: 'text = "Hello World 123 Python IS Fun"\n\nprint(f"Characters: {len(text)}")\nprint(f"Words: {len(text.split())}")\n\nupper_count = 0\nlower_count = 0\ndigit_count = 0\nspace_count = 0\n\nfor char in text:\n    if char.isupper():\n        upper_count += 1\n    elif char.islower():\n        lower_count += 1\n    elif char.isdigit():\n        digit_count += 1\n    elif char == " ":\n        space_count += 1\n\nprint(f"Uppercase: {upper_count}")\nprint(f"Lowercase: {lower_count}")\nprint(f"Digits: {digit_count}")\nprint(f"Spaces: {space_count}")',
-    },
-  },
+    items: [
+      {
+        question: 'What are some common string methods?',
+        answer: 'Common methods include: `upper()`, `lower()`, `capitalize()`, `strip()`, `find()`, `count()`, `replace()`, `split()`, and `join()`. These make text processing in Python powerful and easy.'
+      }
+    ]
+  }
 ]

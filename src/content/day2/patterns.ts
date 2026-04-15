@@ -126,69 +126,11 @@ export const day2Patterns: ContentBlock[] = [
   // Section 11: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-patterns',
-      title: 'Loop Patterns Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'for i in range(4):\n    for j in range(3):\n        print("*", end="")',
-          options: ['3', '4', '7', '12'],
-          correctIndex: 3,
-          explanation: 'Outer loop runs 4 times, inner loop runs 3 times per outer iteration. Total: 4 × 3 = 12 prints.',
-        },
-        {
-          type: 'predict-output',
-          code: 'for i in range(3):\n    for j in range(i + 1):\n        print("#", end="")\n    print()',
-          options: ['#\\n##\\n###', '###\\n##\\n#', '#\\n#\\n#', '###'],
-          correctIndex: 0,
-          explanation: 'i=0: j runs 1 time (1 hash), i=1: j runs 2 times (2 hashes), i=2: j runs 3 times (3 hashes). Result: right triangle.',
-        },
-        {
-          type: 'mcq',
-          question: 'In a nested loop, which loop does `break` exit?',
-          options: ['The outermost loop', 'The innermost loop it\'s inside', 'All loops', 'The function'],
-          correctIndex: 1,
-          explanation: '`break` only exits the innermost loop containing it. The outer loop continues normally. To break multiple loops, use a flag variable or wrap the loops in a function and use `return`.',
-        },
-        {
-          type: 'predict-output',
-          code: 'for i in range(1, 5):\n    print("*" * i + " " * (5-i) + "*" * i)',
-          options: ['*** ***', '*   *', '**  **', '*** ***'],
-          correctIndex: 0,
-          explanation: 'i=3: "***" + "  " + "***" = "***  ***". Wait — 5-3=2 spaces. Let me recalculate: "*"*3 + " "*2 + "*"*3 = "***  ***".',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 12: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-patterns',
-      title: 'Pyramid Builder',
-      difficulty: 'hard',
-      description: 'Create a centered number pyramid where each row contains numbers counting up to the row number, then back down. Row 1: "1", Row 2: "1 2 1", Row 3: "1 2 3 2 1", etc.',
-      starterCode: '# Number Pyramid\nn = 5\nfor i in range(1, n + 1):\n    # Leading spaces for centering\n    print("  " * (n - i), end="")\n    \n    # Count up: 1, 2, ..., i\n    for j in range(1, i + 1):\n        print(f"{j:2d}", end=" ")\n    \n    # Count back down: i-1, ..., 1\n    for j in range(i - 1, 0, -1):\n        print(f"{j:2d}", end=" ")\n    \n    print()\n\n# Expected output (n=5):\n#          1\n#        1  2  1\n#      1  2  3  2  1\n#    1  2  3  4  3  2  1\n#  1  2  3  4  5  4  3  2  1',
-      testCases: [
-        {
-          input: '',
-          expected: '          1 \n        1  2  1 \n      1  2  3  2  1 \n    1  2  3  4  3  2  1 \n  1  2  3  4  5  4  3  2  1',
-        },
-      ],
-      hints: [
-        'Each row i has (2i - 1) numbers',
-        'First half: count from 1 to i',
-        'Second half: count from i-1 back down to 1',
-        'Leading spaces: (n - i) * some_width for centering',
-      ],
-      solution: 'n = 5\nfor i in range(1, n + 1):\n    print("  " * (n - i), end="")\n    for j in range(1, i + 1):\n        print(f"{j:2d}", end=" ")\n    for j in range(i - 1, 0, -1):\n        print(f"{j:2d}", end=" ")\n    print()',
-    },
-  },
+  
 ]

@@ -80,65 +80,11 @@ export const day3ListPatterns: ContentBlock[] = [
   // Section 8: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-listpatterns',
-      title: 'List Patterns Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'result = [x for x in range(10) if x % 3 == 0]\nprint(result)',
-          options: ['[0, 3, 6, 9]', '[3, 6, 9]', '[0, 3, 6]', '[1, 2, 4, 5, 7, 8]'],
-          correctIndex: 0,
-          explanation: 'range(10) gives 0-9. Filter by x%3==0: 0, 3, 6, 9. Note that 0%3==0 is True!',
-        },
-        {
-          type: 'predict-output',
-          code: 'a = [[1, 2], [3, 4]]\nb = a.copy()\nb[0][0] = 99\nprint(a[0][0])',
-          options: ['1', '99', 'Error', '[[99, 2], [3, 4]]'],
-          correctIndex: 1,
-          explanation: '.copy() makes a SHALLOW copy. The inner lists are still shared. Modifying b[0][0] also modifies a[0][0].',
-        },
-        {
-          type: 'mcq',
-          question: 'What does a stack\'s pop() remove?',
-          options: ['The first element added', 'The last element added', 'A random element', 'The smallest element'],
-          correctIndex: 1,
-          explanation: 'A stack is LIFO (Last In, First Out). pop() removes the most recently added element.',
-        },
-        {
-          type: 'predict-output',
-          code: 'words = ["hello", "world"]\nresult = [w.upper() for w in words]\nprint(result)',
-          options: ['["hello", "world"]', '["HELLO", "WORLD"]', 'HELLO WORLD', 'Error'],
-          correctIndex: 1,
-          explanation: 'The list comprehension applies .upper() to each word, creating a new list of uppercase strings.',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 9: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-listpatterns',
-      title: 'Flatten & Group',
-      difficulty: 'hard',
-      description: 'Write two functions: (1) flatten() that converts a nested list of any depth into a flat list, and (2) chunk() that splits a flat list into groups of size n.',
-      starterCode: '# Flatten a nested list (recursive)\ndef flatten(nested):\n    result = []\n    for item in nested:\n        if isinstance(item, list):\n            result.extend(flatten(item))\n        else:\n            result.append(item)\n    return result\n\n# Chunk a list into groups of n\ndef chunk(lst, n):\n    return [lst[i:i+n] for i in range(0, len(lst), n)]\n\n# Test flatten\ndeep = [1, [2, 3], [4, [5, 6]], [[7, [8, 9]]]]\nprint(f"Flatten: {flatten(deep)}")\n\n# Test chunk\ndata = list(range(1, 11))\nprint(f"Chunk by 3: {chunk(data, 3)}")\nprint(f"Chunk by 4: {chunk(data, 4)}")',
-      testCases: [
-        { input: '', expected: 'Flatten: [1, 2, 3, 4, 5, 6, 7, 8, 9]\nChunk by 3: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]\nChunk by 4: [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10]]' },
-      ],
-      hints: [
-        'For flatten: use recursion. If an item is a list, flatten it; otherwise append it.',
-        'For chunk: use slicing with range(0, len(lst), n)',
-        'isinstance(item, list) checks if something is a list',
-      ],
-      solution: 'def flatten(nested):\n    result = []\n    for item in nested:\n        if isinstance(item, list):\n            result.extend(flatten(item))\n        else:\n            result.append(item)\n    return result\n\ndef chunk(lst, n):\n    return [lst[i:i+n] for i in range(0, len(lst), n)]',
-    },
-  },
+  
 ]

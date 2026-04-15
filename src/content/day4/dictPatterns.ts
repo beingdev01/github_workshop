@@ -70,65 +70,11 @@ export const day4DictPatterns: ContentBlock[] = [
   // Section 7: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-dictpatterns',
-      title: 'Dictionary Patterns Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'result = {x: x**2 for x in range(4)}\nprint(result)',
-          options: ['{0: 0, 1: 1, 2: 4, 3: 9}', '[0, 1, 4, 9]', '{1: 1, 2: 4, 3: 9}', 'Error'],
-          correctIndex: 0,
-          explanation: 'Dict comprehension creates key:value pairs. range(4) gives 0,1,2,3. Each maps to its square.',
-        },
-        {
-          type: 'predict-output',
-          code: 'from collections import Counter\nc = Counter("banana")\nprint(c.most_common(1))',
-          options: ['[("a", 3)]', '[("b", 1)]', '["a"]', '3'],
-          correctIndex: 0,
-          explanation: '"banana" has a:3, n:2, b:1. most_common(1) returns the top-1 as a list of (element, count) tuples.',
-        },
-        {
-          type: 'mcq',
-          question: 'What does defaultdict(list) do when accessing a missing key?',
-          options: ['Raises KeyError', 'Returns None', 'Creates the key with an empty list', 'Creates the key with value 0'],
-          correctIndex: 2,
-          explanation: 'defaultdict(list) automatically creates missing keys with the factory function list(), which returns [].',
-        },
-        {
-          type: 'predict-output',
-          code: 'd = {"a": 1, "b": 2}\nd.setdefault("a", 999)\nd.setdefault("c", 3)\nprint(d)',
-          options: ['{"a": 999, "b": 2, "c": 3}', '{"a": 1, "b": 2, "c": 3}', '{"a": 1, "b": 2}', 'Error'],
-          correctIndex: 1,
-          explanation: 'setdefault only sets the value if the key doesn\'t exist. "a" already exists (unchanged). "c" doesn\'t exist, so it\'s set to 3.',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 8: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-dictpatterns',
-      title: 'Text Analyzer',
-      difficulty: 'hard',
-      description: 'Build a text analysis tool. Given a paragraph, compute: (1) word frequency sorted by count, (2) average word length, (3) sentence count, and (4) the most common starting letter.',
-      starterCode: 'from collections import Counter\n\ntext = """Python is a great programming language. Python is used for web development.\nPython is also great for data science. Many programmers love Python.\nPython makes programming fun and productive."""\n\n# 1. Word frequency (top 5)\nwords = text.lower().split()\nword_freq = Counter(words)\nprint("Top 5 words:")\nfor word, count in word_freq.most_common(5):\n    print(f"  {word}: {count}")\n\n# 2. Average word length\nclean_words = [w.strip(".,!?") for w in words]\navg_len = sum(len(w) for w in clean_words) / len(clean_words)\nprint(f"\\nAverage word length: {avg_len:.1f}")\n\n# 3. Sentence count\nsentences = [s.strip() for s in text.split(".") if s.strip()]\nprint(f"Sentences: {len(sentences)}")\n\n# 4. Most common starting letter\nfirst_letters = Counter(w[0] for w in clean_words if w)\nprint(f"\\nMost common starting letter: {first_letters.most_common(1)[0]}")',
-      testCases: [
-        { input: '', expected: 'Top 5 words:\n  python: 5\n  is: 3\n  great: 2\n  programming: 2\n  for: 2\n\nAverage word length: 4.8\nSentences: 5\n\nMost common starting letter: (\'p\', 11)' },
-      ],
-      hints: [
-        'Counter.most_common(n) returns the n most frequent items',
-        'Strip punctuation from words before analysis',
-        'Split on "." to count sentences',
-      ],
-      solution: 'from collections import Counter\nwords = text.lower().split()\nword_freq = Counter(words)\nclean = [w.strip(".,!?") for w in words]\navg_len = sum(len(w) for w in clean) / len(clean)\nsentences = [s.strip() for s in text.split(".") if s.strip()]',
-    },
-  },
+  
 ]

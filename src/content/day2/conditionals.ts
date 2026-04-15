@@ -174,76 +174,11 @@ export const day2Conditionals: ContentBlock[] = [
   // Section 11: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-conditionals',
-      title: 'Conditionals Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'x = 15\nif x > 20:\n    print("A")\nelif x > 10:\n    print("B")\nelif x > 5:\n    print("C")\nelse:\n    print("D")',
-          options: ['A', 'B', 'C', 'B and C'],
-          correctIndex: 1,
-          explanation: 'In an if-elif-else chain, only the FIRST matching block executes. x=15 > 20 is False, but 15 > 10 is True, so "B" prints. The elif x > 5 is NEVER checked.',
-        },
-        {
-          type: 'predict-output',
-          code: 'x = 15\nif x > 20:\n    print("A")\nif x > 10:\n    print("B")\nif x > 5:\n    print("C")',
-          options: ['A', 'B', 'C', 'B\\nC'],
-          correctIndex: 3,
-          explanation: 'These are THREE SEPARATE if statements (no elif). Each is checked independently. 15>20 is False (skip), 15>10 is True (print B), 15>5 is True (print C).',
-        },
-        {
-          type: 'predict-output',
-          code: 'result = "even" if 7 % 2 == 0 else "odd"\nprint(result)',
-          options: ['even', 'odd', 'Error', 'None'],
-          correctIndex: 1,
-          explanation: '7 % 2 = 1, which is not 0, so the condition is False. The ternary expression returns "odd".',
-        },
-        {
-          type: 'mcq',
-          question: 'What keyword catches ALL remaining cases in an if-elif chain?',
-          options: ['default', 'else', 'finally', 'otherwise'],
-          correctIndex: 1,
-          explanation: '`else` catches all remaining cases. Unlike `elif`, `else` has no condition — it runs when ALL previous conditions are False. (`default` is used in match-case via `case _:`, `finally` is for try-except, `otherwise` doesn\'t exist in Python.)',
-        },
-        {
-          type: 'predict-output',
-          code: 'x = 7\nif x % 5 == 0:\n    msg = "multiple of 5"\nprint(msg)',
-          options: ['"multiple of 5"', '""', 'NameError', 'None'],
-          correctIndex: 2,
-          explanation: 'Since 7 is not divisible by 5, the if-body never runs, and `msg` is never created. Trying to print an undefined variable raises a NameError.',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 12: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-conditionals',
-      title: 'Leap Year Checker',
-      difficulty: 'medium',
-      description: 'A leap year is: divisible by 4, BUT not by 100 UNLESS also divisible by 400. Write a program that classifies a given year. Examples: 2024 → leap, 1900 → not leap, 2000 → leap.',
-      starterCode: '# Leap Year Checker\n# Rules:\n# 1. Divisible by 4 → candidate\n# 2. BUT if divisible by 100 → NOT a leap year\n# 3. UNLESS also divisible by 400 → IS a leap year\n\nyears = [2024, 1900, 2000, 2023, 1600, 1800, 2100]\n\nfor year in years:\n    # Your code here — determine if year is a leap year\n    if year % 400 == 0:\n        is_leap = True\n    elif year % 100 == 0:\n        is_leap = False\n    elif year % 4 == 0:\n        is_leap = True\n    else:\n        is_leap = False\n    \n    status = "Leap year ✅" if is_leap else "Not a leap year ❌"\n    print(f"{year}: {status}")',
-      testCases: [
-        {
-          input: '',
-          expected: '2024: Leap year ✅\n1900: Not a leap year ❌\n2000: Leap year ✅\n2023: Not a leap year ❌\n1600: Leap year ✅\n1800: Not a leap year ❌\n2100: Not a leap year ❌',
-        },
-      ],
-      hints: [
-        'Check divisibility by 400 first (the most specific rule)',
-        'Then check divisibility by 100 (centuries are usually NOT leap years)',
-        'Then check divisibility by 4 (the general rule)',
-        'Try also: year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)',
-      ],
-      solution: 'years = [2024, 1900, 2000, 2023, 1600, 1800, 2100]\nfor year in years:\n    if year % 400 == 0:\n        is_leap = True\n    elif year % 100 == 0:\n        is_leap = False\n    elif year % 4 == 0:\n        is_leap = True\n    else:\n        is_leap = False\n    status = "Leap year ✅" if is_leap else "Not a leap year ❌"\n    print(f"{year}: {status}")',
-    },
-  },
+  
 ]

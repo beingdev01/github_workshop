@@ -154,75 +154,11 @@ export const day2While: ContentBlock[] = [
   // Section 11: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-while',
-      title: 'While Loops Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'x = 10\nwhile x > 0:\n    x -= 3\nprint(x)',
-          options: ['0', '-2', '1', '-1'],
-          correctIndex: 1,
-          explanation: 'x goes: 10→7→4→1→(-2). When x=-2, the condition x>0 is False, so the loop ends. x is -2.',
-        },
-        {
-          type: 'predict-output',
-          code: 'count = 0\nn = 1\nwhile n < 1000:\n    n *= 2\n    count += 1\nprint(count)',
-          options: ['9', '10', '999', 'Infinite'],
-          correctIndex: 1,
-          explanation: 'n doubles each time: 1→2→4→8→16→32→64→128→256→512→1024. That\'s 10 iterations. After the 10th, n=1024 which is ≥1000, so the loop stops.',
-        },
-        {
-          type: 'mcq',
-          question: 'When does the `else` block of a while-else execute?',
-          options: ['When the condition becomes False (normal completion)', 'When break is executed', 'Every time', 'When an exception occurs'],
-          correctIndex: 0,
-          explanation: 'The else block runs only when the while loop ends naturally (condition becomes False). If break exits the loop, the else is skipped.',
-        },
-        {
-          type: 'predict-output',
-          code: 'n = 0\nwhile n < 5:\n    n += 1\n    if n == 3:\n        continue\n    print(n, end=" ")',
-          options: ['1 2 3 4 5', '1 2 4 5', '1 2', '1 2 3'],
-          correctIndex: 1,
-          explanation: 'When n=3, `continue` skips the print. So we get 1, 2, (skip 3), 4, 5.',
-        },
-        {
-          type: 'predict-output',
-          code: 'i = 1\nwhile i <= 3:\n    j = 1\n    while j <= 3:\n        if i == j:\n            break\n        j += 1\n    print(j, end=" ")\n    i += 1',
-          options: ['1 1 1', '1 2 3', '3 3 3', '1 1 1 2 2 3'],
-          correctIndex: 1,
-          explanation: 'Inner loop: when i==j, break. So j stops at 1 (i=1), 2 (i=2), 3 (i=3). Output: 1 2 3.',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 12: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-while',
-      title: 'Reverse a Number',
-      difficulty: 'medium',
-      description: 'Use a while loop to reverse the digits of a positive integer. For example, 12345 becomes 54321. Do NOT convert to a string — use only arithmetic operations (% and //).',
-      starterCode: '# Reverse a number using only arithmetic\nnumber = 12345\noriginal = number\nreversed_num = 0\n\nwhile number > 0:\n    last_digit = number % 10       # Extract last digit\n    reversed_num = reversed_num * 10 + last_digit  # Append it\n    number //= 10                  # Remove last digit\n\nprint(f"Original: {original}")\nprint(f"Reversed: {reversed_num}")\n\n# Test with more numbers\nfor n in [9876, 1000, 7, 100200]:\n    temp = n\n    rev = 0\n    while temp > 0:\n        rev = rev * 10 + temp % 10\n        temp //= 10\n    print(f"{n} → {rev}")',
-      testCases: [
-        {
-          input: '',
-          expected: 'Original: 12345\nReversed: 54321',
-        },
-      ],
-      hints: [
-        'Use % 10 to get the last digit of a number',
-        'Use // 10 to remove the last digit',
-        'Build the reversed number by: reversed = reversed * 10 + last_digit',
-      ],
-      solution: 'number = 12345\noriginal = number\nreversed_num = 0\nwhile number > 0:\n    last_digit = number % 10\n    reversed_num = reversed_num * 10 + last_digit\n    number //= 10\nprint(f"Original: {original}")\nprint(f"Reversed: {reversed_num}")',
-    },
-  },
+  
 ]

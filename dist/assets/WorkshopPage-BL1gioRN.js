@@ -1,4 +1,4 @@
-import{d as N,o as i,c as a,a as t,t as l,l as F,m as C,_ as R,k as I,f as w,q as j,u as B,h as A,n as te,F as S,r as q,s as ne,v as ie,x as re,b as z,w as E,T as ae,y as oe,e as P,z as D,j as se,i as le,p as pe}from"./index-CFkb-kC8.js";import{u as O,g as de,a as ce,b as ue}from"./structure-D2rbrIlz.js";import{u as H,E as U,o as $,l as Y,p as V,k as G,d as K,i as Q,a as J,b as Z,c as X,e as W}from"./index-LE3UFZUf.js";const he=[{type:"heading",level:1,text:"Welcome to Python! 🐍"},{type:"text",content:"Python is a powerful, readable programming language used for everything from web development to data science and AI. In this workshop, you'll learn how to write real, working Python code right in your browser."},{type:"callout",variant:"tip",title:"Why Python?",content:"Created by **Guido van Rossum** in 1991, Python was designed to be simple and readable. Its syntax reads almost like English. Companies like **Google, Netflix, Instagram, and NASA** all rely on Python."},{type:"heading",level:2,text:"Your First Program"},{type:"text",content:"Let's start by displaying text on the screen. In Python, this takes just one line:"},{type:"code",code:'print("Hello, World!")',language:"python"},{type:"text",content:"The `print()` function takes whatever you put inside its parentheses and displays it. The text inside the quotes is called a **string**."},{type:"callout",variant:"warning",title:"Common Mistake",content:'Always include the parentheses `()` after `print`. Writing `print "Hello"` causes a **SyntaxError** in Python 3.'},{type:"playground",defaultCode:`# Try changing the message below:
+import{d as P,o as r,c as s,a as t,t as f,l as I,m as w,_ as D,k as F,f as C,q as j,u as N,h as A,F as B,r as O,b as q,w as k,T as L,e as T,s as M,v as R,j as z,i as H,p as U}from"./index-Df6VTNt2.js";import{u as Y,g as $,a as V,b as G}from"./structure-DSPKmoJo.js";import{u as K,E as Z,o as J,l as Q,p as X,k as ee,d as ne,i as te,a as re,b as ie,c as ae,e as W}from"./index-QtebIQzy.js";const oe=[{type:"heading",level:1,text:"Welcome to Python! 🐍"},{type:"text",content:"Python is a powerful, readable programming language used for everything from web development to data science and AI. In this workshop, you'll learn how to write real, working Python code right in your browser."},{type:"callout",variant:"tip",title:"Why Python?",content:"Created by **Guido van Rossum** in 1991, Python was designed to be simple and readable. Its syntax reads almost like English. Companies like **Google, Netflix, Instagram, and NASA** all rely on Python."},{type:"heading",level:2,text:"Your First Program"},{type:"text",content:"Let's start by displaying text on the screen. In Python, this takes just one line:"},{type:"code",code:'print("Hello, World!")',language:"python"},{type:"text",content:"The `print()` function takes whatever you put inside its parentheses and displays it. The text inside the quotes is called a **string**."},{type:"callout",variant:"warning",title:"Common Mistake",content:'Always include the parentheses `()` after `print`. Writing `print "Hello"` causes a **SyntaxError** in Python 3.'},{type:"playground",defaultCode:`# Try changing the message below:
 print("Hello, World!")
 
 # Try printing with emojis:
@@ -63,22 +63,7 @@ Useful for longer explanations.
 # The correct approaches:
 print("Hello")
 print("age: " + str(25))    # Convert number to string first
-print("age:", 25)            # Or let print() handle it`,language:"python"},{type:"callout",variant:"info",title:"Debugging Process",content:"When you encounter an error, follow this process: **1) Read** the error message carefully (Python tells you the line number and error type). **2) Understand** what went wrong. **3) Fix** the issue. **4) Test** again. Error messages are not your enemy — they are detailed diagnostic tools!"},{type:"quiz",quiz:{id:"quiz-day1-welcome",title:"Quick Check — Python Basics",questions:[{type:"mcq",question:"Which function is used to display output in Python?",options:["display()","print()","show()","console.log()"],correctIndex:1,explanation:"print() is the built-in function used to display output to the screen in Python."},{type:"predict-output",code:`print("Hello")
-print(2 + 3)`,options:["Hello 5","Hello\\n5",'"Hello"\\n5',"Error"],correctIndex:1,explanation:'Each print() outputs on a new line. "Hello" appears first, then 5 (the result of 2+3) on the next line.'},{type:"mcq",question:"What character starts a single-line comment in Python?",options:["//","#","/*","--"],correctIndex:1,explanation:"The # symbol starts a single-line comment in Python. Everything after # on that line is ignored."},{type:"predict-output",code:'print("a", "b", "c", sep="-")',options:["a b c","a-b-c","a, b, c","abc"],correctIndex:1,explanation:`The sep parameter changes the separator between values. Here it's set to "-" instead of the default space.`},{type:"mcq",question:"What type of error occurs when you try to use a variable that hasn't been defined?",options:["SyntaxError","TypeError","NameError","ValueError"],correctIndex:2,explanation:"A NameError occurs when you reference a variable name that Python hasn't seen before (not defined)."}]}},{type:"challenge",challenge:{id:"challenge-hello",title:"Personal Introduction Card",difficulty:"easy",description:`Create a formatted "introduction card" that prints:
-1. A border line of 30 asterisks
-2. Your name with a greeting
-3. A fun fact about yourself
-4. Your favorite number and why
-5. Another border line of 30 asterisks`,starterCode:`# Create your introduction card!
-print("*" * 30)
-print("Hello, I am ___!")
-print("Fun fact: ___")
-print("My favorite number is", ___)
-print("*" * 30)`,testCases:[{expected:"******************************",description:"First line should be 30 asterisks"},{expected:"******************************",description:"Last line should be 30 asterisks",hidden:!0}],hints:["Replace ___ with your own text and numbers",'Use "string" * number to repeat a string',"You can pass multiple values to print() with commas"],solution:`print("*" * 30)
-print("Hello, I am Alex!")
-print("Fun fact: I love solving puzzles")
-print("My favorite number is", 42)
-print("*" * 30)`}}],fe=[{type:"heading",level:1,text:"Variables & Memory"},{type:"text",content:"Variables store and retrieve data. A variable is a **name** that refers to a **value** stored in memory."},{type:"callout",variant:"python",title:"Python's Memory Model",content:"In Python, variables are like **sticky labels** pointing to objects in memory. When you write `x = 42`, Python creates an integer object `42`, and `x` is a label pointing to it."},{type:"code",code:`# Creating variables using the = operator
+print("age:", 25)            # Or let print() handle it`,language:"python"},{type:"callout",variant:"info",title:"Debugging Process",content:"When you encounter an error, follow this process: **1) Read** the error message carefully (Python tells you the line number and error type). **2) Understand** what went wrong. **3) Fix** the issue. **4) Test** again. Error messages are not your enemy — they are detailed diagnostic tools!"}],se=[{type:"heading",level:1,text:"Variables & Memory"},{type:"text",content:"Variables store and retrieve data. A variable is a **name** that refers to a **value** stored in memory."},{type:"callout",variant:"python",title:"Python's Memory Model",content:"In Python, variables are like **sticky labels** pointing to objects in memory. When you write `x = 42`, Python creates an integer object `42`, and `x` is a label pointing to it."},{type:"code",code:`# Creating variables using the = operator
 name = "Alice"       # String
 age = 25             # Integer
 height = 5.6         # Float
@@ -162,21 +147,7 @@ print(f"Swapped: x={x}, y={y}")
 counter = 0
 counter += 1
 counter += 1
-print(f"Counter: {counter}")`,instructions:"Modify the variables, try creating your own, and experiment with swapping and augmented assignment."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-variables",title:"Variables & Memory Quiz",questions:[{type:"mcq",question:"What does the `=` operator do in Python?",options:["Checks if two values are equal","Assigns the value on the right to the variable on the left","Assigns the value on the left to the variable on the right","Creates a mathematical equation"],correctIndex:1,explanation:"The `=` operator is the assignment operator. It evaluates the right side first, then assigns the result to the left-side variable. `==` is used for equality checking."},{type:"predict-output",code:`x = 5
-x = x + 3
-x *= 2
-print(x)`,options:["10","16","13","8"],correctIndex:1,explanation:"x starts at 5. `x = x + 3` makes it 8. `x *= 2` (same as `x = x * 2`) makes it 16."},{type:"predict-output",code:`a, b = 10, 20
-a, b = b, a
-print(a, b)`,options:["10 20","20 10","20 20","Error"],correctIndex:1,explanation:"The right side `b, a` evaluates to `(20, 10)` first, then this tuple is unpacked into `a` and `b`. So `a` becomes 20 and `b` becomes 10."},{type:"mcq",question:"Which of the following is NOT a valid variable name in Python?",options:["_my_var","myVar2","2nd_place","student_name"],correctIndex:2,explanation:"Variable names cannot start with a digit. `2nd_place` starts with `2`, which is invalid. All other options follow Python's naming rules."},{type:"predict-output",code:`x = "hello"
-print(type(x).__name__)`,options:["hello","str","string","type"],correctIndex:1,explanation:"`type(x)` returns `<class 'str'>`. The `__name__` attribute of a type gives just the type name as a string, which is `\"str\"`."}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-variables",title:"Temperature Converter",difficulty:"easy",description:"Write a program that converts a temperature from Celsius to Fahrenheit. The formula is: F = (C * 9/5) + 32. Store the Celsius value in a variable, perform the conversion, and print the result.",starterCode:`celsius = 37.5
-
-# Convert to Fahrenheit using the formula: F = (C * 9/5) + 32
-fahrenheit = 0  # Fix this line
-
-# Print the result (should output: 37.5°C = 99.5°F)
-print(f"{celsius}\\u00b0C = {fahrenheit}\\u00b0F")`,testCases:[{input:"",expected:"37.5°C = 99.5°F"}],hints:["The formula is: fahrenheit = (celsius * 9/5) + 32","For celsius = 37.5: (37.5 * 9/5) + 32 = 67.5 + 32 = 99.5"],solution:`celsius = 37.5
-fahrenheit = (celsius * 9/5) + 32
-print(f"{celsius}\\u00b0C = {fahrenheit}\\u00b0F")`}}],me=[{type:"heading",level:1,text:"Data Types in Python"},{type:"text",content:"Every piece of data in Python has a **type**. The type determines what operations you can perform on that data. Python is **dynamically typed**, meaning you don't declare types explicitly—Python infers them from the value."},{type:"callout",variant:"python",title:"Dynamic vs Static Typing",content:"In statically typed languages (like Java), you declare types: `int x = 5;`. In Python, you write `x = 5` and the type is inferred. The type is associated with the value, not the variable."},{type:"text",content:"The four fundamental built-in data types are:"},{type:"list",items:["**`int`** (Integers): Whole numbers (`42`, `-7`, `0`)","**`float`** (Floating-point): Numbers with decimals (`3.14`, `-0.5`)","**`str`** (Strings): Text enclosed in quotes (`\"hello\"`, `'Python'`)","**`bool`** (Booleans): Logical values (`True` or `False`)"]},{type:"text",content:"Python also has **`NoneType`** (value `None`) to represent the absence of a value."},{type:"heading",level:2,text:"The type() Function"},{type:"text",content:"The built-in `type()` function returns the type of any value or variable:"},{type:"code",code:`# Checking types of literals
+print(f"Counter: {counter}")`,instructions:"Modify the variables, try creating your own, and experiment with swapping and augmented assignment."},{type:"heading",level:2,text:"Knowledge Check"},{type:"qna",items:[{question:"What does the `=` operator do in Python?",answer:"The `=` operator is the assignment operator. It evaluates the right side first, then assigns the result to the left-side variable. `==` is used for equality checking."},{question:"What will this code output? `x = 5; x = x + 3; x *= 2; print(x)`",answer:"**16**\n\nx starts at 5. `x = x + 3` makes it 8. `x *= 2` (same as `x = x * 2`) makes it 16."},{question:"What will this code output? `a, b = 10, 20; a, b = b, a; print(a, b)`",answer:"**20 10**\n\nThe right side `b, a` evaluates to `(20, 10)` first, then this tuple is unpacked into `a` and `b`. So `a` becomes 20 and `b` becomes 10."},{question:"Which of the following is NOT a valid variable name in Python? `_my_var`, `myVar2`, `2nd_place`, `student_name`",answer:"**`2nd_place`**\n\nVariable names cannot start with a digit. `2nd_place` starts with `2`, which is invalid. All other options follow Python's naming rules."},{question:'What does this code print? `x = "hello"; print(type(x).__name__)`',answer:"**`str`**\n\n`type(x)` returns `<class 'str'>`. The `__name__` attribute of a type gives just the type name as a string, which is `\"str\"`."}]},{type:"heading",level:2,text:"Coding Challenge"},{type:"qna",items:[{question:"Temperature Converter: Write a program that converts a temperature from Celsius to Fahrenheit. The formula is: F = (C * 9/5) + 32",answer:'**Solution:**\n\n```python\ncelsius = 37.5\nfahrenheit = (celsius * 9/5) + 32\nprint(f"{celsius}°C = {fahrenheit}°F")\n```\n\n**How it works:**\n- The formula is: `fahrenheit = (celsius * 9/5) + 32`\n- For celsius = 37.5: `(37.5 * 9/5) + 32 = 67.5 + 32 = 99.5`\n- Output: `37.5°C = 99.5°F`'}]}],le=[{type:"heading",level:1,text:"Data Types in Python"},{type:"text",content:"Every piece of data in Python has a **type**. The type determines what operations you can perform on that data. Python is **dynamically typed**, meaning you don't declare types explicitly—Python infers them from the value."},{type:"callout",variant:"python",title:"Dynamic vs Static Typing",content:"In statically typed languages (like Java), you declare types: `int x = 5;`. In Python, you write `x = 5` and the type is inferred. The type is associated with the value, not the variable."},{type:"text",content:"The four fundamental built-in data types are:"},{type:"list",items:["**`int`** (Integers): Whole numbers (`42`, `-7`, `0`)","**`float`** (Floating-point): Numbers with decimals (`3.14`, `-0.5`)","**`str`** (Strings): Text enclosed in quotes (`\"hello\"`, `'Python'`)","**`bool`** (Booleans): Logical values (`True` or `False`)"]},{type:"text",content:"Python also has **`NoneType`** (value `None`) to represent the absence of a value."},{type:"heading",level:2,text:"The type() Function"},{type:"text",content:"The built-in `type()` function returns the type of any value or variable:"},{type:"code",code:`# Checking types of literals
 print(type(42))          # <class 'int'>
 print(type(3.14))        # <class 'float'>
 print(type("hello"))     # <class 'str'>
@@ -408,19 +379,7 @@ print("---")
 test_values = [0, 1, -1, 0.0, 0.1, "", "hello", "0", None, True, False]
 for val in test_values:
     print(f"bool({str(val):>10}) = {bool(val)}")
-`,instructions:"Run the code to see type conversions in action. The truthy/falsy exploration shows which values Python considers True or False."},{type:"divider"},{type:"quiz",quiz:{id:"quiz-day1-datatypes",title:"Data Types — Knowledge Check",questions:[{type:"predict-output",code:"print(type(42))",options:["int","<class 'int'>","42","integer"],correctIndex:1,explanation:"The type() function returns the class of the object. For the integer 42, it returns <class 'int'>, which is the full string representation of the type."},{type:"predict-output",code:"print(0.1 + 0.2 == 0.3)",options:["True","False","0.3","Error"],correctIndex:1,explanation:"0.1 + 0.2 evaluates to 0.30000000000000004 due to floating-point precision. This is NOT exactly equal to 0.3, so the comparison returns False. Never compare floats with ==!"},{type:"mcq",question:'What does int("3.14") produce?',options:["3","3.14","ValueError","314"],correctIndex:2,explanation:'int() cannot directly parse a string containing a decimal point. You would need int(float("3.14")) to first convert to float (3.14) and then to int (3). int("3.14") raises a ValueError.'},{type:"predict-output",code:"print(True + True + False)",options:["TrueTrueFalse","2","3","Error"],correctIndex:1,explanation:"Booleans are integers in Python! True equals 1 and False equals 0. So True + True + False = 1 + 1 + 0 = 2."},{type:"predict-output",code:'print(bool("0"))',options:["True","False","0","Error"],correctIndex:0,explanation:`"0" is a non-empty string (it contains the character '0'). Only empty strings are falsy. The content of the string doesn't matter — any non-empty string is truthy. bool("0") returns True.`},{type:"predict-output",code:"print(int(3.99))",options:["3","4","3.99","Error"],correctIndex:0,explanation:"int() truncates toward zero — it simply removes the decimal part without rounding. int(3.99) becomes 3, not 4. If you want rounding, use round() instead."},{type:"fill-blank",prompt:"The function ___ checks if a value is an instance of a given type.",answer:"isinstance",caseSensitive:!0,explanation:"isinstance() takes a value and a type (or tuple of types) and returns True if the value is an instance of that type. It's the preferred way to check types in Python."},{type:"mcq",question:"Which of the following is NOT a falsy value in Python?",options:["0",'""',"None",'"False"'],correctIndex:3,explanation:`"False" is a non-empty string, so it's truthy! It contains 5 characters. Don't confuse the string "False" with the boolean value False. 0, "", and None are all falsy.`},{type:"predict-output",code:`x = None
-print(x is None)`,options:["True","False","None","Error"],correctIndex:0,explanation:"The 'is' keyword checks identity — whether two references point to the exact same object. Since there is only one None object in Python, x is None returns True. This is the recommended way to check for None."},{type:"predict-output",code:"print(type(10 / 2))",options:["<class 'int'>","<class 'float'>","<class 'str'>","Error"],correctIndex:1,explanation:"In Python 3, the / operator ALWAYS returns a float, even when both operands are integers and the result is a whole number. 10 / 2 = 5.0 (float), not 5 (int). Use // for integer division."}]}},{type:"divider"},{type:"challenge",challenge:{id:"challenge-datatypes",title:"Type Detective",difficulty:"easy",description:'Write a program that acts as a "type detective." For each value below, print the value AND its type on the same line in the format shown.\n\nFor the value `42`, print:\n`42 → int`\n\nDo this for the following values: `42`, `3.14`, `"hello"`, `True`, `None`\n\nHint: You can get just the type name using `type(x).__name__` which gives you `"int"` instead of `"<class \'int\'>"`. Use the → arrow character in your output.',starterCode:`# Type Detective — print each value with its type
-# Format: value → type_name
-# Example: 42 → int
-
-values = [42, 3.14, "hello", True, None]
-
-for val in values:
-    # Your code here — print in the format: value → type_name
-    pass`,testCases:[{expected:"42 → int",description:'Should print "42 → int" for the integer 42'},{expected:"3.14 → float",description:'Should print "3.14 → float" for the float 3.14'},{expected:"hello → str",description:'Should print "hello → str" for the string "hello"'},{expected:"True → bool",description:'Should print "True → bool" for the boolean True'},{expected:"None → NoneType",description:'Should print "None → NoneType" for None'}],hints:[`Use type(val).__name__ to get the type as a clean string like "int" instead of "<class 'int'>"`,'Use an f-string: f"{val} → {type(val).__name__}"',"Loop through the values list with a for loop and print each one"],solution:`values = [42, 3.14, "hello", True, None]
-
-for val in values:
-    print(f"{val} \\u2192 {type(val).__name__}")`}}],ge=[{type:"heading",level:1,text:"Strings in Python"},{type:"text",content:"A **string** is a sequence of characters enclosed in quotes. In Python, there is no separate character type—a single character is just a string of length 1."},{type:"heading",level:2,text:"Creating Strings"},{type:"text",content:"Python gives you three ways to create strings:"},{type:"code",code:`# 1. Single quotes
+`,instructions:"Run the code to see type conversions in action. The truthy/falsy exploration shows which values Python considers True or False."},{type:"heading",level:2,text:"Knowledge Check"},{type:"qna",items:[{question:"What are the main data types in Python?",answer:"`int` (integers), `float` (floating-point), `str` (strings), `bool` (booleans), and `None` (absence of value)."},{question:"How do you check the type of a value?",answer:"Use the `type()` function: `type(42)` returns `<class 'int'>`. For cleaner output, use `type(42).__name__` to get just `\"int\"`."},{question:"Is `bool` a separate type or related to `int`?",answer:"`bool` is a subclass of `int`. `True == 1` and `False == 0`. You can use booleans in arithmetic: `True + True` = `2`."},{question:"What values are falsy in Python?",answer:'`0`, `0.0`, `None`, `""` (empty string), `[]` (empty list), `{}` (empty dict), `set()`. Everything else is truthy.'},{question:"How do you convert between types?",answer:'Use `int()`, `float()`, `str()`, `bool()`, etc. Example: `int("42")` → `42`, `str(42)` → `"42"`. Be careful: `int("3.14")` raises an error.'}]}],pe=[{type:"heading",level:1,text:"Strings in Python"},{type:"text",content:"A **string** is a sequence of characters enclosed in quotes. In Python, there is no separate character type—a single character is just a string of length 1."},{type:"heading",level:2,text:"Creating Strings"},{type:"text",content:"Python gives you three ways to create strings:"},{type:"code",code:`# 1. Single quotes
 greeting = 'Hello, World!'
 
 # 2. Double quotes (identical to single quotes)
@@ -666,58 +625,7 @@ print(reversed_str)  # nohtyP
 # Pattern 4: Checking palindromes
 word = "racecar"
 is_palindrome = word == word[::-1]
-print(f"{word} is palindrome: {is_palindrome}")  # True`,language:"python"},{type:"callout",variant:"warning",title:"String Concatenation in Loops is Slow",content:'Because strings are immutable, using `+=` in a loop creates a new string every time. For building large strings, collect parts in a list and use `"".join(parts)` at the end.'},{type:"divider"},{type:"quiz",quiz:{id:"quiz-day1-strings",title:"Strings Mastery Quiz",questions:[{type:"predict-output",code:'print(len("Hello\\nWorld"))',options:["10","11","12","Error"],correctIndex:1,explanation:'The string "Hello\\nWorld" contains: H, e, l, l, o, \\n (newline — 1 character), W, o, r, l, d = 11 characters total. The escape sequence \\n counts as a single character.'},{type:"predict-output",code:`text = "Python"
-print(text[1:4])`,options:["Pyt","yth","ytho","Python"],correctIndex:1,explanation:`Slicing with [1:4] extracts characters at indices 1, 2, and 3 (stop index 4 is excluded). "Python"[1] = 'y', [2] = 't', [3] = 'h', giving "yth".`},{type:"mcq",question:"Which of the following will raise a TypeError?",options:['"Hello" + " World"','"Count: " + str(42)','"Age: " + 25','"ha" * 3'],correctIndex:2,explanation:'You cannot concatenate a string with an integer using +. "Age: " + 25 raises TypeError. You must convert the integer first: "Age: " + str(25) or use f"Age: {25}".'},{type:"predict-output",code:`s = "Hello"
-s = s.upper()
-print(s)`,options:["Hello","HELLO","hello","Error — strings are immutable"],correctIndex:1,explanation:`s.upper() returns a NEW string "HELLO", and we reassign s to point to it. This is NOT mutation — it's reassignment. The original "Hello" is unchanged (but lost since nothing references it). s now holds "HELLO".`},{type:"fill-blank",prompt:"To reverse a string `word`, you can use: word[___]",answer:"::-1",caseSensitive:!0,explanation:"The slice [::-1] means start from the end, go to the beginning, stepping by -1 (one character backwards). This effectively reverses the string."},{type:"predict-output",code:'print("abc" * 2 + "d")',options:["abcabcd","abcd2","abc2d","Error"],correctIndex:0,explanation:'Operator precedence: * is evaluated before +. "abc" * 2 gives "abcabc", then adding "d" gives "abcabcd".'},{type:"predict-output",code:`text = "Hello, World!"
-print(text[-6:-1])`,options:["World","World!","orld","orld!"],correctIndex:0,explanation:`text[-6:-1] starts at index -6 (which is 'W') and goes up to but NOT including index -1 (which is '!'). So we get "World" — indices -6, -5, -4, -3, -2.`},{type:"mcq",question:'What does "hello world".split() return?',options:['["hello world"]','["hello", "world"]','["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]','("hello", "world")'],correctIndex:1,explanation:'split() with no arguments splits on whitespace and returns a list of words. "hello world".split() returns ["hello", "world"].'},{type:"predict-output",code:`a = "Python"
-b = a
-a = a.replace("P", "J")
-print(b)`,options:["Python","Jython","Error","None"],correctIndex:0,explanation:'Strings are immutable. a.replace("P", "J") creates a NEW string "Jython" and assigns it to a. The variable b still points to the original "Python" string — it is unaffected.'},{type:"fill-blank",prompt:"The separator.___([list of strings]) method joins list items into a single string.",answer:"join",caseSensitive:!0,explanation:'The join() method is called on a separator string and takes an iterable of strings. For example: ", ".join(["a", "b", "c"]) returns "a, b, c".'}]}},{type:"divider"},{type:"challenge",challenge:{id:"challenge-day1-strings",title:"Text Analyzer",difficulty:"medium",description:`Write a program that analyzes a given text string and prints the following statistics:
-
-1. The total number of characters (including spaces)
-2. The number of words
-3. The number of uppercase letters
-4. The number of lowercase letters
-5. The number of digits
-6. The number of spaces
-
-Print each statistic on a separate line in EXACTLY this format:
-Characters: <count>
-Words: <count>
-Uppercase: <count>
-Lowercase: <count>
-Digits: <count>
-Spaces: <count>
-
-Use the provided \`text\` variable as input.`,starterCode:`text = "Hello World 123 Python IS Fun"
-
-# Analyze the text and print the statistics
-# Your code here
-`,testCases:[{expected:"Characters: 30",description:"Should count total characters including spaces"},{expected:"Words: 6",description:"Should count the number of words"},{expected:"Uppercase: 6",description:"Should count uppercase letters (H, W, P, I, S, F)"},{expected:"Lowercase: 15",description:"Should count all lowercase letters"},{expected:"Digits: 3",description:"Should count digits (1, 2, 3)"},{expected:"Spaces: 5",description:"Should count space characters"}],hints:["Use len(text) for total characters","Use text.split() to get a list of words, then len() on that list","Loop through each character and use .isupper(), .islower(), .isdigit() to classify it",'Count spaces by checking if each character equals " " or use text.count(" ")'],solution:`text = "Hello World 123 Python IS Fun"
-
-print(f"Characters: {len(text)}")
-print(f"Words: {len(text.split())}")
-
-upper_count = 0
-lower_count = 0
-digit_count = 0
-space_count = 0
-
-for char in text:
-    if char.isupper():
-        upper_count += 1
-    elif char.islower():
-        lower_count += 1
-    elif char.isdigit():
-        digit_count += 1
-    elif char == " ":
-        space_count += 1
-
-print(f"Uppercase: {upper_count}")
-print(f"Lowercase: {lower_count}")
-print(f"Digits: {digit_count}")
-print(f"Spaces: {space_count}")`}}],ye=[{type:"heading",level:1,text:"Operators & Expressions"},{type:"text",content:"Operators are special symbols that perform operations on values (operands). An **expression** is any valid combination of literals, variables, and operators that evaluates to a value."},{type:"callout",variant:"info",title:"Anatomy of an Operation",content:"In `10 + 5`, `10` and `5` are **operands** and `+` is the **operator**. Binary operators work on two operands (`+`, `-`). Unary operators work on one (`-x`)."},{type:"heading",level:2,text:"Arithmetic Operators"},{type:"text",content:"Python provides seven arithmetic operators:"},{type:"code",code:`# The 7 Arithmetic Operators
+print(f"{word} is palindrome: {is_palindrome}")  # True`,language:"python"},{type:"callout",variant:"warning",title:"String Concatenation in Loops is Slow",content:'Because strings are immutable, using `+=` in a loop creates a new string every time. For building large strings, collect parts in a list and use `"".join(parts)` at the end.'},{type:"heading",level:2,text:"Knowledge Check"},{type:"qna",items:[{question:"What are some common string methods?",answer:"Common methods include: `upper()`, `lower()`, `capitalize()`, `strip()`, `find()`, `count()`, `replace()`, `split()`, and `join()`. These make text processing in Python powerful and easy."}]}],de=[{type:"heading",level:1,text:"Operators & Expressions"},{type:"text",content:"Operators are special symbols that perform operations on values (operands). An **expression** is any valid combination of literals, variables, and operators that evaluates to a value."},{type:"callout",variant:"info",title:"Anatomy of an Operation",content:"In `10 + 5`, `10` and `5` are **operands** and `+` is the **operator**. Binary operators work on two operands (`+`, `-`). Unary operators work on one (`-x`)."},{type:"heading",level:2,text:"Arithmetic Operators"},{type:"text",content:"Python provides seven arithmetic operators:"},{type:"code",code:`# The 7 Arithmetic Operators
 print(10 + 3)      # 13    Addition
 print(10 - 3)      # 7     Subtraction
 print(10 * 3)      # 30    Multiplication
@@ -823,21 +731,7 @@ print(f"\\n2 + 3 * 4 = {2 + 3 * 4}")      # 14, not 20
 print(f"2 ** 3 ** 2 = {2 ** 3 ** 2}")    # 512, not 64
 
 # 5. Float gotcha
-print(f"\\n0.1 + 0.2 = {0.1 + 0.2}")     # Not exactly 0.3!`,instructions:"Try different operator combinations. Test negative floor division. Check if numbers are divisible."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-operators",title:"Operators & Expressions Quiz",questions:[{type:"predict-output",code:"print(17 // 5, 17 % 5)",options:["3 2","3.4 2","3 2.0","3.0 2"],correctIndex:0,explanation:"`17 // 5 = 3` (floor division, integer result since both operands are int). `17 % 5 = 2` (remainder: 17 = 5*3 + 2)."},{type:"predict-output",code:"print(2 ** 3 ** 2)",options:["64","512","18","36"],correctIndex:1,explanation:"`**` is right-associative: `2 ** (3 ** 2)` = `2 ** 9` = `512`. It's NOT `(2 ** 3) ** 2` = `8 ** 2` = `64`."},{type:"predict-output",code:"print(-17 // 5)",options:["-3","-4","3","-3.4"],correctIndex:1,explanation:"Floor division rounds toward NEGATIVE infinity. `-17 / 5 = -3.4`, floored to `-4`. This differs from C/Java where it would be `-3`."},{type:"predict-output",code:"print(0.1 + 0.2 == 0.3)",options:["True","False","Error","0.3"],correctIndex:1,explanation:"Due to floating-point precision, `0.1 + 0.2` equals `0.30000000000000004`, which is not exactly `0.3`. This is why you should never compare floats with `==`."},{type:"mcq",question:"What does short-circuit evaluation mean for `and`?",options:["Both sides are always evaluated","If the left side is True, the right side is skipped","If the left side is False, the right side is skipped","The expression is evaluated right-to-left"],correctIndex:2,explanation:"With `and`, if the left side is `False`, the entire expression must be `False` regardless of the right side. So Python skips evaluating the right side — this is short-circuit evaluation."},{type:"predict-output",code:`print(10 / 5)
-print(type(10 / 5).__name__)`,options:["2\\nint","2.0\\nfloat","2\\nfloat","2.0\\nint"],correctIndex:1,explanation:"The `/` operator ALWAYS returns a float, even when dividing evenly. `10 / 5 = 2.0` (float, not int)."}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-operators",title:"Time Converter",difficulty:"easy",description:"Given a total number of seconds, convert it into hours, minutes, and remaining seconds using floor division (//) and modulus (%). For example, 3725 seconds = 1 hour, 2 minutes, 5 seconds.",starterCode:`total_seconds = 3725
-
-# Use // and % to extract hours, minutes, seconds
-hours = total_seconds // 3600
-remaining = total_seconds % 3600
-minutes = remaining // 60
-seconds = remaining % 60
-
-print(f"{total_seconds}s = {hours}h {minutes}m {seconds}s")`,testCases:[{input:"",expected:"3725s = 1h 2m 5s"}],hints:["There are 3600 seconds in an hour (60 * 60)","Use // to get the quotient and % to get the remainder","First extract hours, then work with the remaining seconds"],solution:`total_seconds = 3725
-hours = total_seconds // 3600
-remaining = total_seconds % 3600
-minutes = remaining // 60
-seconds = remaining % 60
-print(f"{total_seconds}s = {hours}h {minutes}m {seconds}s")`}}],be=[{type:"heading",level:1,text:"Input & Output"},{type:"text",content:"The `print()` and `input()` functions are how your program communicates. `print()` sends data out to the user, while `input()` brings data in."},{type:"heading",level:2,text:"The print() Function"},{type:"text",content:"`print()` displays output to the console. You can pass it multiple values, and it will separate them with spaces by default:"},{type:"code",code:`# Basic printing
+print(f"\\n0.1 + 0.2 = {0.1 + 0.2}")     # Not exactly 0.3!`,instructions:"Try different operator combinations. Test negative floor division. Check if numbers are divisible."},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],ce=[{type:"heading",level:1,text:"Input & Output"},{type:"text",content:"The `print()` and `input()` functions are how your program communicates. `print()` sends data out to the user, while `input()` brings data in."},{type:"heading",level:2,text:"The print() Function"},{type:"text",content:"`print()` displays output to the console. You can pass it multiple values, and it will separate them with spaces by default:"},{type:"code",code:`# Basic printing
 print("Hello, World!")          # Hello, World!
 print(42)                       # 42
 
@@ -964,30 +858,26 @@ print("GO!")
 scored = 42
 total = 50
 pct = scored / total
-print(f"\\nScore: {scored}/{total} = {pct:.1%}")`,instructions:"Experiment with different format specifiers. Try changing alignment, precision, and separators."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-io",title:"Input & Output Quiz",questions:[{type:"mcq",question:"What type does `input()` always return?",options:["int","float","str","depends on what user types"],correctIndex:2,explanation:'`input()` ALWAYS returns a string (str), regardless of what the user types. Even if they type "42", you get the string "42", not the integer 42. You must convert explicitly with int() or float().'},{type:"predict-output",code:`print("A", "B", "C", sep="-", end="!")
-print("D")`,options:["A-B-C!D","A-B-C!\\nD","A B C!D","A-B-C\\n!D"],correctIndex:0,explanation:'`sep="-"` puts dashes between values: "A-B-C". `end="!"` replaces the newline with "!": "A-B-C!". The next print continues on the same line: "A-B-C!D".'},{type:"predict-output",code:`x = 3.14159
-print(f"{x:.2f}")`,options:["3.14","3.14159","3.1","3.142"],correctIndex:0,explanation:"`:.2f` formats the float to exactly 2 decimal places, rounding as needed. 3.14159 rounded to 2 decimal places is 3.14."},{type:"predict-output",code:`name = "Python"
-print(f"|{name:^12}|")`,options:["|Python      |","|      Python|","|   Python   |","|***Python***|"],correctIndex:2,explanation:'`^12` centers the string in a 12-character-wide field. "Python" is 6 chars, so 3 spaces are added on each side.'},{type:"mcq",question:"What does the `\\t` escape sequence produce?",options:["A newline","A tab character",'The letter "t"','A backslash followed by "t"'],correctIndex:1,explanation:"`\\t` is the escape sequence for a horizontal tab character. `\\n` is for newline, `\\\\` is for a literal backslash."}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-io",title:"Receipt Formatter",difficulty:"medium",description:"Create a formatted receipt that displays items with their prices in a neatly aligned table. Use f-string formatting to align item names to the left and prices to the right.",starterCode:`# Create a beautifully formatted receipt
+print(f"\\nScore: {scored}/{total} = {pct:.1%}")`,instructions:"Experiment with different format specifiers. Try changing alignment, precision, and separators."},{type:"heading",level:2,text:"Knowledge Check"},{type:"qna",items:[{question:"What data type does the `input()` function return?",answer:"The `input()` function always returns a string (str), regardless of what the user types. If you need numeric input, you must convert it: `int(input())`, `float(input())`, etc."},{question:'What does this code output?\n\n`print("A", "B", "C", sep="-", end="!")`\n`print("D")`',answer:'`A-B-C!D`\n\nThe `sep` parameter controls the separator between print() arguments. Default is a space, but here it\'s `"-"`. The `end` parameter replaces the newline with `"!"`. The next print continues on the same line.'},{question:'What does this code output?\n\n`x = 3.14159`\n`print(f"{x:.2f}")`',answer:"`3.14`\n\n`:.2f` formats the float to exactly 2 decimal places, rounding as needed. 3.14159 rounded to 2 decimal places is 3.14."},{question:'How do you center-align text in a 20-character field using an f-string?\n\n`text = "Python"`\n`print(f"{text:?20}")`',answer:'`f"{text:^20}"`\n\nAlignment in f-strings:\n- `<` : left-align\n- `>` : right-align\n- `^` : center-align\n\nExample: `f"{text:^20}"` centers text in a 20-char field.'},{question:"Which escape sequence represents a newline?",answer:'`\\n`\n\n`\\n` is the escape sequence for a newline. Other common ones:\n- `\\t` = tab\n- `\\\\` = backslash\n- `\\"` = double quote'}]},{type:"heading",level:2,text:"Coding Challenge"},{type:"qna",items:[{question:"Receipt Formatter: Create a formatted receipt that displays items with their prices in a neatly aligned table. Use f-string formatting to align item names to the left and prices to the right.",answer:`**Solution:**
 
+\`\`\`python
 print("=" * 30)
 print(f"{'RECEIPT':^30}")
 print("=" * 30)
 
-# Format each item: name left-aligned, price right-aligned
-# Hint: use f"{item:<20} \${price:>6.2f}"
-items = [
-    ("Coffee", 4.50),
-    ("Sandwich", 8.99),
-    ("Cookie", 2.25),
-]
-
+items = [("Coffee", 4.50), ("Sandwich", 8.99), ("Cookie", 2.25)]
 for item_name, price in items:
     print(f"{item_name:<20} \${price:>6.2f}")
 
 print("-" * 30)
 total = sum(price for _, price in items)
 print(f"{'TOTAL':<20} \${total:>6.2f}")
-print("=" * 30)`,testCases:[{input:"",expected:`==============================
+print("=" * 30)
+\`\`\`
+
+**Output:**
+\`\`\`
+==============================
            RECEIPT           
 ==============================
 Coffee               $  4.50
@@ -995,16 +885,14 @@ Sandwich             $  8.99
 Cookie               $  2.25
 ------------------------------
 TOTAL                $ 15.74
-==============================`}],hints:['Use f"{text:<20}" for left-aligned text in 20 characters','Use f"${price:>6.2f}" for right-aligned price with 2 decimal places','Use "=" * 30 for separator lines'],solution:`print("=" * 30)
-print(f"{'RECEIPT':^30}")
-print("=" * 30)
-items = [("Coffee", 4.50), ("Sandwich", 8.99), ("Cookie", 2.25)]
-for item_name, price in items:
-    print(f"{item_name:<20} \${price:>6.2f}")
-print("-" * 30)
-total = sum(price for _, price in items)
-print(f"{'TOTAL':<20} \${total:>6.2f}")
-print("=" * 30)`}}],xe=[{type:"heading",level:1,text:"Boolean Logic & Truthiness"},{type:"text",content:"At its core, every decision a computer makes comes down to a single question: **True or False?** The `bool` type in Python has exactly two values — `True` and `False` — yet these two tiny values drive every `if` statement, every `while` loop, and every logical expression in your programs."},{type:"heading",level:2,text:"The bool Type"},{type:"code",code:`# Boolean literals
+==============================
+\`\`\`
+
+**Key techniques:**
+- \`f"{text:<20}"\` left-aligns text in 20 characters
+- \`f"\${price:>6.2f}"\` right-aligns price with 2 decimal places
+- \`"=" * 30\` creates separator lines
+- \`^\` centers text (for RECEIPT and TOTAL headers)`}]}],ue=[{type:"heading",level:1,text:"Boolean Logic & Truthiness"},{type:"text",content:"At its core, every decision a computer makes comes down to a single question: **True or False?** The `bool` type in Python has exactly two values — `True` and `False` — yet these two tiny values drive every `if` statement, every `while` loop, and every logical expression in your programs."},{type:"heading",level:2,text:"The bool Type"},{type:"code",code:`# Boolean literals
 print(True)           # True
 print(False)          # False
 print(type(True))     # <class 'bool'>
@@ -1231,35 +1119,7 @@ print()
 A, B = True, False
 print(f"not (A and B) = {not (A and B)}")
 print(f"(not A) or (not B) = {(not A) or (not B)}")
-print(f"Equal? {not (A and B) == ((not A) or (not B))}")`,instructions:"Modify values and observe how truthiness, short-circuiting, and De Morgan's Laws work."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-boolean",title:"Boolean Logic Quiz",questions:[{type:"predict-output",code:'print(bool("False"))',options:["True","False","Error","None"],correctIndex:0,explanation:`The string "False" has 5 characters — it's a non-empty string, which is truthy. bool("False") returns True.`},{type:"predict-output",code:'print("hello" and "world")',options:["True","False",'"hello"','"world"'],correctIndex:3,explanation:'`and` returns the first falsy value, or the last value if all are truthy. Both "hello" and "world" are truthy, so it returns the last one: "world".'},{type:"predict-output",code:'print(0 or "" or "default" or "extra")',options:['"default"','"extra"',"0","True"],correctIndex:0,explanation:'`or` returns the first truthy value. `0` is falsy, `""` is falsy, `"default"` is truthy — so it\'s returned immediately (short-circuit).'},{type:"predict-output",code:"print(not True or True and False)",options:["True","False","Error","None"],correctIndex:1,explanation:"Precedence: `not` first → `False or True and False`. Then `and` → `False or False`. Then `or` → `False`."},{type:"mcq",question:"Which of these is NOT a falsy value?",options:["None","0",'""','"0"'],correctIndex:3,explanation:`"0" is a non-empty string (it has one character), so it's truthy! None, 0, and "" are all falsy.`}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-boolean",title:"Admission Checker",difficulty:"easy",description:"Write a program that checks if a student is eligible for admission. A student is eligible if: (1) their age is between 17 and 25 inclusive, AND (2) they scored at least 60% marks, AND (3) they passed the interview (True/False). Print the eligibility status.",starterCode:`# Admission checker
-age = 20
-marks_percent = 78.5
-passed_interview = True
-
-# Check eligibility using boolean logic
-# Use comparison chaining for age range!
-eligible = 17 <= age <= 25 and marks_percent >= 60 and passed_interview
-
-print(f"Age: {age}")
-print(f"Marks: {marks_percent}%")
-print(f"Interview: {\\"Passed\\" if passed_interview else \\"Failed\\"}")
-print(f"Eligible: {eligible}")
-
-# Test with different values
-print("\\n--- Edge Cases ---")
-for age, marks, interview in [(16, 90, True), (25, 59, True), (20, 80, False), (20, 80, True)]:
-    result = 17 <= age <= 25 and marks >= 60 and interview
-    print(f"Age={age}, Marks={marks}%, Interview={interview} → {result}")`,testCases:[{input:"",expected:`Age: 20
-Marks: 78.5%
-Interview: Passed
-Eligible: True`}],hints:["Use comparison chaining: 17 <= age <= 25","Combine conditions with `and` — all must be True",'You can use a ternary expression: "Passed" if passed_interview else "Failed"'],solution:`age = 20
-marks_percent = 78.5
-passed_interview = True
-eligible = 17 <= age <= 25 and marks_percent >= 60 and passed_interview
-print(f"Age: {age}")
-print(f"Marks: {marks_percent}%")
-print(f"Interview: {\\"Passed\\" if passed_interview else \\"Failed\\"}")
-print(f"Eligible: {eligible}")`}}],ve=[{type:"heading",level:1,text:"Conditional Statements"},{type:"text",content:"Conditional statements are the **decision-making tools** of programming. They allow your program to choose different paths based on whether conditions are `True` or `False`. Without conditionals, every program would execute the same instructions regardless of input — incredibly boring and useless!"},{type:"heading",level:2,text:"The if Statement"},{type:"text",content:"The `if` statement is the simplest conditional. If the condition is `True`, the **indented block** below it executes. If `False`, Python skips the block entirely:"},{type:"code",code:`# Basic if statement
+print(f"Equal? {not (A and B) == ((not A) or (not B))}")`,instructions:"Modify values and observe how truthiness, short-circuiting, and De Morgan's Laws work."},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],he=[{type:"heading",level:1,text:"Conditional Statements"},{type:"text",content:"Conditional statements are the **decision-making tools** of programming. They allow your program to choose different paths based on whether conditions are `True` or `False`. Without conditionals, every program would execute the same instructions regardless of input — incredibly boring and useless!"},{type:"heading",level:2,text:"The if Statement"},{type:"text",content:"The `if` statement is the simplest conditional. If the condition is `True`, the **indented block** below it executes. If `False`, Python skips the block entirely:"},{type:"code",code:`# Basic if statement
 temperature = 35
 
 if temperature > 30:
@@ -1538,62 +1398,7 @@ for n in range(1, 21):
     elif n % 5 == 0:
         print("Buzz", end=" ")
     else:
-        print(n, end=" ")`,instructions:"Try changing the score and year values. Add more conditions to the FizzBuzz challenge!"},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-conditionals",title:"Conditionals Quiz",questions:[{type:"predict-output",code:`x = 15
-if x > 20:
-    print("A")
-elif x > 10:
-    print("B")
-elif x > 5:
-    print("C")
-else:
-    print("D")`,options:["A","B","C","B and C"],correctIndex:1,explanation:'In an if-elif-else chain, only the FIRST matching block executes. x=15 > 20 is False, but 15 > 10 is True, so "B" prints. The elif x > 5 is NEVER checked.'},{type:"predict-output",code:`x = 15
-if x > 20:
-    print("A")
-if x > 10:
-    print("B")
-if x > 5:
-    print("C")`,options:["A","B","C","B\\nC"],correctIndex:3,explanation:"These are THREE SEPARATE if statements (no elif). Each is checked independently. 15>20 is False (skip), 15>10 is True (print B), 15>5 is True (print C)."},{type:"predict-output",code:`result = "even" if 7 % 2 == 0 else "odd"
-print(result)`,options:["even","odd","Error","None"],correctIndex:1,explanation:'7 % 2 = 1, which is not 0, so the condition is False. The ternary expression returns "odd".'},{type:"mcq",question:"What keyword catches ALL remaining cases in an if-elif chain?",options:["default","else","finally","otherwise"],correctIndex:1,explanation:"`else` catches all remaining cases. Unlike `elif`, `else` has no condition — it runs when ALL previous conditions are False. (`default` is used in match-case via `case _:`, `finally` is for try-except, `otherwise` doesn't exist in Python.)"},{type:"predict-output",code:`x = 7
-if x % 5 == 0:
-    msg = "multiple of 5"
-print(msg)`,options:['"multiple of 5"','""',"NameError","None"],correctIndex:2,explanation:"Since 7 is not divisible by 5, the if-body never runs, and `msg` is never created. Trying to print an undefined variable raises a NameError."}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-conditionals",title:"Leap Year Checker",difficulty:"medium",description:"A leap year is: divisible by 4, BUT not by 100 UNLESS also divisible by 400. Write a program that classifies a given year. Examples: 2024 → leap, 1900 → not leap, 2000 → leap.",starterCode:`# Leap Year Checker
-# Rules:
-# 1. Divisible by 4 → candidate
-# 2. BUT if divisible by 100 → NOT a leap year
-# 3. UNLESS also divisible by 400 → IS a leap year
-
-years = [2024, 1900, 2000, 2023, 1600, 1800, 2100]
-
-for year in years:
-    # Your code here — determine if year is a leap year
-    if year % 400 == 0:
-        is_leap = True
-    elif year % 100 == 0:
-        is_leap = False
-    elif year % 4 == 0:
-        is_leap = True
-    else:
-        is_leap = False
-    
-    status = "Leap year ✅" if is_leap else "Not a leap year ❌"
-    print(f"{year}: {status}")`,testCases:[{input:"",expected:`2024: Leap year ✅
-1900: Not a leap year ❌
-2000: Leap year ✅
-2023: Not a leap year ❌
-1600: Leap year ✅
-1800: Not a leap year ❌
-2100: Not a leap year ❌`}],hints:["Check divisibility by 400 first (the most specific rule)","Then check divisibility by 100 (centuries are usually NOT leap years)","Then check divisibility by 4 (the general rule)","Try also: year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)"],solution:`years = [2024, 1900, 2000, 2023, 1600, 1800, 2100]
-for year in years:
-    if year % 400 == 0:
-        is_leap = True
-    elif year % 100 == 0:
-        is_leap = False
-    elif year % 4 == 0:
-        is_leap = True
-    else:
-        is_leap = False
-    status = "Leap year ✅" if is_leap else "Not a leap year ❌"
-    print(f"{year}: {status}")`}}],we=[{type:"heading",level:1,text:"While Loops"},{type:"text",content:"A **while loop** repeats a block of code **as long as a condition remains True**. Think of it as an `if` statement that keeps going back and re-checking the condition. While loops are ideal when you **don't know in advance** how many times you need to repeat something."},{type:"heading",level:2,text:"Basic while Loop"},{type:"code",code:`# Count from 1 to 5
+        print(n, end=" ")`,instructions:"Try changing the score and year values. Add more conditions to the FizzBuzz challenge!"},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],ge=[{type:"heading",level:1,text:"While Loops"},{type:"text",content:"A **while loop** repeats a block of code **as long as a condition remains True**. Think of it as an `if` statement that keeps going back and re-checking the condition. While loops are ideal when you **don't know in advance** how many times you need to repeat something."},{type:"heading",level:2,text:"Basic while Loop"},{type:"code",code:`# Count from 1 to 5
 count = 1
 while count <= 5:
     print(count)
@@ -1822,57 +1627,7 @@ for guess in guesses:
     elif guess < secret:
         print(f"  {guess} → Too low")
     else:
-        print(f"  {guess} → Too high")`,instructions:"Experiment with different algorithms. Try computing the reverse of a number, or finding the largest power of 2 below N."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-while",title:"While Loops Quiz",questions:[{type:"predict-output",code:`x = 10
-while x > 0:
-    x -= 3
-print(x)`,options:["0","-2","1","-1"],correctIndex:1,explanation:"x goes: 10→7→4→1→(-2). When x=-2, the condition x>0 is False, so the loop ends. x is -2."},{type:"predict-output",code:`count = 0
-n = 1
-while n < 1000:
-    n *= 2
-    count += 1
-print(count)`,options:["9","10","999","Infinite"],correctIndex:1,explanation:"n doubles each time: 1→2→4→8→16→32→64→128→256→512→1024. That's 10 iterations. After the 10th, n=1024 which is ≥1000, so the loop stops."},{type:"mcq",question:"When does the `else` block of a while-else execute?",options:["When the condition becomes False (normal completion)","When break is executed","Every time","When an exception occurs"],correctIndex:0,explanation:"The else block runs only when the while loop ends naturally (condition becomes False). If break exits the loop, the else is skipped."},{type:"predict-output",code:`n = 0
-while n < 5:
-    n += 1
-    if n == 3:
-        continue
-    print(n, end=" ")`,options:["1 2 3 4 5","1 2 4 5","1 2","1 2 3"],correctIndex:1,explanation:"When n=3, `continue` skips the print. So we get 1, 2, (skip 3), 4, 5."},{type:"predict-output",code:`i = 1
-while i <= 3:
-    j = 1
-    while j <= 3:
-        if i == j:
-            break
-        j += 1
-    print(j, end=" ")
-    i += 1`,options:["1 1 1","1 2 3","3 3 3","1 1 1 2 2 3"],correctIndex:1,explanation:"Inner loop: when i==j, break. So j stops at 1 (i=1), 2 (i=2), 3 (i=3). Output: 1 2 3."}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-while",title:"Reverse a Number",difficulty:"medium",description:"Use a while loop to reverse the digits of a positive integer. For example, 12345 becomes 54321. Do NOT convert to a string — use only arithmetic operations (% and //).",starterCode:`# Reverse a number using only arithmetic
-number = 12345
-original = number
-reversed_num = 0
-
-while number > 0:
-    last_digit = number % 10       # Extract last digit
-    reversed_num = reversed_num * 10 + last_digit  # Append it
-    number //= 10                  # Remove last digit
-
-print(f"Original: {original}")
-print(f"Reversed: {reversed_num}")
-
-# Test with more numbers
-for n in [9876, 1000, 7, 100200]:
-    temp = n
-    rev = 0
-    while temp > 0:
-        rev = rev * 10 + temp % 10
-        temp //= 10
-    print(f"{n} → {rev}")`,testCases:[{input:"",expected:`Original: 12345
-Reversed: 54321`}],hints:["Use % 10 to get the last digit of a number","Use // 10 to remove the last digit","Build the reversed number by: reversed = reversed * 10 + last_digit"],solution:`number = 12345
-original = number
-reversed_num = 0
-while number > 0:
-    last_digit = number % 10
-    reversed_num = reversed_num * 10 + last_digit
-    number //= 10
-print(f"Original: {original}")
-print(f"Reversed: {reversed_num}")`}}],_e=[{type:"heading",level:1,text:"For Loops & Iteration"},{type:"text",content:"The **for loop** is Python's primary tool for **iteration** — stepping through a sequence of values one at a time. Unlike `while` loops where you manually manage a counter, `for` loops automatically handle iteration. They're cleaner, safer (no risk of infinite loops), and more Pythonic."},{type:"heading",level:2,text:"Basic for Loop Syntax"},{type:"code",code:`# for loop iterates over any sequence
+        print(f"  {guess} → Too high")`,instructions:"Experiment with different algorithms. Try computing the reverse of a number, or finding the largest power of 2 below N."},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],ye=[{type:"heading",level:1,text:"For Loops & Iteration"},{type:"text",content:"The **for loop** is Python's primary tool for **iteration** — stepping through a sequence of values one at a time. Unlike `while` loops where you manually manage a counter, `for` loops automatically handle iteration. They're cleaner, safer (no risk of infinite loops), and more Pythonic."},{type:"heading",level:2,text:"Basic for Loop Syntax"},{type:"code",code:`# for loop iterates over any sequence
 fruits = ["apple", "banana", "cherry"]
 for fruit in fruits:
     print(f"I like {fruit}")
@@ -2117,40 +1872,7 @@ for n in range(1, 21):
     elif n % 5 == 0:
         print("Buzz", end=" ")
     else:
-        print(n, end=" ")`,instructions:"Try creating different patterns, or use zip() to combine multiple lists."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-for",title:"For Loops Quiz",questions:[{type:"predict-output",code:"print(list(range(2, 10, 3)))",options:["[2, 5, 8]","[2, 5, 8, 11]","[3, 6, 9]","[2, 4, 6, 8]"],correctIndex:0,explanation:"Start at 2, step by 3: 2, 5, 8. Next would be 11, but that's ≥10 (stop), so it's excluded."},{type:"predict-output",code:`for i in range(3):
-    for j in range(2):
-        print("*", end="")
-    print()`,options:["***\\n**","**\\n**\\n**","******","**\\n**"],correctIndex:1,explanation:"Outer loop runs 3 times. Each time, inner loop prints 2 stars, then print() adds a newline. Result: three rows of **."},{type:"mcq",question:"What is the Pythonic way to get both index and value when iterating?",options:["for i in range(len(items))","for i, val in enumerate(items)","for val, i in items.items()","for val[i] in items"],correctIndex:1,explanation:"enumerate() is the Pythonic way to get both index and value. It returns (index, value) tuples."},{type:"predict-output",code:`for i in range(5):
-    if i == 3:
-        break
-else:
-    print("done")
-print(i)`,options:["done\\n3","3","done\\n2","4"],correctIndex:1,explanation:"break exits the loop at i=3. Because break was used, the else block is SKIPPED. Only print(i) executes, giving 3."},{type:"predict-output",code:`total = 0
-for n in range(1, 5):
-    total += n
-print(total)`,options:["10","15","4","5"],correctIndex:0,explanation:"range(1, 5) gives [1, 2, 3, 4]. Sum = 1+2+3+4 = 10. Note: 5 is excluded from range(1, 5)."}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-for",title:"Prime Number Finder",difficulty:"medium",description:"Use for loops to find all prime numbers between 2 and 50. A prime number is only divisible by 1 and itself. Use a nested for loop with a for-else pattern.",starterCode:`# Find all prime numbers from 2 to 50
-primes = []
-
-for n in range(2, 51):
-    # Check if n is prime
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
-            break    # Not prime
-    else:
-        # This runs if the inner loop completed without break
-        primes.append(n)
-
-print(f"Primes from 2-50: {primes}")
-print(f"Count: {len(primes)}")`,testCases:[{input:"",expected:`Primes from 2-50: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
-Count: 15`}],hints:["A number n is prime if no number from 2 to √n divides it evenly","Use for-else: the else block runs when the loop completes without break","int(n**0.5) + 1 gives the integer square root plus 1"],solution:`primes = []
-for n in range(2, 51):
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
-            break
-    else:
-        primes.append(n)
-print(f"Primes from 2-50: {primes}")
-print(f"Count: {len(primes)}")`}}],ke=[{type:"heading",level:1,text:"Loop Patterns & Nested Loops"},{type:"text",content:"Now that you know `while` and `for` loops, let's combine them with **nesting** and explore classic loop patterns. Nested loops are loops inside loops — the inner loop runs completely for **each iteration** of the outer loop. These patterns appear everywhere: printing shapes, processing grids, generating combinations, and more."},{type:"heading",level:2,text:"Nested Loop Fundamentals"},{type:"code",code:`# Basic nested loop: multiplication table (partial)
+        print(n, end=" ")`,instructions:"Try creating different patterns, or use zip() to combine multiple lists."},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],me=[{type:"heading",level:1,text:"Loop Patterns & Nested Loops"},{type:"text",content:"Now that you know `while` and `for` loops, let's combine them with **nesting** and explore classic loop patterns. Nested loops are loops inside loops — the inner loop runs completely for **each iteration** of the outer loop. These patterns appear everywhere: printing shapes, processing grids, generating combinations, and more."},{type:"heading",level:2,text:"Nested Loop Fundamentals"},{type:"code",code:`# Basic nested loop: multiplication table (partial)
 for i in range(1, 4):            # Outer: rows
     for j in range(1, 4):        # Inner: columns
         print(f"{i}×{j}={i*j}", end="\\t")
@@ -2406,45 +2128,7 @@ print()
 for i in range(5):
     for j in range(i + 1):
         print(chr(65 + j), end=" ")
-    print()`,instructions:"Try creating your own patterns! Can you make a checkerboard? A Christmas tree? An hourglass shape?"},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-patterns",title:"Loop Patterns Quiz",questions:[{type:"predict-output",code:`for i in range(4):
-    for j in range(3):
-        print("*", end="")`,options:["3","4","7","12"],correctIndex:3,explanation:"Outer loop runs 4 times, inner loop runs 3 times per outer iteration. Total: 4 × 3 = 12 prints."},{type:"predict-output",code:`for i in range(3):
-    for j in range(i + 1):
-        print("#", end="")
-    print()`,options:["#\\n##\\n###","###\\n##\\n#","#\\n#\\n#","###"],correctIndex:0,explanation:"i=0: j runs 1 time (1 hash), i=1: j runs 2 times (2 hashes), i=2: j runs 3 times (3 hashes). Result: right triangle."},{type:"mcq",question:"In a nested loop, which loop does `break` exit?",options:["The outermost loop","The innermost loop it's inside","All loops","The function"],correctIndex:1,explanation:"`break` only exits the innermost loop containing it. The outer loop continues normally. To break multiple loops, use a flag variable or wrap the loops in a function and use `return`."},{type:"predict-output",code:`for i in range(1, 5):
-    print("*" * i + " " * (5-i) + "*" * i)`,options:["*** ***","*   *","**  **","*** ***"],correctIndex:0,explanation:'i=3: "***" + "  " + "***" = "***  ***". Wait — 5-3=2 spaces. Let me recalculate: "*"*3 + " "*2 + "*"*3 = "***  ***".'}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-patterns",title:"Pyramid Builder",difficulty:"hard",description:'Create a centered number pyramid where each row contains numbers counting up to the row number, then back down. Row 1: "1", Row 2: "1 2 1", Row 3: "1 2 3 2 1", etc.',starterCode:`# Number Pyramid
-n = 5
-for i in range(1, n + 1):
-    # Leading spaces for centering
-    print("  " * (n - i), end="")
-    
-    # Count up: 1, 2, ..., i
-    for j in range(1, i + 1):
-        print(f"{j:2d}", end=" ")
-    
-    # Count back down: i-1, ..., 1
-    for j in range(i - 1, 0, -1):
-        print(f"{j:2d}", end=" ")
-    
-    print()
-
-# Expected output (n=5):
-#          1
-#        1  2  1
-#      1  2  3  2  1
-#    1  2  3  4  3  2  1
-#  1  2  3  4  5  4  3  2  1`,testCases:[{input:"",expected:`          1 
-        1  2  1 
-      1  2  3  2  1 
-    1  2  3  4  3  2  1 
-  1  2  3  4  5  4  3  2  1`}],hints:["Each row i has (2i - 1) numbers","First half: count from 1 to i","Second half: count from i-1 back down to 1","Leading spaces: (n - i) * some_width for centering"],solution:`n = 5
-for i in range(1, n + 1):
-    print("  " * (n - i), end="")
-    for j in range(1, i + 1):
-        print(f"{j:2d}", end=" ")
-    for j in range(i - 1, 0, -1):
-        print(f"{j:2d}", end=" ")
-    print()`}}],Te=[{type:"heading",level:1,text:"Functions — Building Blocks of Programs"},{type:"text",content:"A **function** is a reusable block of code that performs a specific task. Functions are the most important organizational tool in programming — they let you break complex problems into smaller, manageable pieces. You've already been using built-in functions: `print()`, `len()`, `range()`, `int()`. Now you'll learn to **create your own**."},{type:"heading",level:2,text:"Defining and Calling Functions"},{type:"code",code:`# Defining a function with def
+    print()`,instructions:"Try creating your own patterns! Can you make a checkerboard? A Christmas tree? An hourglass shape?"},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],fe=[{type:"heading",level:1,text:"Functions — Building Blocks of Programs"},{type:"text",content:"A **function** is a reusable block of code that performs a specific task. Functions are the most important organizational tool in programming — they let you break complex problems into smaller, manageable pieces. You've already been using built-in functions: `print()`, `len()`, `range()`, `int()`. Now you'll learn to **create your own**."},{type:"heading",level:2,text:"Defining and Calling Functions"},{type:"code",code:`# Defining a function with def
 def greet():
     """A simple greeting function."""
     print("Hello, World!")
@@ -2653,67 +2337,7 @@ def analyze_numbers(nums):
 
 data = [4, 8, 15, 16, 23, 42]
 lo, hi, avg = analyze_numbers(data)
-print(f"\\nMin={lo}, Max={hi}, Avg={avg:.1f}")`,instructions:"Create your own functions! Try making a function that checks if a number is prime."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-functions",title:"Functions Quiz",questions:[{type:"predict-output",code:`def mystery(a, b=10):
-    return a + b
-
-print(mystery(5))
-print(mystery(5, 20))`,options:["5\\n25","15\\n25","15\\n20","Error"],correctIndex:1,explanation:"First call: a=5, b uses default (10), so 5+10=15. Second call: a=5, b=20, so 5+20=25."},{type:"predict-output",code:`x = 5
-def change():
-    x = 10
-    print(x)
-
-change()
-print(x)`,options:["10\\n10","10\\n5","5\\n5","Error"],correctIndex:1,explanation:"Inside change(), x=10 creates a LOCAL variable. The global x=5 is unchanged. Output: 10 (local), then 5 (global)."},{type:"predict-output",code:`def greet(name):
-    print(f"Hi {name}")
-
-result = greet("Alice")
-print(result)`,options:["Hi Alice\\nNone","Hi Alice\\nHi Alice","Hi Alice","None"],correctIndex:0,explanation:'greet() prints "Hi Alice" and has no return, so it implicitly returns None. print(result) then prints None.'},{type:"mcq",question:"What is the difference between print() and return?",options:["They are the same thing","print() displays output; return sends a value back to the caller","return displays output; print sends a value back","print() is faster"],correctIndex:1,explanation:"print() writes to the screen (side effect). return gives a value back to where the function was called, allowing further computation with that value."},{type:"predict-output",code:`def first_even(nums):
-    for n in nums:
-        if n % 2 == 0:
-            return n
-    return -1
-
-print(first_even([1, 3, 4, 6, 8]))`,options:["1","4","[4, 6, 8]","-1"],correctIndex:1,explanation:"The function returns the FIRST even number it finds. 1 is odd, 3 is odd, 4 is even → return 4 immediately."}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-functions",title:"Password Strength Checker",difficulty:"medium",description:'Write a function `check_password(password)` that returns a strength rating: "Weak" (< 8 chars), "Medium" (8+ chars with letters and digits), "Strong" (8+ chars with upper, lower, digits, and special characters).',starterCode:`def check_password(password):
-    """Check password strength."""
-    if len(password) < 8:
-        return "Weak"
-    
-    has_upper = any(c.isupper() for c in password)
-    has_lower = any(c.islower() for c in password)
-    has_digit = any(c.isdigit() for c in password)
-    has_special = any(not c.isalnum() for c in password)
-    
-    if has_upper and has_lower and has_digit and has_special:
-        return "Strong"
-    elif has_digit and (has_upper or has_lower):
-        return "Medium"
-    else:
-        return "Weak"
-
-# Test it
-tests = ["hi", "password", "Pass1234", "P@ss1234!", "12345678"]
-for pw in tests:
-    strength = check_password(pw)
-    print(f"  {pw:15s} → {strength}")`,testCases:[{input:"",expected:`  hi              → Weak
-  password        → Weak
-  Pass1234        → Medium
-  P@ss1234!       → Strong
-  12345678        → Weak`}],hints:["Use len() to check length","Use any() with generator expressions to check character types","str.isupper(), str.islower(), str.isdigit(), str.isalnum() are helpful"],solution:`def check_password(password):
-    if len(password) < 8:
-        return "Weak"
-    has_upper = any(c.isupper() for c in password)
-    has_lower = any(c.islower() for c in password)
-    has_digit = any(c.isdigit() for c in password)
-    has_special = any(not c.isalnum() for c in password)
-    if has_upper and has_lower and has_digit and has_special:
-        return "Strong"
-    elif has_digit and (has_upper or has_lower):
-        return "Medium"
-    else:
-        return "Weak"
-tests = ["hi", "password", "Pass1234", "P@ss1234!", "12345678"]
-for pw in tests:
-    print(f"  {pw:15s} → {check_password(pw)}")`}}],Ce=[{type:"heading",level:1,text:"Advanced Function Concepts"},{type:"text",content:"Now that you understand basic functions, let's explore Python's more powerful function features: **lambda expressions**, **recursion**, **higher-order functions**, and **flexible arguments**. These concepts take your functions from simple tools to sophisticated building blocks."},{type:"heading",level:2,text:"Lambda Functions (Anonymous Functions)"},{type:"code",code:`# Lambda: a one-line anonymous function
+print(f"\\nMin={lo}, Max={hi}, Avg={avg:.1f}")`,instructions:"Create your own functions! Try making a function that checks if a number is prime."},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],be=[{type:"heading",level:1,text:"Advanced Function Concepts"},{type:"text",content:"Now that you understand basic functions, let's explore Python's more powerful function features: **lambda expressions**, **recursion**, **higher-order functions**, and **flexible arguments**. These concepts take your functions from simple tools to sophisticated building blocks."},{type:"heading",level:2,text:"Lambda Functions (Anonymous Functions)"},{type:"code",code:`# Lambda: a one-line anonymous function
 # Syntax: lambda parameters: expression
 
 square = lambda x: x ** 2
@@ -2933,55 +2557,7 @@ def power(base, exp):
         return 1
     return base * power(base, exp - 1)
 
-print(f"\\n2^10 = {power(2, 10)}")`,instructions:"Try writing a recursive function to reverse a string, or create a function factory."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-advancedfn",title:"Advanced Functions Quiz",questions:[{type:"predict-output",code:`f = lambda x, y: x ** y
-print(f(2, 3))`,options:["6","8","5","23"],correctIndex:1,explanation:"The lambda computes x**y. 2**3 = 8."},{type:"predict-output",code:`def foo(*args):
-    return len(args)
-
-print(foo(1, 2, 3, 4, 5))`,options:["1","5","(1, 2, 3, 4, 5)","Error"],correctIndex:1,explanation:"*args collects all arguments into a tuple. len((1,2,3,4,5)) = 5."},{type:"predict-output",code:`result = [x * 2 for x in range(5) if x % 2 != 0]
-print(result)`,options:["[0, 2, 4, 6, 8]","[2, 6]","[1, 3]","[0, 4, 8]"],correctIndex:1,explanation:"range(5) gives 0,1,2,3,4. Filter x%2!=0 gives 1,3. Multiply by 2: [2, 6]."},{type:"mcq",question:"What is required to prevent infinite recursion?",options:["A return statement","A base case","A loop inside the function","The global keyword"],correctIndex:1,explanation:"Every recursive function needs a BASE CASE — a condition where it stops calling itself and returns a direct value."}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-advancedfn",title:"Mini Calculator with Dispatch",difficulty:"hard",description:"Create a calculator that uses a dictionary to dispatch operations. Support +, -, *, /, and ** (power). Return an error message for division by zero and unknown operators.",starterCode:`# Mini Calculator with function dispatch
-def calculator(a, op, b):
-    operations = {
-        "+": lambda x, y: x + y,
-        "-": lambda x, y: x - y,
-        "*": lambda x, y: x * y,
-        "/": lambda x, y: "Error: Division by zero" if y == 0 else x / y,
-        "**": lambda x, y: x ** y,
-    }
-    
-    if op not in operations:
-        return f"Error: Unknown operator '{op}'"
-    return operations[op](a, b)
-
-# Test cases
-tests = [
-    (10, "+", 5),
-    (10, "-", 3),
-    (4, "*", 7),
-    (15, "/", 4),
-    (10, "/", 0),
-    (2, "**", 8),
-    (5, "%", 3),
-]
-
-for a, op, b in tests:
-    result = calculator(a, op, b)
-    print(f"  {a} {op} {b} = {result}")`,testCases:[{input:"",expected:`  10 + 5 = 15
-  10 - 3 = 7
-  4 * 7 = 28
-  15 / 4 = 3.75
-  10 / 0 = Error: Division by zero
-  2 ** 8 = 256
-  5 % 3 = Error: Unknown operator '%'`}],hints:["Use a dictionary mapping operator strings to lambda functions","Check for unknown operators with `if op not in operations`","Handle division by zero inside the lambda or with a separate check"],solution:`def calculator(a, op, b):
-    operations = {
-        "+": lambda x, y: x + y,
-        "-": lambda x, y: x - y,
-        "*": lambda x, y: x * y,
-        "/": lambda x, y: "Error: Division by zero" if y == 0 else x / y,
-        "**": lambda x, y: x ** y,
-    }
-    if op not in operations:
-        return f"Error: Unknown operator \\'{op}\\'"
-    return operations[op](a, b)`}}],Ae=[{type:"heading",level:1,text:"Lists — Python's Workhorse Data Structure"},{type:"text",content:"A **list** is an ordered, mutable collection that can hold items of any type. Lists are Python's most versatile data structure — they're used everywhere: storing data, building results, processing sequences, and much more. If you only learn one data structure well, make it lists."},{type:"heading",level:2,text:"Creating Lists"},{type:"code",code:`# Empty list
+print(f"\\n2^10 = {power(2, 10)}")`,instructions:"Try writing a recursive function to reverse a string, or create a function factory."},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],ve=[{type:"heading",level:1,text:"Lists — Python's Workhorse Data Structure"},{type:"text",content:"A **list** is an ordered, mutable collection that can hold items of any type. Lists are Python's most versatile data structure — they're used everywhere: storing data, building results, processing sequences, and much more. If you only learn one data structure well, make it lists."},{type:"heading",level:2,text:"Creating Lists"},{type:"code",code:`# Empty list
 empty = []
 also_empty = list()
 
@@ -3185,51 +2761,7 @@ for x in data:
     if x not in seen:
         seen.add(x)
         unique.append(x)
-print(f"\\nUnique (ordered): {unique}")`,instructions:"Experiment with list methods, comprehensions, and nested lists."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-lists",title:"Lists Quiz",questions:[{type:"predict-output",code:`a = [1, 2, 3]
-b = a
-b.append(4)
-print(a)`,options:["[1, 2, 3]","[1, 2, 3, 4]","[4]","Error"],correctIndex:1,explanation:"b = a creates an ALIAS (both point to the same list). Appending to b also modifies a. Output: [1, 2, 3, 4]."},{type:"predict-output",code:`x = [1, 2, 3, 4, 5]
-print(x[1:4])`,options:["[1, 2, 3, 4]","[2, 3, 4]","[2, 3, 4, 5]","[1, 2, 3]"],correctIndex:1,explanation:"Slicing x[1:4] gives elements at indices 1, 2, 3 (stop index is exclusive). Result: [2, 3, 4]."},{type:"predict-output",code:`nums = [3, 1, 4]
-result = nums.sort()
-print(result)`,options:["[1, 3, 4]","None","[3, 1, 4]","Error"],correctIndex:1,explanation:".sort() sorts in-place and returns None! The list is sorted, but the return value is None."},{type:"predict-output",code:`words = "Hello World".split()
-print("-".join(words))`,options:["Hello World","Hello-World","['Hello', 'World']","H-e-l-l-o"],correctIndex:1,explanation:'.split() creates ["Hello", "World"]. "-".join() connects them with hyphens: "Hello-World".'}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-lists",title:"List Statistics",difficulty:"medium",description:"Write functions to compute statistics on a list of numbers: mean, median (middle value when sorted), and mode (most frequent value). Don't use any imports.",starterCode:`def mean(nums):
-    return sum(nums) / len(nums)
-
-def median(nums):
-    sorted_nums = sorted(nums)
-    n = len(sorted_nums)
-    mid = n // 2
-    if n % 2 == 0:
-        return (sorted_nums[mid - 1] + sorted_nums[mid]) / 2
-    return sorted_nums[mid]
-
-def mode(nums):
-    freq = {}
-    for n in nums:
-        freq[n] = freq.get(n, 0) + 1
-    max_count = max(freq.values())
-    modes = [k for k, v in freq.items() if v == max_count]
-    return modes[0]  # Return first mode if tie
-
-# Test
-data = [4, 8, 6, 5, 3, 8, 9, 4, 8, 2]
-print(f"Data: {data}")
-print(f"Mean: {mean(data):.2f}")
-print(f"Median: {median(data):.2f}")
-print(f"Mode: {mode(data)}")`,testCases:[{input:"",expected:`Data: [4, 8, 6, 5, 3, 8, 9, 4, 8, 2]
-Mean: 5.70
-Median: 5.50
-Mode: 8`}],hints:["Mean = sum / count","Median: sort the list, find the middle element(s)","Mode: count occurrences with a dictionary, find the max"],solution:`def mean(nums): return sum(nums) / len(nums)
-def median(nums):
-    s = sorted(nums)
-    n = len(s)
-    mid = n // 2
-    return (s[mid-1] + s[mid]) / 2 if n % 2 == 0 else s[mid]
-def mode(nums):
-    freq = {}
-    for n in nums:
-        freq[n] = freq.get(n, 0) + 1
-    return max(freq, key=freq.get)`}}],Se=[{type:"heading",level:1,text:"List Patterns & Comprehensions"},{type:"text",content:"Now that you know the basics of lists, let's master the **patterns** that make Python list handling elegant and powerful. List comprehensions, stack/queue patterns, copying strategies, and common algorithmic patterns will transform how you think about data processing."},{type:"heading",level:2,text:"List Comprehensions — Deep Dive"},{type:"code",code:`# Basic: [expression for item in iterable]
+print(f"\\nUnique (ordered): {unique}")`,instructions:"Experiment with list methods, comprehensions, and nested lists."},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],xe=[{type:"heading",level:1,text:"List Patterns & Comprehensions"},{type:"text",content:"Now that you know the basics of lists, let's master the **patterns** that make Python list handling elegant and powerful. List comprehensions, stack/queue patterns, copying strategies, and common algorithmic patterns will transform how you think about data processing."},{type:"heading",level:2,text:"List Comprehensions — Deep Dive"},{type:"code",code:`# Basic: [expression for item in iterable]
 squares = [x**2 for x in range(1, 11)]
 print(squares)  # [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
@@ -3419,46 +2951,7 @@ for item in data[1:]:
         groups.append(current)
         current = [item]
 groups.append(current)
-print(f"\\nGroups: {groups}")`,instructions:"Try implementing your own list algorithms — sorting, searching, or transformation patterns."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-listpatterns",title:"List Patterns Quiz",questions:[{type:"predict-output",code:`result = [x for x in range(10) if x % 3 == 0]
-print(result)`,options:["[0, 3, 6, 9]","[3, 6, 9]","[0, 3, 6]","[1, 2, 4, 5, 7, 8]"],correctIndex:0,explanation:"range(10) gives 0-9. Filter by x%3==0: 0, 3, 6, 9. Note that 0%3==0 is True!"},{type:"predict-output",code:`a = [[1, 2], [3, 4]]
-b = a.copy()
-b[0][0] = 99
-print(a[0][0])`,options:["1","99","Error","[[99, 2], [3, 4]]"],correctIndex:1,explanation:".copy() makes a SHALLOW copy. The inner lists are still shared. Modifying b[0][0] also modifies a[0][0]."},{type:"mcq",question:"What does a stack's pop() remove?",options:["The first element added","The last element added","A random element","The smallest element"],correctIndex:1,explanation:"A stack is LIFO (Last In, First Out). pop() removes the most recently added element."},{type:"predict-output",code:`words = ["hello", "world"]
-result = [w.upper() for w in words]
-print(result)`,options:['["hello", "world"]','["HELLO", "WORLD"]',"HELLO WORLD","Error"],correctIndex:1,explanation:"The list comprehension applies .upper() to each word, creating a new list of uppercase strings."}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-listpatterns",title:"Flatten & Group",difficulty:"hard",description:"Write two functions: (1) flatten() that converts a nested list of any depth into a flat list, and (2) chunk() that splits a flat list into groups of size n.",starterCode:`# Flatten a nested list (recursive)
-def flatten(nested):
-    result = []
-    for item in nested:
-        if isinstance(item, list):
-            result.extend(flatten(item))
-        else:
-            result.append(item)
-    return result
-
-# Chunk a list into groups of n
-def chunk(lst, n):
-    return [lst[i:i+n] for i in range(0, len(lst), n)]
-
-# Test flatten
-deep = [1, [2, 3], [4, [5, 6]], [[7, [8, 9]]]]
-print(f"Flatten: {flatten(deep)}")
-
-# Test chunk
-data = list(range(1, 11))
-print(f"Chunk by 3: {chunk(data, 3)}")
-print(f"Chunk by 4: {chunk(data, 4)}")`,testCases:[{input:"",expected:`Flatten: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-Chunk by 3: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
-Chunk by 4: [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10]]`}],hints:["For flatten: use recursion. If an item is a list, flatten it; otherwise append it.","For chunk: use slicing with range(0, len(lst), n)","isinstance(item, list) checks if something is a list"],solution:`def flatten(nested):
-    result = []
-    for item in nested:
-        if isinstance(item, list):
-            result.extend(flatten(item))
-        else:
-            result.append(item)
-    return result
-
-def chunk(lst, n):
-    return [lst[i:i+n] for i in range(0, len(lst), n)]`}}],Fe=[{type:"heading",level:1,text:"Tuples — Immutable Sequences"},{type:"text",content:"Tuples are Python's **immutable** ordered sequences. They look like lists but cannot be modified after creation. This immutability makes them faster, safer, and usable as dictionary keys and set members. Tuples are ideal for representing fixed collections of related values — like coordinates, RGB colors, or database records."},{type:"heading",level:2,text:"Creating Tuples"},{type:"code",code:`# Parentheses (most common)
+print(f"\\nGroups: {groups}")`,instructions:"Try implementing your own list algorithms — sorting, searching, or transformation patterns."},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],we=[{type:"heading",level:1,text:"Tuples — Immutable Sequences"},{type:"text",content:"Tuples are Python's **immutable** ordered sequences. They look like lists but cannot be modified after creation. This immutability makes them faster, safer, and usable as dictionary keys and set members. Tuples are ideal for representing fixed collections of related values — like coordinates, RGB colors, or database records."},{type:"heading",level:2,text:"Creating Tuples"},{type:"code",code:`# Parentheses (most common)
 point = (3, 4)
 rgb = (255, 128, 0)
 print(point)     # (3, 4)
@@ -3675,65 +3168,7 @@ red = Color(255, 0, 0)
 green = Color(0, 255, 0)
 blue = Color(0, 0, 255)
 for c in [red, green, blue]:
-    print(f"  RGB({c.r}, {c.g}, {c.b})")`,instructions:"Try creating your own tuple patterns — coordinates, records, or function return values."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-tuples",title:"Tuples Quiz",questions:[{type:"predict-output",code:`x = (42)
-print(type(x).__name__)`,options:["tuple","int","list","Error"],correctIndex:1,explanation:"(42) is just 42 in parentheses — an int. To make a single-element tuple, use (42,) with a trailing comma."},{type:"predict-output",code:`a, *b, c = (1, 2, 3, 4, 5)
-print(b)`,options:["(2, 3, 4)","[2, 3, 4]","2 3 4","Error"],correctIndex:1,explanation:"The * operator collects remaining values into a LIST (not a tuple), even when unpacking a tuple."},{type:"mcq",question:"Which of these can be used as a dictionary key?",options:["[1, 2, 3]","{1, 2, 3}","(1, 2, 3)",'{"a": 1}'],correctIndex:2,explanation:"Only hashable (immutable) types can be dict keys. Tuples (with hashable elements) are hashable. Lists, sets, and dicts are not."},{type:"predict-output",code:`t = (1, [2, 3])
-t[1].append(4)
-print(t)`,options:["Error","(1, [2, 3, 4])","(1, [2, 3])","TypeError"],correctIndex:1,explanation:"The tuple is immutable (can't replace its elements), but the list inside it is mutable. Appending to the list works because we're modifying the list, not the tuple."},{type:"predict-output",code:`a, b = 5, 10
-a, b = b, a + b
-print(a, b)`,options:["10 15","5 15","10 20","15 10"],correctIndex:0,explanation:"Right side evaluates FIRST: b=10, a+b=5+10=15. Then unpacks: a=10, b=15. Output: 10 15."}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-tuples",title:"Contact Book with Tuples",difficulty:"medium",description:"Build a simple contact book that stores contacts as named tuples with name, phone, and email. Implement functions to add, search by name, and display all contacts sorted by name.",starterCode:`from collections import namedtuple
-
-Contact = namedtuple("Contact", ["name", "phone", "email"])
-
-def add_contact(contacts, name, phone, email):
-    """Add a new contact (returns new list)"""
-    contacts.append(Contact(name, phone, email))
-    return contacts
-
-def search(contacts, query):
-    """Find contacts whose name contains the query (case-insensitive)"""
-    query = query.lower()
-    return [c for c in contacts if query in c.name.lower()]
-
-def display(contacts):
-    """Display all contacts sorted by name"""
-    for c in sorted(contacts, key=lambda c: c.name):
-        print(f"  {c.name}: {c.phone} | {c.email}")
-
-# Test it
-book = []
-book = add_contact(book, "Alice Smith", "555-1234", "alice@email.com")
-book = add_contact(book, "Bob Jones", "555-5678", "bob@email.com")
-book = add_contact(book, "Alice Wong", "555-9012", "awong@email.com")
-
-print("All contacts:")
-display(book)
-
-print("\\nSearch for 'alice':")
-results = search(book, "alice")
-for c in results:
-    print(f"  {c.name}: {c.phone}")`,testCases:[{input:"",expected:`All contacts:
-  Alice Smith: 555-1234 | alice@email.com
-  Alice Wong: 555-9012 | awong@email.com
-  Bob Jones: 555-5678 | bob@email.com
-
-Search for 'alice':
-  Alice Smith: 555-1234
-  Alice Wong: 555-9012`}],hints:['namedtuple creates a class — call it like Contact("name", "phone", "email")',"Use list comprehension with string methods for search","sorted() with a key function for alphabetical display"],solution:`from collections import namedtuple
-
-Contact = namedtuple("Contact", ["name", "phone", "email"])
-
-def add_contact(contacts, name, phone, email):
-    contacts.append(Contact(name, phone, email))
-    return contacts
-
-def search(contacts, query):
-    query = query.lower()
-    return [c for c in contacts if query in c.name.lower()]
-
-def display(contacts):
-    for c in sorted(contacts, key=lambda c: c.name):
-        print(f"  {c.name}: {c.phone} | {c.email}")`}}],Pe=[{type:"heading",level:1,text:"Dictionaries — Key-Value Data"},{type:"text",content:"Dictionaries are Python's most versatile data structure — they store **key-value pairs** and provide lightning-fast lookups by key. In other languages, they're called hash maps, associative arrays, or objects. Dictionaries are everywhere in Python: configuration files, JSON data, database records, counting, grouping — mastering them is essential."},{type:"heading",level:2,text:"Creating Dictionaries"},{type:"code",code:`# Curly braces with key: value pairs
+    print(f"  RGB({c.r}, {c.g}, {c.b})")`,instructions:"Try creating your own tuple patterns — coordinates, records, or function return values."},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],_e=[{type:"heading",level:1,text:"Dictionaries — Key-Value Data"},{type:"text",content:"Dictionaries are Python's most versatile data structure — they store **key-value pairs** and provide lightning-fast lookups by key. In other languages, they're called hash maps, associative arrays, or objects. Dictionaries are everywhere in Python: configuration files, JSON data, database records, counting, grouping — mastering them is essential."},{type:"heading",level:2,text:"Creating Dictionaries"},{type:"code",code:`# Curly braces with key: value pairs
 student = {
     "name": "Alice",
     "age": 20,
@@ -3923,50 +3358,7 @@ for word in words:
 
 print("\\nWord Frequencies:")
 for word, count in sorted(freq.items(), key=lambda x: -x[1]):
-    print(f"  {word}: {count}")`,instructions:"Experiment with dictionaries — try building a simple address book, inventory system, or word counter."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-dicts",title:"Dictionaries Quiz",questions:[{type:"predict-output",code:`d = {"a": 1, "b": 2, "a": 3}
-print(d["a"])`,options:["1","3","[1, 3]","KeyError"],correctIndex:1,explanation:'Duplicate keys: the last value wins. "a" is set to 1, then overwritten to 3.'},{type:"predict-output",code:`d = {"x": 10}
-result = d.get("y", 0) + d.get("x", 0)
-print(result)`,options:["10","0","KeyError","None"],correctIndex:0,explanation:'d.get("y", 0) returns 0 (key missing, default 0). d.get("x", 0) returns 10. Sum = 10.'},{type:"mcq",question:"Which CANNOT be a dictionary key?",options:["(1, 2)",'"hello"',"[1, 2]","42"],correctIndex:2,explanation:"Lists are mutable and therefore unhashable — they cannot be dictionary keys. Tuples, strings, and integers are all hashable."},{type:"predict-output",code:`d = {"a": 1, "b": 2, "c": 3}
-print(list(d.values()))`,options:['["a", "b", "c"]',"[1, 2, 3]",'[("a",1), ("b",2), ("c",3)]',"Error"],correctIndex:1,explanation:".values() returns the dictionary's values. list() converts the view to a list: [1, 2, 3]."},{type:"predict-output",code:`d = {True: "yes", 1: "one", 1.0: "float"}
-print(d)`,options:['{True: "yes", 1: "one", 1.0: "float"}','{True: "float"}','{1: "float"}',"Error"],correctIndex:1,explanation:`True == 1 == 1.0, so they're all the same key. The first key (True) is kept, but the value is overwritten to "float".`}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-dicts",title:"Student Grade Manager",difficulty:"medium",description:"Build a grade management system using dictionaries. Store students with their subject grades, compute averages, find the top student, and identify failing subjects (below 50).",starterCode:`# Student Grade Manager
-students = {
-    "Alice": {"Math": 92, "Physics": 88, "English": 95, "History": 78},
-    "Bob": {"Math": 65, "Physics": 45, "English": 72, "History": 58},
-    "Charlie": {"Math": 78, "Physics": 82, "English": 48, "History": 90},
-    "Diana": {"Math": 95, "Physics": 92, "English": 88, "History": 94},
-}
-
-# 1. Compute each student's average
-print("Student Averages:")
-for name, grades in students.items():
-    avg = sum(grades.values()) / len(grades)
-    print(f"  {name}: {avg:.1f}")
-
-# 2. Find the top student
-top = max(students.items(), key=lambda x: sum(x[1].values()) / len(x[1]))
-print(f"\\nTop Student: {top[0]}")
-
-# 3. Find all failing grades (below 50)
-print("\\nFailing Grades:")
-for name, grades in students.items():
-    for subject, score in grades.items():
-        if score < 50:
-            print(f"  {name} - {subject}: {score}")`,testCases:[{input:"",expected:`Student Averages:
-  Alice: 88.2
-  Bob: 60.0
-  Charlie: 74.5
-  Diana: 92.2
-
-Top Student: Diana
-
-Failing Grades:
-  Bob - Physics: 45
-  Charlie - English: 48`}],hints:["Use sum(grades.values()) / len(grades) for average","max() with a key function can find the top student","Nested loop: outer for students, inner for their subjects"],solution:`students = {...}  # as above
-for name, grades in students.items():
-    avg = sum(grades.values()) / len(grades)
-    print(f"  {name}: {avg:.1f}")
-top = max(students.items(), key=lambda x: sum(x[1].values())/len(x[1]))
-print(f"Top: {top[0]}")`}}],Ie=[{type:"heading",level:1,text:"Dictionary Patterns & Comprehensions"},{type:"text",content:"Dictionaries unlock their true power through patterns — counting, grouping, inverting, and transforming data with elegant comprehensions. These patterns appear constantly in real-world Python: processing API responses, analyzing text, building caches, and managing configuration. Master these patterns and you'll write Python that's both concise and readable."},{type:"heading",level:2,text:"Dictionary Comprehensions"},{type:"code",code:`# Basic: {key_expr: value_expr for item in iterable}
+    print(f"  {word}: {count}")`,instructions:"Experiment with dictionaries — try building a simple address book, inventory system, or word counter."},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],Te=[{type:"heading",level:1,text:"Dictionary Patterns & Comprehensions"},{type:"text",content:"Dictionaries unlock their true power through patterns — counting, grouping, inverting, and transforming data with elegant comprehensions. These patterns appear constantly in real-world Python: processing API responses, analyzing text, building caches, and managing configuration. Master these patterns and you'll write Python that's both concise and readable."},{type:"heading",level:2,text:"Dictionary Comprehensions"},{type:"code",code:`# Basic: {key_expr: value_expr for item in iterable}
 squares = {x: x**2 for x in range(1, 6)}
 print(squares)  # {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
 
@@ -4167,52 +3559,7 @@ for book in books:
 
 print("\\nTag Index:")
 for tag, titles in sorted(tag_index.items()):
-    print(f"  {tag}: {titles}")`,instructions:"Experiment with counting, grouping, and dictionary patterns."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-dictpatterns",title:"Dictionary Patterns Quiz",questions:[{type:"predict-output",code:`result = {x: x**2 for x in range(4)}
-print(result)`,options:["{0: 0, 1: 1, 2: 4, 3: 9}","[0, 1, 4, 9]","{1: 1, 2: 4, 3: 9}","Error"],correctIndex:0,explanation:"Dict comprehension creates key:value pairs. range(4) gives 0,1,2,3. Each maps to its square."},{type:"predict-output",code:`from collections import Counter
-c = Counter("banana")
-print(c.most_common(1))`,options:['[("a", 3)]','[("b", 1)]','["a"]',"3"],correctIndex:0,explanation:'"banana" has a:3, n:2, b:1. most_common(1) returns the top-1 as a list of (element, count) tuples.'},{type:"mcq",question:"What does defaultdict(list) do when accessing a missing key?",options:["Raises KeyError","Returns None","Creates the key with an empty list","Creates the key with value 0"],correctIndex:2,explanation:"defaultdict(list) automatically creates missing keys with the factory function list(), which returns []."},{type:"predict-output",code:`d = {"a": 1, "b": 2}
-d.setdefault("a", 999)
-d.setdefault("c", 3)
-print(d)`,options:['{"a": 999, "b": 2, "c": 3}','{"a": 1, "b": 2, "c": 3}','{"a": 1, "b": 2}',"Error"],correctIndex:1,explanation:`setdefault only sets the value if the key doesn't exist. "a" already exists (unchanged). "c" doesn't exist, so it's set to 3.`}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-dictpatterns",title:"Text Analyzer",difficulty:"hard",description:"Build a text analysis tool. Given a paragraph, compute: (1) word frequency sorted by count, (2) average word length, (3) sentence count, and (4) the most common starting letter.",starterCode:`from collections import Counter
-
-text = """Python is a great programming language. Python is used for web development.
-Python is also great for data science. Many programmers love Python.
-Python makes programming fun and productive."""
-
-# 1. Word frequency (top 5)
-words = text.lower().split()
-word_freq = Counter(words)
-print("Top 5 words:")
-for word, count in word_freq.most_common(5):
-    print(f"  {word}: {count}")
-
-# 2. Average word length
-clean_words = [w.strip(".,!?") for w in words]
-avg_len = sum(len(w) for w in clean_words) / len(clean_words)
-print(f"\\nAverage word length: {avg_len:.1f}")
-
-# 3. Sentence count
-sentences = [s.strip() for s in text.split(".") if s.strip()]
-print(f"Sentences: {len(sentences)}")
-
-# 4. Most common starting letter
-first_letters = Counter(w[0] for w in clean_words if w)
-print(f"\\nMost common starting letter: {first_letters.most_common(1)[0]}")`,testCases:[{input:"",expected:`Top 5 words:
-  python: 5
-  is: 3
-  great: 2
-  programming: 2
-  for: 2
-
-Average word length: 4.8
-Sentences: 5
-
-Most common starting letter: ('p', 11)`}],hints:["Counter.most_common(n) returns the n most frequent items","Strip punctuation from words before analysis",'Split on "." to count sentences'],solution:`from collections import Counter
-words = text.lower().split()
-word_freq = Counter(words)
-clean = [w.strip(".,!?") for w in words]
-avg_len = sum(len(w) for w in clean) / len(clean)
-sentences = [s.strip() for s in text.split(".") if s.strip()]`}}],Ee=[{type:"heading",level:1,text:"Sets — Unique Collections"},{type:"text",content:"Sets are **unordered collections of unique elements**. Inspired by mathematical sets, they support powerful operations like union, intersection, and difference. Sets excel at membership testing (extremely fast `in` checks), removing duplicates, and comparing groups of items. If you've ever needed to ask \"what's in A but not in B?\" — sets are your answer."},{type:"heading",level:2,text:"Creating Sets"},{type:"code",code:`# Curly braces — but NOT empty! (empty {} is a dict)
+    print(f"  {tag}: {titles}")`,instructions:"Experiment with counting, grouping, and dictionary patterns."},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],ke=[{type:"heading",level:1,text:"Sets — Unique Collections"},{type:"text",content:"Sets are **unordered collections of unique elements**. Inspired by mathematical sets, they support powerful operations like union, intersection, and difference. Sets excel at membership testing (extremely fast `in` checks), removing duplicates, and comparing groups of items. If you've ever needed to ask \"what's in A but not in B?\" — sets are your answer."},{type:"heading",level:2,text:"Creating Sets"},{type:"code",code:`# Curly braces — but NOT empty! (empty {} is a dict)
 fruits = {"apple", "banana", "cherry"}
 print(fruits)       # Order may vary!
 print(type(fruits)) # <class 'set'>
@@ -4402,55 +3749,7 @@ def find_duplicates(lst):
     return dups
 
 nums = [1, 3, 5, 3, 7, 1, 9, 5]
-print(f"\\nDuplicates: {find_duplicates(nums)}")`,instructions:"Experiment with set operations — find intersections, differences, or use sets to solve problems."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-sets",title:"Sets Quiz",questions:[{type:"predict-output",code:`s = {1, 2, 2, 3, 3, 3}
-print(len(s))`,options:["6","3","1","Error"],correctIndex:1,explanation:"Sets only keep unique elements. {1, 2, 2, 3, 3, 3} becomes {1, 2, 3}, which has length 3."},{type:"predict-output",code:`A = {1, 2, 3}
-B = {2, 3, 4}
-print(A ^ B)`,options:["{2, 3}","{1, 4}","{1, 2, 3, 4}","Error"],correctIndex:1,explanation:"^ is symmetric difference: elements in A or B but not both. 1 is only in A, 4 is only in B. Result: {1, 4}."},{type:"predict-output",code:`x = type({}).__name__
-y = type(set()).__name__
-print(x, y)`,options:["set set","dict dict","dict set","set dict"],correctIndex:2,explanation:"{} creates an empty DICT (not a set!). set() creates an empty set. This is a common gotcha."},{type:"mcq",question:"Which operation finds elements in set A that are NOT in set B?",options:["A | B","A & B","A - B","A ^ B"],correctIndex:2,explanation:"A - B (difference) returns elements that are in A but not in B."}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-sets",title:"Social Network Analyzer",difficulty:"medium",description:"Given a social network represented as a dictionary of users and their friends (sets), find: mutual friends between two users, friend suggestions (friends of friends who aren't already friends), and the most connected user.",starterCode:`# Social network as dict of sets
-network = {
-    "Alice": {"Bob", "Charlie", "Diana"},
-    "Bob": {"Alice", "Diana", "Eve"},
-    "Charlie": {"Alice", "Frank"},
-    "Diana": {"Alice", "Bob", "Eve", "Frank"},
-    "Eve": {"Bob", "Diana"},
-    "Frank": {"Charlie", "Diana"},
-}
-
-# 1. Mutual friends
-def mutual_friends(network, user1, user2):
-    return network[user1] & network[user2]
-
-print("Mutual friends (Alice & Bob):")
-print(f"  {mutual_friends(network, 'Alice', 'Bob')}")
-
-# 2. Friend suggestions (friends of friends, not already friends)
-def suggest_friends(network, user):
-    friends = network[user]
-    suggestions = set()
-    for friend in friends:
-        suggestions |= network[friend]  # Add friends of friends
-    suggestions -= friends      # Remove existing friends
-    suggestions.discard(user)   # Remove self
-    return suggestions
-
-print("\\nFriend suggestions for Alice:")
-print(f"  {suggest_friends(network, 'Alice')}")
-
-# 3. Most connected user
-most = max(network, key=lambda u: len(network[u]))
-print(f"\\nMost connected: {most} ({len(network[most])} friends)")`,testCases:[{input:"",expected:`Mutual friends (Alice & Bob):
-  {'Diana'}
-
-Friend suggestions for Alice:
-  {'Eve', 'Frank'}
-
-Most connected: Diana (4 friends)`}],hints:["Set intersection (&) finds mutual friends","Union of friends-of-friends, then subtract existing friends","max() with key=lambda finds the user with most connections"],solution:`def mutual_friends(network, u1, u2): return network[u1] & network[u2]
-def suggest_friends(network, user):
-    friends = network[user]
-    fof = set()
-    for f in friends: fof |= network[f]
-    return fof - friends - {user}`}}],qe=[{type:"heading",level:1,text:"File Handling in Python"},{type:"text",content:"Files are how programs persist data beyond a single run. Python makes file I/O remarkably simple. You'll learn to read from and write to text files, handle CSV data, work with file paths, and always use the **context manager** pattern (`with` statement) to handle resources safely. Note: In this browser-based environment, file operations are simulated — but the concepts apply directly to real Python."},{type:"heading",level:2,text:"Opening Files — The with Statement"},{type:"code",code:`# The CORRECT way — with statement (context manager)
+print(f"\\nDuplicates: {find_duplicates(nums)}")`,instructions:"Experiment with set operations — find intersections, differences, or use sets to solve problems."},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],Ce=[{type:"heading",level:1,text:"File Handling in Python"},{type:"text",content:"Files are how programs persist data beyond a single run. Python makes file I/O remarkably simple. You'll learn to read from and write to text files, handle CSV data, work with file paths, and always use the **context manager** pattern (`with` statement) to handle resources safely. Note: In this browser-based environment, file operations are simulated — but the concepts apply directly to real Python."},{type:"heading",level:2,text:"Opening Files — The with Statement"},{type:"code",code:`# The CORRECT way — with statement (context manager)
 # Automatically closes the file, even if an error occurs
 with open("example.txt", "r") as f:
     content = f.read()
@@ -4679,58 +3978,7 @@ log_event("Application stopped")
 log.seek(0)
 print("\\nLog File:")
 for line in log:
-    print(f"  {line.strip()}")`,instructions:"Practice file operations using StringIO. Try building a CSV processor or log file system."},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-files",title:"File Handling Quiz",questions:[{type:"mcq",question:'What happens if you open an existing file with mode "w"?',options:["Appends to the file","Raises an error","Erases all content and starts fresh","Opens in read-only mode"],correctIndex:2,explanation:'Mode "w" truncates (erases) the file immediately upon opening. Use "a" to append instead.'},{type:"mcq",question:'Why should you use "with open(...) as f:" instead of "f = open(...)"?',options:["It's faster","It automatically closes the file, even on errors","It's the only way to open files","It opens files in binary mode"],correctIndex:1,explanation:"The with statement ensures the file is properly closed when the block exits, even if an exception occurs."},{type:"mcq",question:"Which method is best for reading a very large file line by line?",options:[".read()",".readlines()","for line in f:",".readline() in a while loop"],correctIndex:2,explanation:"for line in f: is the most memory-efficient. It reads one line at a time instead of loading the entire file into memory."},{type:"predict-output",code:`# If file contains:
-# hello
-# world
-with open("file.txt") as f:
-    result = f.readlines()
-    print(type(result).__name__)`,options:["str","list","tuple","generator"],correctIndex:1,explanation:".readlines() returns a list of strings, one per line, each ending with \\n."}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-files",title:"CSV Report Generator",difficulty:"hard",description:"Parse CSV sales data and generate a summary report showing: total revenue per product, best-selling product, and average order value. Use StringIO to simulate file operations.",starterCode:`import io
-import csv
-
-# Simulated CSV sales data
-sales_csv = """date,product,quantity,price
-2024-01-15,Widget,10,9.99
-2024-01-15,Gadget,5,19.99
-2024-01-16,Widget,8,9.99
-2024-01-16,Gizmo,3,29.99
-2024-01-17,Gadget,12,19.99
-2024-01-17,Widget,6,9.99
-2024-01-17,Gizmo,2,29.99"""
-
-# Parse and analyze
-reader = csv.DictReader(io.StringIO(sales_csv))
-product_revenue = {}
-product_quantity = {}
-total_orders = 0
-
-for row in reader:
-    product = row["product"]
-    qty = int(row["quantity"])
-    price = float(row["price"])
-    revenue = qty * price
-    
-    product_revenue[product] = product_revenue.get(product, 0) + revenue
-    product_quantity[product] = product_quantity.get(product, 0) + qty
-    total_orders += 1
-
-# Report
-print("=" * 45)
-print("        SALES SUMMARY REPORT")
-print("=" * 45)
-print(f"{'Product':<12} {'Qty':>6} {'Revenue':>12}")
-print("-" * 45)
-
-total_rev = 0
-for product in sorted(product_revenue):
-    rev = product_revenue[product]
-    qty = product_quantity[product]
-    total_rev += rev
-    print(f"{product:<12} {qty:>6} \${rev:>10.2f}")
-
-print("-" * 45)
-print(f"{'TOTAL':<12} {sum(product_quantity.values()):>6} \${total_rev:>10.2f}")
-print(f"\\nBest seller: {max(product_revenue, key=product_revenue.get)}")
-print(f"Avg order value: \${total_rev / total_orders:.2f}")`,testCases:[{input:"",expected:"Sales report with revenue per product, total, best seller, and average order value"}],hints:["csv.DictReader gives you dictionaries with column headers as keys","Use dict.get(key, 0) for safe accumulation","max(dict, key=dict.get) finds the key with the highest value"],solution:"# See starter code — it contains the full solution"}}],Ne=[{type:"heading",level:1,text:"Object-Oriented Programming"},{type:"text",content:"Object-Oriented Programming (OOP) lets you model real-world concepts by bundling **data** (attributes) and **behavior** (methods) into **objects**. You've already used OOP — strings, lists, and dictionaries are all objects with methods. Now you'll learn to create your own classes, the blueprints for making objects. OOP is a cornerstone of Python — understanding it unlocks libraries, frameworks, and clean software design."},{type:"heading",level:2,text:"Classes and Objects"},{type:"code",code:`# A class is a BLUEPRINT; an object is an INSTANCE
+    print(f"  {line.strip()}")`,instructions:"Practice file operations using StringIO. Try building a CSV processor or log file system."},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],Ae=[{type:"heading",level:1,text:"Object-Oriented Programming"},{type:"text",content:"Object-Oriented Programming (OOP) lets you model real-world concepts by bundling **data** (attributes) and **behavior** (methods) into **objects**. You've already used OOP — strings, lists, and dictionaries are all objects with methods. Now you'll learn to create your own classes, the blueprints for making objects. OOP is a cornerstone of Python — understanding it unlocks libraries, frameworks, and clean software design."},{type:"heading",level:2,text:"Classes and Objects"},{type:"code",code:`# A class is a BLUEPRINT; an object is an INSTANCE
 class Dog:
     # Class attribute — shared by ALL instances
     species = "Canis familiaris"
@@ -5049,78 +4297,6 @@ students = [alice, bob]
 for s in students:
     print(s)
     for g in s.grades:
-        print(f"    {g['subject']}: {g['score']}")`,instructions:"Try modifying the Student class or create your own class from scratch!"},{type:"heading",level:2,text:"Knowledge Check"},{type:"quiz",quiz:{id:"quiz-oop",title:"OOP Quiz",questions:[{type:"mcq",question:"What is the purpose of __init__?",options:["To destroy an object","To initialize a new instance with attributes","To define a class method","To import a module"],correctIndex:1,explanation:"__init__ is the constructor/initializer. It runs automatically when a new instance is created and sets up theobject's initial state."},{type:"predict-output",code:`class Cat:
-    lives = 9
-    def __init__(self, name):
-        self.name = name
-
-a = Cat("Luna")
-b = Cat("Milo")
-a.lives = 7
-print(b.lives)`,options:["7","9","Error","None"],correctIndex:1,explanation:"a.lives = 7 creates an INSTANCE attribute on a, shadowing the class attribute. b still reads the class attribute (9)."},{type:"mcq",question:"What does super().__init__() do in a child class?",options:["Creates a new parent object","Calls the parent class's __init__ method","Copies all parent methods","Deletes the parent class"],correctIndex:1,explanation:"super().__init__() calls the parent class's constructor, allowing the child to inherit and extend the parent's initialization."},{type:"predict-output",code:`class A:
-    def greet(self):
-        return "Hello from A"
-
-class B(A):
-    def greet(self):
-        return "Hello from B"
-
-obj = B()
-print(obj.greet())`,options:["Hello from A","Hello from B","Error","Hello from A Hello from B"],correctIndex:1,explanation:"B overrides A's greet method. Since obj is an instance of B, B's version is called (method overriding)."},{type:"mcq",question:'What is the naming convention for "private" attributes in Python?',options:["private keyword","Starting with _","Starting with #","Ending with _"],correctIndex:1,explanation:'Python uses naming conventions: a single underscore prefix (_name) signals "treat as private". Python has no true access modifiers.'}]}},{type:"heading",level:2,text:"Coding Challenge"},{type:"challenge",challenge:{id:"challenge-oop",title:"Shape Hierarchy",difficulty:"hard",description:"Create a Shape class hierarchy with a base Shape class and Circle, Rectangle, and Triangle subclasses. Each should compute area and perimeter, and support comparison by area.",starterCode:`import math
-
-class Shape:
-    def area(self):
-        raise NotImplementedError
-    def perimeter(self):
-        raise NotImplementedError
-    def __repr__(self):
-        return f"{type(self).__name__}(area={self.area():.2f})"
-    def __lt__(self, other):
-        return self.area() < other.area()
-    def __eq__(self, other):
-        return abs(self.area() - other.area()) < 1e-9
-
-class Circle(Shape):
-    def __init__(self, radius):
-        self.radius = radius
-    def area(self):
-        return math.pi * self.radius ** 2
-    def perimeter(self):
-        return 2 * math.pi * self.radius
-
-class Rectangle(Shape):
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
-    def area(self):
-        return self.width * self.height
-    def perimeter(self):
-        return 2 * (self.width + self.height)
-
-class Triangle(Shape):
-    def __init__(self, a, b, c):
-        self.a, self.b, self.c = a, b, c
-    def area(self):
-        s = (self.a + self.b + self.c) / 2
-        return math.sqrt(s * (s-self.a) * (s-self.b) * (s-self.c))
-    def perimeter(self):
-        return self.a + self.b + self.c
-
-# Test
-shapes = [
-    Circle(5),
-    Rectangle(4, 6),
-    Triangle(3, 4, 5),
-]
-
-for s in shapes:
-    print(f"{s} — perimeter: {s.perimeter():.2f}")
-
-print(f"\\nLargest: {max(shapes)}")
-print(f"Sorted: {sorted(shapes)}")`,testCases:[{input:"",expected:"Circle, Rectangle, Triangle with areas and perimeters; sorted by area"}],hints:["Override area() and perimeter() in each subclass","Use Heron's formula for triangle area: sqrt(s(s-a)(s-b)(s-c))","__lt__ enables sorting and max/min comparisons"],solution:`class Shape:
-    def area(self): raise NotImplementedError
-    def perimeter(self): raise NotImplementedError
-    def __lt__(self, other): return self.area() < other.area()`}}],Be={"day1-welcome":he,"day1-variables":fe,"day1-datatypes":me,"day1-strings":ge,"day1-operators":ye,"day1-io":be,"day2-boolean":xe,"day2-conditionals":ve,"day2-while":we,"day2-for":_e,"day2-patterns":ke,"day3-functions":Te,"day3-advanced-fn":Ce,"day3-lists":Ae,"day3-list-patterns":Se,"day3-tuples":Fe,"day4-dicts":Pe,"day4-dict-patterns":Ie,"day4-sets":Ee,"day4-files":qe,"day4-oop":Ne};function ze(d){return Be[d]}const We={class:"relative group rounded-xl overflow-hidden border border-border bg-[#0a0a1f]"},Oe={class:"flex items-center justify-between px-6 py-3 border-b border-border/50 bg-surface/30"},Me={class:"flex items-center gap-3"},Le={key:0,class:"text-sm font-mono text-text-muted ml-3"},De={key:1,class:"text-sm font-mono text-text-muted ml-3"},Re={class:"p-6 overflow-x-auto text-lg leading-relaxed font-mono"},je=["innerHTML"],He=N({__name:"CodeBlock",props:{code:{},language:{},filename:{}},setup(d){const y=d,m=F(!1),f=new Set(["def","class","if","elif","else","for","while","return","import","from","as","try","except","finally","with","raise","pass","break","continue","and","or","not","in","is","lambda","yield","global","nonlocal","assert","del","True","False","None","match","case","async","await"]),g=new Set(["print","input","len","range","type","int","float","str","bool","list","dict","set","tuple","enumerate","zip","map","filter","sorted","reversed","abs","max","min","sum","round","open","super","isinstance","hasattr","getattr","setattr","any","all","id","hex","oct","bin","ord","chr","repr","hash","callable","dir","vars","help","iter","next","property","staticmethod","classmethod","frozenset","bytes","bytearray","complex","divmod","pow","format","object","slice","ValueError","TypeError","KeyError","IndexError","AttributeError","NameError","FileNotFoundError","PermissionError","IsADirectoryError","ZeroDivisionError","StopIteration","RuntimeError","Exception","NotImplementedError","IOError","OSError"]),s=new Set(["self","cls"]);function b(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}function h(e,p){return`<span class="${e}">${b(p)}</span>`}function _(e,p){if(p){const n=p.repeat(3),c=e.indexOf(n);if(c!==-1){const u=h("hl-str",e.slice(0,c+3)),T=_(e.slice(c+3),null);return{html:u+T.html,mlQuote:T.mlQuote}}return{html:h("hl-str",e),mlQuote:p}}const r=[];let o=0,v="";for(;o<e.length;){if(e[o]===" "||e[o]==="	"){let n=o;for(;n<e.length&&(e[n]===" "||e[n]==="	");)n++;r.push(e.slice(o,n)),o=n;continue}if(e[o]==="#"){r.push(h("hl-cm",e.slice(o))),o=e.length;continue}if(e[o]==="@"){let n=o+1;for(;n<e.length&&/[a-zA-Z0-9_.]/.test(e[n]);)n++;r.push(h("hl-dec",e.slice(o,n))),v="",o=n;continue}if(e[o]==='"'||e[o]==="'"){const n=e[o];if(e.startsWith(n.repeat(3),o)){const u=o+3,T=e.indexOf(n.repeat(3),u);if(T!==-1)r.push(h("hl-str",e.slice(o,T+3))),o=T+3;else return r.push(h("hl-str",e.slice(o))),{html:r.join(""),mlQuote:n}}else{let u=o+1;for(;u<e.length;){if(e[u]==="\\"){u+=2;continue}if(e[u]===n){u++;break}u++}r.push(h("hl-str",e.slice(o,u))),o=u}v="";continue}if(/[a-zA-Z_]/.test(e[o])){let n=o;for(;n<e.length&&/[a-zA-Z0-9_]/.test(e[n]);)n++;const c=e.slice(o,n);f.has(c)?r.push(h("hl-kw",c)):g.has(c)&&n<e.length&&e[n]==="("?r.push(h("hl-bi",c)):s.has(c)?r.push(h("hl-sp",c)):v==="def"?r.push(h("hl-fn",c)):v==="class"?r.push(h("hl-cls",c)):r.push(b(c)),v=c,o=n;continue}if(/\d/.test(e[o])){let n=o;if(e[o]==="0"&&n+1<e.length&&/[xXoObB]/.test(e[n+1]))for(n+=2;n<e.length&&/[0-9a-fA-F_]/.test(e[n]);)n++;else{for(;n<e.length&&/[\d_]/.test(e[n]);)n++;if(n<e.length&&e[n]===".")for(n++;n<e.length&&/[\d_]/.test(e[n]);)n++;if(n<e.length&&/[eE]/.test(e[n]))for(n++,n<e.length&&/[+-]/.test(e[n])&&n++;n<e.length&&/[\d_]/.test(e[n]);)n++}r.push(h("hl-num",e.slice(o,n))),v="",o=n;continue}r.push(b(e[o])),v="",o++}return{html:r.join(""),mlQuote:null}}const k=C(()=>{const e=y.code.split(`
-`);let p=null;const r=[];for(const o of e){const v=_(o,p);r.push(v.html),p=v.mlQuote}return r.join(`
-`)});async function x(){try{await navigator.clipboard.writeText(y.code),m.value=!0,setTimeout(()=>{m.value=!1},2e3)}catch{}}return(e,p)=>(i(),a("div",We,[t("div",Oe,[t("div",Me,[p[0]||(p[0]=t("div",{class:"flex gap-2"},[t("span",{class:"w-3 h-3 rounded-full bg-coral/60"}),t("span",{class:"w-3 h-3 rounded-full bg-amber/60"}),t("span",{class:"w-3 h-3 rounded-full bg-mint/60"})],-1)),d.filename?(i(),a("span",Le,l(d.filename),1)):(i(),a("span",De,"python"))]),t("button",{class:"text-sm text-text-muted hover:text-mint transition-colors px-3 py-1.5 rounded opacity-0 group-hover:opacity-100",onClick:x},l(m.value?"✓ Copied":"Copy"),1)]),t("pre",Re,[t("code",{innerHTML:k.value},null,8,je)])]))}}),Ue=R(He,[["__scopeId","data-v-8c8c89c3"]]),$e={key:0,class:"flex items-center gap-3 mb-2"},Ye={class:"text-xl"},Ve={class:"text-lg font-semibold"},Ge=["innerHTML"],Ke=N({__name:"Callout",props:{variant:{},title:{},content:{}},setup(d){const y={info:"bg-sky/5 border-sky text-sky/90",warning:"bg-amber/5 border-amber text-amber/90",tip:"bg-mint/5 border-mint text-mint/90",danger:"bg-coral/5 border-coral text-coral/90",python:"bg-lavender/5 border-lavender text-lavender/90"},m={info:"ℹ️",warning:"⚠️",tip:"💡",danger:"🚫",python:"🐍"};return(f,g)=>(i(),a("div",{class:I(["rounded-xl border-l-4 p-6",y[d.variant]])},[d.title?(i(),a("div",$e,[t("span",Ye,l(m[d.variant]),1),t("span",Ve,l(d.title),1)])):w("",!0),t("div",{class:"text-lg leading-relaxed",innerHTML:d.content},null,8,Ge)],2))}}),Qe={class:"rounded-2xl border border-border bg-card overflow-hidden"},Je={key:0,class:"px-6 py-4 bg-mint/5 border-b border-border/30 text-base text-mint/90 leading-relaxed"},Ze={class:"border-b border-border/50"},Xe={class:"flex items-center gap-3 px-6 py-4 border-b border-border/30 bg-surface/10"},et=["disabled"],tt={key:0,class:"animate-spin"},nt={key:1},it={key:0,class:"text-sm text-text-muted animate-pulse"},rt={class:"bg-[#080818]"},at={key:0,class:"px-6 py-3 border-t border-border/20"},ot={key:0,class:"flex items-center gap-3 text-base text-mint"},st={key:1,class:"text-base text-amber"},lt={class:"font-mono"},pt=N({__name:"CodePlayground",props:{defaultCode:{},instructions:{},expectedOutput:{}},setup(d){const y=d,m=H(),f=F();let g=null;const s=F(""),b=F(!1),h=C(()=>!y.expectedOutput||!s.value?!1:s.value.trim()===y.expectedOutput.trim());j(()=>{if(f.value){const x=U.create({doc:y.defaultCode,extensions:[Y(),V(),$,G.of([...K,Q]),J(),Z(),X(),W.theme({"&":{backgroundColor:"#0a0a1f"},".cm-gutters":{backgroundColor:"#0a0a1f",borderRight:"1px solid #1a1a35"}})]});g=new W({state:x,parent:f.value})}});async function _(){if(!g)return;const x=g.state.doc.toString();b.value=!1,s.value="";const e=await m.runCode(x);e.error?(b.value=!0,s.value=e.error):s.value=e.output}function k(){g&&(g.dispatch({changes:{from:0,to:g.state.doc.length,insert:y.defaultCode}}),s.value="",b.value=!1)}return(x,e)=>(i(),a("div",Qe,[t("div",{class:"flex items-center justify-between px-6 py-4 border-b border-border/50 bg-surface/20"},[e[0]||(e[0]=t("div",{class:"flex items-center gap-3"},[t("span",{class:"text-mint text-base"},"▶"),t("span",{class:"text-base font-semibold text-text-primary"},"Interactive Playground")],-1)),t("div",{class:"flex items-center gap-3"},[t("button",{class:"text-sm text-text-muted hover:text-amber transition-colors px-3 py-1.5 rounded hover:bg-surface/50",onClick:k}," ↻ Reset ")])]),d.instructions?(i(),a("div",Je," 💡 "+l(d.instructions),1)):w("",!0),t("div",Ze,[t("div",{ref_key:"editorContainer",ref:f,class:"min-h-[160px]"},null,512)]),t("div",Xe,[t("button",{class:"flex items-center gap-2 rounded-lg bg-mint/10 border border-mint/20 px-4 py-2 text-base font-medium text-mint hover:bg-mint/20 transition-all",disabled:B(m).isRunning,onClick:_},[B(m).isRunning?(i(),a("span",tt,"⏳")):(i(),a("span",nt,"▶")),A(" "+l(B(m).isRunning?"Running...":"Run Code"),1)],8,et),B(m).isLoading?(i(),a("span",it," Loading Python runtime... ")):w("",!0)]),t("div",rt,[e[4]||(e[4]=t("div",{class:"flex items-center gap-3 px-6 py-3 border-b border-border/20"},[t("span",{class:"text-sm font-mono text-text-muted uppercase tracking-wider"},"Output")],-1)),t("pre",{class:I(["px-6 py-4 font-mono text-base min-h-[60px] max-h-[300px] overflow-auto whitespace-pre-wrap",b.value?"text-coral":"text-mint/90"])},l(s.value||"# Run your code to see output here"),3),d.expectedOutput&&s.value&&!b.value?(i(),a("div",at,[h.value?(i(),a("div",ot,[...e[1]||(e[1]=[t("span",null,"✅",-1),A(" Output matches expected result! ",-1)])])):(i(),a("div",st,[e[2]||(e[2]=t("span",null,"⚡",-1)),e[3]||(e[3]=A(" Expected: ",-1)),t("code",lt,l(d.expectedOutput),1)]))])):w("",!0)])]))}}),dt={class:"rounded-2xl border border-border bg-card overflow-hidden"},ct={class:"flex items-center justify-between px-6 py-4 border-b border-border/50 bg-lavender/5"},ut={class:"flex items-center gap-3"},ht={class:"text-base font-semibold text-text-primary"},ft={class:"flex items-center gap-3"},mt={class:"text-sm text-text-muted"},gt={class:"h-1.5 w-24 rounded-full bg-surface overflow-hidden"},yt={class:"divide-y divide-border/30"},bt={class:"text-lg font-medium text-text-primary mb-4"},xt={class:"space-y-3"},vt=["disabled","onClick"],wt={class:"font-mono text-text-muted mr-3"},_t={class:"text-lg font-medium text-text-primary mb-3"},kt={class:"mb-4 rounded-lg bg-[#0a0a1f] border border-border/30 p-4 font-mono text-base text-mint/80"},Tt={class:"space-y-3"},Ct=["disabled","onClick"],At={class:"text-lg font-medium text-text-primary mb-4"},St={class:"mb-4 rounded-lg bg-[#0a0a1f] border border-border/30 p-4 font-mono text-base text-text-secondary"},Ft={class:"flex gap-3"},Pt=["onUpdate:modelValue","disabled","onKeyup"],It=["onClick"],Et={class:"font-semibold"},qt=N({__name:"QuizWidget",props:{quiz:{}},setup(d){const y=d,m=O(),f=F({}),g=F({}),s=C(()=>Object.keys(f.value).length);function b(x,e){const p=y.quiz.questions[x],r=e===p.correctIndex;f.value[x]=r,k()}function h(x,e){const p=(g.value[x]||"").trim(),r=e.answer.trim(),o=e.caseSensitive?p===r:p.toLowerCase()===r.toLowerCase();f.value[x]=o,k()}function _(x,e,p){return f.value[x]===void 0?"border-border hover:border-lavender/30 hover:bg-lavender/5 text-text-secondary":e===p?"border-mint/40 bg-mint/10 text-mint":(f.value[x]===!1&&e!==p,"border-border/30 text-text-muted")}function k(){const x=y.quiz.questions.length,e=Object.values(f.value).filter(Boolean).length;m.saveQuizScore(y.quiz.id,e,x)}return(x,e)=>(i(),a("div",dt,[t("div",ct,[t("div",ut,[e[0]||(e[0]=t("span",{class:"text-lavender text-base"},"🧠",-1)),t("span",ht,l(d.quiz.title||"Knowledge Check"),1)]),t("div",ft,[t("span",mt,l(s.value)+"/"+l(d.quiz.questions.length)+" answered ",1),t("div",gt,[t("div",{class:"h-full bg-lavender transition-all duration-500",style:te({width:`${s.value/d.quiz.questions.length*100}%`})},null,4)])])]),t("div",yt,[(i(!0),a(S,null,q(d.quiz.questions,(p,r)=>(i(),a("div",{key:r,class:"p-6"},[p.type==="mcq"?(i(),a(S,{key:0},[t("p",bt,l(r+1)+". "+l(p.question),1),t("div",xt,[(i(!0),a(S,null,q(p.options,(o,v)=>(i(),a("button",{key:v,class:I(["w-full text-left rounded-lg border px-4 py-3 text-base transition-all",_(r,v,p.correctIndex)]),disabled:f.value[r]!==void 0,onClick:n=>b(r,v)},[t("span",wt,l(String.fromCharCode(65+v))+".",1),A(" "+l(o),1)],10,vt))),128))])],64)):p.type==="predict-output"?(i(),a(S,{key:1},[t("p",_t,l(r+1)+". What will this code output?",1),t("pre",kt,l(p.code),1),t("div",Tt,[(i(!0),a(S,null,q(p.options,(o,v)=>(i(),a("button",{key:v,class:I(["w-full text-left rounded-lg border px-4 py-3 text-base font-mono transition-all",_(r,v,p.correctIndex)]),disabled:f.value[r]!==void 0,onClick:n=>b(r,v)},l(o),11,Ct))),128))])],64)):p.type==="fill-blank"?(i(),a(S,{key:2},[t("p",At,l(r+1)+". Fill in the blank:",1),t("pre",St,l(p.prompt),1),t("div",Ft,[ne(t("input",{"onUpdate:modelValue":o=>g.value[r]=o,type:"text",class:"flex-1 rounded-lg border border-border bg-surface px-4 py-3 text-base font-mono text-text-primary focus:border-mint/50 focus:outline-none",placeholder:"Type your answer...",disabled:f.value[r]!==void 0,onKeyup:re(o=>h(r,p),["enter"])},null,40,Pt),[[ie,g.value[r]]]),f.value[r]===void 0?(i(),a("button",{key:0,class:"rounded-lg bg-lavender/10 border border-lavender/20 px-4 py-3 text-base text-lavender hover:bg-lavender/20 transition-all",onClick:o=>h(r,p)}," Check ",8,It)):w("",!0)])],64)):w("",!0),z(ae,{name:"fade"},{default:E(()=>[f.value[r]!==void 0?(i(),a("div",{key:0,class:I(["mt-4 rounded-lg p-4 text-base leading-relaxed",f.value[r]===!0?"bg-mint/5 text-mint/80 border border-mint/20":"bg-coral/5 text-coral/80 border border-coral/20"])},[t("span",Et,l(f.value[r]===!0?"✅ Correct!":"❌ Not quite."),1),A(" "+l(p.explanation),1)],2)):w("",!0)]),_:2},1024)]))),128))])]))}}),Nt=R(qt,[["__scopeId","data-v-28c434af"]]),ee=N({__name:"Badge",props:{color:{default:"mint"}},setup(d){const y=d,m=C(()=>({mint:"bg-mint/10 text-mint border border-mint/20",amber:"bg-amber/10 text-amber border border-amber/20",coral:"bg-coral/10 text-coral border border-coral/20",lavender:"bg-lavender/10 text-lavender border border-lavender/20",sky:"bg-sky/10 text-sky border border-sky/20"})[y.color]);return(f,g)=>(i(),a("span",{class:I(["inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider",m.value])},[oe(f.$slots,"default")],2))}}),Bt={class:"rounded-2xl border border-border bg-card overflow-hidden"},zt={class:"flex items-center justify-between px-6 py-4 border-b border-border/50 bg-amber/5"},Wt={class:"flex items-center gap-3"},Ot={class:"text-base font-semibold text-text-primary"},Mt={class:"p-6 border-b border-border/30"},Lt=["innerHTML"],Dt={key:0,class:"mt-4 space-y-3"},Rt={key:0,class:"text-text-muted"},jt={class:"text-sky"},Ht={class:"text-text-muted"},Ut={class:"text-mint"},$t={key:1,class:"text-text-muted mt-2 text-sm font-body"},Yt={class:"border-b border-border/50"},Vt={class:"flex items-center gap-3 px-6 py-4 border-b border-border/30 bg-surface/10"},Gt=["disabled"],Kt={key:0,class:"animate-spin"},Qt={key:1},Jt={class:"ml-auto flex gap-3"},Zt={key:0,class:"p-6 space-y-3 border-b border-border/30"},Xt={class:"text-text-muted"},en={key:0,class:"flex items-center gap-3 text-lg text-mint font-semibold mt-4"},tn={key:1,class:"p-6 border-b border-border/30"},nn={key:2,class:"p-6"},rn={class:"rounded-lg bg-[#0a0a1f] border border-border/30 p-4 font-mono text-base text-mint/90 overflow-auto"},an=N({__name:"CodingChallenge",props:{challenge:{}},setup(d){const y=d,m=H(),f=O(),g=F();let s=null;const b=F(!1),h=F(0),_=F(!1),k=F([]),x=C(()=>y.challenge.testCases.filter(n=>!n.hidden)),e=C(()=>k.value.length>0&&k.value.every(n=>n.passed)),p=C(()=>({easy:"mint",medium:"amber",hard:"coral"})[y.challenge.difficulty]);j(()=>{if(g.value){const n=U.create({doc:y.challenge.starterCode,extensions:[Y(),V(),$,G.of([...K,Q]),J(),Z(),X(),W.theme({"&":{backgroundColor:"#0a0a1f"},".cm-gutters":{backgroundColor:"#0a0a1f",borderRight:"1px solid #1a1a35"}})]});s=new W({state:n,parent:g.value})}});async function r(){if(!s)return;const n=s.state.doc.toString();k.value=[];const c=[];for(const u of y.challenge.testCases){const T=u.input?`${n}
-${u.input}`:n,M=await m.runCode(T),L=(M.error||M.output).trim();c.push({passed:L===u.expected.trim(),expected:u.expected.trim(),actual:L})}k.value=c,e.value&&f.completeChallenge(y.challenge.id)}function o(){s&&(s.dispatch({changes:{from:0,to:s.state.doc.length,insert:y.challenge.starterCode}}),k.value=[])}function v(n){return n.replace(/`([^`]+)`/g,'<code class="px-1.5 py-0.5 rounded bg-surface text-mint font-mono text-xs">$1</code>').replace(/\*\*([^*]+)\*\*/g,'<strong class="text-text-primary font-semibold">$1</strong>')}return(n,c)=>(i(),a("div",Bt,[t("div",zt,[t("div",Wt,[c[3]||(c[3]=t("span",{class:"text-amber text-base"},"🏆",-1)),t("span",Ot,l(d.challenge.title),1)]),z(ee,{color:p.value},{default:E(()=>[A(l(d.challenge.difficulty),1)]),_:1},8,["color"])]),t("div",Mt,[t("p",{class:"text-lg text-text-secondary leading-relaxed",innerHTML:v(d.challenge.description)},null,8,Lt),x.value.length?(i(),a("div",Dt,[c[6]||(c[6]=t("p",{class:"text-sm font-semibold text-text-muted uppercase tracking-wider"},"Examples:",-1)),(i(!0),a(S,null,q(x.value,(u,T)=>(i(),a("div",{key:T,class:"rounded-lg bg-surface/50 p-4 text-base font-mono"},[u.input?(i(),a("div",Rt,[c[4]||(c[4]=A("Input: ",-1)),t("span",jt,l(u.input),1)])):w("",!0),t("div",Ht,[c[5]||(c[5]=A("Expected: ",-1)),t("span",Ut,l(u.expected),1)]),u.description?(i(),a("div",$t,l(u.description),1)):w("",!0)]))),128))])):w("",!0)]),t("div",Yt,[t("div",{ref_key:"editorContainer",ref:g,class:"min-h-[180px]"},null,512)]),t("div",Vt,[t("button",{class:"flex items-center gap-2 rounded-lg bg-amber/10 border border-amber/20 px-4 py-2 text-base font-medium text-amber hover:bg-amber/20 transition-all",disabled:B(m).isRunning,onClick:r},[B(m).isRunning?(i(),a("span",Kt,"⏳")):(i(),a("span",Qt,"🧪")),c[7]||(c[7]=A(" Run Tests ",-1))],8,Gt),t("button",{class:"rounded-lg px-4 py-2 text-base text-text-muted hover:text-text-primary hover:bg-surface/50 transition-all",onClick:o}," ↻ Reset "),t("div",Jt,[!b.value&&h.value<d.challenge.hints.length?(i(),a("button",{key:0,class:"rounded-lg px-4 py-2 text-base text-lavender hover:bg-lavender/10 transition-all",onClick:c[0]||(c[0]=u=>b.value=!0)}," 💡 Hint "+l(h.value+1)+"/"+l(d.challenge.hints.length),1)):w("",!0),_.value?w("",!0):(i(),a("button",{key:1,class:"rounded-lg px-4 py-2 text-base text-text-muted hover:text-coral hover:bg-coral/10 transition-all",onClick:c[1]||(c[1]=u=>_.value=!0)}," 👀 Solution "))])]),k.value.length?(i(),a("div",Zt,[(i(!0),a(S,null,q(k.value,(u,T)=>(i(),a("div",{key:T,class:I(["flex items-center gap-3 rounded-lg px-4 py-3 text-base font-mono",u.passed?"bg-mint/5 text-mint border border-mint/20":"bg-coral/5 text-coral border border-coral/20"])},[t("span",null,l(u.passed?"✅":"❌"),1),t("span",null,"Test "+l(T+1)+":",1),t("span",Xt,"Expected "+l(u.expected),1),t("span",null,"→ Got "+l(u.actual),1)],2))),128)),e.value?(i(),a("div",en," 🎉 All tests passed! Challenge complete! ")):w("",!0)])):w("",!0),b.value?(i(),a("div",tn,[(i(!0),a(S,null,q(d.challenge.hints.slice(0,h.value+1),(u,T)=>(i(),a("div",{key:T,class:"rounded-lg bg-lavender/5 border border-lavender/10 p-4 mb-3 text-base text-lavender/90"}," 💡 Hint "+l(T+1)+": "+l(u),1))),128)),h.value<d.challenge.hints.length-1?(i(),a("button",{key:0,class:"text-sm text-lavender hover:underline mt-2",onClick:c[2]||(c[2]=u=>h.value++)}," Show next hint → ")):w("",!0)])):w("",!0),_.value?(i(),a("div",nn,[c[8]||(c[8]=t("p",{class:"text-sm font-semibold text-text-muted uppercase tracking-wider mb-3"},"Solution:",-1)),t("pre",rn,l(d.challenge.solution),1)])):w("",!0)]))}}),on={class:"space-y-10 stagger-children"},sn=["innerHTML"],ln=["innerHTML"],pn={key:8,class:"border-border/50 my-8"},dn=N({__name:"SectionRenderer",props:{blocks:{}},setup(d){const y={1:"text-5xl font-display font-bold text-text-primary mt-4 mb-6 gradient-text",2:"text-3xl font-display font-semibold text-text-primary mt-10 mb-4",3:"text-2xl font-display font-medium text-text-secondary mt-8 mb-3"};function m(f){return f.replace(/`([^`]+)`/g,'<code class="px-2 py-1 rounded bg-surface text-mint font-mono text-base">$1</code>').replace(/\*\*([^*]+)\*\*/g,'<strong class="text-text-primary font-semibold">$1</strong>').replace(/\*([^*]+)\*/g,"<em>$1</em>").replace(/\n/g,"<br />")}return(f,g)=>(i(),a("div",on,[(i(!0),a(S,null,q(d.blocks,(s,b)=>(i(),a(S,{key:b},[s.type==="heading"?(i(),P(D("h"+s.level),{key:0,class:I(y[s.level])},{default:E(()=>[A(l(s.text),1)]),_:2},1032,["class"])):s.type==="text"?(i(),a("div",{key:1,class:"text-lg leading-relaxed text-text-secondary prose-invert",innerHTML:m(s.content)},null,8,sn)):s.type==="code"?(i(),P(Ue,{key:2,code:s.code,language:s.language,filename:s.filename},null,8,["code","language","filename"])):s.type==="callout"?(i(),P(Ke,{key:3,variant:s.variant,title:s.title,content:m(s.content)},null,8,["variant","title","content"])):s.type==="list"?(i(),P(D(s.ordered?"ol":"ul"),{key:4,class:I(["text-lg text-text-secondary space-y-2 ml-6",s.ordered?"list-decimal":"list-disc"])},{default:E(()=>[(i(!0),a(S,null,q(s.items,(h,_)=>(i(),a("li",{key:_,innerHTML:m(h),class:"leading-relaxed"},null,8,ln))),128))]),_:2},1032,["class"])):s.type==="playground"?(i(),P(pt,{key:5,"default-code":s.defaultCode,instructions:s.instructions,"expected-output":s.expectedOutput},null,8,["default-code","instructions","expected-output"])):s.type==="quiz"?(i(),P(Nt,{key:6,quiz:s.quiz},null,8,["quiz"])):s.type==="challenge"?(i(),P(an,{key:7,challenge:s.challenge},null,8,["challenge"])):s.type==="divider"?(i(),a("hr",pn)):w("",!0)],64))),128))]))}}),cn={key:0},un={class:"mb-10"},hn={key:0,class:"flex items-center gap-3 mb-4"},fn={class:"text-text-muted text-sm font-medium"},mn={class:"mt-16 flex items-center justify-between border-t border-border pt-8"},gn={class:"font-medium"},yn={key:1},bn={key:3,class:"flex items-center gap-3 rounded-xl bg-mint/10 border border-mint/20 px-6 py-4 text-base text-mint"},xn={class:"text-right"},vn={class:"font-medium"},wn={key:5},_n={key:1,class:"flex flex-col items-center justify-center py-20 text-center"},An=N({__name:"WorkshopPage",props:{day:{},section:{}},setup(d){const y=pe(),m=O(),f=d,g=C(()=>y.params.section||f.section||""),s=C(()=>ze(g.value)),b=C(()=>de(g.value)),h=C(()=>ce(g.value)),_=C(()=>ue(g.value)),k=C(()=>m.isSectionCompleted(g.value)),x=C(()=>({1:"mint",2:"amber",3:"lavender",4:"coral"})[String(b.value?.day.id)]||"mint");function e(){m.completeSection(g.value)}return se(g,p=>{p&&b.value&&m.setCurrentLocation(b.value.day.id,p)},{immediate:!0}),(p,r)=>{const o=le("router-link");return s.value?(i(),a("div",cn,[t("div",un,[b.value?(i(),a("div",hn,[z(ee,{color:x.value},{default:E(()=>[A("Day "+l(b.value.day.id),1)]),_:1},8,["color"]),t("span",fn,l(b.value.day.title),1)])):w("",!0)]),z(dn,{blocks:s.value},null,8,["blocks"]),t("div",mn,[_.value?(i(),P(o,{key:0,to:`/workshop/day/${_.value.day.id}/${_.value.section.id}`,class:"group flex items-center gap-3 rounded-xl border border-border px-6 py-4 text-base text-text-secondary hover:border-mint/30 hover:text-mint transition-all"},{default:E(()=>[r[1]||(r[1]=t("svg",{class:"h-5 w-5 transition-transform group-hover:-translate-x-1",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24"},[t("path",{"stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"2",d:"M15 19l-7-7 7-7"})],-1)),t("div",null,[r[0]||(r[0]=t("div",{class:"text-xs text-text-muted"},"Previous",-1)),t("div",gn,l(_.value.section.title),1)])]),_:1},8,["to"])):(i(),a("div",yn)),k.value?(i(),a("div",bn,[...r[2]||(r[2]=[t("span",null,"✅",-1),A(" Completed ",-1)])])):(i(),a("button",{key:2,class:"rounded-xl bg-mint/10 border border-mint/20 px-6 py-4 text-base font-medium text-mint hover:bg-mint/20 transition-all",onClick:e}," ✓ Mark Complete ")),h.value?(i(),P(o,{key:4,to:`/workshop/day/${h.value.day.id}/${h.value.section.id}`,class:"group flex items-center gap-3 rounded-xl border border-border px-6 py-4 text-base text-text-secondary hover:border-mint/30 hover:text-mint transition-all"},{default:E(()=>[t("div",xn,[r[3]||(r[3]=t("div",{class:"text-xs text-text-muted"},"Next",-1)),t("div",vn,l(h.value.section.title),1)]),r[4]||(r[4]=t("svg",{class:"h-4 w-4 transition-transform group-hover:translate-x-1",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24"},[t("path",{"stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"2",d:"M9 5l7 7-7 7"})],-1))]),_:1},8,["to"])):(i(),a("div",wn))])])):(i(),a("div",_n,[r[6]||(r[6]=t("div",{class:"text-4xl mb-4"},"📭",-1)),r[7]||(r[7]=t("h2",{class:"text-lg font-display font-semibold text-text-primary mb-2"},"Section Not Found",-1)),r[8]||(r[8]=t("p",{class:"text-sm text-text-secondary mb-4"},"This section doesn't exist or hasn't been created yet.",-1)),z(o,{to:"/workshop",class:"text-sm text-mint hover:underline"},{default:E(()=>[...r[5]||(r[5]=[A("← Go to Workshop",-1)])]),_:1})]))}}});export{An as default};
+        print(f"    {g['subject']}: {g['score']}")`,instructions:"Try modifying the Student class or create your own class from scratch!"},{type:"heading",level:2,text:"Knowledge Check"},{type:"heading",level:2,text:"Coding Challenge"}],Pe={"day1-welcome":oe,"day1-variables":se,"day1-datatypes":le,"day1-strings":pe,"day1-operators":de,"day1-io":ce,"day2-boolean":ue,"day2-conditionals":he,"day2-while":ge,"day2-for":ye,"day2-patterns":me,"day3-functions":fe,"day3-advanced-fn":be,"day3-lists":ve,"day3-list-patterns":xe,"day3-tuples":we,"day4-dicts":_e,"day4-dict-patterns":Te,"day4-sets":ke,"day4-files":Ce,"day4-oop":Ae};function Se(p){return Pe[p]}const Fe={class:"relative group rounded-xl overflow-hidden border border-border bg-[#0a0a1f]"},Ee={class:"flex items-center justify-between px-6 py-3 border-b border-border/50 bg-surface/30"},Ie={class:"flex items-center gap-3"},Ne={key:0,class:"text-sm font-mono text-text-muted ml-3"},Be={key:1,class:"text-sm font-mono text-text-muted ml-3"},qe={class:"p-6 overflow-x-auto text-lg leading-relaxed font-mono"},Oe=["innerHTML"],Me=P({__name:"CodeBlock",props:{code:{},language:{},filename:{}},setup(p){const h=p,u=I(!1),g=new Set(["def","class","if","elif","else","for","while","return","import","from","as","try","except","finally","with","raise","pass","break","continue","and","or","not","in","is","lambda","yield","global","nonlocal","assert","del","True","False","None","match","case","async","await"]),d=new Set(["print","input","len","range","type","int","float","str","bool","list","dict","set","tuple","enumerate","zip","map","filter","sorted","reversed","abs","max","min","sum","round","open","super","isinstance","hasattr","getattr","setattr","any","all","id","hex","oct","bin","ord","chr","repr","hash","callable","dir","vars","help","iter","next","property","staticmethod","classmethod","frozenset","bytes","bytearray","complex","divmod","pow","format","object","slice","ValueError","TypeError","KeyError","IndexError","AttributeError","NameError","FileNotFoundError","PermissionError","IsADirectoryError","ZeroDivisionError","StopIteration","RuntimeError","Exception","NotImplementedError","IOError","OSError"]),i=new Set(["self","cls"]);function c(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}function l(e,y){return`<span class="${e}">${c(y)}</span>`}function b(e,y){if(y){const n=y.repeat(3),m=e.indexOf(n);if(m!==-1){const v=l("hl-str",e.slice(0,m+3)),S=b(e.slice(m+3),null);return{html:v+S.html,mlQuote:S.mlQuote}}return{html:l("hl-str",e),mlQuote:y}}const o=[];let a=0,x="";for(;a<e.length;){if(e[a]===" "||e[a]==="	"){let n=a;for(;n<e.length&&(e[n]===" "||e[n]==="	");)n++;o.push(e.slice(a,n)),a=n;continue}if(e[a]==="#"){o.push(l("hl-cm",e.slice(a))),a=e.length;continue}if(e[a]==="@"){let n=a+1;for(;n<e.length&&/[a-zA-Z0-9_.]/.test(e[n]);)n++;o.push(l("hl-dec",e.slice(a,n))),x="",a=n;continue}if(e[a]==='"'||e[a]==="'"){const n=e[a];if(e.startsWith(n.repeat(3),a)){const v=a+3,S=e.indexOf(n.repeat(3),v);if(S!==-1)o.push(l("hl-str",e.slice(a,S+3))),a=S+3;else return o.push(l("hl-str",e.slice(a))),{html:o.join(""),mlQuote:n}}else{let v=a+1;for(;v<e.length;){if(e[v]==="\\"){v+=2;continue}if(e[v]===n){v++;break}v++}o.push(l("hl-str",e.slice(a,v))),a=v}x="";continue}if(/[a-zA-Z_]/.test(e[a])){let n=a;for(;n<e.length&&/[a-zA-Z0-9_]/.test(e[n]);)n++;const m=e.slice(a,n);g.has(m)?o.push(l("hl-kw",m)):d.has(m)&&n<e.length&&e[n]==="("?o.push(l("hl-bi",m)):i.has(m)?o.push(l("hl-sp",m)):x==="def"?o.push(l("hl-fn",m)):x==="class"?o.push(l("hl-cls",m)):o.push(c(m)),x=m,a=n;continue}if(/\d/.test(e[a])){let n=a;if(e[a]==="0"&&n+1<e.length&&/[xXoObB]/.test(e[n+1]))for(n+=2;n<e.length&&/[0-9a-fA-F_]/.test(e[n]);)n++;else{for(;n<e.length&&/[\d_]/.test(e[n]);)n++;if(n<e.length&&e[n]===".")for(n++;n<e.length&&/[\d_]/.test(e[n]);)n++;if(n<e.length&&/[eE]/.test(e[n]))for(n++,n<e.length&&/[+-]/.test(e[n])&&n++;n<e.length&&/[\d_]/.test(e[n]);)n++}o.push(l("hl-num",e.slice(a,n))),x="",a=n;continue}o.push(c(e[a])),x="",a++}return{html:o.join(""),mlQuote:null}}const E=w(()=>{const e=h.code.split(`
+`);let y=null;const o=[];for(const a of e){const x=b(a,y);o.push(x.html),y=x.mlQuote}return o.join(`
+`)});async function _(){try{await navigator.clipboard.writeText(h.code),u.value=!0,setTimeout(()=>{u.value=!1},2e3)}catch{}}return(e,y)=>(r(),s("div",Fe,[t("div",Ee,[t("div",Ie,[y[0]||(y[0]=t("div",{class:"flex gap-2"},[t("span",{class:"w-3 h-3 rounded-full bg-coral/60"}),t("span",{class:"w-3 h-3 rounded-full bg-amber/60"}),t("span",{class:"w-3 h-3 rounded-full bg-mint/60"})],-1)),p.filename?(r(),s("span",Ne,f(p.filename),1)):(r(),s("span",Be,"python"))]),t("button",{class:"text-sm text-text-muted hover:text-mint transition-colors px-3 py-1.5 rounded opacity-0 group-hover:opacity-100",onClick:_},f(u.value?"✓ Copied":"Copy"),1)]),t("pre",qe,[t("code",{innerHTML:E.value},null,8,Oe)])]))}}),We=D(Me,[["__scopeId","data-v-8c8c89c3"]]),De={key:0,class:"flex items-center gap-3 mb-2"},je={class:"text-xl"},Le={class:"text-lg font-semibold"},Re=["innerHTML"],ze=P({__name:"Callout",props:{variant:{},title:{},content:{}},setup(p){const h={info:"bg-sky/5 border-sky text-sky/90",warning:"bg-amber/5 border-amber text-amber/90",tip:"bg-mint/5 border-mint text-mint/90",danger:"bg-coral/5 border-coral text-coral/90",python:"bg-lavender/5 border-lavender text-lavender/90"},u={info:"ℹ️",warning:"⚠️",tip:"💡",danger:"🚫",python:"🐍"};return(g,d)=>(r(),s("div",{class:F(["rounded-xl border-l-4 p-6",h[p.variant]])},[p.title?(r(),s("div",De,[t("span",je,f(u[p.variant]),1),t("span",Le,f(p.title),1)])):C("",!0),t("div",{class:"text-lg leading-relaxed",innerHTML:p.content},null,8,Re)],2))}}),He={class:"rounded-2xl border border-border bg-card overflow-hidden"},Ue={key:0,class:"px-6 py-4 bg-mint/5 border-b border-border/30 text-base text-mint/90 leading-relaxed"},Ye={class:"border-b border-border/50"},$e={class:"flex items-center gap-3 px-6 py-4 border-b border-border/30 bg-surface/10"},Ve=["disabled"],Ge={key:0,class:"animate-spin"},Ke={key:1},Ze={key:0,class:"text-sm text-text-muted animate-pulse"},Je={class:"bg-[#080818]"},Qe={key:0,class:"px-6 py-3 border-t border-border/20"},Xe={key:0,class:"flex items-center gap-3 text-base text-mint"},en={key:1,class:"text-base text-amber"},nn={class:"font-mono"},tn=P({__name:"CodePlayground",props:{defaultCode:{},instructions:{},expectedOutput:{}},setup(p){const h=p,u=K(),g=I();let d=null;const i=I(""),c=I(!1),l=w(()=>!h.expectedOutput||!i.value?!1:i.value.trim()===h.expectedOutput.trim());j(()=>{if(g.value){const _=Z.create({doc:h.defaultCode,extensions:[Q(),X(),J,ee.of([...ne,te]),re(),ie(),ae(),W.theme({"&":{backgroundColor:"#0a0a1f"},".cm-gutters":{backgroundColor:"#0a0a1f",borderRight:"1px solid #1a1a35"}})]});d=new W({state:_,parent:g.value})}});async function b(){if(!d)return;const _=d.state.doc.toString();c.value=!1,i.value="";const e=await u.runCode(_);e.error?(c.value=!0,i.value=e.error):i.value=e.output}function E(){d&&(d.dispatch({changes:{from:0,to:d.state.doc.length,insert:h.defaultCode}}),i.value="",c.value=!1)}return(_,e)=>(r(),s("div",He,[t("div",{class:"flex items-center justify-between px-6 py-4 border-b border-border/50 bg-surface/20"},[e[0]||(e[0]=t("div",{class:"flex items-center gap-3"},[t("span",{class:"text-mint text-base"},"▶"),t("span",{class:"text-base font-semibold text-text-primary"},"Interactive Playground")],-1)),t("div",{class:"flex items-center gap-3"},[t("button",{class:"text-sm text-text-muted hover:text-amber transition-colors px-3 py-1.5 rounded hover:bg-surface/50",onClick:E}," ↻ Reset ")])]),p.instructions?(r(),s("div",Ue," 💡 "+f(p.instructions),1)):C("",!0),t("div",Ye,[t("div",{ref_key:"editorContainer",ref:g,class:"min-h-[160px]"},null,512)]),t("div",$e,[t("button",{class:"flex items-center gap-2 rounded-lg bg-mint/10 border border-mint/20 px-4 py-2 text-base font-medium text-mint hover:bg-mint/20 transition-all",disabled:N(u).isRunning,onClick:b},[N(u).isRunning?(r(),s("span",Ge,"⏳")):(r(),s("span",Ke,"▶")),A(" "+f(N(u).isRunning?"Running...":"Run Code"),1)],8,Ve),N(u).isLoading?(r(),s("span",Ze," Loading Python runtime... ")):C("",!0)]),t("div",Je,[e[4]||(e[4]=t("div",{class:"flex items-center gap-3 px-6 py-3 border-b border-border/20"},[t("span",{class:"text-sm font-mono text-text-muted uppercase tracking-wider"},"Output")],-1)),t("pre",{class:F(["px-6 py-4 font-mono text-base min-h-[60px] max-h-[300px] overflow-auto whitespace-pre-wrap",c.value?"text-coral":"text-mint/90"])},f(i.value||"# Run your code to see output here"),3),p.expectedOutput&&i.value&&!c.value?(r(),s("div",Qe,[l.value?(r(),s("div",Xe,[...e[1]||(e[1]=[t("span",null,"✅",-1),A(" Output matches expected result! ",-1)])])):(r(),s("div",en,[e[2]||(e[2]=t("span",null,"⚡",-1)),e[3]||(e[3]=A(" Expected: ",-1)),t("code",nn,f(p.expectedOutput),1)]))])):C("",!0)])]))}}),rn={class:"space-y-3"},an=["onClick"],on={class:"text-lg text-text-primary font-medium"},sn={key:0,class:"px-6 py-4 border-t border-border/50 bg-surface/30"},ln=["innerHTML"],pn=["innerHTML"],dn=P({__name:"QAndA",props:{items:{}},setup(p){const h=I({}),u=d=>{h.value[d]=!h.value[d]},g=d=>d.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/\*(.+?)\*/g,"<em>$1</em>").replace(/`(.+?)`/g,'<code class="bg-surface/50 px-2 py-1 rounded text-sky font-mono text-sm">$1</code>').replace(/\n/g,"<br />");return(d,i)=>(r(),s("div",rn,[(r(!0),s(B,null,O(p.items,(c,l)=>(r(),s("div",{key:l,class:"rounded-lg border border-border bg-card overflow-hidden transition-all"},[t("button",{onClick:b=>u(l),class:"w-full text-left px-6 py-4 flex items-center justify-between hover:bg-surface/50 transition-colors"},[t("span",on,f(c.question),1),t("span",{class:F(["text-xl text-lavender transition-transform duration-300",h.value[l]?"rotate-180":""])}," ▼ ",2)],8,an),q(L,{"enter-active-class":"transition-all duration-300","leave-active-class":"transition-all duration-300","enter-from-class":"max-h-0 opacity-0","enter-to-class":"max-h-[1000px] opacity-100","leave-from-class":"max-h-[1000px] opacity-100","leave-to-class":"max-h-0 opacity-0"},{default:k(()=>[h.value[l]?(r(),s("div",sn,[c.answer.includes("<")||c.answer.includes("```")?(r(),s("div",{key:0,class:"prose prose-invert text-base text-text-secondary leading-relaxed",innerHTML:g(c.answer)},null,8,ln)):(r(),s("p",{key:1,class:"text-base text-text-secondary leading-relaxed",innerHTML:g(c.answer)},null,8,pn))])):C("",!0)]),_:2},1024)]))),128))]))}}),cn={class:"space-y-10 stagger-children"},un=["innerHTML"],hn=["innerHTML"],gn={key:7,class:"border-border/50 my-8"},yn=P({__name:"SectionRenderer",props:{blocks:{}},setup(p){const h={1:"text-5xl font-display font-bold text-text-primary mt-4 mb-6 gradient-text",2:"text-3xl font-display font-semibold text-text-primary mt-10 mb-4",3:"text-2xl font-display font-medium text-text-secondary mt-8 mb-3"};function u(g){return g.replace(/`([^`]+)`/g,'<code class="px-2 py-1 rounded bg-surface text-mint font-mono text-base">$1</code>').replace(/\*\*([^*]+)\*\*/g,'<strong class="text-text-primary font-semibold">$1</strong>').replace(/\*([^*]+)\*/g,"<em>$1</em>").replace(/\n/g,"<br />")}return(g,d)=>(r(),s("div",cn,[(r(!0),s(B,null,O(p.blocks,(i,c)=>(r(),s(B,{key:c},[i.type==="heading"?(r(),T(M("h"+i.level),{key:0,class:F(h[i.level])},{default:k(()=>[A(f(i.text),1)]),_:2},1032,["class"])):i.type==="text"?(r(),s("div",{key:1,class:"text-lg leading-relaxed text-text-secondary prose-invert",innerHTML:u(i.content)},null,8,un)):i.type==="code"?(r(),T(We,{key:2,code:i.code,language:i.language,filename:i.filename},null,8,["code","language","filename"])):i.type==="callout"?(r(),T(ze,{key:3,variant:i.variant,title:i.title,content:u(i.content)},null,8,["variant","title","content"])):i.type==="list"?(r(),T(M(i.ordered?"ol":"ul"),{key:4,class:F(["text-lg text-text-secondary space-y-2 ml-6",i.ordered?"list-decimal":"list-disc"])},{default:k(()=>[(r(!0),s(B,null,O(i.items,(l,b)=>(r(),s("li",{key:b,innerHTML:u(l),class:"leading-relaxed"},null,8,hn))),128))]),_:2},1032,["class"])):i.type==="playground"?(r(),T(tn,{key:5,"default-code":i.defaultCode,instructions:i.instructions,"expected-output":i.expectedOutput},null,8,["default-code","instructions","expected-output"])):i.type==="qna"?(r(),T(dn,{key:6,items:i.items},null,8,["items"])):i.type==="divider"?(r(),s("hr",gn)):C("",!0)],64))),128))]))}}),mn=P({__name:"Badge",props:{color:{default:"mint"}},setup(p){const h=p,u=w(()=>({mint:"bg-mint/10 text-mint border border-mint/20",amber:"bg-amber/10 text-amber border border-amber/20",coral:"bg-coral/10 text-coral border border-coral/20",lavender:"bg-lavender/10 text-lavender border border-lavender/20",sky:"bg-sky/10 text-sky border border-sky/20"})[h.color]);return(g,d)=>(r(),s("span",{class:F(["inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider",u.value])},[R(g.$slots,"default")],2))}}),fn={key:0},bn={class:"mb-10"},vn={key:0,class:"flex items-center gap-3 mb-4"},xn={class:"text-text-muted text-sm font-medium"},wn={class:"mt-16 flex items-center justify-between border-t border-border pt-8"},_n={class:"font-medium"},Tn={key:1},kn={key:3,class:"flex items-center gap-3 rounded-xl bg-mint/10 border border-mint/20 px-6 py-4 text-base text-mint"},Cn={class:"text-right"},An={class:"font-medium"},Pn={key:5},Sn={key:1,class:"flex flex-col items-center justify-center py-20 text-center"},Nn=P({__name:"WorkshopPage",props:{day:{},section:{}},setup(p){const h=U(),u=Y(),g=p,d=w(()=>h.params.section||g.section||""),i=w(()=>Se(d.value)),c=w(()=>$(d.value)),l=w(()=>V(d.value)),b=w(()=>G(d.value)),E=w(()=>u.isSectionCompleted(d.value)),_=w(()=>({1:"mint",2:"amber",3:"lavender",4:"coral"})[String(c.value?.day.id)]||"mint");function e(){u.completeSection(d.value)}return z(d,y=>{y&&c.value&&u.setCurrentLocation(c.value.day.id,y)},{immediate:!0}),(y,o)=>{const a=H("router-link");return i.value?(r(),s("div",fn,[t("div",bn,[c.value?(r(),s("div",vn,[q(mn,{color:_.value},{default:k(()=>[A("Day "+f(c.value.day.id),1)]),_:1},8,["color"]),t("span",xn,f(c.value.day.title),1)])):C("",!0)]),q(yn,{blocks:i.value},null,8,["blocks"]),t("div",wn,[b.value?(r(),T(a,{key:0,to:`/workshop/day/${b.value.day.id}/${b.value.section.id}`,class:"group flex items-center gap-3 rounded-xl border border-border px-6 py-4 text-base text-text-secondary hover:border-mint/30 hover:text-mint transition-all"},{default:k(()=>[o[1]||(o[1]=t("svg",{class:"h-5 w-5 transition-transform group-hover:-translate-x-1",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24"},[t("path",{"stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"2",d:"M15 19l-7-7 7-7"})],-1)),t("div",null,[o[0]||(o[0]=t("div",{class:"text-xs text-text-muted"},"Previous",-1)),t("div",_n,f(b.value.section.title),1)])]),_:1},8,["to"])):(r(),s("div",Tn)),E.value?(r(),s("div",kn,[...o[2]||(o[2]=[t("span",null,"✅",-1),A(" Completed ",-1)])])):(r(),s("button",{key:2,class:"rounded-xl bg-mint/10 border border-mint/20 px-6 py-4 text-base font-medium text-mint hover:bg-mint/20 transition-all",onClick:e}," ✓ Mark Complete ")),l.value?(r(),T(a,{key:4,to:`/workshop/day/${l.value.day.id}/${l.value.section.id}`,class:"group flex items-center gap-3 rounded-xl border border-border px-6 py-4 text-base text-text-secondary hover:border-mint/30 hover:text-mint transition-all"},{default:k(()=>[t("div",Cn,[o[3]||(o[3]=t("div",{class:"text-xs text-text-muted"},"Next",-1)),t("div",An,f(l.value.section.title),1)]),o[4]||(o[4]=t("svg",{class:"h-4 w-4 transition-transform group-hover:translate-x-1",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24"},[t("path",{"stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"2",d:"M9 5l7 7-7 7"})],-1))]),_:1},8,["to"])):(r(),s("div",Pn))])])):(r(),s("div",Sn,[o[6]||(o[6]=t("div",{class:"text-4xl mb-4"},"📭",-1)),o[7]||(o[7]=t("h2",{class:"text-lg font-display font-semibold text-text-primary mb-2"},"Section Not Found",-1)),o[8]||(o[8]=t("p",{class:"text-sm text-text-secondary mb-4"},"This section doesn't exist or hasn't been created yet.",-1)),q(a,{to:"/workshop",class:"text-sm text-mint hover:underline"},{default:k(()=>[...o[5]||(o[5]=[A("← Go to Workshop",-1)])]),_:1})]))}}});export{Nn as default};

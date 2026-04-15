@@ -106,65 +106,11 @@ export const day3AdvancedFn: ContentBlock[] = [
   // Section 9: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-advancedfn',
-      title: 'Advanced Functions Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'f = lambda x, y: x ** y\nprint(f(2, 3))',
-          options: ['6', '8', '5', '23'],
-          correctIndex: 1,
-          explanation: 'The lambda computes x**y. 2**3 = 8.',
-        },
-        {
-          type: 'predict-output',
-          code: 'def foo(*args):\n    return len(args)\n\nprint(foo(1, 2, 3, 4, 5))',
-          options: ['1', '5', '(1, 2, 3, 4, 5)', 'Error'],
-          correctIndex: 1,
-          explanation: '*args collects all arguments into a tuple. len((1,2,3,4,5)) = 5.',
-        },
-        {
-          type: 'predict-output',
-          code: 'result = [x * 2 for x in range(5) if x % 2 != 0]\nprint(result)',
-          options: ['[0, 2, 4, 6, 8]', '[2, 6]', '[1, 3]', '[0, 4, 8]'],
-          correctIndex: 1,
-          explanation: 'range(5) gives 0,1,2,3,4. Filter x%2!=0 gives 1,3. Multiply by 2: [2, 6].',
-        },
-        {
-          type: 'mcq',
-          question: 'What is required to prevent infinite recursion?',
-          options: ['A return statement', 'A base case', 'A loop inside the function', 'The global keyword'],
-          correctIndex: 1,
-          explanation: 'Every recursive function needs a BASE CASE — a condition where it stops calling itself and returns a direct value.',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 10: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-advancedfn',
-      title: 'Mini Calculator with Dispatch',
-      difficulty: 'hard',
-      description: 'Create a calculator that uses a dictionary to dispatch operations. Support +, -, *, /, and ** (power). Return an error message for division by zero and unknown operators.',
-      starterCode: '# Mini Calculator with function dispatch\ndef calculator(a, op, b):\n    operations = {\n        "+": lambda x, y: x + y,\n        "-": lambda x, y: x - y,\n        "*": lambda x, y: x * y,\n        "/": lambda x, y: "Error: Division by zero" if y == 0 else x / y,\n        "**": lambda x, y: x ** y,\n    }\n    \n    if op not in operations:\n        return f"Error: Unknown operator \'{op}\'"\n    return operations[op](a, b)\n\n# Test cases\ntests = [\n    (10, "+", 5),\n    (10, "-", 3),\n    (4, "*", 7),\n    (15, "/", 4),\n    (10, "/", 0),\n    (2, "**", 8),\n    (5, "%", 3),\n]\n\nfor a, op, b in tests:\n    result = calculator(a, op, b)\n    print(f"  {a} {op} {b} = {result}")',
-      testCases: [
-        { input: '', expected: '  10 + 5 = 15\n  10 - 3 = 7\n  4 * 7 = 28\n  15 / 4 = 3.75\n  10 / 0 = Error: Division by zero\n  2 ** 8 = 256\n  5 % 3 = Error: Unknown operator \'%\'' },
-      ],
-      hints: [
-        'Use a dictionary mapping operator strings to lambda functions',
-        'Check for unknown operators with `if op not in operations`',
-        'Handle division by zero inside the lambda or with a separate check',
-      ],
-      solution: 'def calculator(a, op, b):\n    operations = {\n        "+": lambda x, y: x + y,\n        "-": lambda x, y: x - y,\n        "*": lambda x, y: x * y,\n        "/": lambda x, y: "Error: Division by zero" if y == 0 else x / y,\n        "**": lambda x, y: x ** y,\n    }\n    if op not in operations:\n        return f"Error: Unknown operator \\\'{op}\\\'"\n    return operations[op](a, b)',
-    },
-  },
+  
 ]

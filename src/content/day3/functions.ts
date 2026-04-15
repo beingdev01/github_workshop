@@ -120,77 +120,11 @@ export const day3Functions: ContentBlock[] = [
   // Section 10: Quiz
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Knowledge Check' },
-  {
-    type: 'qna',
-    quiz: {
-      id: 'quiz-functions',
-      title: 'Functions Quiz',
-      questions: [
-        {
-          type: 'predict-output',
-          code: 'def mystery(a, b=10):\n    return a + b\n\nprint(mystery(5))\nprint(mystery(5, 20))',
-          options: ['5\\n25', '15\\n25', '15\\n20', 'Error'],
-          correctIndex: 1,
-          explanation: 'First call: a=5, b uses default (10), so 5+10=15. Second call: a=5, b=20, so 5+20=25.',
-        },
-        {
-          type: 'predict-output',
-          code: 'x = 5\ndef change():\n    x = 10\n    print(x)\n\nchange()\nprint(x)',
-          options: ['10\\n10', '10\\n5', '5\\n5', 'Error'],
-          correctIndex: 1,
-          explanation: 'Inside change(), x=10 creates a LOCAL variable. The global x=5 is unchanged. Output: 10 (local), then 5 (global).',
-        },
-        {
-          type: 'predict-output',
-          code: 'def greet(name):\n    print(f"Hi {name}")\n\nresult = greet("Alice")\nprint(result)',
-          options: ['Hi Alice\\nNone', 'Hi Alice\\nHi Alice', 'Hi Alice', 'None'],
-          correctIndex: 0,
-          explanation: 'greet() prints "Hi Alice" and has no return, so it implicitly returns None. print(result) then prints None.',
-        },
-        {
-          type: 'mcq',
-          question: 'What is the difference between print() and return?',
-          options: [
-            'They are the same thing',
-            'print() displays output; return sends a value back to the caller',
-            'return displays output; print sends a value back',
-            'print() is faster',
-          ],
-          correctIndex: 1,
-          explanation: 'print() writes to the screen (side effect). return gives a value back to where the function was called, allowing further computation with that value.',
-        },
-        {
-          type: 'predict-output',
-          code: 'def first_even(nums):\n    for n in nums:\n        if n % 2 == 0:\n            return n\n    return -1\n\nprint(first_even([1, 3, 4, 6, 8]))',
-          options: ['1', '4', '[4, 6, 8]', '-1'],
-          correctIndex: 1,
-          explanation: 'The function returns the FIRST even number it finds. 1 is odd, 3 is odd, 4 is even → return 4 immediately.',
-        },
-      ],
-    },
-  },
+  
 
   // ═══════════════════════════════════════
   // Section 11: Challenge
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Coding Challenge' },
-  {
-    type: 'qna',
-    challenge: {
-      id: 'challenge-functions',
-      title: 'Password Strength Checker',
-      difficulty: 'medium',
-      description: 'Write a function `check_password(password)` that returns a strength rating: "Weak" (< 8 chars), "Medium" (8+ chars with letters and digits), "Strong" (8+ chars with upper, lower, digits, and special characters).',
-      starterCode: 'def check_password(password):\n    """Check password strength."""\n    if len(password) < 8:\n        return "Weak"\n    \n    has_upper = any(c.isupper() for c in password)\n    has_lower = any(c.islower() for c in password)\n    has_digit = any(c.isdigit() for c in password)\n    has_special = any(not c.isalnum() for c in password)\n    \n    if has_upper and has_lower and has_digit and has_special:\n        return "Strong"\n    elif has_digit and (has_upper or has_lower):\n        return "Medium"\n    else:\n        return "Weak"\n\n# Test it\ntests = ["hi", "password", "Pass1234", "P@ss1234!", "12345678"]\nfor pw in tests:\n    strength = check_password(pw)\n    print(f"  {pw:15s} → {strength}")',
-      testCases: [
-        { input: '', expected: '  hi              → Weak\n  password        → Weak\n  Pass1234        → Medium\n  P@ss1234!       → Strong\n  12345678        → Weak' },
-      ],
-      hints: [
-        'Use len() to check length',
-        'Use any() with generator expressions to check character types',
-        'str.isupper(), str.islower(), str.isdigit(), str.isalnum() are helpful',
-      ],
-      solution: 'def check_password(password):\n    if len(password) < 8:\n        return "Weak"\n    has_upper = any(c.isupper() for c in password)\n    has_lower = any(c.islower() for c in password)\n    has_digit = any(c.isdigit() for c in password)\n    has_special = any(not c.isalnum() for c in password)\n    if has_upper and has_lower and has_digit and has_special:\n        return "Strong"\n    elif has_digit and (has_upper or has_lower):\n        return "Medium"\n    else:\n        return "Weak"\ntests = ["hi", "password", "Pass1234", "P@ss1234!", "12345678"]\nfor pw in tests:\n    print(f"  {pw:15s} → {check_password(pw)}")',
-    },
-  },
+  
 ]
