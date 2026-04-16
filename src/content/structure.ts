@@ -51,6 +51,7 @@ export const workshopDays: DayMeta[] = [
       { id: 'day2-patterns', title: 'Nested Loops & Patterns', icon: '🎨' },
       { id: 'day2-lists', title: 'Lists & Dynamic Arrays', icon: '📋' },
       { id: 'day2-tuples', title: 'Tuples & Immutability', icon: '📎' },
+      { id: 'day2-problems', title: 'Classic Problems', icon: '🧠' },
     ],
   },
   {

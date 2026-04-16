@@ -17,6 +17,7 @@ import { day2For } from './day2/for'
 import { day2Patterns } from './day2/patterns'
 import { day2Lists } from './day2/lists'
 import { day2Tuples } from './day2/tuples'
+import { day2Problems } from './day2/problems'
 
 // Day 3 — Advanced Features & OOP
 import { day3Dicts } from './day3/dicts'
@@ -46,6 +47,7 @@ export const contentMap: Record<string, ContentBlock[]> = {
   'day2-patterns': day2Patterns,
   'day2-lists': day2Lists,
   'day2-tuples': day2Tuples,
+  'day2-problems': day2Problems,
 
   // Day 3
   'day3-dicts': day3Dicts,

@@ -1,4 +1,4 @@
-import{d as w,c as r,a as e,b as p,w as m,s as g,v,F as f,r as x,u as k,g as C,i as c,t as d,l as L,m as T,h as M,o as l,n as A,f as H}from"./index-BOuIOrta.js";import{_ as B}from"./site-logo-BehEtZ_y.js";const S=[{id:"basics",title:"Basics",icon:"📦",color:"mint",items:[{title:"Print",code:`print("Hello, World!")
+import{d as w,c as r,a as e,b as p,w as m,s as g,v,F as f,r as x,u as k,g as C,i as c,t as d,l as L,m as T,h as M,o as l,n as A,f as H}from"./index-DZTgzZOc.js";import{_ as B}from"./site-logo-BehEtZ_y.js";const S=[{id:"basics",title:"Basics",icon:"📦",color:"mint",items:[{title:"Print",code:`print("Hello, World!")
 print("A", "B", sep=", ", end="\\n")`,note:"sep= separator, end= line ending"},{title:"Variables",code:`x = 10
 name = "Alice"
 is_valid = True`,note:"No type declaration needed"},{title:"Input",code:`name = input("Your name: ")
