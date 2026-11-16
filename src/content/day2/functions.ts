@@ -46,7 +46,7 @@ export const day2Functions: ContentBlock[] = [
   { type: 'heading', level: 2, text: 'Return Values' },
   {
     type: 'code',
-    code: '# return sends a value back to the caller\ndef is_even(n):\n    return n % 2 == 0\n\nprint(is_even(4))    # True\nprint(is_even(7))    # False\n\n# return also EXITS the function immediately\ndef first_positive(numbers):\n    for n in numbers:\n        if n > 0:\n            return n      # Found it! Exit now.\n    return None             # Nothing found\n\nprint(first_positive([-3, -1, 0, 5, 8]))  # 5\nprint(first_positive([-3, -1, 0]))          # None\n\n# Returning multiple values (actually returns a tuple)\ndef min_max(numbers):\n    return min(numbers), max(numbers)\n\nlow, high = min_max([3, 1, 4, 1, 5, 9])\nprint(f"Min: {low}, Max: {high}")   # Min: 1, Max: 9\n\n# Functions without return give None\ndef say_hi():\n    print("Hi!")\n\nresult = say_hi()     # Prints "Hi!"\nprint(result)         # None — no return statement!',
+    code: '# return sends a value back to the caller\ndef is_even(n):\n    return n % 2 == 0\n\nprint(is_even(4))    # True\nprint(is_even(7))    # False\n\n# return also EXITS the function immediately\ndef first_positive(a, b, c):\n    if a > 0:\n        return a      # Found it! Exit now.\n    if b > 0:\n        return b\n    if c > 0:\n        return c\n    return None             # Nothing found\n\nprint(first_positive(-3, -1, 5))  # 5\nprint(first_positive(-3, -1, 0))  # None\n\n# One return gives back one value — call twice for two answers\ndef larger(a, b):\n    if a > b:\n        return a\n    return b\n\nprint(larger(3, 9))   # 9\nprint(larger(10, 4))  # 10\n\n# Functions without return give None\ndef say_hi():\n    print("Hi!")\n\nresult = say_hi()     # Prints "Hi!"\nprint(result)         # None — no return statement!',
     language: 'python',
   },
   {
@@ -72,7 +72,7 @@ export const day2Functions: ContentBlock[] = [
   { type: 'heading', level: 2, text: 'Keyword Arguments' },
   {
     type: 'code',
-    code: '# Keyword arguments let you pass values by name\ndef describe_pet(name, animal, color="brown"):\n    print(f"{name} is a {color} {animal}")\n\n# Positional arguments (order matters)\ndescribe_pet("Buddy", "dog")           # Buddy is a brown dog\n\n# Keyword arguments (order doesn\'t matter!)\ndescribe_pet(animal="cat", name="Whiskers", color="black")\n# Whiskers is a black cat\n\n# Mix positional and keyword (positional first!)\ndescribe_pet("Nemo", animal="fish", color="orange")\n# Nemo is a orange fish\n\n# Keyword arguments are especially useful with many parameters\ndef create_user(name, age, email, role="user", active=True):\n    return {\n        "name": name, "age": age, "email": email,\n        "role": role, "active": active\n    }\n\nuser = create_user("Alice", 30, "alice@example.com", role="admin")\nprint(user)',
+    code: '# Keyword arguments let you pass values by name\ndef describe_pet(name, animal, color="brown"):\n    print(f"{name} is a {color} {animal}")\n\n# Positional arguments (order matters)\ndescribe_pet("Buddy", "dog")           # Buddy is a brown dog\n\n# Keyword arguments (order doesn\'t matter!)\ndescribe_pet(animal="cat", name="Whiskers", color="black")\n# Whiskers is a black cat\n\n# Mix positional and keyword (positional first!)\ndescribe_pet("Nemo", animal="fish", color="orange")\n# Nemo is a orange fish\n\n# Keyword arguments are especially useful with many parameters\ndef make_greeting(name, greeting="Hello", punctuation="!"):\n    return f"{greeting}, {name}{punctuation}"\n\nprint(make_greeting("Alice"))                    # Hello, Alice!\nprint(make_greeting("Bob", "Hola"))              # Hola, Bob!\nprint(make_greeting("Meera", punctuation="?"))   # Hello, Meera?',
     language: 'python',
   },
 
@@ -106,15 +106,15 @@ export const day2Functions: ContentBlock[] = [
     language: 'python',
   },
 
-  // Assignment Bridge: Polynomial and Binary Conversion
-  { type: 'heading', level: 2, text: 'Assignment Bridge: Polynomial & Binary Problems' },
+  // Assignment Bridge: Binary Conversion (IITM Week-4 style)
+  { type: 'heading', level: 2, text: 'Assignment Bridge: Binary Conversion (IITM Style)' },
   {
     type: 'text',
-    content: 'Week-style function questions often ask for polynomial evaluation, integer root search in a range, and binary-to-decimal conversion. These are excellent drills for loops, indexing, and function decomposition.',
+    content: 'IITM Week-4 style questions often ask for binary-to-decimal conversion. It is a good drill for loops and place value — and it needs only strings, which you already know. The polynomial version, which needs lists, waits for you in Classic Problems.',
   },
   {
     type: 'code',
-    code: 'def poly(coeffs, x0):\n    """Evaluate a0 + a1*x0 + a2*x0^2 + ... using Horner form."""\n    result = 0\n    for a in reversed(coeffs):\n        result = result * x0 + a\n    return result\n\ndef poly_zeros(coeffs, a, b):\n    """Return all integer zeros in [a, b], inclusive."""\n    zeros = []\n    for x in range(a, b + 1):\n        if poly(coeffs, x) == 0:\n            zeros.append(x)\n    return zeros\n\nprint(poly([1, 2, 3], 5))            # 86\nprint(poly_zeros([2, -3, 1], 0, 4))  # [1, 2]\n\ndef bin_to_dec(bits):\n    """Convert binary string like "1011" to decimal integer."""\n    value = 0\n    for ch in bits:\n        value = value * 2 + int(ch)\n    return value\n\nprint(bin_to_dec("1011"))            # 11\nprint(bin_to_dec("100000"))          # 32',
+    code: 'def bin_to_dec(bits):\n    """Convert binary string like "1011" to decimal integer."""\n    value = 0\n    for ch in bits:\n        value = value * 2 + int(ch)\n    return value\n\nprint(bin_to_dec("1011"))            # 11\nprint(bin_to_dec("100000"))          # 32',
     language: 'python',
   },
   {
@@ -130,7 +130,7 @@ export const day2Functions: ContentBlock[] = [
   { type: 'heading', level: 2, text: 'Try It Yourself' },
   {
     type: 'playground',
-    defaultCode: '# Create and use functions!\n\n# 1. Temperature converter\ndef celsius_to_fahrenheit(c):\n    return c * 9/5 + 32\n\ndef fahrenheit_to_celsius(f):\n    return (f - 32) * 5/9\n\nprint(f"100°C = {celsius_to_fahrenheit(100):.1f}°F")\nprint(f"72°F = {fahrenheit_to_celsius(72):.1f}°C")\n\n# 2. Is it a palindrome?\ndef is_palindrome(text):\n    cleaned = text.lower().replace(" ", "")\n    return cleaned == cleaned[::-1]\n\nfor word in ["racecar", "Python", "madam", "hello"]:\n    result = "✅" if is_palindrome(word) else "❌"\n    print(f"  {word}: {result}")\n\n# 3. Function that returns multiple values\ndef analyze_numbers(nums):\n    return min(nums), max(nums), sum(nums) / len(nums)\n\ndata = [4, 8, 15, 16, 23, 42]\nlo, hi, avg = analyze_numbers(data)\nprint(f"\\nMin={lo}, Max={hi}, Avg={avg:.1f}")',
+    defaultCode: '# Create and use functions!\n\n# 1. Temperature converter\ndef celsius_to_fahrenheit(c):\n    return c * 9/5 + 32\n\ndef fahrenheit_to_celsius(f):\n    return (f - 32) * 5/9\n\nprint(f"100°C = {celsius_to_fahrenheit(100):.1f}°F")\nprint(f"72°F = {fahrenheit_to_celsius(72):.1f}°C")\n\n# 2. Is it a palindrome?\ndef is_palindrome(text):\n    cleaned = text.lower().replace(" ", "")\n    return cleaned == cleaned[::-1]\n\nfor word in ["racecar", "Python", "madam", "hello"]:\n    result = "✅" if is_palindrome(word) else "❌"\n    print(f"  {word}: {result}")\n\n# 3. Biggest of three numbers — no list needed\ndef biggest(a, b, c):\n    if a >= b and a >= c:\n        return a\n    if b >= c:\n        return b\n    return c\n\nprint(f"\\nBiggest of 4, 8, 15 is {biggest(4, 8, 15)}")\nprint(f"Biggest of 23, 42, 16 is {biggest(23, 42, 16)}")',
     instructions: 'Create your own functions! Try making a function that checks if a number is prime.',
   },
 
@@ -178,7 +178,7 @@ export const day2Functions: ContentBlock[] = [
     type: 'heading', level: 2, text: 'Functions Are First-Class Objects' },
   {
     type: 'code',
-    code: 'def double(x): return x * 2\ndef triple(x): return x * 3\n\nops = [double, triple]\nprint([op(5) for op in ops])   # [10, 15]\n\ndef apply(f, x):\n    return f(x)\nprint(apply(double, 7))        # 14\n\ndef make_multiplier(k):\n    def multiply(x):\n        return x * k\n    return multiply\n\ntimes10 = make_multiplier(10)\nprint(times10(4))              # 40',
+    code: 'def double(x): return x * 2\ndef triple(x): return x * 3\n\ndef apply(f, x):\n    return f(x)\nprint(apply(double, 7))        # 14\n\ndef make_multiplier(k):\n    def multiply(x):\n        return x * k\n    return multiply\n\ntimes10 = make_multiplier(10)\nprint(times10(4))              # 40',
     language: 'python',
   },
 
@@ -190,19 +190,20 @@ export const day2Functions: ContentBlock[] = [
   },
   {
     type: 'code',
-    code: 'def factorial(n):\n    if n <= 1:              # base case\n        return 1\n    return n * factorial(n - 1)   # recursive case\n\nprint(factorial(5))         # 120\n\ndef fib(n):\n    if n < 2: return n\n    return fib(n - 1) + fib(n - 2)\n\ndef deep_sum(items):\n    total = 0\n    for x in items:\n        if isinstance(x, list):\n            total += deep_sum(x)\n        else:\n            total += x\n    return total\n\nprint(deep_sum([1, [2, [3, 4]], 5]))   # 15',
+    code: 'def factorial(n):\n    if n <= 1:              # base case\n        return 1\n    return n * factorial(n - 1)   # recursive case\n\nprint(factorial(5))         # 120\n\ndef fib(n):\n    if n < 2: return n\n    return fib(n - 1) + fib(n - 2)\n',
     language: 'python',
   },
   {
     type: 'callout',
     variant: 'warning',
     title: 'Recursion Limit',
-    content: 'CPython caps recursion at ~1000 calls by default (`sys.getrecursionlimit()`). Deep recursion blows the stack. Python has no tail-call optimization — convert deep recursion to iteration, or remember answers in a dictionary (memoization, below).',
+    content: 'CPython caps recursion at ~1000 calls by default (`sys.getrecursionlimit()`). Deep recursion blows the stack. Python has no tail-call optimization — convert deep recursion to iteration, or remember answers in a dictionary (memoization — see the Dictionaries section).',
   },
   {
-    type: 'code',
-    code: '# Remembering answers in a dictionary (memoization)\ncache = {}\n\ndef fib(n):\n    if n in cache:\n        return cache[n]\n    if n < 2:\n        result = n\n    else:\n        result = fib(n - 1) + fib(n - 2)\n    cache[n] = result\n    return result\n\nprint(fib(30))   # fast — repeated work is remembered',
-    language: 'python',
+    type: 'callout',
+    variant: 'tip',
+    title: 'Remembering Answers — Needs a Dictionary',
+    content: 'Plain recursion repeats work: `fib(30)` recomputes the same values many times. The fix is to remember answers in a dictionary — but dictionaries come in the next few sections. You will see the full memoization version in Dictionaries, right after you learn how a dictionary works.',
   },
 
   {
@@ -299,39 +300,10 @@ export const day2Functions: ContentBlock[] = [
   },
 
   {
-    type: 'heading', level: 2, text: 'Call-by-Object-Reference' },
-  {
-    type: 'text',
-    content: 'Python\'s function calling is neither "by value" nor "by reference" in the classic sense. The function receives the **same object**. What happens next depends on whether the object is mutable.',
-  },
-  {
-    type: 'code',
-    code: 'def add_item(lst):\n    lst.append("new")     # MUTATES — caller sees it\n\ndef reassign(lst):\n    lst = ["replaced"]    # REBINDS local name — caller does NOT see\n\nitems = ["a", "b"]\nadd_item(items)\nprint(items)    # [\'a\', \'b\', \'new\']\nreassign(items)\nprint(items)    # [\'a\', \'b\', \'new\'] — unchanged',
-    language: 'python',
-  },
-  {
-    type: 'memoryDiagram',
-    title: 'Diagram: Function Frame During `add_item(items)`',
-    description: 'The parameter `lst` in the call frame points to the same list object as `items` in global scope.',
-    bindings: [
-      { scope: 'global', name: 'items', objectId: 'L3' },
-      { scope: 'frame:add_item', name: 'lst', objectId: 'L3' },
-    ],
-    objects: [
-      {
-        id: 'L3',
-        type: 'list',
-        value: "['a', 'b', 'new']",
-        mutable: true,
-        refCount: 2,
-        note: 'Both frames share one object. `append` mutates shared state.',
-        accent: 'mint',
-      },
-    ],
-    insights: [
-      'Function arguments are new names bound to existing objects.',
-      'Local rebinding (`lst = ...`) changes only the local name, not the caller binding.',
-    ],
+    type: 'callout',
+    variant: 'info',
+    title: 'What Happens When You Pass a List to a Function?',
+    content: 'A function gets the **same list object** the caller has — so changing the list inside the function changes it outside too. But that only makes sense once you know lists are mutable. You will see the full version, with a diagram, in Lists & Dynamic Arrays.',
   },
 
   { type: 'heading', level: 2, text: 'Deep Q&A' },

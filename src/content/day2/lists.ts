@@ -56,6 +56,41 @@ export const day2Lists: ContentBlock[] = [
     content: 'When you assign a list to a new variable, both variables point to the **same** list in memory. Modifying one affects the other!\n\n`a = [1, 2, 3]`\n`b = a`  ← b is an alias, NOT a copy!\n`b.append(4)`\n`print(a)` → `[1, 2, 3, 4]` — a changed too!\n\nTo make an independent copy: `b = a.copy()` or `b = a[:]`',
   },
 
+  { type: 'heading', level: 2, text: 'Passing a List to a Function' },
+  {
+    type: 'text',
+    content: 'In Functions you learned that a function gets the **same object** the caller has. Now that you know lists are mutable, you can see what that really means. Python\'s function calling is neither "by value" nor "by reference" in the classic sense. The function receives the **same object**. What happens next depends on whether the object is mutable.',
+  },
+  {
+    type: 'code',
+    code: 'def add_item(lst):\n    lst.append("new")     # MUTATES — caller sees it\n\ndef reassign(lst):\n    lst = ["replaced"]    # REBINDS local name — caller does NOT see\n\nitems = ["a", "b"]\nadd_item(items)\nprint(items)    # [\'a\', \'b\', \'new\']\nreassign(items)\nprint(items)    # [\'a\', \'b\', \'new\'] — unchanged',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Function Frame During `add_item(items)`',
+    description: 'The parameter `lst` in the call frame points to the same list object as `items` in global scope.',
+    bindings: [
+      { scope: 'global', name: 'items', objectId: 'L3' },
+      { scope: 'frame:add_item', name: 'lst', objectId: 'L3' },
+    ],
+    objects: [
+      {
+        id: 'L3',
+        type: 'list',
+        value: "['a', 'b', 'new']",
+        mutable: true,
+        refCount: 2,
+        note: 'Both frames share one object. `append` mutates shared state.',
+        accent: 'mint',
+      },
+    ],
+    insights: [
+      'Function arguments are new names bound to existing objects.',
+      'Local rebinding (`lst = ...`) changes only the local name, not the caller binding.',
+    ],
+  },
+
   // ═══════════════════════════════════════
   // Section 5: List Methods
   // ═══════════════════════════════════════

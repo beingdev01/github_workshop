@@ -150,14 +150,14 @@ export const day2Problems: ContentBlock[] = [
     title: 'The Bit-Position Trick Explained',
     content: 'Write the step number in binary: 1, 10, 11, 100, 101, 110, 111... The **position of the lowest set bit** (rightmost 1) tells you which disk moves at that step. Step 1 (binary `001`) → disk 1. Step 2 (binary `010`) → disk 2. Step 4 (binary `100`) → disk 3. Disk 1 (smallest) moves every other step — at steps 1, 3, 5, 7...',
   },
-  { type: 'heading', level: 3, text: 'Clean Recursive Preview (Day 3)' },
+  { type: 'heading', level: 3, text: 'Clean Recursive Version' },
   {
     type: 'text',
-    content: 'On Day 3 you will learn recursion — functions that call themselves. That unlocks a 4-line solution that reads almost like the English problem statement. Comparing the two versions is a great way to see *why* recursion was invented:',
+    content: 'You learned recursion in Functions on Day 2 — functions that call themselves. That unlocks a 4-line solution that reads almost like the English problem statement. Comparing the two versions is a great way to see *why* recursion was invented:',
   },
   {
     type: 'code',
-    code: '# Day 3 version — 4 lines, uses recursion\ndef hanoi(n, src, aux, tgt):\n    if n == 1:\n        print(f"  Move disk 1: {src} → {tgt}")\n        return\n    hanoi(n - 1, src, tgt, aux)   # move n-1 disks out of the way\n    print(f"  Move disk {n}: {src} → {tgt}")  # move the big disk\n    hanoi(n - 1, aux, src, tgt)   # stack the n-1 disks on top\n\n# hanoi(3, "A", "B", "C")  # uncomment on Day 3!\n\n# The recursive solution maps perfectly to the problem description:\n# "To move n disks from A to C:\n#   1. Move n-1 disks from A to B (using C as spare).\n#   2. Move the bottom disk from A to C.\n#   3. Move n-1 disks from B to C (using A as spare)."\nprint("Will unlock on Day 3 after learning recursion!")',
+    code: '# Recursive version — 4 lines\ndef hanoi(n, src, aux, tgt):\n    if n == 1:\n        print(f"  Move disk 1: {src} → {tgt}")\n        return\n    hanoi(n - 1, src, tgt, aux)   # move n-1 disks out of the way\n    print(f"  Move disk {n}: {src} → {tgt}")  # move the big disk\n    hanoi(n - 1, aux, src, tgt)   # stack the n-1 disks on top\n\nhanoi(3, "A", "B", "C")\n\n# The recursive solution maps perfectly to the problem description:\n# "To move n disks from A to C:\n#   1. Move n-1 disks from A to B (using C as spare).\n#   2. Move the bottom disk from A to C.\n#   3. Move n-1 disks from B to C (using A as spare)."',
     language: 'python',
   },
   {
@@ -165,6 +165,33 @@ export const day2Problems: ContentBlock[] = [
     variant: 'warning',
     title: 'Exponential Growth is No Joke',
     content: 'The legendary Brahma Tower has 64 gold disks. Minimum moves: 2⁶⁴ − 1 = **18,446,744,073,709,551,615**. At one move per second, that\'s over 580 billion years. The universe is only 13.8 billion years old. This is why exponential time algorithms don\'t scale.',
+  },
+
+  { type: 'heading', level: 2, text: '6 — Polynomial Evaluation (IITM Style)' },
+  {
+    type: 'text',
+    content: 'IITM Week-4 style question: a polynomial is given as a list of coefficients, lowest power first. Evaluate it, then find its integer zeros in a range. Horner form keeps it to one short loop.',
+  },
+  {
+    type: 'code',
+    code: 'def poly(coeffs, x0):\n    """Evaluate a0 + a1*x0 + a2*x0^2 + ... using Horner form."""\n    result = 0\n    for a in reversed(coeffs):\n        result = result * x0 + a\n    return result\n\ndef poly_zeros(coeffs, a, b):\n    """Return all integer zeros in [a, b], inclusive."""\n    zeros = []\n    for x in range(a, b + 1):\n        if poly(coeffs, x) == 0:\n            zeros.append(x)\n    return zeros\n\nprint(poly([1, 2, 3], 5))            # 86\nprint(poly_zeros([2, -3, 1], 0, 4))  # [1, 2]',
+    language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'tip',
+    title: 'Why Horner Form?',
+    content: 'Directly computing powers (`x**k`) works, but Horner form is cleaner and faster: it evaluates a degree-n polynomial in O(n) multiplications with minimal temporary values.',
+  },
+  { type: 'heading', level: 2, text: '7 — Adding Up Nested Lists' },
+  {
+    type: 'text',
+    content: 'A list can hold other lists. Add up everything inside, however deep it goes. Recursion fits here: if an item is a list, add up that list; otherwise add the number.',
+  },
+  {
+    type: 'code',
+    code: 'def deep_sum(items):\n    total = 0\n    for x in items:\n        if isinstance(x, list):\n            total += deep_sum(x)\n        else:\n            total += x\n    return total\n\nprint(deep_sum([1, [2, [3, 4]], 5]))   # 15',
+    language: 'python',
   },
 
   // ═══════════════════════════════════════

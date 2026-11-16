@@ -122,7 +122,7 @@ export const day2Conditionals: ContentBlock[] = [
   { type: 'heading', level: 2, text: 'Common Conditional Patterns' },
   {
     type: 'code',
-    code: '# Pattern 1: Clamping a value to a range\nvalue = 150\nclamped = min(max(value, 0), 100)  # Keep between 0 and 100\nprint(clamped)   # 100\n\n# Pattern 2: Absolute value (manual)\nx = -5\nresult = x if x >= 0 else -x\nprint(result)   # 5\n\n# Pattern 3: Sign function\ndef sign(n):\n    if n > 0:\n        return 1\n    elif n < 0:\n        return -1\n    else:\n        return 0\n\nprint(sign(42))    # 1\nprint(sign(-7))    # -1\nprint(sign(0))     # 0\n\n# Pattern 4: Categorizing with if-elif\ndef categorize_bmi(bmi):\n    if bmi < 18.5:\n        return "Underweight"\n    elif bmi < 25.0:\n        return "Normal"\n    elif bmi < 30.0:\n        return "Overweight"\n    else:\n        return "Obese"\n\nprint(categorize_bmi(22.5))  # Normal',
+    code: '# Pattern 1: Clamping a value to a range\nvalue = 150\nclamped = min(max(value, 0), 100)  # Keep between 0 and 100\nprint(clamped)   # 100\n\n# Pattern 2: Absolute value (manual)\nx = -5\nresult = x if x >= 0 else -x\nprint(result)   # 5\n\n# Pattern 3: Sign of a number\nn = 42\nif n > 0:\n    print(1)     # 1\nelif n < 0:\n    print(-1)\nelse:\n    print(0)\n\n# Pattern 4: Categorizing with if-elif\nbmi = 22.5\nif bmi < 18.5:\n    print("Underweight")\nelif bmi < 25.0:\n    print("Normal")       # Normal\nelif bmi < 30.0:\n    print("Overweight")\nelse:\n    print("Obese")',
     language: 'python',
   },
 

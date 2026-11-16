@@ -202,6 +202,17 @@ export const day2Dicts: ContentBlock[] = [
     ],
   },
 
+  { type: 'heading', level: 2, text: 'Remembering Answers — Memoization' },
+  {
+    type: 'text',
+    content: 'You met slow `fib()` in Functions — plain recursion recomputes the same values many times. A dictionary fixes it: remember each answer the first time you compute it, and reuse it afterwards.',
+  },
+  {
+    type: 'code',
+    code: '# Remembering answers in a dictionary (memoization)\ncache = {}\n\ndef fib(n):\n    if n in cache:\n        return cache[n]\n    if n < 2:\n        result = n\n    else:\n        result = fib(n - 1) + fib(n - 2)\n    cache[n] = result\n    return result\n\nprint(fib(30))   # fast — repeated work is remembered',
+    language: 'python',
+  },
+
   // ═══════════════════════════════════════
   // Section 7: Playground
   // ═══════════════════════════════════════

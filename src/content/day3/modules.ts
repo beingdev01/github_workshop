@@ -41,7 +41,7 @@ export const day3Modules: ContentBlock[] = [
     type: 'callout',
     variant: 'tip',
     title: 'pip — Installing New Libraries',
-    content: 'The standard library is built in, but NumPy and Matplotlib are not. Install them once with `pip install numpy matplotlib`, then `import` them like any other module. You will use both in the next section.',
+    content: 'The standard library is built in, but NumPy and Matplotlib are not. Install them once with `pip install numpy matplotlib`, then `import` them like any other module. You will use both in the NumPy, Matplotlib & IoT Demo section later in Day 3.',
   },
 
   // ═══════════════════════════════════════
