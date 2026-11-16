@@ -69,6 +69,7 @@ export const workshopDays: DayMeta[] = [
       { id: 'day3-advanced-fn', title: 'Closures & Decorators', icon: '🔧' },
       { id: 'day3-iterators', title: 'Iterators & Generators', icon: '♻️' },
       { id: 'day3-files', title: 'File Handling', icon: '📁' },
+      { id: 'day3-numpy', title: 'NumPy, Matplotlib & IoT Demo', icon: '📊' },
       { id: 'day3-oop', title: 'OOP Deep Dive', icon: '🏛️' },
     ],
   },

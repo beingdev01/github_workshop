@@ -27,6 +27,7 @@ import { day3Functions } from './day3/functions'
 import { day3AdvancedFn } from './day3/advancedFn'
 import { day3Iterators } from './day3/iterators'
 import { day3Files } from './day3/files'
+import { day3Numpy } from './day3/numpy'
 import { day3OOP } from './day3/oop'
 
 export const contentMap: Record<string, ContentBlock[]> = {
@@ -57,6 +58,7 @@ export const contentMap: Record<string, ContentBlock[]> = {
   'day3-advanced-fn': day3AdvancedFn,
   'day3-iterators': day3Iterators,
   'day3-files': day3Files,
+  'day3-numpy': day3Numpy,
   'day3-oop': day3OOP,
 }
 

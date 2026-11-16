@@ -4,13 +4,19 @@ export const day1Welcome: ContentBlock[] = [
   { type: 'heading', level: 1, text: 'Welcome to Python! 🐍' },
   {
     type: 'text',
-    content: 'Python is a powerful, readable programming language used for everything from web development to data science and AI. In this workshop, you\'ll learn how to write real, working Python code right in your browser.',
+    content: 'Python is a powerful, readable programming language used for everything from web development to data science, AI and automation. In this workshop, you\'ll learn how to write real, working Python code right in your browser.',
   },
   {
     type: 'callout',
     variant: 'tip',
     title: 'Why Python?',
     content: 'Created by **Guido van Rossum** in 1991, Python was designed to be simple and readable. Its syntax reads almost like English. Companies like **Google, Netflix, Instagram, and NASA** all rely on Python.',
+  },
+  {
+    type: 'callout',
+    variant: 'python',
+    title: 'Real connect',
+    content: 'Python is #1 in AI/ML, Data Science, and automation — same syntax, more power, less boilerplate.',
   },
   { type: 'heading', level: 2, text: 'Your First Program' },
   {
