@@ -174,6 +174,12 @@ export const day1DataTypes: ContentBlock[] = [
   },
   {
     type: 'callout',
+    variant: 'info',
+    title: 'What does `import` do?',
+    content: '`import math` loads a ready-made collection of code — a **module** — so you can use `math.isclose()` without writing it yourself. You will meet modules properly in **Modules & Libraries** on Day 3.',
+  },
+  {
+    type: 'callout',
     variant: 'tip',
     title: 'When Precision Matters',
     content: 'For financial calculations, never use `float`. Use the `decimal` module instead: `from decimal import Decimal; price = Decimal(\'19.99\')`.',
@@ -393,7 +399,7 @@ export const day1DataTypes: ContentBlock[] = [
       },
       {
         question: 'What values are falsy in Python?',
-        answer: '`0`, `0.0`, `None`, `""` (empty string), `[]` (empty list), `{}` (empty dict), `set()`. Everything else is truthy.'
+        answer: '`0`, `0.0`, `None` and `""` (empty string). Empty collections are falsy too — you will meet them on Day 2. Everything else is truthy.'
       },
       {
         question: 'How do you convert between types?',

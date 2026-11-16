@@ -16,7 +16,7 @@ export const day2Lists: ContentBlock[] = [
   { type: 'heading', level: 2, text: 'Creating Lists' },
   {
     type: 'code',
-    code: '# Empty list\nempty = []\nalso_empty = list()\n\n# List with values\nnumbers = [1, 2, 3, 4, 5]\nnames = ["Alice", "Bob", "Charlie"]\nmixed = [1, "hello", 3.14, True, None]   # Any types!\n\n# List from other sequences\nfrom_string = list("Python")    # [\'P\', \'y\', \'t\', \'h\', \'o\', \'n\']\nfrom_range = list(range(5))     # [0, 1, 2, 3, 4]\nfrom_tuple = list((10, 20, 30)) # [10, 20, 30]\n\n# List comprehension (we\'ll cover this more later)\nsquares = [x**2 for x in range(1, 6)]  # [1, 4, 9, 16, 25]\n\n# Repeated elements\nzeros = [0] * 5          # [0, 0, 0, 0, 0]\npattern = [1, 2] * 3     # [1, 2, 1, 2, 1, 2]\n\nprint(f"Numbers: {numbers}")\nprint(f"Mixed: {mixed}")\nprint(f"From string: {from_string}")',
+    code: '# Empty list\nempty = []\nalso_empty = list()\n\n# List with values\nnumbers = [1, 2, 3, 4, 5]\nnames = ["Alice", "Bob", "Charlie"]\nmixed = [1, "hello", 3.14, True, None]   # Any types!\n\n# List from other sequences\nfrom_string = list("Python")    # [\'P\', \'y\', \'t\', \'h\', \'o\', \'n\']\nfrom_range = list(range(5))     # [0, 1, 2, 3, 4]\n\n# Squares, built with a loop (a shorter way comes in Comprehensions)\nsquares = []\nfor x in range(1, 6):\n    squares.append(x**2)   # [1, 4, 9, 16, 25]\n\n# Repeated elements\nzeros = [0] * 5          # [0, 0, 0, 0, 0]\npattern = [1, 2] * 3     # [1, 2, 1, 2, 1, 2]\n\nprint(f"Numbers: {numbers}")\nprint(f"Mixed: {mixed}")\nprint(f"From string: {from_string}")',
     language: 'python',
   },
 
@@ -88,14 +88,14 @@ export const day2Lists: ContentBlock[] = [
   { type: 'heading', level: 2, text: 'Nested Lists (Matrices)' },
   {
     type: 'code',
-    code: '# A list of lists = 2D structure (matrix)\nmatrix = [\n    [1, 2, 3],\n    [4, 5, 6],\n    [7, 8, 9]\n]\n\n# Access: matrix[row][col]\nprint(matrix[0][0])    # 1 (top-left)\nprint(matrix[1][2])    # 6 (row 1, col 2)\nprint(matrix[2][1])    # 8 (row 2, col 1)\n\n# Iterate through a matrix\nfor row in matrix:\n    for val in row:\n        print(f"{val:3d}", end="")\n    print()\n#   1  2  3\n#   4  5  6\n#   7  8  9\n\n# Flatten a matrix\nflat = [val for row in matrix for val in row]\nprint(flat)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]\n\n# Transpose a matrix\ntransposed = [[matrix[j][i] for j in range(3)] for i in range(3)]\nfor row in transposed:\n    print(row)\n# [1, 4, 7]\n# [2, 5, 8]\n# [3, 6, 9]',
+    code: '# A list of lists = 2D structure (matrix)\nmatrix = [\n    [1, 2, 3],\n    [4, 5, 6],\n    [7, 8, 9]\n]\n\n# Access: matrix[row][col]\nprint(matrix[0][0])    # 1 (top-left)\nprint(matrix[1][2])    # 6 (row 1, col 2)\nprint(matrix[2][1])    # 8 (row 2, col 1)\n\n# Iterate through a matrix\nfor row in matrix:\n    for val in row:\n        print(f"{val:3d}", end="")\n    print()\n#   1  2  3\n#   4  5  6\n#   7  8  9\n\n# Flatten a matrix — with loops\nflat = []\nfor row in matrix:\n    for val in row:\n        flat.append(val)\nprint(flat)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]\n\n# Transpose a matrix — with loops\ntransposed = []\nfor i in range(3):\n    new_row = []\n    for j in range(3):\n        new_row.append(matrix[j][i])\n    transposed.append(new_row)\nfor row in transposed:\n    print(row)\n# [1, 4, 7]\n# [2, 5, 8]\n# [3, 6, 9]',
     language: 'python',
   },
   {
     type: 'callout',
     variant: 'danger',
     title: 'Nested List Trap: [[0]*3]*3',
-    content: '`[[0]*3]*3` creates 3 references to the SAME inner list!\n`matrix = [[0]*3]*3; matrix[0][0] = 5` → All rows show [5, 0, 0]!\n\nCorrect way: `[[0]*3 for _ in range(3)]` — each row is independent.',
+    content: '`[[0]*3]*3` creates 3 references to the SAME inner list!\n`matrix = [[0]*3]*3; matrix[0][0] = 5` → All rows show [5, 0, 0]!\n\nCorrect way — build each row in a loop so every row is a fresh list:\n\nrows = []\nfor _ in range(3):\n    rows.append([0] * 3)',
   },
 
   // ═══════════════════════════════════════
@@ -114,7 +114,7 @@ export const day2Lists: ContentBlock[] = [
   { type: 'heading', level: 2, text: 'Try It Yourself' },
   {
     type: 'playground',
-    defaultCode: '# Explore lists!\n\n# 1. List operations\nnums = [64, 34, 25, 12, 22, 11, 90]\nprint(f"Original: {nums}")\nprint(f"Sorted:   {sorted(nums)}")\nprint(f"Sum: {sum(nums)}, Avg: {sum(nums)/len(nums):.1f}")\n\n# 2. List comprehensions\nmatrix = [[i*3+j+1 for j in range(3)] for i in range(3)]\nprint("\\nMatrix:")\nfor row in matrix:\n    print(f"  {row}")\n\n# 3. Stack operations (LIFO)\nstack = []\nfor item in ["A", "B", "C", "D"]:\n    stack.append(item)\n    print(f"  Push {item}: {stack}")\n\nwhile stack:\n    item = stack.pop()\n    print(f"  Pop {item}: {stack}")\n\n# 4. Unique elements while preserving order\ndata = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]\nseen = set()\nunique = []\nfor x in data:\n    if x not in seen:\n        seen.add(x)\n        unique.append(x)\nprint(f"\\nUnique (ordered): {unique}")',
+    defaultCode: '# Explore lists!\n\n# 1. List operations\nnums = [64, 34, 25, 12, 22, 11, 90]\nprint(f"Original: {nums}")\nprint(f"Sorted:   {sorted(nums)}")\nprint(f"Sum: {sum(nums)}, Avg: {sum(nums)/len(nums):.1f}")\n\n# 2. Build a matrix with loops\nmatrix = []\nfor i in range(3):\n    row = []\n    for j in range(3):\n        row.append(i * 3 + j + 1)\n    matrix.append(row)\nprint("\\nMatrix:")\nfor row in matrix:\n    print(f"  {row}")\n\n# 3. Stack operations (LIFO)\nstack = []\nfor item in ["A", "B", "C", "D"]:\n    stack.append(item)\n    print(f"  Push {item}: {stack}")\n\nwhile stack:\n    item = stack.pop()\n    print(f"  Pop {item}: {stack}")\n\n# 4. Unique elements while preserving order\ndata = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]\nunique = []\nfor x in data:\n    if x not in unique:\n        unique.append(x)\nprint(f"\\nUnique (ordered): {unique}")',
     instructions: 'Experiment with list methods, comprehensions, and nested lists.',
   },
 
@@ -218,7 +218,7 @@ export const day2Lists: ContentBlock[] = [
     type: 'heading', level: 2, text: 'Stacks — LIFO with append/pop' },
   {
     type: 'code',
-    code: 'stack = []\nstack.append("A")      # push\nstack.append("B")\nstack.append("C")\nprint(stack)           # [\'A\', \'B\', \'C\']\n\ntop = stack.pop()      # pop → \'C\'\nprint(stack)           # [\'A\', \'B\']\n\n# Classic use: balanced brackets\ndef balanced(s):\n    stack = []\n    pairs = {")": "(", "]": "[", "}": "{"}\n    for ch in s:\n        if ch in "([{":\n            stack.append(ch)\n        elif ch in ")]}":\n            if not stack or stack.pop() != pairs[ch]:\n                return False\n    return not stack\n\nprint(balanced("({[]})"))   # True\nprint(balanced("([)]"))     # False',
+    code: 'stack = []\nstack.append("A")      # push\nstack.append("B")\nstack.append("C")\nprint(stack)           # [\'A\', \'B\', \'C\']\n\ntop = stack.pop()      # pop → \'C\'\nprint(stack)           # [\'A\', \'B\']\n\n# Classic use: balanced brackets\ns = "({[]})"\nstack = []\nopens = "([{"\ncloses = ")]}"\nbalanced = True\nfor ch in s:\n    if ch in opens:\n        stack.append(ch)\n    elif ch in closes:\n        if not stack or opens.index(stack.pop()) != closes.index(ch):\n            balanced = False\nprint(balanced)   # True — every closer matches the last opener',
     language: 'python',
   },
 
@@ -245,7 +245,7 @@ export const day2Lists: ContentBlock[] = [
     type: 'callout',
     variant: 'warning',
     title: 'The Classic Bug',
-    content: '`matrix = [[0] * 3] * 3` creates one row and references it three times. Writing `matrix[0][0] = 1` changes all three rows. Use `[[0] * 3 for _ in range(3)]` instead.',
+    content: '`matrix = [[0] * 3] * 3` creates one row and references it three times. Writing `matrix[0][0] = 1` changes all three rows. Build each row in a loop instead.',
   },
   {
     type: 'memoryLab',
@@ -339,7 +339,7 @@ export const day2Lists: ContentBlock[] = [
   },
   {
     type: 'code',
-    code: 'nums = [5, 2, 8, 1, 9]\nnums.sort()                 # in-place, returns None\nprint(nums)                 # [1, 2, 5, 8, 9]\n\n# sorted() returns a NEW list (doesn\'t mutate)\nnew_list = sorted(nums, reverse=True)\n\n# Sort by a key function\nnames = ["Alice", "bob", "CAROL"]\nprint(sorted(names, key=str.lower))   # case-insensitive\n\nrows = [("Alice", 92), ("Bob", 85), ("Carol", 92)]\n# Stable: Alice comes before Carol (both 92) — preserving insertion order\nprint(sorted(rows, key=lambda r: r[1], reverse=True))',
+    code: 'nums = [5, 2, 8, 1, 9]\nnums.sort()                 # in-place, returns None\nprint(nums)                 # [1, 2, 5, 8, 9]\n\n# sorted() returns a NEW list (doesn\'t mutate)\nnew_list = sorted(nums, reverse=True)\n\n# Sorting is stable: equal items keep their original order\nrows = [("Alice", 92), ("Bob", 85), ("Carol", 92)]\nrows.sort()\nprint(rows)   # sorted by name: Alice, Bob, Carol\n\n# Sorting by a chosen value (key=...) needs a function —\n# see sorted() with key in Functions, later today.',
     language: 'python',
   },
 
@@ -360,7 +360,7 @@ export const day2Lists: ContentBlock[] = [
       },
       {
         question: 'Why does `matrix = [[0] * 3] * 3` misbehave?',
-        answer: 'The outer `* 3` makes **three pointers to the same inner list** — not three independent lists. Mutating one row mutates all. Use a comprehension: `[[0] * 3 for _ in range(3)]` to create fresh inner lists.',
+        answer: 'The outer `* 3` makes **three pointers to the same inner list** — not three independent lists. Mutating one row mutates all. Build each row in a loop instead, so every row is a fresh list:\n\nrows = []\nfor _ in range(3):\n    rows.append([0] * 3)',
       },
       {
         question: 'What\'s the difference between `list1.copy()`, `list(list1)`, and `list1[:]`?',

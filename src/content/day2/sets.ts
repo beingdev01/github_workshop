@@ -1,6 +1,6 @@
 import type { ContentBlock } from '@/types/content'
 
-export const day3Sets: ContentBlock[] = [
+export const day2Sets: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 1: Introduction
   // ═══════════════════════════════════════

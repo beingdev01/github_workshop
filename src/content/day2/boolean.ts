@@ -70,7 +70,7 @@ export const day2Boolean: ContentBlock[] = [
   },
   {
     type: 'code',
-    code: '# and — True only if BOTH sides are True\nprint(True and True)     # True\nprint(True and False)    # False\nprint(False and True)    # False\nprint(False and False)   # False\n\n# or — True if EITHER side is True\nprint(True or True)      # True\nprint(True or False)     # True\nprint(False or True)     # True\nprint(False or False)    # False\n\n# not — Flips the value\nprint(not True)          # False\nprint(not False)         # True\n\n# Practical examples\nage = 25\nhas_license = True\nhas_insurance = True\n\nif age >= 18 and has_license and has_insurance:\n    print("You can drive!")        # You can drive!\n\ntemperature = 35\nif temperature < 0 or temperature > 40:\n    print("Extreme weather!")\nelse:\n    print("Manageable weather")    # Manageable weather',
+    code: '# and — True only if BOTH sides are True\nprint(True and True)     # True\nprint(True and False)    # False\nprint(False and True)    # False\nprint(False and False)   # False\n\n# or — True if EITHER side is True\nprint(True or True)      # True\nprint(True or False)     # True\nprint(False or True)     # True\nprint(False or False)    # False\n\n# not — Flips the value\nprint(not True)          # False\nprint(not False)         # True\n\n# Practical examples — and / or give you a True / False answer\nage = 25\nhas_license = True\nhas_insurance = True\n\nprint(age >= 18 and has_license and has_insurance)   # True — can drive\n\ntemperature = 35\nprint(temperature < 0 or temperature > 40)            # False — manageable weather',
     language: 'python',
   },
 
@@ -127,8 +127,14 @@ export const day2Boolean: ContentBlock[] = [
   },
   {
     type: 'code',
-    code: '# Falsy values (these are ALL of them):\nprint(bool(False))     # False — the literal False\nprint(bool(None))      # False — absence of value\nprint(bool(0))         # False — integer zero\nprint(bool(0.0))       # False — float zero\nprint(bool(0j))        # False — complex zero\nprint(bool(""))        # False — empty string\nprint(bool([]))        # False — empty list\nprint(bool(()))        # False — empty tuple\nprint(bool({}))        # False — empty dict\nprint(bool(set()))     # False — empty set\n\n# Everything else is truthy:\nprint(bool(1))         # True\nprint(bool(-1))        # True — negative numbers are truthy!\nprint(bool(0.001))     # True\nprint(bool("0"))       # True — string "0" is NOT empty!\nprint(bool(" "))       # True — space is NOT empty!\nprint(bool([0]))       # True — list with one element\nprint(bool("False"))   # True — string "False" is truthy!',
+    code: '# Falsy values (these are ALL of them):\nprint(bool(False))     # False — the literal False\nprint(bool(None))      # False — absence of value\nprint(bool(0))         # False — integer zero\nprint(bool(0.0))       # False — float zero\nprint(bool(0j))        # False — complex zero\nprint(bool(""))        # False — empty string\nprint(bool([]))        # False — empty list\nprint(bool(()))        # False — empty tuple\n\n# Everything else is truthy:\nprint(bool(1))         # True\nprint(bool(-1))        # True — negative numbers are truthy!\nprint(bool(0.001))     # True\nprint(bool("0"))       # True — string "0" is NOT empty!\nprint(bool(" "))       # True — space is NOT empty!\nprint(bool([0]))       # True — list with one element\nprint(bool("False"))   # True — string "False" is truthy!',
     language: 'python',
+  },
+  {
+    type: 'callout',
+    variant: 'info',
+    title: 'Empty collections are falsy too',
+    content: '`[]`, `()`, `{}` and `set()` all become `False`. You will meet them later today, in Lists, Dictionaries and Sets.',
   },
   {
     type: 'callout',
@@ -154,7 +160,7 @@ export const day2Boolean: ContentBlock[] = [
   { type: 'heading', level: 2, text: 'The bool() Constructor' },
   {
     type: 'code',
-    code: '# bool() converts any value to True or False\nprint(bool(42))        # True\nprint(bool(""))        # False\nprint(bool("text"))    # True\nprint(bool([]))        # False\nprint(bool([1,2,3]))   # True\n\n# Counting truthy values in a collection\nvalues = [1, 0, "", "hello", None, True, [], [1]]\ntruthy_count = sum(bool(x) for x in values)\nprint(f"Truthy values: {truthy_count} out of {len(values)}")  # 4 out of 8\n\n# Filter truthy values\ntruthy_only = [x for x in values if x]\nprint(truthy_only)   # [1, \'hello\', True, [1]]',
+    code: '# bool() converts any value to True or False\nprint(bool(42))        # True\nprint(bool(""))        # False\nprint(bool("text"))    # True\nprint(bool([]))        # False\nprint(bool([1,2,3]))   # True\n\n# bool() on single values — no loops needed\nprint(bool(1))        # True\nprint(bool(0))        # False\nprint(bool(""))       # False\nprint(bool("hello"))   # True\nprint(bool(None))      # False\nprint(bool([]))       # False — empty list\nprint(bool([1]))      # True — non-empty list',
     language: 'python',
   },
 
@@ -164,7 +170,7 @@ export const day2Boolean: ContentBlock[] = [
   { type: 'heading', level: 2, text: 'Identity & Membership Operators' },
   {
     type: 'code',
-    code: '# Identity operators: is, is not\n# Check if two variables refer to the SAME object in memory\na = [1, 2, 3]\nb = [1, 2, 3]\nc = a\n\nprint(a == b)     # True  — same value\nprint(a is b)     # False — different objects!\nprint(a is c)     # True  — c points to same object as a\nprint(a is not b) # True\n\n# ALWAYS use "is" with None\nx = None\nprint(x is None)       # True  ✅ correct way\nprint(x == None)       # True  ❌ works but discouraged\n\n# Membership operators: in, not in\nprint(3 in [1, 2, 3, 4])         # True\nprint(5 in [1, 2, 3, 4])         # False\nprint("py" in "python")          # True\nprint("z" not in "python")       # True\nprint("key" in {"key": "val"})   # True (checks keys in dicts)',
+    code: '# Identity operators: is, is not\n# Check if two variables refer to the SAME object in memory\na = [1, 2, 3]\nb = [1, 2, 3]\nc = a\n\nprint(a == b)     # True  — same value\nprint(a is b)     # False — different objects!\nprint(a is c)     # True  — c points to same object as a\nprint(a is not b) # True\n\n# ALWAYS use "is" with None\nx = None\nprint(x is None)       # True  ✅ correct way\nprint(x == None)       # True  ❌ works but discouraged\n\n# Membership operators: in, not in\nprint(3 in [1, 2, 3, 4])         # True\nprint(5 in [1, 2, 3, 4])         # False\nprint("py" in "python")          # True\nprint("z" not in "python")       # True\n',
     language: 'python',
   },
   {
@@ -202,65 +208,18 @@ export const day2Boolean: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Going Deeper: Boolean Evaluation Internals
   // ═══════════════════════════════════════
-  { type: 'heading', level: 1, text: 'Going Deeper — The Boolean Evaluation Engine' },
   {
-    type: 'text',
-    content: 'When Python evaluates a condition, it does more than compare `True` and `False`. It asks objects for truth value using `__bool__()` (or falls back to `__len__()`), applies short-circuit rules, and often returns one of the original operand objects.',
-  },
-  {
-    type: 'heading', level: 2, text: 'Truthiness Dispatch: __bool__ Then __len__' },
-  {
-    type: 'code',
-    code: 'class Box:\n    def __init__(self, items):\n        self.items = items\n\n    def __len__(self):\n        return len(self.items)\n\nclass FeatureFlag:\n    def __init__(self, enabled):\n        self.enabled = enabled\n\n    def __bool__(self):\n        print("__bool__ called")\n        return self.enabled\n\nprint(bool(Box([])))        # False  (len == 0)\nprint(bool(Box([1, 2])))    # True   (len > 0)\n\nflag = FeatureFlag(True)\nif flag:\n    print("Flag is on")',
-    language: 'python',
-  },
-  {
-    type: 'memoryDiagram',
-    title: 'Diagram: How `if obj:` Computes Truth Value',
-    description: 'Python asks an object for truthiness in a strict order: __bool__, then __len__, then default truthy.',
-    bindings: [
-      { scope: 'global', name: 'box', objectId: 'OBJ_BOX' },
-      { scope: 'global', name: 'flag', objectId: 'OBJ_FLAG' },
-      { scope: 'frame:bool', name: 'obj', objectId: 'OBJ_BOX' },
-      { scope: 'frame:if', name: 'condition', objectId: 'B_TRUE' },
-    ],
-    objects: [
-      {
-        id: 'OBJ_BOX',
-        type: 'Box',
-        value: 'Box([1, 2])',
-        mutable: true,
-        note: 'No __bool__; Python calls __len__ and interprets non-zero as True.',
-        accent: 'amber',
-      },
-      {
-        id: 'OBJ_FLAG',
-        type: 'FeatureFlag',
-        value: 'FeatureFlag(True)',
-        mutable: true,
-        note: 'Defines __bool__, so Python uses that directly.',
-        accent: 'sky',
-      },
-      {
-        id: 'B_TRUE',
-        type: 'bool',
-        value: 'True',
-        mutable: false,
-        accent: 'mint',
-      },
-    ],
-    insights: [
-      'Truthiness is protocol-driven, not hardcoded only for built-in types.',
-      'An empty container is falsy because len == 0, not because Python special-cases each container.',
-      'Custom classes can define exactly how they behave in conditions.',
-    ],
+    type: 'callout',
+    variant: 'info',
+    title: 'How Python decides truthiness',
+    content: 'When Python checks `if obj:`, it asks the object for its truth value — first `__bool__()`, then `__len__()`. You will see exactly how that works with your own classes in **OOP Deep Dive** on Day 3.',
   },
 
   {
     type: 'heading', level: 2, text: '`and` / `or` Return Operands, Not Forced Booleans' },
   {
     type: 'code',
-    code: 'name = ""\nfallback = "Anonymous"\n\nselected = name or fallback\nprint(selected)             # Anonymous\n\ncache = {"token": "abc"}\nresult = cache and cache["token"]\nprint(result)               # abc\n\nprint(0 and 99)             # 0\nprint("" or "default")      # default',
+    code: 'name = ""\nfallback = "Anonymous"\n\nselected = name or fallback\nprint(selected)             # Anonymous\n\n\nprint(0 and 99)             # 0\nprint("" or "default")      # default',
     language: 'python',
   },
   {
@@ -369,7 +328,7 @@ export const day2Boolean: ContentBlock[] = [
   { type: 'heading', level: 2, text: 'Try It Yourself' },
   {
     type: 'playground',
-    defaultCode: '# Explore boolean logic!\n\n# 1. Truthiness\nvalues = [0, 1, -1, "", "hello", None, [], [0], True, False]\nfor v in values:\n    print(f"{str(v):>10} → {bool(v)}")\n\nprint()\n\n# 2. Short-circuit behavior\nprint("and:", 0 and "hello")       # Returns first falsy\nprint("and:", "hi" and "hello")    # Returns last truthy\nprint("or:", 0 or "hello")        # Returns first truthy\nprint("or:", "" or 0)             # Returns last falsy\n\nprint()\n\n# 3. Comparison chaining\nx = 15\nprint(f"{x}: 10 < x < 20 → {10 < x < 20}")\nprint(f"{x}: 0 < x < 10 → {0 < x < 10}")\n\nprint()\n\n# 4. De Morgan\'s Law demonstration\nA, B = True, False\nprint(f"not (A and B) = {not (A and B)}")\nprint(f"(not A) or (not B) = {(not A) or (not B)}")\nprint(f"Equal? {not (A and B) == ((not A) or (not B))}")',
+    defaultCode: '# Explore boolean logic!\n\n# 1. Truthiness — try each value yourself\nprint(bool(0))        # False\nprint(bool(1))        # True\nprint(bool(-1))       # True\nprint(bool(""))       # False\nprint(bool("hello"))  # True\nprint(bool(None))     # False\nprint(bool([]))       # False\nprint(bool([0]))      # True\n\nprint()\n\n# 2. Short-circuit behavior\nprint("and:", 0 and "hello")       # Returns first falsy\nprint("and:", "hi" and "hello")    # Returns last truthy\nprint("or:", 0 or "hello")        # Returns first truthy\nprint("or:", "" or 0)             # Returns last falsy\n\nprint()\n\n# 3. Comparison chaining\nx = 15\nprint(f"{x}: 10 < x < 20 → {10 < x < 20}")\nprint(f"{x}: 0 < x < 10 → {0 < x < 10}")\n\nprint()\n\n# 4. De Morgan\'s Law demonstration\nA, B = True, False\nprint(f"not (A and B) = {not (A and B)}")\nprint(f"(not A) or (not B) = {(not A) or (not B)}")\nprint(f"Equal? {not (A and B) == ((not A) or (not B))}")',
     instructions: 'Modify values and observe how truthiness, short-circuiting, and De Morgan\'s Laws work.',
   },
 

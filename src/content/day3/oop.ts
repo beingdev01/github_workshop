@@ -343,4 +343,26 @@ export const day3OOP: ContentBlock[] = [
       },
     ],
   },
+  { type: 'heading', level: 2, text: 'Practice Questions' },
+  {
+    type: 'qna',
+    items: [
+      {
+        question: 'Which file mode overwrites a file, and which one adds to the end?',
+        answer: '`"w"` overwrites (and creates the file if it is missing). `"a"` adds to the end.',
+      },
+      {
+        question: 'What does `import random` let you do?',
+        answer: 'It loads the `random` module, so you can use `random.randint()`, `random.choice()` and the other functions in it.',
+      },
+      {
+        question: 'What is the difference between a list and a generator?',
+        answer: 'A list holds all its values in memory at once. A generator makes values one at a time, only when you ask for them.',
+      },
+      {
+        question: 'What does `__init__` do in a class?',
+        answer: 'It runs when you create a new object and sets up its starting values, like `self.name = name`.',
+      },
+    ],
+  },
 ]

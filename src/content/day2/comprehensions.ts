@@ -1,6 +1,6 @@
 import type { ContentBlock } from '@/types/content'
 
-export const day3Comprehensions: ContentBlock[] = [
+export const day2Comprehensions: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 1: Introduction
   // ═══════════════════════════════════════
@@ -125,116 +125,13 @@ export const day3Comprehensions: ContentBlock[] = [
   },
 
   // ═══════════════════════════════════════
-  // Going Deeper: Comprehension Execution Model
-  // ═══════════════════════════════════════
-  { type: 'heading', level: 1, text: 'Going Deeper - Comprehension Runtime and Memory' },
   {
-    type: 'text',
-    content: 'A list comprehension is eager: it allocates and fills a list immediately. A generator expression is lazy: it stores execution state and yields one item at a time.',
-  },
-  {
-    type: 'code',
-    code: 'nums = range(5)\nlist_comp = [x * x for x in nums]\ngen_expr = (x * x for x in nums)\n\nprint(list_comp)\nprint(next(gen_expr))\nprint(next(gen_expr))',
-    language: 'python',
-  },
-  {
-    type: 'memoryDiagram',
-    title: 'Diagram: Eager List vs Lazy Generator',
-    description: 'Both use the same expression logic but create different runtime objects and memory behavior.',
-    bindings: [
-      { scope: 'global', name: 'list_comp', objectId: 'L_COMP' },
-      { scope: 'global', name: 'gen_expr', objectId: 'G_EXPR' },
-      { scope: 'runtime', name: 'iter_source', objectId: 'RANGE5' },
-    ],
-    objects: [
-      {
-        id: 'RANGE5',
-        type: 'range',
-        value: 'range(0, 5)',
-        mutable: false,
-        accent: 'amber',
-      },
-      {
-        id: 'L_COMP',
-        type: 'list',
-        value: '[0, 1, 4, 9, 16]',
-        mutable: true,
-        note: 'All values materialized at once.',
-        accent: 'mint',
-      },
-      {
-        id: 'G_EXPR',
-        type: 'generator',
-        value: '<genexpr state=index=2>',
-        mutable: true,
-        note: 'Stores only execution state, not full output.',
-        accent: 'sky',
-      },
-    ],
-    insights: [
-      'List comprehensions trade memory for immediate reusability.',
-      'Generator expressions trade random access for low memory use.',
-      'Both execute loop variables in an isolated comprehension scope in Python 3.',
-    ],
-  },
-  {
-    type: 'memoryLab',
-    title: 'Interactive Trace: Materialization vs Streaming',
-    prompt: 'Compare when values are computed and where they are stored.',
-    steps: [
-      {
-        title: 'Build Eager List',
-        action: 'Run list comprehension',
-        code: 'squares = [x * x for x in range(4)]',
-        bindings: [
-          { scope: 'global', name: 'squares', objectId: 'L_SQ' },
-        ],
-        objects: [
-          { id: 'L_SQ', type: 'list', value: '[0, 1, 4, 9]', mutable: true, refCount: 1, accent: 'mint' },
-        ],
-        explanation: 'All output values are computed immediately and stored in one list object.',
-      },
-      {
-        title: 'Create Generator',
-        action: 'Run generator expression',
-        code: 'stream = (x * x for x in range(4))',
-        bindings: [
-          { scope: 'global', name: 'stream', objectId: 'G_SQ' },
-        ],
-        objects: [
-          { id: 'G_SQ', type: 'generator', value: '<state: not started>', mutable: true, refCount: 1, accent: 'sky' },
-        ],
-        explanation: 'No squares are computed yet; only iterator state and bytecode context are stored.',
-      },
-      {
-        title: 'Consume One Item',
-        action: 'Run first next call',
-        code: 'next(stream)  # 0',
-        bindings: [
-          { scope: 'global', name: 'stream', objectId: 'G_SQ' },
-        ],
-        objects: [
-          { id: 'G_SQ', type: 'generator', value: '<state: index=1>', mutable: true, refCount: 1, accent: 'sky' },
-          { id: 'I0', type: 'int', value: '0', mutable: false, refCount: 0, accent: 'amber', note: 'Returned value is temporary unless rebound.' },
-        ],
-        explanation: 'Generator runs until first yield and pauses, keeping resume state.',
-      },
-      {
-        title: 'Exhaust Generator',
-        action: 'Consume remaining values',
-        code: 'list(stream)  # [1, 4, 9]',
-        bindings: [
-          { scope: 'global', name: 'stream', objectId: 'G_SQ' },
-        ],
-        objects: [
-          { id: 'G_SQ', type: 'generator', value: '<state: exhausted>', mutable: true, refCount: 1, accent: 'coral' },
-        ],
-        explanation: 'After exhaustion, additional reads produce no values and raise StopIteration.',
-      },
-    ],
+    type: 'callout',
+    variant: 'info',
+    title: 'The full memory story',
+    content: 'A list comprehension builds the whole list at once; a generator expression makes values one at a time. The diagrams and the full comparison live in **Iterators & Generators** on Day 3.',
   },
 
-  // ═══════════════════════════════════════
   // Section 9: Playground
   // ═══════════════════════════════════════
   { type: 'heading', level: 2, text: 'Your Turn' },

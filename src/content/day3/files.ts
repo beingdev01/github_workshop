@@ -138,7 +138,7 @@ export const day3Files: ContentBlock[] = [
     type: 'heading', level: 2, text: 'CSV — The Standard Library Way' },
   {
     type: 'code',
-    code: 'import csv\n\n# Write — note newline="" argument\nwith open("grades.csv", "w", newline="") as f:\n    writer = csv.writer(f)\n    writer.writerow(["name", "course", "score"])\n    writer.writerow(["Alice", "Math", 92])\n    writer.writerow(["Bob",   "CS",   88])\n\n# Read as rows of strings\nwith open("grades.csv", newline="") as f:\n    reader = csv.reader(f)\n    header = next(reader)\n    for row in reader:\n        name, course, score = row\n        print(f"{name}: {course} = {int(score)}")\n\n# Read as dicts — cleaner, robust to column order\nwith open("grades.csv", newline="") as f:\n    for row in csv.DictReader(f):\n        print(row["name"], int(row["score"]))',
+    code: 'import csv\n\n# Write — note newline="" argument\nwith open("grades.csv", "w", newline="") as f:\n    writer = csv.writer(f)\n    writer.writerow(["name", "course", "score"])\n    writer.writerow(["Alice", "Math", 92])\n    writer.writerow(["Bob",   "CS",   88])\n\n# Read as rows of strings\nwith open("grades.csv", newline="") as f:\n    reader = csv.reader(f)\n    rows = list(reader)\n    header = rows[0]\n    for row in rows[1:]:\n        name, course, score = row\n        print(f"{name}: {course} = {int(score)}")\n\n# Read as dicts — cleaner, robust to column order\nwith open("grades.csv", newline="") as f:\n    for row in csv.DictReader(f):\n        print(row["name"], int(row["score"]))',
     language: 'python',
   },
 

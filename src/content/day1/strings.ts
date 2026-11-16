@@ -345,7 +345,7 @@ export const day1Strings: ContentBlock[] = [
   },
   {
     type: 'code',
-    code: '# Advanced f-string tricks\n\n# Debugging with = (Python 3.8+)\nx = 42\nprint(f"{x = }")         # x = 42\nprint(f"{x + 10 = }")    # x + 10 = 52\n\n# Dictionary access in f-strings\nperson = {"name": "Alice", "age": 25}\nprint(f"{person[\'name\']} is {person[\'age\']}")',
+    code: '# Advanced f-string tricks\n\n# Debugging with = (Python 3.8+)\nx = 42\nprint(f"{x = }")         # x = 42\nprint(f"{x + 10 = }")    # x + 10 = 52\n',
     language: 'python',
   },
 
@@ -398,7 +398,7 @@ export const day1Strings: ContentBlock[] = [
     type: 'heading', level: 2, text: 'Strings Are Immutable' },
   {
     type: 'text',
-    content: 'A Python `str` cannot change after creation. Every "modification" — `.upper()`, `+`, `.replace()` — returns a **new** string and leaves the original untouched. This makes strings hashable (usable as dict keys and set members) and thread-safe.',
+    content: 'A Python `str` cannot change after creation. Every "modification" — `.upper()`, `+`, `.replace()` — returns a **new** string and leaves the original untouched. This makes strings safe to share and reuse, and thread-safe.',
   },
   {
     type: 'code',
@@ -410,7 +410,7 @@ export const day1Strings: ContentBlock[] = [
     type: 'heading', level: 2, text: 'String Interning' },
   {
     type: 'text',
-    content: 'CPython **interns** short string literals that look like identifiers — the interpreter keeps a single copy and reuses it. This speeds up dict lookups (comparing by pointer) and saves memory.',
+    content: 'CPython **interns** short string literals that look like identifiers — the interpreter keeps a single copy and reuses it. This speeds up comparisons and saves memory.',
   },
   {
     type: 'code',
@@ -560,7 +560,7 @@ export const day1Strings: ContentBlock[] = [
     items: [
       {
         question: 'Why are Python strings immutable?',
-        answer: 'Three reasons: (1) **hashability** — immutable strings can be dict keys. (2) **thread safety** — no concurrent mutation bugs. (3) **interning** — identical literals can share one copy in memory.',
+        answer: 'Three reasons: (1) **safety** — a string passed around can never be changed by surprise. (2) **thread safety** — no concurrent mutation bugs. (3) **interning** — identical literals can share one copy in memory.',
       },
       {
         question: 'Why does `"hello" is "hello"` return True?',

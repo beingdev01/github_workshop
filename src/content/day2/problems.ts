@@ -265,4 +265,30 @@ for frm, to, disk in hanoi_moves(3):
       },
     ],
   },
+  { type: 'heading', level: 2, text: 'Practice Questions' },
+  {
+    type: 'qna',
+    items: [
+      {
+        question: 'What does `print(7 % 2)` show?',
+        answer: '1 — the remainder when 7 is divided by 2.',
+      },
+      {
+        question: 'What is the output of `print([1, 2, 3] + [4])`?',
+        answer: '`[1, 2, 3, 4]` — `+` joins two lists.',
+      },
+      {
+        question: 'How do you get the number of items in a dictionary called `marks`?',
+        answer: '`len(marks)`.',
+      },
+      {
+        question: 'What does this print? `s = {1, 2, 2, 3}` then `print(len(s))`',
+        answer: '3 — a set keeps only one copy of each value.',
+      },
+      {
+        question: 'What does a function return if it has no `return` line?',
+        answer: '`None`.',
+      },
+    ],
+  },
 ]

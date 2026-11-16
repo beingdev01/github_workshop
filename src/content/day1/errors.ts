@@ -26,7 +26,7 @@ export const day1Errors: ContentBlock[] = [
   },
   {
     type: 'code',
-    code: 'def divide(a, b):\n    return a / b\n\ndef compute(x):\n    return divide(x, 0)\n\ncompute(10)',
+    code: '# Reading a traceback — the LAST line is the error\nx = 10\ny = 0\nprint(x / y)\n# ZeroDivisionError: division by zero\n\n# The lines above the error show where it happened.\n# (With functions, you will see a chain of calls here\n#  — see Functions on Day 2.)',
     language: 'python',
   },
   {
@@ -50,7 +50,7 @@ export const day1Errors: ContentBlock[] = [
   { type: 'heading', level: 2, text: 'The Usual Suspects' },
   {
     type: 'code',
-    code: '# SyntaxError — code violates Python grammar (won\'t even start)\nif x = 5:   # SyntaxError: invalid syntax (should be ==)\n    pass\n\n# NameError — using a variable that doesn\'t exist\nprint(undefined_var)  # NameError: name \'undefined_var\' is not defined\n\n# TypeError — operation on the wrong type\n"age: " + 25          # TypeError: can only concatenate str (not "int") to str\nlen(42)               # TypeError: object of type \'int\' has no len()\n\n# ValueError — right type, invalid value\nint("abc")            # ValueError: invalid literal for int() with base 10\n\n# IndexError — list index out of range\nnums = [1, 2, 3]\nnums[10]              # IndexError: list index out of range\n\n# KeyError — missing dictionary key\nuser = {"name": "Alice"}\nuser["age"]           # KeyError: \'age\'\n\n# AttributeError — method/attribute not on this object\n"hello".push("!")     # AttributeError: \'str\' object has no attribute \'push\'\n\n# ZeroDivisionError — dividing by zero\n10 / 0                # ZeroDivisionError\n\n# IndentationError — inconsistent indentation\ndef f():\nreturn 1              # IndentationError: expected an indented block',
+    code: '# SyntaxError — code violates Python grammar (won\'t even start)\nif x = 5:   # SyntaxError: invalid syntax (should be ==)\n    pass\n\n# NameError — using a variable that doesn\'t exist\nprint(undefined_var)  # NameError: name \'undefined_var\' is not defined\n\n# TypeError — operation on the wrong type\n"age: " + 25          # TypeError: can only concatenate str (not "int") to str\nlen(42)               # TypeError: object of type \'int\' has no len()\n\n# ValueError — right type, invalid value\nint("abc")            # ValueError: invalid literal for int() with base 10\n\n# IndexError — list index out of range\nnums = [1, 2, 3]\nnums[10]              # IndexError: list index out of range\n\n# AttributeError — method/attribute not on this object\n"hello".push("!")     # AttributeError: \'str\' object has no attribute \'push\'\n\n# ZeroDivisionError — dividing by zero\n10 / 0                # ZeroDivisionError\n\n# IndentationError — inconsistent indentation\ndef f():\nreturn 1              # IndentationError: expected an indented block',
     language: 'python',
   },
   {
@@ -81,7 +81,7 @@ export const day1Errors: ContentBlock[] = [
   },
   {
     type: 'code',
-    code: '# Multiple exceptions, different responses\ntry:\n    data = open("config.txt").read()\n    value = int(data)\nexcept FileNotFoundError:\n    print("No config file — using defaults.")\n    value = 0\nexcept ValueError:\n    print("Config file is corrupted.")\n    value = 0\n\n# Group related exceptions\ntry:\n    result = risky_operation()\nexcept (TypeError, ValueError) as e:\n    print(f"Bad input: {e}")',
+    code: '# Multiple exceptions, different responses\ntry:\n    value = int("abc")\nexcept ValueError:\n    print("Not a number — using 0.")\n    value = 0\n\n# Group related exceptions\ntry:\n    result = int("12x") + 5\nexcept (TypeError, ValueError) as e:\n    print(f"Bad input: {e}")',
     language: 'python',
   },
 
@@ -104,7 +104,7 @@ export const day1Errors: ContentBlock[] = [
   },
   {
     type: 'code',
-    code: 'try:\n    f = open("data.txt")\n    content = f.read()\nexcept FileNotFoundError:\n    print("Missing file.")\nelse:\n    print(f"Read {len(content)} characters.")\nfinally:\n    print("Cleanup runs no matter what.")\n    try:\n        f.close()\n    except NameError:\n        pass',
+    code: 'try:\n    value = int("42")\nexcept ValueError:\n    print("Not a number.")\nelse:\n    print(f"Got {value}.")\nfinally:\n    print("Cleanup runs no matter what.")',
     language: 'python',
   },
   {
@@ -124,7 +124,7 @@ export const day1Errors: ContentBlock[] = [
   },
   {
     type: 'code',
-    code: 'def set_age(age):\n    if not isinstance(age, int):\n        raise TypeError(f"age must be int, got {type(age).__name__}")\n    if age < 0:\n        raise ValueError(f"age cannot be negative: {age}")\n    return age\n\nset_age(-5)     # ValueError: age cannot be negative: -5\nset_age("old")  # TypeError: age must be int, got str',
+    code: '# raise — stop the program with your own error\nage = -5\nif age < 0:\n    raise ValueError(f"age cannot be negative: {age}")\n# ValueError: age cannot be negative: -5\n\n# Check the type first, then the value\nvalue = "old"\nif not isinstance(value, int):\n    raise TypeError(f"age must be int, got {type(value).__name__}")',
     language: 'python',
   },
   {
@@ -175,7 +175,7 @@ export const day1Errors: ContentBlock[] = [
   },
   {
     type: 'code',
-    code: 'def divide(a, b):\n    return a / b\n\ndef compute(x):\n    return divide(x, 0)\n\ncompute(10)',
+    code: '# Reading a traceback — the LAST line is the error\nx = 10\ny = 0\nprint(x / y)\n# ZeroDivisionError: division by zero\n\n# The lines above the error show where it happened.\n# (With functions, you will see a chain of calls here\n#  — see Functions on Day 2.)',
     language: 'python',
   },
   {
@@ -302,7 +302,7 @@ export const day1Errors: ContentBlock[] = [
   {
     type: 'playground',
     instructions: 'Write a function `safe_divide(a, b)` that returns `a / b`, but returns the string "undefined" when dividing by zero and "type error" if the inputs are not numbers. Use try/except — not if-statements.',
-    defaultCode: 'def safe_divide(a, b):\n    # your code here\n    pass\n\nprint(safe_divide(10, 2))    # 5.0\nprint(safe_divide(10, 0))    # undefined\nprint(safe_divide("10", 2))  # type error',
+    defaultCode: '# Safe division, one case at a time\ntry:\n    print(10 / 2)     # 5.0\nexcept ZeroDivisionError:\n    print("Cannot divide by zero")\n\ntry:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print("Cannot divide by zero")\n\ntry:\n    print(int("10") / 2)   # 5.0\nexcept ValueError:\n    print("Not a number")',
   },
 
   // ═══════════════════════════════════════
@@ -335,6 +335,24 @@ export const day1Errors: ContentBlock[] = [
       {
         question: 'Is it more "Pythonic" to ask permission or forgiveness?',
         answer: 'Forgiveness — **EAFP** (Easier to Ask Forgiveness than Permission). Try the operation and catch the exception, rather than pre-checking with `if`. It\'s faster (no redundant check) and avoids **race conditions** (the state might change between check and use).',
+      },
+    ],
+  },
+  { type: 'heading', level: 2, text: 'Practice Questions' },
+  {
+    type: 'qna',
+    items: [
+      {
+        question: 'What happens when you run `print(10 / 0)`?',
+        answer: 'Python stops with a `ZeroDivisionError` — you cannot divide by zero.',
+      },
+      {
+        question: 'What is the difference between a SyntaxError and a NameError?',
+        answer: 'A `SyntaxError` means Python cannot even read your code — a typo in the grammar, like `if x = 5:`. A `NameError` means the code reads fine but uses a name that does not exist yet.',
+      },
+      {
+        question: 'Fix this line: `print("I have " + 5 + " apples")`',
+        answer: 'You cannot add a string and a number. Use an f-string: `print(f"I have {5} apples")` — or convert first: `print("I have " + str(5) + " apples")`.',
       },
     ],
   },

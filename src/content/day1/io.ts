@@ -48,7 +48,7 @@ export const day1IO: ContentBlock[] = [
   },
   {
     type: 'code',
-    code: '# Custom end: print on the same line\nprint("Hello", end=" ")    # No newline, just a space\nprint("World")             # Output: Hello World\n\n# Building output in a loop\nfor i in range(5):\n    print(i, end=" ")      # 0 1 2 3 4\nprint()                    # Move to next line',
+    code: '# Custom end: print on the same line\nprint("Hello", end=" ")    # No newline, just a space\nprint("World")             # Output: Hello World\n\n# Print several values on one line\nprint(0, 1, 2, 3, 4)      # 0 1 2 3 4\nprint(0, 1, 2, 3, 4, sep="-")  # 0-1-2-3-4',
     language: 'python',
   },
 
@@ -59,7 +59,7 @@ export const day1IO: ContentBlock[] = [
   },
   {
     type: 'code',
-    code: '# Print a pattern: |1,2,3|4,5,6|7,8,9|\nprint("|", end="")\nfor i in range(1, 10, 3):\n    print(i, i + 1, i + 2, sep=",", end="|")\nprint()  # Move to next line',
+    code: '# Print a pattern: |1,2,3|4,5,6|7,8,9|\nprint("|1,2,3|4,5,6|7,8,9|")\n\n# Same thing, built step by step:\nprint("|", end="")\nprint(1, 2, 3, sep=",", end="|")\nprint(4, 5, 6, sep=",", end="|")\nprint(7, 8, 9, sep=",", end="|")\nprint()  # |1,2,3|4,5,6|7,8,9|',
     language: 'python',
   },
 
@@ -83,7 +83,7 @@ export const day1IO: ContentBlock[] = [
   },
   {
     type: 'code',
-    code: 'pi = 3.14159\nprice = 42.5\nbig_number = 1234567890\n\n# Float precision\nprint(f"Pi: {pi:.2f}")              # Pi: 3.14\nprint(f"Price: ${price:.2f}")       # Price: $42.50\n\n# Number formatting\nprint(f"Big: {big_number:,}")       # Big: 1,234,567,890\n\n# Padding with zeros\nfor i in range(1, 4):\n    print(f"Item-{i:03d}")          # Item-001, Item-002, Item-003',
+    code: 'pi = 3.14159\nprice = 42.5\nbig_number = 1234567890\n\n# Float precision\nprint(f"Pi: {pi:.2f}")              # Pi: 3.14\nprint(f"Price: ${price:.2f}")       # Price: $42.50\n\n# Number formatting\nprint(f"Big: {big_number:,}")       # Big: 1,234,567,890\n\n# Padding with zeros\nprint(f"Item-{1:03d}")  # Item-001\nprint(f"Item-{2:03d}")  # Item-002\nprint(f"Item-{3:03d}")  # Item-003',
     language: 'python',
   },
   {

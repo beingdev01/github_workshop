@@ -1,6 +1,6 @@
 import type { ContentBlock } from '@/types/content'
 
-export const day3Functions: ContentBlock[] = [
+export const day2Functions: ContentBlock[] = [
   // ═══════════════════════════════════════
   // Section 1: Introduction
   // ═══════════════════════════════════════
@@ -197,11 +197,11 @@ export const day3Functions: ContentBlock[] = [
     type: 'callout',
     variant: 'warning',
     title: 'Recursion Limit',
-    content: 'CPython caps recursion at ~1000 calls by default (`sys.getrecursionlimit()`). Deep recursion blows the stack. Python has no tail-call optimization — convert deep recursion to iteration, or use `functools.lru_cache` for repeated subproblems.',
+    content: 'CPython caps recursion at ~1000 calls by default (`sys.getrecursionlimit()`). Deep recursion blows the stack. Python has no tail-call optimization — convert deep recursion to iteration, or remember answers in a dictionary (memoization, below).',
   },
   {
     type: 'code',
-    code: 'from functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef fib(n):\n    if n < 2: return n\n    return fib(n - 1) + fib(n - 2)\n\nprint(fib(100))   # instant — cached subproblems',
+    code: '# Remembering answers in a dictionary (memoization)\ncache = {}\n\ndef fib(n):\n    if n in cache:\n        return cache[n]\n    if n < 2:\n        result = n\n    else:\n        result = fib(n - 1) + fib(n - 2)\n    cache[n] = result\n    return result\n\nprint(fib(30))   # fast — repeated work is remembered',
     language: 'python',
   },
 
@@ -295,6 +295,42 @@ export const day3Functions: ContentBlock[] = [
         ],
         explanation: 'Each returning frame multiplies by its local n, then is removed from the call stack.',
       },
+    ],
+  },
+
+  {
+    type: 'heading', level: 2, text: 'Call-by-Object-Reference' },
+  {
+    type: 'text',
+    content: 'Python\'s function calling is neither "by value" nor "by reference" in the classic sense. The function receives the **same object**. What happens next depends on whether the object is mutable.',
+  },
+  {
+    type: 'code',
+    code: 'def add_item(lst):\n    lst.append("new")     # MUTATES — caller sees it\n\ndef reassign(lst):\n    lst = ["replaced"]    # REBINDS local name — caller does NOT see\n\nitems = ["a", "b"]\nadd_item(items)\nprint(items)    # [\'a\', \'b\', \'new\']\nreassign(items)\nprint(items)    # [\'a\', \'b\', \'new\'] — unchanged',
+    language: 'python',
+  },
+  {
+    type: 'memoryDiagram',
+    title: 'Diagram: Function Frame During `add_item(items)`',
+    description: 'The parameter `lst` in the call frame points to the same list object as `items` in global scope.',
+    bindings: [
+      { scope: 'global', name: 'items', objectId: 'L3' },
+      { scope: 'frame:add_item', name: 'lst', objectId: 'L3' },
+    ],
+    objects: [
+      {
+        id: 'L3',
+        type: 'list',
+        value: "['a', 'b', 'new']",
+        mutable: true,
+        refCount: 2,
+        note: 'Both frames share one object. `append` mutates shared state.',
+        accent: 'mint',
+      },
+    ],
+    insights: [
+      'Function arguments are new names bound to existing objects.',
+      'Local rebinding (`lst = ...`) changes only the local name, not the caller binding.',
     ],
   },
 
